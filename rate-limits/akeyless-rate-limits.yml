@@ -1,0 +1,73 @@
+name: Akeyless API Rate Limits
+description: >-
+  Akeyless enforces usage-based limits tied to plan tier rather than traditional
+  per-minute or per-second rate limits for most API endpoints. The Free tier
+  caps encryption/KMS transactions at 1,000 per day. Enterprise tier limits are
+  negotiated custom volumes tracked monthly with annual overage invoicing.
+  Self-hosted gateway deployments may apply additional resource-based
+  constraints determined by the underlying infrastructure.
+url: https://docs.akeyless.io/
+specificationVersion: '0.1'
+rateLimits:
+  - name: Free Tier Daily Encryption Transactions
+    description: >-
+      The Free plan allows up to 1,000 discrete encryption/decryption or key
+      operations (KMS transactions) per day across the Encryption and KMS
+      module. This resets daily.
+    limit: 1000
+    unit: transactions
+    period: daily
+    scope: account
+    plan: Free
+  - name: Free Tier Static Secrets
+    description: >-
+      The Free plan allows a maximum of 500 static secrets stored in the vault
+      at any time.
+    limit: 500
+    unit: secrets
+    period: none
+    scope: account
+    plan: Free
+  - name: Free Tier Monthly Active Clients
+    description: >-
+      The Free plan supports up to 5 distinct clients (human users, applications,
+      or servers) initiating remote sessions per month. Clients are tracked
+      monthly across the Secrets Management module.
+    limit: 5
+    unit: clients
+    period: monthly
+    scope: account
+    plan: Free
+  - name: Enterprise Tier Monthly Clients
+    description: >-
+      Enterprise clients are tracked monthly; overages beyond the contracted
+      volume are invoiced annually at negotiated overage rates.
+    limit: custom
+    unit: clients
+    period: monthly
+    scope: account
+    plan: Enterprise
+  - name: Enterprise Tier Monthly KMS Transactions
+    description: >-
+      Enterprise KMS transactions are tracked monthly; overages beyond the
+      contracted volume are invoiced annually.
+    limit: custom
+    unit: transactions
+    period: monthly
+    scope: account
+    plan: Enterprise
+  - name: Certificate Quota
+    description: >-
+      Managed certificates are tracked annually. Peak usage during the
+      contract year determines billing for Enterprise plans. Free tier allows
+      5 managed certificates.
+    limit: 5
+    unit: certificates
+    period: annual
+    scope: account
+    plan: Free
+notes:
+  - Akeyless does not publish per-second or per-minute API rate limit thresholds publicly.
+  - Self-hosted gateway deployments may enforce additional infrastructure-level limits.
+  - Contact Akeyless sales for Enterprise overage rates and contractual SLAs.
+  - Rate limit documentation reference -- https://docs.akeyless.io/

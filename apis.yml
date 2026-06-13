@@ -1,0 +1,85 @@
+aid: akeyless
+name: Akeyless
+description: >-
+  Akeyless is a cloud-native identity security platform that unifies secrets
+  management, machine identity, and privileged access for AI agents, machines,
+  and humans at scale. The platform provides a REST API with 200+ endpoints
+  covering secrets vaulting, dynamic secrets generation, certificate lifecycle
+  management, encryption and multi-cloud KMS, and SSH access governance. Built
+  on patented Distributed Fragments Cryptography (DFC) technology, Akeyless
+  delivers zero-knowledge, quantum-safe security without requiring central key
+  storage. The API supports multiple authentication methods including AWS IAM,
+  Azure AD, GCP, Kubernetes, SAML, OIDC, LDAP, and API key authentication.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/akeyless/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+tags:
+  - Secrets Management
+  - Zero Trust
+  - Cloud Security
+  - Identity Security
+  - Machine Identity
+  - Certificate Management
+  - PKI
+  - KMS
+  - Encryption
+  - SSH Access
+  - Dynamic Secrets
+  - Privileged Access Management
+  - DevSecOps
+apis:
+  - aid: akeyless:akeyless-api
+    name: Akeyless REST API
+    description: >-
+      The Akeyless V2 REST API provides programmatic access to all platform
+      capabilities including secrets management, dynamic secrets, encryption
+      operations, certificate lifecycle management, and SSH access control.
+      The API is accessible at the global SaaS endpoint or via self-hosted
+      gateway deployments, with support for over 200 operations across all
+      product modules.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://docs.akeyless.io/
+    baseURL: https://api.akeyless.io
+    tags:
+      - Secrets Management
+      - Encryption
+      - Certificate Management
+      - Dynamic Secrets
+      - SSH
+    properties:
+      - type: Documentation
+        url: https://docs.akeyless.io/
+      - type: OpenAPI
+        url: https://docs.akeyless.io/llms.txt
+    contact:
+      - FN: Akeyless Support
+        url: https://www.akeyless.io/contact/
+common:
+  - type: Website
+    url: https://www.akeyless.io/
+  - type: Documentation
+    url: https://docs.akeyless.io/
+  - type: GitHubOrg
+    url: https://github.com/akeylesslabs
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/akeyless
+  - type: Blog
+    url: https://www.akeyless.io/blog/
+  - type: Pricing
+    url: https://www.akeyless.io/pricing/
+  - type: StatusPage
+    url: https://status.akeyless.io/
+  - type: X
+    url: https://x.com/akeylessio
+  - type: Plans
+    url: plans/akeyless-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/akeyless-rate-limits.yml
+  - type: FinOps
+    url: finops/akeyless-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

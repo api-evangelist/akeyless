@@ -1,0 +1,122 @@
+name: Akeyless FinOps
+description: >-
+  FinOps framework guidance for managing Akeyless API and platform costs using
+  FOCUS-aligned principles. Akeyless uses a consumption-based billing model
+  where costs are driven by the number of active clients, secret connectors,
+  managed certificates, KMS transactions, KMIP/TDE applications, tokenizer
+  instances, and cloud accounts. Tracking and optimizing these dimensions
+  enables teams to right-size their Akeyless consumption and forecast spend.
+url: https://www.akeyless.io/pricing/
+specificationVersion: '1.0'
+currency: USD
+billingModel: usage-based
+billingPeriod: monthly
+invoicePeriod: annual
+costDrivers:
+  - name: Active Clients
+    description: >-
+      Distinct human users, applications, or servers initiating remote sessions
+      in the Secrets Management or Universal Secrets Connector modules. Tracked
+      monthly; overages invoiced annually.
+    unit: clients
+    period: monthly
+    module: Secrets Management
+    optimizationTip: >-
+      Audit and decommission dormant service accounts and application clients
+      regularly. Consolidate secrets access through shared application identities
+      where security policy permits.
+  - name: Secret Connectors
+    description: >-
+      Objects that synchronize secrets with external vaults (AWS Secrets Manager,
+      Azure Key Vault, GCP Secret Manager, Kubernetes, HashiCorp Vault). Tracked
+      monthly.
+    unit: connectors
+    period: monthly
+    module: Universal Secrets Connector
+    optimizationTip: >-
+      Consolidate connector usage by routing multiple sync targets through shared
+      connectors. Remove connectors for decommissioned external vaults promptly.
+  - name: Managed Certificates
+    description: >-
+      Digital certificates managed through the Certificate Lifecycle Management
+      (CLM) service. Annual quota; peak usage during the year determines billing.
+    unit: certificates
+    period: annual
+    module: Certificate Lifecycle Management
+    optimizationTip: >-
+      Use certificate auto-renewal and short-lived certificates to reduce the
+      total count of simultaneously active managed certificates. Audit expired
+      certificates that may still count toward peak usage.
+  - name: KMS Transactions
+    description: >-
+      Discrete encryption/decryption or key operations. Tracked monthly;
+      overages invoiced annually.
+    unit: transactions
+    period: monthly
+    module: Encryption and KMS
+    optimizationTip: >-
+      Cache decrypted data locally where appropriate to reduce repeated
+      decryption calls. Use envelope encryption to minimize the number of KMS
+      transactions per data access event.
+  - name: KMIP/TDE Applications
+    description: >-
+      Software applications integrating via KMIP protocol or Transparent Data
+      Encryption features. Tracked monthly.
+    unit: applications
+    period: monthly
+    module: Encryption and KMS
+    optimizationTip: >-
+      Consolidate database TDE key management to reduce the number of registered
+      KMIP/TDE application instances.
+  - name: Tokenizer Instances
+    description: >-
+      Data tokenization engine instances used for format-preserving token
+      replacement. Tracked monthly.
+    unit: tokenizers
+    period: monthly
+    module: Encryption and KMS
+    optimizationTip: >-
+      Share tokenizer instances across applications with the same data
+      classification requirements rather than deploying per-application
+      tokenizers.
+  - name: Cloud Accounts
+    description: >-
+      Individual public cloud accounts connected to Cloud KMS Orchestrator.
+      Tracked monthly.
+    unit: accounts
+    period: monthly
+    module: Encryption and KMS
+    optimizationTip: >-
+      Use consolidated cloud account structures (AWS Organizations, Azure
+      Management Groups) to reduce the total number of individually registered
+      cloud accounts.
+  - name: HSM Integrations
+    description: >-
+      External Hardware Security Module connections. Counted annually.
+    unit: integrations
+    period: annual
+    module: Secrets Management
+    optimizationTip: >-
+      Centralize HSM integration through shared cluster connections rather than
+      per-application HSM bindings.
+  - name: Password Manager Users
+    description: >-
+      Human users consuming passwords via browser extension, console, or mobile
+      application. Tracked monthly.
+    unit: users
+    period: monthly
+    module: Password Manager
+    optimizationTip: >-
+      Offboard former employees promptly and audit shared account usage to
+      prevent licensing growth beyond actual headcount.
+recommendations:
+  - Establish tagging or labeling conventions for Akeyless clients mapped to
+    cost centers, teams, or applications to enable accurate chargeback/showback.
+  - Monitor monthly client counts via the Akeyless audit API and set alerts
+    before approaching contracted thresholds to avoid surprise overages.
+  - Review KMS transaction volumes quarterly; high-frequency access patterns
+    may indicate opportunities for client-side caching.
+  - Align Akeyless contract renewal cycles with cloud commitment discount
+    renewal cycles to negotiate bundled volume discounts.
+  - Use the Free tier for development and staging environments to avoid
+    consuming Enterprise quota for non-production workloads.

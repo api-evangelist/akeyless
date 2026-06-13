@@ -1,0 +1,121 @@
+name: Akeyless Plans and Pricing
+description: >-
+  Akeyless offers two primary tiers — Free and Enterprise — covering secrets
+  management, certificate lifecycle management, encryption/KMS, and password
+  management modules. Pricing is usage-based and measured by clients,
+  connectors, certificates, transactions, and other resource metrics. Enterprise
+  pricing is custom and requires contacting sales.
+url: https://www.akeyless.io/pricing/
+specificationVersion: '0.1'
+plans:
+  - name: Free
+    description: >-
+      The Free plan provides limited access to all Akeyless product modules for
+      evaluation and small-scale usage. Includes secrets management, certificate
+      lifecycle management, encryption/KMS, and password management with
+      restricted resource quotas.
+    url: https://www.akeyless.io/pricing/
+    pricing:
+      - unit: plan
+        value: 0
+        currency: USD
+        period: monthly
+    features:
+      - Secrets Management (5 clients, 500 static secrets, 5 dynamic secrets, 5 rotated secrets)
+      - Universal Secrets Connector (1 connector)
+      - Certificate Lifecycle Management (5 managed certificates, 5 certificates)
+      - Encryption and KMS (1K daily transactions, 5 encryption keys)
+      - Password Manager (3 users, 50 passwords)
+      - 3-day audit log retention
+      - 1 gateway cluster
+      - API Key authentication
+      - Cloud workload authentication (AWS IAM, Azure AD, GCP IAM)
+      - Email access
+      - Kubernetes authentication
+    limits:
+      - name: Clients
+        value: 5
+        unit: clients
+        period: monthly
+      - name: Static Secrets
+        value: 500
+        unit: secrets
+        period: monthly
+      - name: Dynamic Secrets
+        value: 5
+        unit: secrets
+        period: monthly
+      - name: Rotated Secrets
+        value: 5
+        unit: secrets
+        period: monthly
+      - name: Targets
+        value: 3
+        unit: targets
+        period: monthly
+      - name: OIDC Apps
+        value: 1
+        unit: apps
+        period: monthly
+      - name: Encryption Keys
+        value: 1
+        unit: keys
+        period: monthly
+      - name: Daily Transactions
+        value: 1000
+        unit: transactions
+        period: daily
+      - name: Managed Certificates
+        value: 5
+        unit: certificates
+        period: annual
+      - name: Password Manager Users
+        value: 3
+        unit: users
+        period: monthly
+      - name: Passwords
+        value: 50
+        unit: passwords
+        period: monthly
+      - name: Audit Log Retention
+        value: 3
+        unit: days
+        period: rolling
+  - name: Enterprise
+    description: >-
+      The Enterprise plan provides fully customizable resource limits across all
+      Akeyless modules with advanced features including zero-knowledge mode,
+      HSM integration, SAML/OIDC/LDAP authentication, certificate auto-renewal
+      and provisioning, multi-cloud KMS, tokenization, code signing, KMIP/TDE,
+      and session recordings. Pricing is based on usage volumes negotiated with
+      sales.
+    url: https://www.akeyless.io/pricing/
+    pricing:
+      - unit: plan
+        value: custom
+        currency: USD
+        period: annual
+    features:
+      - All Free tier features
+      - Zero Knowledge Mode
+      - HSM Integration
+      - SAML/OIDC/LDAP authentication
+      - Advanced Secure Authentication (Universal Identity)
+      - Certificate-based authentication
+      - Certificate Auto Renewal
+      - Certificate Provisioning
+      - Certificate Discovery
+      - ACME Protocol support
+      - Multi-Cloud KMS Orchestration
+      - Tokenization (format-preserving encryption)
+      - Code Signing
+      - KMIP/TDE support
+      - Password Manager (100K+ passwords)
+      - Session Recordings
+      - Desktop Application (Password Manager)
+      - Cloud Workload Auth for Password Manager
+      - Event Forwarding
+      - Custom audit log retention
+      - Custom gateway clusters
+      - Custom resource quotas for all modules
+      - Dedicated support

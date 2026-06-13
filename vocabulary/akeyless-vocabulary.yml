@@ -1,0 +1,204 @@
+vocabulary:
+  name: Akeyless API Vocabulary
+  description: >-
+    Domain vocabulary for the Akeyless platform covering secrets management,
+    machine identity, privileged access, encryption, certificate lifecycle,
+    dynamic secrets, and SSH access governance.
+  provider: akeyless
+  version: "2.0"
+  source: https://raw.githubusercontent.com/akeylesslabs/akeyless-go/master/api/openapi.yaml
+
+terms:
+
+  # Core Concepts
+  - term: Secret
+    definition: An encrypted value stored in the Akeyless vault, retrievable via authenticated API calls.
+    category: core
+
+  - term: DynamicSecret
+    definition: A short-lived credential generated on-demand by an Akeyless dynamic secret producer for databases, cloud providers, or other targets.
+    category: core
+
+  - term: RotatedSecret
+    definition: A static secret whose value is automatically rotated on a configurable schedule by Akeyless.
+    category: core
+
+  - term: ClassicKey
+    definition: A symmetric or asymmetric encryption key managed by Akeyless for encrypt/decrypt operations, supporting AES, RSA, and ECC algorithms.
+    category: core
+
+  - term: DFCKey
+    definition: A Distributed Fragments Cryptography key — Akeyless's patented zero-knowledge key type where key material is never stored in one place.
+    category: core
+
+  - term: Token
+    definition: A short-lived authentication token returned by the /auth endpoint, used to authorize subsequent API calls.
+    category: auth
+
+  - term: AuthMethod
+    definition: A configured authentication mechanism (API key, AWS IAM, Azure AD, GCP, K8S, LDAP, OIDC, SAML, certificate, universal identity) that grants access to Akeyless.
+    category: auth
+
+  - term: Role
+    definition: An Akeyless RBAC role that associates auth methods with access rules, scoping permissions to specific items and operations.
+    category: auth
+
+  - term: AccessRule
+    definition: A policy attached to a role specifying which items (secrets, keys, targets) the role can access and with what permissions.
+    category: auth
+
+  - term: Target
+    definition: A connection profile for an external system (database, cloud provider, SSH host, SaaS service) used by dynamic and rotated secrets.
+    category: targets
+
+  - term: PKICertIssuer
+    definition: An Akeyless certificate authority configuration that issues X.509 certificates via the /get-pki-certificate endpoint.
+    category: certificates
+
+  - term: SSHCertIssuer
+    definition: An Akeyless SSH certificate authority that signs SSH public keys, enabling short-lived SSH access without static keys.
+    category: certificates
+
+  - term: Certificate
+    definition: An X.509 certificate managed or issued by Akeyless for TLS or mTLS purposes.
+    category: certificates
+
+  - term: Gateway
+    definition: A self-hosted Akeyless component that proxies API requests and caches secrets locally for air-gapped or low-latency deployments.
+    category: infrastructure
+
+  - term: EventForwarder
+    definition: An Akeyless integration that forwards audit events and secret expiry notifications to external systems (Slack, PagerDuty, Datadog, etc.).
+    category: integrations
+
+  - term: Tokenizer
+    definition: An Akeyless data-protection item that tokenizes sensitive data (PCI, PII) using format-preserving encryption.
+    category: data-protection
+
+  - term: CustomerFragment
+    definition: The customer-held cryptographic fragment in Akeyless DFC architecture, ensuring zero-knowledge key storage.
+    category: core
+
+  - term: Migration
+    definition: A bulk import process for moving secrets from AWS Secrets Manager, Azure Key Vault, GCP Secret Manager, HashiCorp Vault, or other stores into Akeyless.
+    category: operations
+
+  # Auth Method Types
+  - term: APIKeyAccessRules
+    definition: Access rules for API key authentication, specifying allowed CIDR ranges and expiry.
+    category: auth
+
+  - term: AWSIAMAccessRules
+    definition: Access rules for AWS IAM authentication, binding to specific AWS accounts, roles, or ARNs.
+    category: auth
+
+  - term: AzureADAccessRules
+    definition: Access rules for Azure AD authentication, binding to tenant IDs, object IDs, or groups.
+    category: auth
+
+  - term: GCPAccessRules
+    definition: Access rules for GCP authentication, binding to service accounts or audiences.
+    category: auth
+
+  - term: CertAccessRules
+    definition: Access rules for certificate-based authentication, matching on subject, SAN, or issuer.
+    category: auth
+
+  - term: K8SAccessRules
+    definition: Access rules for Kubernetes service account authentication.
+    category: auth
+
+  - term: LDAPAccessRules
+    definition: Access rules for LDAP authentication, matching on DN or group membership.
+    category: auth
+
+  - term: OIDCAccessRules
+    definition: Access rules for OIDC/OAuth2 authentication, matching on claims.
+    category: auth
+
+  - term: UniversalIdentityAccessRules
+    definition: Access rules for Akeyless Universal Identity — a machine-identity token system for workloads without cloud IAM.
+    category: auth
+
+  # Operations
+  - term: Encrypt
+    definition: The operation of encrypting plaintext using an Akeyless classic or DFC key via /encrypt.
+    category: operations
+
+  - term: Decrypt
+    definition: The operation of decrypting ciphertext using an Akeyless classic or DFC key via /decrypt.
+    category: operations
+
+  - term: Sign
+    definition: The operation of creating a cryptographic signature using an asymmetric Akeyless key via /sign.
+    category: operations
+
+  - term: Verify
+    definition: The operation of verifying a cryptographic signature using an Akeyless public key via /verify-pkcs1.
+    category: operations
+
+  - term: GetSecretValue
+    definition: The operation of retrieving one or more secret values by name via /get-secret-value.
+    category: operations
+
+  - term: Connect
+    definition: The SSH/RDP privileged-access connection operation that establishes a session through the Akeyless gateway.
+    category: operations
+
+  # Target Types
+  - term: AWSTarget
+    definition: A target connecting to AWS for dynamic IAM credentials or S3 access.
+    category: targets
+
+  - term: AzureTarget
+    definition: A target connecting to Azure for dynamic service principal credentials.
+    category: targets
+
+  - term: GCPTarget
+    definition: A target connecting to GCP for dynamic service account keys.
+    category: targets
+
+  - term: DBTarget
+    definition: A database target (PostgreSQL, MySQL, MSSQL, MongoDB, Oracle, etc.) used for dynamic database credentials.
+    category: targets
+
+  - term: SSHTarget
+    definition: An SSH host target used for certificate-based SSH access via Akeyless.
+    category: targets
+
+  - term: K8STarget
+    definition: A Kubernetes cluster target for dynamic service account tokens or kubeconfig credentials.
+    category: targets
+
+  - term: EKSTarget
+    definition: An Amazon EKS cluster target for dynamic Kubernetes credentials.
+    category: targets
+
+  - term: GKETarget
+    definition: A Google Kubernetes Engine cluster target.
+    category: targets
+
+  - term: NativeK8STarget
+    definition: A native Kubernetes target using in-cluster service account credentials.
+    category: targets
+
+  # Log Forwarding
+  - term: LogForwardingConfig
+    definition: Configuration for forwarding Akeyless audit logs to external SIEM or logging platforms.
+    category: integrations
+
+  - term: DatadogForwardingConfig
+    definition: Log forwarding configuration for Datadog.
+    category: integrations
+
+  - term: ElasticsearchLogForwardingConfig
+    definition: Log forwarding configuration for Elasticsearch.
+    category: integrations
+
+  - term: AwsS3LogForwardingConfig
+    definition: Log forwarding configuration for Amazon S3.
+    category: integrations
+
+  - term: AzureLogAnalyticsForwardingConfig
+    definition: Log forwarding configuration for Azure Log Analytics.
+    category: integrations

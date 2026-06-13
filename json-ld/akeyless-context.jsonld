@@ -1,0 +1,137 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "akeyless": "https://api.akeyless.io/vocab#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": "schema:url",
+    "version": "schema:version",
+
+    "Secret": "akeyless:Secret",
+    "DynamicSecret": "akeyless:DynamicSecret",
+    "RotatedSecret": "akeyless:RotatedSecret",
+    "ClassicKey": "akeyless:ClassicKey",
+    "DFCKey": "akeyless:DFCKey",
+    "Token": "akeyless:Token",
+    "AuthMethod": "akeyless:AuthMethod",
+    "Role": "akeyless:Role",
+    "AccessRule": "akeyless:AccessRule",
+    "Target": "akeyless:Target",
+    "PKICertIssuer": "akeyless:PKICertIssuer",
+    "SSHCertIssuer": "akeyless:SSHCertIssuer",
+    "Certificate": "akeyless:Certificate",
+    "Gateway": "akeyless:Gateway",
+    "EventForwarder": "akeyless:EventForwarder",
+    "Tokenizer": "akeyless:Tokenizer",
+    "CustomerFragment": "akeyless:CustomerFragment",
+    "Migration": "akeyless:Migration",
+
+    "secretName": {
+      "@id": "akeyless:secretName",
+      "@type": "xsd:string"
+    },
+    "secretValue": {
+      "@id": "akeyless:secretValue",
+      "@type": "xsd:string"
+    },
+    "itemPath": {
+      "@id": "akeyless:itemPath",
+      "@type": "xsd:string"
+    },
+    "accessToken": {
+      "@id": "akeyless:accessToken",
+      "@type": "xsd:string"
+    },
+    "tokenTTL": {
+      "@id": "akeyless:tokenTTL",
+      "@type": "xsd:integer"
+    },
+    "authMethodName": {
+      "@id": "akeyless:authMethodName",
+      "@type": "xsd:string"
+    },
+    "roleName": {
+      "@id": "akeyless:roleName",
+      "@type": "xsd:string"
+    },
+    "targetName": {
+      "@id": "akeyless:targetName",
+      "@type": "xsd:string"
+    },
+    "keyName": {
+      "@id": "akeyless:keyName",
+      "@type": "xsd:string"
+    },
+    "algorithm": {
+      "@id": "akeyless:algorithm",
+      "@type": "xsd:string"
+    },
+    "certIssuerName": {
+      "@id": "akeyless:certIssuerName",
+      "@type": "xsd:string"
+    },
+    "certTTL": {
+      "@id": "akeyless:certTTL",
+      "@type": "xsd:integer"
+    },
+    "commonName": {
+      "@id": "akeyless:commonName",
+      "@type": "xsd:string"
+    },
+    "ciphertext": {
+      "@id": "akeyless:ciphertext",
+      "@type": "xsd:string"
+    },
+    "plaintext": {
+      "@id": "akeyless:plaintext",
+      "@type": "xsd:string"
+    },
+    "dynamicSecretTTL": {
+      "@id": "akeyless:dynamicSecretTTL",
+      "@type": "xsd:integer"
+    },
+    "producerType": {
+      "@id": "akeyless:producerType",
+      "@type": "xsd:string"
+    },
+    "rotationInterval": {
+      "@id": "akeyless:rotationInterval",
+      "@type": "xsd:integer"
+    },
+    "gatewayClusterId": {
+      "@id": "akeyless:gatewayClusterId",
+      "@type": "xsd:string"
+    },
+    "tags": {
+      "@id": "akeyless:tags",
+      "@container": "@set"
+    },
+
+    "APIKeyAccessRules": "akeyless:APIKeyAccessRules",
+    "AWSIAMAccessRules": "akeyless:AWSIAMAccessRules",
+    "AzureADAccessRules": "akeyless:AzureADAccessRules",
+    "GCPAccessRules": "akeyless:GCPAccessRules",
+    "CertAccessRules": "akeyless:CertAccessRules",
+    "K8SAccessRules": "akeyless:K8SAccessRules",
+    "LDAPAccessRules": "akeyless:LDAPAccessRules",
+    "OIDCAccessRules": "akeyless:OIDCAccessRules",
+    "UniversalIdentityAccessRules": "akeyless:UniversalIdentityAccessRules",
+
+    "AWSTarget": "akeyless:AWSTarget",
+    "AzureTarget": "akeyless:AzureTarget",
+    "GCPTarget": "akeyless:GCPTarget",
+    "DBTarget": "akeyless:DBTarget",
+    "SSHTarget": "akeyless:SSHTarget",
+    "K8STarget": "akeyless:K8STarget",
+    "EKSTarget": "akeyless:EKSTarget",
+    "GKETarget": "akeyless:GKETarget",
+
+    "DatadogForwardingConfig": "akeyless:DatadogForwardingConfig",
+    "ElasticsearchLogForwardingConfig": "akeyless:ElasticsearchLogForwardingConfig",
+    "AwsS3LogForwardingConfig": "akeyless:AwsS3LogForwardingConfig",
+    "AzureLogAnalyticsForwardingConfig": "akeyless:AzureLogAnalyticsForwardingConfig"
+  }
+}

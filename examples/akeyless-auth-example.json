@@ -1,0 +1,24 @@
+{
+  "title": "Authenticate with API Key",
+  "description": "Obtain an Akeyless access token using API key authentication via POST /auth.",
+  "request": {
+    "method": "POST",
+    "url": "https://api.akeyless.io/auth",
+    "headers": {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    "body": {
+      "access-type": "api_key",
+      "access-id": "p-1234567890abcdef",
+      "access-key": "AK123456789012345678901234567890"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "token": "t-1234567890abcdef1234567890abcdef",
+      "doc_self_id": "access-id-here"
+    }
+  }
+}

@@ -53,7 +53,17 @@ apis:
       - type: Documentation
         url: https://docs.akeyless.io/
       - type: OpenAPI
-        url: https://docs.akeyless.io/llms.txt
+        url: https://raw.githubusercontent.com/api-evangelist/akeyless/refs/heads/main/openapi/akeyless-akeyless-api-openapi.yml
+      - type: JSONSchema
+        url: https://raw.githubusercontent.com/api-evangelist/akeyless/refs/heads/main/json-schema/akeyless-secret.json
+      - type: JSONSchema
+        url: https://raw.githubusercontent.com/api-evangelist/akeyless/refs/heads/main/json-schema/akeyless-auth.json
+      - type: JSONSchema
+        url: https://raw.githubusercontent.com/api-evangelist/akeyless/refs/heads/main/json-schema/akeyless-dynamic-secret.json
+      - type: Vocabulary
+        url: https://raw.githubusercontent.com/api-evangelist/akeyless/refs/heads/main/vocabulary/akeyless-vocabulary.yml
+      - type: JSONLDContext
+        url: https://raw.githubusercontent.com/api-evangelist/akeyless/refs/heads/main/json-ld/akeyless-context.jsonld
     contact:
       - FN: Akeyless Support
         url: https://www.akeyless.io/contact/

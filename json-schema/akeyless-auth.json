@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.akeyless.io/schemas/auth",
+  "title": "Akeyless Auth Request",
+  "description": "Schema for authenticating to Akeyless and obtaining an access token via /auth.",
+  "type": "object",
+  "required": ["access-type"],
+  "properties": {
+    "access-type": {
+      "type": "string",
+      "description": "The authentication method to use.",
+      "enum": [
+        "api_key",
+        "aws_iam",
+        "azure_ad",
+        "gcp",
+        "k8s",
+        "ldap",
+        "oidc",
+        "saml",
+        "cert",
+        "universal_identity",
+        "email",
+        "oauth2"
+      ],
+      "example": "api_key"
+    },
+    "access-id": {
+      "type": "string",
+      "description": "The access ID of the auth method.",
+      "example": "p-1234567890abcdef"
+    },
+    "access-key": {
+      "type": "string",
+      "description": "The access key for API key authentication.",
+      "example": "AK123456789012345678901234567890"
+    },
+    "cloud-id": {
+      "type": "string",
+      "description": "The cloud identity token for cloud-provider IAM authentication (AWS, Azure, GCP)."
+    },
+    "k8s-service-account-token": {
+      "type": "string",
+      "description": "Kubernetes service account JWT token for K8S authentication."
+    },
+    "k8s-auth-config-name": {
+      "type": "string",
+      "description": "The name of the Kubernetes auth configuration in Akeyless."
+    },
+    "ldap-username": {
+      "type": "string",
+      "description": "LDAP username for LDAP authentication."
+    },
+    "ldap-password": {
+      "type": "string",
+      "description": "LDAP password for LDAP authentication."
+    },
+    "jwt": {
+      "type": "string",
+      "description": "JWT token for OIDC/SAML/GCP authentication."
+    },
+    "uid-token": {
+      "type": "string",
+      "description": "Universal Identity token."
+    },
+    "cert-data": {
+      "type": "string",
+      "description": "PEM-encoded client certificate for certificate-based authentication."
+    },
+    "key-data": {
+      "type": "string",
+      "description": "PEM-encoded private key for certificate-based authentication."
+    },
+    "gateway-url": {
+      "type": "string",
+      "description": "Akeyless Gateway URL for self-hosted deployments.",
+      "format": "uri",
+      "example": "https://my-gateway.example.com:8000"
+    }
+  }
+}

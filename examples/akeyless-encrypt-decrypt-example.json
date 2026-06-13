@@ -1,0 +1,42 @@
+{
+  "title": "Encrypt and Decrypt Data",
+  "description": "Encrypt plaintext and then decrypt ciphertext using an Akeyless key via /encrypt and /decrypt.",
+  "encrypt_request": {
+    "method": "POST",
+    "url": "https://api.akeyless.io/encrypt",
+    "headers": {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    "body": {
+      "key-name": "/prod/encryption/master-key",
+      "plaintext": "SGVsbG8gV29ybGQ=",
+      "token": "t-1234567890abcdef1234567890abcdef"
+    }
+  },
+  "encrypt_response": {
+    "status": 200,
+    "body": {
+      "result": "akeyless_encrypt_v1:AAAAB3Nza..."
+    }
+  },
+  "decrypt_request": {
+    "method": "POST",
+    "url": "https://api.akeyless.io/decrypt",
+    "headers": {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    "body": {
+      "key-name": "/prod/encryption/master-key",
+      "ciphertext": "akeyless_encrypt_v1:AAAAB3Nza...",
+      "token": "t-1234567890abcdef1234567890abcdef"
+    }
+  },
+  "decrypt_response": {
+    "status": 200,
+    "body": {
+      "result": "SGVsbG8gV29ybGQ="
+    }
+  }
+}

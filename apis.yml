@@ -11,7 +11,7 @@ description: >-
   storage. The API supports multiple authentication methods including AWS IAM,
   Azure AD, GCP, Kubernetes, SAML, OIDC, LDAP, and API key authentication.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/akeyless/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -40,7 +40,7 @@ apis:
       The API is accessible at the global SaaS endpoint or via self-hosted
       gateway deployments, with support for over 200 operations across all
       product modules.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://docs.akeyless.io/
     baseURL: https://api.akeyless.io
     tags:

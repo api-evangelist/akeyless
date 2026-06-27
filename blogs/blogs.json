@@ -2,12 +2,17 @@
   "repo": "akeyless",
   "feeds": [
     {
-      "source": "https://www.akeyless.io/blog/",
+      "source": "https://www.akeyless.io/blog/feed/",
       "feed_url": "https://www.akeyless.io/blog/feed/",
-      "title": "Akeyless Blog",
-      "saved": 1
+      "title": "",
+      "saved": 1,
+      "method": "feed"
+    },
+    {
+      "source": "https://www.linkedin.com/company/akeyless",
+      "error": "HTTPError"
     }
   ],
-  "fetched": "2026-06-21T17:00:00Z",
-  "post_count": 1
+  "fetched": "2026-06-27T12:03:07Z",
+  "post_count": 2
 }

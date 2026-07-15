@@ -68,6 +68,8 @@ apis:
       - FN: Akeyless Support
         url: https://www.akeyless.io/contact/
 common:
+  - type: AgenticAccess
+    url: agentic-access/akeyless-agentic-access.yml
   - type: TrustCenter
     url: security/akeyless-trust-center.yml
   - type: DomainSecurity

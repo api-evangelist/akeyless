@@ -11,7 +11,19 @@ description: >-
   storage. The API supports multiple authentication methods including AWS IAM,
   Azure AD, GCP, Kubernetes, SAML, OIDC, LDAP, and API key authentication.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/akeyless.png
 url: https://raw.githubusercontent.com/api-evangelist/akeyless/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -31,42 +43,33 @@ tags:
   - Privileged Access Management
   - DevSecOps
 apis:
-  - aid: akeyless:akeyless-api
-    name: Akeyless REST API
-    description: >-
-      The Akeyless V2 REST API provides programmatic access to all platform
-      capabilities including secrets management, dynamic secrets, encryption
-      operations, certificate lifecycle management, and SSH access control.
-      The API is accessible at the global SaaS endpoint or via self-hosted
-      gateway deployments, with support for over 200 operations across all
-      product modules.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.akeyless.io/
-    baseURL: https://api.akeyless.io
-    tags:
-      - Secrets Management
-      - Encryption
-      - Certificate Management
-      - Dynamic Secrets
-      - SSH
-    properties:
-      - type: Documentation
-        url: https://docs.akeyless.io/
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/akeyless/refs/heads/main/openapi/akeyless-akeyless-api-openapi.yml
-      - type: JSONSchema
-        url: https://raw.githubusercontent.com/api-evangelist/akeyless/refs/heads/main/json-schema/akeyless-secret.json
-      - type: JSONSchema
-        url: https://raw.githubusercontent.com/api-evangelist/akeyless/refs/heads/main/json-schema/akeyless-auth.json
-      - type: JSONSchema
-        url: https://raw.githubusercontent.com/api-evangelist/akeyless/refs/heads/main/json-schema/akeyless-dynamic-secret.json
-      - type: Vocabulary
-        url: https://raw.githubusercontent.com/api-evangelist/akeyless/refs/heads/main/vocabulary/akeyless-vocabulary.yml
-      - type: JSONLDContext
-        url: https://raw.githubusercontent.com/api-evangelist/akeyless/refs/heads/main/json-ld/akeyless-context.jsonld
-    contact:
-      - FN: Akeyless Support
-        url: https://www.akeyless.io/contact/
+- aid: akeyless:akeyless-v2-api
+  name: Akeyless v2 API
+  description: The v2 API from Akeyless — 256 operation(s) for v2.
+  humanURL: https://docs.akeyless.io/
+  baseURL: https://api.akeyless.io
+  tags:
+  - v2
+  properties:
+  - type: OpenAPI
+    url: openapi/akeyless-v2-api-openapi.yml
+  - type: Documentation
+    url: https://docs.akeyless.io/
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/akeyless/refs/heads/main/json-schema/akeyless-secret.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/akeyless/refs/heads/main/json-schema/akeyless-auth.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/akeyless/refs/heads/main/json-schema/akeyless-dynamic-secret.json
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/akeyless/refs/heads/main/vocabulary/akeyless-vocabulary.yml
+  - type: JSONLDContext
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/akeyless/refs/heads/main/json-ld/akeyless-context.jsonld
 common:
   - type: AgenticAccess
     url: agentic-access/akeyless-agentic-access.yml

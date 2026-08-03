@@ -1,0 +1,14 @@
+{
+  "provider": "akeyless",
+  "sources": [
+    "akeyless-v2-api-openapi.yml"
+  ],
+  "outputs": [
+    "akeyless-v2-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

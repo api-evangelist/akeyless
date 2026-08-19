@@ -1,0 +1,3590 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Akeyless v2 API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "v2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "assocRoleAuthMethod",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/assoc-role-am",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "assocTargetItem",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/assoc-target-item",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "auth",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/auth",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "configure",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/configure",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Connect",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/connect",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createArtifactoryTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-artifactory-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createAuthMethod",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-auth-method",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createAuthMethodAWSIAM",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-auth-method-aws-iam",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createAuthMethodAzureAD",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-auth-method-azure-ad",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createAuthMethodCert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-auth-method-cert",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createAuthMethodGCP",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-auth-method-gcp",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createAuthMethodHuawei",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-auth-method-huawei",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createAuthMethodK8S",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-auth-method-k8s",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createAuthMethodLDAP",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-auth-method-ldap",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createAuthMethodOAuth2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-auth-method-oauth2",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createAuthMethodOIDC",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-auth-method-oidc",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createAuthMethodSAML",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-auth-method-saml",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createAuthMethodUniversalIdentity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-auth-method-universal-identity",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createAWSTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-aws-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createAzureTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-azure-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createCertificate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-certificate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CreateClassicKey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-classic-key",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createDBTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-db-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createDFCKey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-dfc-key",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createDockerhubTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-dockerhub-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createDynamicSecret",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-dynamic-secret",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createEKSTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-eks-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createEventForwarder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-event-forwarder",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createGcpTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-gcp-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createGithubTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-github-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createGKETarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-gke-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createNativeK8STarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-k8s-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createKey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-key",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createldapTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-ldap-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createPingTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-ping-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CreatePKICertIssuer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-pki-cert-issuer",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createRabbitMQTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-rabbitmq-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createRole",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-role",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createRotatedSecret",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-rotated-secret",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createSalesforceTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-salesforce-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createSecret",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-secret",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createSSHCertIssuer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-ssh-cert-issuer",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createSSHTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-ssh-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createTokenizer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-tokenizer",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "createWebTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/create-web-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "decrypt",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/decrypt",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "decryptGPG",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/decrypt-gpg",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "decryptPKCS1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/decrypt-pkcs1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "decryptWithClassicKey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/decrypt-with-classic-key",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteRoleAssociation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/delete-assoc",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteTargetAssociation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/delete-assoc-target-item",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteAuthMethod",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/delete-auth-method",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteAuthMethods",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/delete-auth-methods",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteEventForwarder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/delete-event-forwarder",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteItem",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/delete-item",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteItems",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/delete-items",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteRole",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/delete-role",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteRoleRule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/delete-role-rule",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteRoles",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/delete-roles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/delete-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "deleteTargets",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/delete-targets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "describeItem",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/describe-item",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "describePermissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/describe-permissions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "describeSubClaims",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/describe-sub-claims",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "detokenize",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/detokenize",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "encrypt",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/encrypt",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "encryptGPG",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/encrypt-gpg",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "encryptWithClassicKey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/encrypt-with-classic-key",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "ExportClassicKey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/export-classic-key",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayCreateK8SAuthConfig",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-create-k8s-auth-config",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayCreateMigration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-create-migration",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayCreateProducerArtifactory",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-create-producer-artifactory",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayCreateProducerAws",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-create-producer-aws",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayCreateProducerAzure",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-create-producer-azure",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayCreateProducerCassandra",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-create-producer-cassandra",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayCreateProducerCertificateAutomation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-create-producer-certificate-automation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayCreateProducerCustom",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-create-producer-custom",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayCreateProducerDockerhub",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-create-producer-dockerhub",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayCreateProducerEks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-create-producer-eks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayCreateProducerGcp",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-create-producer-gcp",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayCreateProducerGithub",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-create-producer-github",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayCreateProducerGke",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-create-producer-gke",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayCreateProducerHanaDb",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-create-producer-hanadb",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayCreateProducerNativeK8S",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-create-producer-k8s",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayCreateProducerLdap",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-create-producer-ldap",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayCreateProducerMongo",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-create-producer-mongo",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayCreateProducerMSSQL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-create-producer-mssql",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayCreateProducerMySQL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-create-producer-mysql",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayCreateProducerOracleDb",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-create-producer-oracle",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayCreateProducerPing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-create-producer-ping",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayCreateProducerPostgreSQL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-create-producer-postgresql",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayCreateProducerRabbitMQ",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-create-producer-rabbitmq",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayCreateProducerRdp",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-create-producer-rdp",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayCreateProducerRedshift",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-create-producer-redshift",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayCreateProducerSnowflake",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-create-producer-snowflake",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayDeleteAllowedManagementAccess",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-delete-allowed-management-access",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayDeleteK8SAuthConfig",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-delete-k8s-auth-config",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayDeleteMigration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-delete-migration",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayDeleteProducer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-delete-producer",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayGetConfig",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-get-config",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayGetK8SAuthConfig",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-get-k8s-auth-config",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayGetLdapAuthConfig",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-get-ldap-auth-config",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayGetMigration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-get-migration",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayGetProducer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-get-producer",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayGetTmpUsers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-get-producer-tmp-creds",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayListAllowedManagementAccess",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-list-allowed-management-access",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayListMigration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-list-migration",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayListProducers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-list-producers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayMigratePersonalItems",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-migrate-personal-items",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayStatusMigration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-migration-status",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayRevokeTmpUsers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-revoke-producer-tmp-creds",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "rotateSecret",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-rotate-secret",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayStartProducer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-start-producer",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayStopProducer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-stop-producer",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewaySyncMigration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-sync-migration",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateItem",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-item",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateK8SAuthConfig",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-k8s-auth-config",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GatewayUpdateLdapAuthConfig",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-ldap-auth-config",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateMigration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-migration",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateProducerArtifactory",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-producer-artifactory",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateProducerAws",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-producer-aws",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateProducerAzure",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-producer-azure",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateProducerCassandra",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-producer-cassandra",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateProducerCertificateAutomation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-producer-certificate-automation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateProducerCustom",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-producer-custom",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateProducerDockerhub",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-producer-dockerhub",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateProducerEks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-producer-eks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateProducerGcp",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-producer-gcp",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateProducerGithub",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-producer-github",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateProducerGke",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-producer-gke",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateProducerHanaDb",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-producer-hana",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateProducerNativeK8S",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-producer-k8s",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateProducerLdap",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-producer-ldap",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateProducerMongo",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-producer-mongo",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateProducerMSSQL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-producer-mssql",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateProducerMySQL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-producer-mysql",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateProducerOracleDb",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-producer-oracle",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateProducerPing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-producer-ping",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateProducerPostgreSQL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-producer-postgresql",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateProducerRabbitMQ",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-producer-rabbitmq",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateProducerRdp",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-producer-rdp",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateProducerRedshift",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-producer-redshift",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateProducerSnowflake",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-producer-snowflake",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "gatewayUpdateTmpUsers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-producer-tmp-creds",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GatewayUpdateTlsCert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/gateway-update-tls-cert",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getAccountLogo",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/get-account-logo"
+          }
+        },
+        {
+          "info": {
+            "name": "getAccountSettings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/get-account-settings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getAuthMethod",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/get-auth-method",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getCertificateValue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/get-certificate-value",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getDynamicSecretValue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/get-dynamic-secret-value",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getEventForwarder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/get-event-forwarder",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getKubeExecCreds",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/get-kube-exec-creds",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GetPKICertificate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/get-pki-certificate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getRole",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/get-role",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getRotatedSecretValue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/get-rotated-secret-value",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getRSAPublic",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/get-rsa-public",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GetSecretValue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/get-secret-value",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getSSHCertificate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/get-ssh-certificate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getTags",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/get-tags",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/get-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "getTargetDetails",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/get-target-details",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "kmipClientDeleteRule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/kmip-client-delete-rule",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "kmipClientSetRule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/kmip-client-set-rule",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "kmipCreateClient",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/kmip-create-client",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "kmipServerSetup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/kmip-create-environment",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "kmipDeleteClient",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/kmip-delete-client",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "kmipDeleteServer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.akeyless.io/kmip-delete-environment",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "kmipDescribeClient",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/kmip-get-client",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "kmipDescribeServer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/kmip-get-environment",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "kmipListClients",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/kmip-list-clients",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "kmipMoveServer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/kmip-move-environment",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "kmipRenewClientCertificate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/kmip-renew-client",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "kmipRenewServerCertificate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/kmip-renew-environment",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "kmipSetServerState",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/kmip-set-environment-state",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "listAuthMethods",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/list-auth-methods",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "listGateways",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/list-gateways",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "listItems",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/list-items",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "listRoles",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/list-roles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "listSharedItems",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/list-shared-items",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "listSRABastions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/list-sra-bastions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "listTargets",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/list-targets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "moveObjects",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/move-objects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "rawCreds",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/raw-creds",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "refreshKey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/refresh-key",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "requestAccess",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/request-access",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "reverseRBAC",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/reverse-rbac",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "revoke-creds",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/revoke-creds"
+          }
+        },
+        {
+          "info": {
+            "name": "rollbackSecret",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/rollback-secret",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "rotateKey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/rotate-key",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "setItemState",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/set-item-state",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "setRoleRule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/set-role-rule",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "shareItem",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/share-item",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "signGPG",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/sign-gpg",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "signJWTWithClassicKey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/sign-jwt-with-classic-key",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "signPKCS1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/sign-pkcs1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "signPKICertWithClassicKey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/sign-pki-cert-with-classic-key",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "staticCredsAuth",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/static-creds-auth",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "tokenize",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/tokenize",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "uidCreateChildToken",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/uid-create-child-token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "uidGenerateToken",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/uid-generate-token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "uidListChildren",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/uid-list-children",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "uidRevokeToken",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/uid-revoke-token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "uidRotateToken",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/uid-rotate-token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateAccountSettings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-account-settings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateArtifactoryTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-artifactory-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateAssoc",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-assoc",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateAuthMethod",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-auth-method",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateAuthMethodAWSIAM",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-auth-method-aws-iam",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateAuthMethodAzureAD",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-auth-method-azure-ad",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateAuthMethodCert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-auth-method-cert",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateAuthMethodGCP",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-auth-method-gcp",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateAuthMethodK8S",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-auth-method-k8s",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateAuthMethodLDAP",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-auth-method-ldap",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateAuthMethodOAuth2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-auth-method-oauth2",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateAuthMethodOIDC",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-auth-method-oidc",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateAuthMethodSAML",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-auth-method-saml",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateAuthMethodUniversalIdentity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-auth-method-universal-identity",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateAWSTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-aws-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateAWSTargetDetails",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-aws-target-details",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateAzureTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-azure-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateCertificateValue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-certificate-value",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateDBTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-db-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateDBTargetDetails",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-db-target-details",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateDockerhubTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-dockerhub-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateEKSTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-eks-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateEventForwarder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-event-forwarder",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateGcpTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-gcp-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateGithubTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-github-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateGKETarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-gke-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateItem",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-item",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateNativeK8STarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-k8s-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateLdapTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-ldap-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateLdapTargetDetails",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-ldap-target-details",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updatePingTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-ping-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "UpdatePKICertIssuer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-pki-cert-issuer",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateRabbitMQTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-rabbitmq-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateRabbitMQTargetDetails",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-rabbitmq-target-details",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateRDPTargetDetails",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-rdp-target-details",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateRole",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-role",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateRotatedSecret",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-rotated-secret",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateRotationSettings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-rotation-settingsrotate-key"
+          }
+        },
+        {
+          "info": {
+            "name": "updateSalesforceTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-salesforce-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateSecretVal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-secret-val",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateSSHCertIssuer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-ssh-cert-issuer",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateSSHTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-ssh-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateSSHTargetDetails",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-ssh-target-details",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateTargetDetails",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-target-details",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateWebTarget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-web-target",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "updateWebTargetDetails",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/update-web-target-details",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "uploadRSA",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/upload-rsa",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "validateToken",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/validate-token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "verifyGPG",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/verify-gpg",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "verifyJWTWithClassicKey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/verify-jwt-with-classic-key",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "verifyPKCS1",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/verify-pkcs1",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "verifyPKICertWithClassicKey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.akeyless.io/verify-pki-cert-with-classic-key",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

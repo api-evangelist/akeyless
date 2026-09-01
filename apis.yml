@@ -61,7 +61,7 @@ apis:
   humanURL: https://docs.akeyless.io/
   baseURL: https://api.akeyless.io
   tags:
-  - V2
+  - v2
   tags_raw:
   - v2
   properties:

@@ -40,6 +40,9 @@ url: https://raw.githubusercontent.com/api-evangelist/akeyless/refs/heads/main/a
 created: '2026-06-13'
 modified: '2026-06-13'
 specificationVersion: '0.23'
+x-docs-platform: readme
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-09-17
 tags:
   - Secrets Management
   - Zero Trust

@@ -1,0 +1,169 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Gateway Get K8s Auth Config API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Gateway Get K8s Auth Config
+paths:
+  /gateway-get-k8s-auth-config:
+    post:
+      operationId: gatewayGetK8SAuthConfig
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/gatewayGetK8SAuthConfig'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gatewayGetK8SAuthConfigOutput'
+          description: gatewayGetK8SAuthConfigResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Gateway Get K8s Auth Config
+      x-codegen-request-body-name: body
+      summary: Gateway get K8 SAuth config
+      x-summary-source: derived
+components:
+  schemas:
+    gatewayGetK8SAuthConfig:
+      description: gatewayGetK8SAuth is a command that gets k8s auth config
+      properties:
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        name:
+          description: K8S Auth config name
+          type: string
+          x-go-name: K8SAuthConfigName
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - name
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    gatewayGetK8SAuthConfigOutput:
+      example:
+        k8s_ca_cert: k8s_ca_cert
+        k8s_host: k8s_host
+        k8s_token_reviewer_jwt: k8s_token_reviewer_jwt
+        cluster_api_type: cluster_api_type
+        k8s_issuer: k8s_issuer
+        protection_key: protection_key
+        auth_method_access_id: auth_method_access_id
+        k8s_pub_keys_pem:
+        - k8s_pub_keys_pem
+        - k8s_pub_keys_pem
+        rancher_api_key: rancher_api_key
+        am_token_expiration: 0
+        name: name
+        auth_method_prv_key_pem: auth_method_prv_key_pem
+        disable_iss_validation: true
+        id: id
+        rancher_cluster_id: rancher_cluster_id
+        use_local_ca_jwt: true
+      properties:
+        am_token_expiration:
+          description: AuthMethodTokenExpiration is time in seconds of expiration of the Akeyless Kube Auth Method token
+          format: int64
+          type: integer
+          x-go-name: AuthMethodTokenExpiration
+        auth_method_access_id:
+          description: AuthMethodAccessId of the Kubernetes auth method
+          type: string
+          x-go-name: AuthMethodAccessId
+        auth_method_prv_key_pem:
+          description: 'AuthMethodSigningKey is the private key (in base64 of the PEM format) associated with the public key defined in the
+
+            Kubernetes auth method, that used to sign the internal token for the Akeyless Kubernetes Auth Method'
+          type: string
+          x-go-name: AuthMethodSigningKey
+        cluster_api_type:
+          description: ClusterApiType defines types of API access to cluster
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+        disable_iss_validation:
+          description: DisableISSValidation is optional parameter to disable ISS validation
+          type: boolean
+          x-go-name: DisableISSValidation
+        id:
+          type: string
+          x-go-name: Id
+        k8s_ca_cert:
+          description: K8SCACert is the CA Cert to use to call into the kubernetes API
+          type: string
+          x-go-name: K8SCACert
+        k8s_host:
+          description: K8SHost is the url string for the kubernetes API
+          type: string
+          x-go-name: K8SHost
+        k8s_issuer:
+          description: K8SIssuer is the claim that specifies who issued the Kubernetes token
+          type: string
+          x-go-name: K8SIssuer
+        k8s_pub_keys_pem:
+          description: K8SPublicKeysPEM is the list of public key in PEM format
+          items:
+            type: string
+          type: array
+          x-go-name: K8SPublicKeysPEM
+        k8s_token_reviewer_jwt:
+          description: K8STokenReviewerJWT is the bearer for clusterApiTypeK8s, used during TokenReview API call
+          type: string
+          x-go-name: K8STokenReviewerJWT
+        name:
+          type: string
+          x-go-name: Name
+        protection_key:
+          type: string
+          x-go-name: ProtectionKey
+        rancher_api_key:
+          description: RancherApiKey the bear token for clusterApiTypeRancher
+          type: string
+          x-go-name: RancherApiKey
+        rancher_cluster_id:
+          description: RancherClusterId cluster id as define in rancher (in case of clusterApiTypeRancher)
+          type: string
+          x-go-name: RancherClusterId
+        use_local_ca_jwt:
+          description: 'UseLocalCAJwt is an optional parameter to set defaulting to using
+
+            the local CA cert and service account jwt when running in a Kubernetes
+
+            pod'
+          type: boolean
+          x-go-name: UseLocalCAJwt
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

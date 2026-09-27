@@ -1,0 +1,111 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Rotate Key API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Rotate Key
+paths:
+  /rotate-key:
+    post:
+      operationId: rotateKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateRotationSettings'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RotateKeyOutput'
+          description: rotateKeyResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Rotate Key
+      x-codegen-request-body-name: body
+      summary: Rotate key
+      x-summary-source: derived
+components:
+  schemas:
+    updateRotationSettings:
+      description: updateRotationSettings is a command that updates rotations settings of an existing key
+      properties:
+        auto-rotate:
+          description: Whether to automatically rotate every --rotation-interval days, or disable existing automatic rotation
+          type: boolean
+          x-go-name: AutoRotate
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        name:
+          description: Key name
+          type: string
+          x-go-name: KeyName
+        rotation-interval:
+          description: The number of days to wait between every automatic key rotation (7-365)
+          format: int64
+          type: integer
+          x-go-name: RotationInterval
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - auto-rotate
+      - name
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    RotateKeyOutput:
+      description: RotateKeyOutput defines output of RotateKey operation
+      example:
+        next_rotation_date: 2000-01-23 04:56:07+00:00
+        item_type: item_type
+        classic_key_gw_url: classic_key_gw_url
+        new_item_version: 0
+      properties:
+        classic_key_gw_url:
+          type: string
+          x-go-name: ClassicKeyGWUrl
+        item_type:
+          title: ItemType defines types supported by AKEYLESS.
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        new_item_version:
+          format: int32
+          type: integer
+          x-go-name: NewKeyVersion
+        next_rotation_date:
+          format: date-time
+          type: string
+          x-go-name: NextRotationDate
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

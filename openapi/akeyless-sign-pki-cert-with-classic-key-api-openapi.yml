@@ -1,0 +1,165 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Sign Pki Cert With Classic Key API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Sign Pki Cert With Classic Key
+paths:
+  /sign-pki-cert-with-classic-key:
+    post:
+      operationId: signPKICertWithClassicKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/signPKICertWithClassicKey'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/signPKICertOutput'
+          description: signPKICertWithClassicKeyResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Sign Pki Cert With Classic Key
+      x-codegen-request-body-name: body
+      summary: Sign PKI cert with classic key
+      x-summary-source: derived
+components:
+  schemas:
+    signPKICertOutput:
+      example:
+        result: result
+      properties:
+        result:
+          type: string
+          x-go-name: Result
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    signPKICertWithClassicKey:
+      properties:
+        common-name:
+          description: The common name to be included in the PKI certificate
+          type: string
+          x-go-name: CommonName
+        country:
+          description: 'A comma-separated list of the country that will be set in the issued
+
+            certificate'
+          type: string
+          x-go-name: Country
+        display-id:
+          description: The name of the key to use in the sign PKI Cert process
+          type: string
+          x-go-name: DisplayId
+        dns-names:
+          description: DNS Names to be included in the PKI certificate (in a comma-delimited list)
+          type: string
+          x-go-name: DNSNames
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        key-usage:
+          default: DigitalSignature,KeyAgreement,KeyEncipherment
+          description: key-usage
+          type: string
+          x-go-name: KeyUsage
+        locality:
+          description: 'A comma-separated list of the locality that will be set in the issued
+
+            certificate'
+          type: string
+          x-go-name: Locality
+        organizational-units:
+          description: 'A comma-separated list of organizational units (OU) that will be set in
+
+            the issued certificate'
+          type: string
+          x-go-name: OrganizationalUnits
+        organizations:
+          description: 'A comma-separated list of organizations (O) that will be set in the
+
+            issued certificate'
+          type: string
+          x-go-name: Organizations
+        postal-code:
+          description: 'A comma-separated list of the postal code that will be set in the issued
+
+            certificate'
+          type: string
+          x-go-name: PostalCode
+        province:
+          description: 'A comma-separated list of the province that will be set in the issued
+
+            certificate'
+          type: string
+          x-go-name: Province
+        public-key-pem-data:
+          description: PublicKey using for signing in a PEM format.
+          type: string
+          x-go-name: PublicKeyPEMData
+        signing-method:
+          description: SigningMethod
+          type: string
+          x-go-name: SigningMethod
+        street-address:
+          description: 'A comma-separated list of the street address that will be set in the
+
+            issued certificate'
+          type: string
+          x-go-name: StreetAddress
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        ttl:
+          description: he requested Time To Live for the certificate, in seconds
+          format: int64
+          type: integer
+          x-go-name: TTL
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+        uri-sans:
+          description: The URI Subject Alternative Names to be included in the PKI certificate (in a comma-delimited list)
+          type: string
+          x-go-name: URISANs
+        version:
+          description: classic key version
+          format: int32
+          type: integer
+          x-go-name: Version
+      required:
+      - display-id
+      - signing-method
+      - ttl
+      - version
+      title: signPKICertWithClassicKey is a command that signs PKI certificate by using an Classic key.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

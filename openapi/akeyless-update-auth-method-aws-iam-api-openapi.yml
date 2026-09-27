@@ -1,0 +1,162 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Update Auth Method Aws Iam API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Update Auth Method Aws Iam
+paths:
+  /update-auth-method-aws-iam:
+    post:
+      operationId: updateAuthMethodAWSIAM
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateAuthMethodAWSIAM'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateAuthMethodAWSIAMOutput'
+          description: updateAuthMethodAWSIAMResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Update Auth Method Aws Iam
+      x-codegen-request-body-name: body
+      summary: Update auth method AWSIAM
+      x-summary-source: derived
+components:
+  schemas:
+    updateAuthMethodAWSIAMOutput:
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    updateAuthMethodAWSIAM:
+      description: 'updateAuthMethodAWSIAM is a command that updates a new Auth Method that will
+
+        be able to authenticate using AWS IAM credentials.'
+      properties:
+        access-expires:
+          default: 0
+          description: 'Access expiration date in Unix timestamp (select 0 for access without
+
+            expiry date)'
+          format: int64
+          type: integer
+          x-go-name: AccessExpires
+        bound-arn:
+          description: A list of full arns that the access is restricted to
+          items:
+            type: string
+          type: array
+          x-go-name: BoundArn
+        bound-aws-account-id:
+          description: A list of AWS account-IDs that the access is restricted to
+          items:
+            type: string
+          type: array
+          x-go-name: BoundAccountID
+        bound-ips:
+          description: A CIDR whitelist with the IPs that the access is restricted to
+          items:
+            type: string
+          type: array
+          x-go-name: CIDRWhitelist
+        bound-resource-id:
+          description: A list of full resource ids that the access is restricted to
+          items:
+            type: string
+          type: array
+          x-go-name: BoundResourceID
+        bound-role-id:
+          description: A list of full role ids that the access is restricted to
+          items:
+            type: string
+          type: array
+          x-go-name: BoundRoleID
+        bound-role-name:
+          description: A list of full role-name that the access is restricted to
+          items:
+            type: string
+          type: array
+          x-go-name: BoundRoleName
+        bound-user-id:
+          description: A list of full user ids that the access is restricted to
+          items:
+            type: string
+          type: array
+          x-go-name: BoundUserID
+        bound-user-name:
+          description: A list of full user-name that the access is restricted to
+          items:
+            type: string
+          type: array
+          x-go-name: BoundUserName
+        force-sub-claims:
+          description: 'if true: enforce role-association must include sub claims'
+          type: boolean
+          x-go-name: ForceSubClaims
+        gw-bound-ips:
+          description: A CIDR whitelist with the GW IPs that the access is restricted to
+          items:
+            type: string
+          type: array
+          x-go-name: GWCIDRWhitelist
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        jwt-ttl:
+          description: Jwt TTL
+          format: int64
+          type: integer
+          x-go-name: JwtTtl
+        name:
+          description: Auth Method name
+          type: string
+          x-go-name: AuthMethodName
+        new-name:
+          description: Auth Method new name
+          type: string
+          x-go-name: AuthMethodNewName
+        sts-url:
+          default: https://sts.amazonaws.com
+          description: sts URL
+          type: string
+          x-go-name: STSEndpoint
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - bound-aws-account-id
+      - name
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

@@ -1,0 +1,177 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Create Auth Method Cert API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Create Auth Method Cert
+paths:
+  /create-auth-method-cert:
+    post:
+      operationId: createAuthMethodCert
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createAuthMethodCert'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createAuthMethodCertOutput'
+          description: createAuthMethodCertResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Create Auth Method Cert
+      x-codegen-request-body-name: body
+      summary: Create auth method cert
+      x-summary-source: derived
+components:
+  schemas:
+    createAuthMethodCert:
+      description: 'createAuthMethodCert is a command that creates a new auth method that
+
+        will be able to authenticate using a client certificae'
+      properties:
+        access-expires:
+          default: 0
+          description: 'Access expiration date in Unix timestamp (select 0 for access without
+
+            expiry date)'
+          format: int64
+          type: integer
+          x-go-name: AccessExpires
+        bound-common-names:
+          description: A list of names. At least one must exist in the Common Name. Supports globbing.
+          items:
+            type: string
+          type: array
+          x-go-name: BoundCommonNames
+        bound-dns-sans:
+          description: A list of DNS names. At least one must exist in the SANs. Supports globbing.
+          items:
+            type: string
+          type: array
+          x-go-name: BoundDnsSans
+        bound-email-sans:
+          description: A list of Email Addresses. At least one must exist in the SANs. Supports globbing.
+          items:
+            type: string
+          type: array
+          x-go-name: BoundEmailSans
+        bound-extensions:
+          description: A list of extensions formatted as "oid:value". Expects the extension value to be some type of ASN1 encoded string. All values much match. Supports globbing on "value".
+          items:
+            type: string
+          type: array
+          x-go-name: BoundExtensions
+        bound-ips:
+          description: A CIDR whitelist with the IPs that the access is restricted to
+          items:
+            type: string
+          type: array
+          x-go-name: CIDRWhitelist
+        bound-organizational-units:
+          description: A list of Organizational Units names. At least one must exist in the OU field.
+          items:
+            type: string
+          type: array
+          x-go-name: BoundOrganizationalUnits
+        bound-uri-sans:
+          description: A list of URIs. At least one must exist in the SANs. Supports globbing.
+          items:
+            type: string
+          type: array
+          x-go-name: BoundUriSans
+        certificate-data:
+          description: The certificate data in base64, if no file was provided
+          type: string
+          x-go-name: CertificateData
+        force-sub-claims:
+          description: 'if true: enforce role-association must include sub claims'
+          type: boolean
+          x-go-name: ForceSubClaims
+        gw-bound-ips:
+          description: A CIDR whitelist with the GW IPs that the access is restricted to
+          items:
+            type: string
+          type: array
+          x-go-name: GWCIDRWhitelist
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        jwt-ttl:
+          description: Jwt TTL
+          format: int64
+          type: integer
+          x-go-name: JwtTtl
+        name:
+          description: Auth Method name
+          type: string
+          x-go-name: AuthMethodName
+        revoked-cert-ids:
+          description: A list of revoked cert ids
+          items:
+            type: string
+          type: array
+          x-go-name: RevokedCertIds
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+        unique-identifier:
+          description: 'A unique identifier (ID) value should be configured, such as common_name or organizational_unit
+
+            Whenever a user logs in with a token, these authentication types issue
+
+            a "sub claim" that contains details uniquely identifying that user.
+
+            This sub claim includes a key containing the ID value that you
+
+            configured, and is used to distinguish between different users from
+
+            within the same organization.'
+          type: string
+          x-go-name: UniqueIdentifier
+      required:
+      - name
+      - unique-identifier
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    createAuthMethodCertOutput:
+      example:
+        access_id: access_id
+      properties:
+        access_id:
+          type: string
+          x-go-name: AccessID
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

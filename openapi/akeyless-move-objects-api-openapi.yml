@@ -1,0 +1,89 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Move Objects API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Move Objects
+paths:
+  /move-objects:
+    post:
+      operationId: moveObjects
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/moveObjects'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/moveObjectsOutput'
+          description: moveObjectsResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Move Objects
+      x-codegen-request-body-name: body
+      summary: Move objects
+      x-summary-source: derived
+components:
+  schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    moveObjectsOutput:
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    moveObjects:
+      properties:
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        objects-type:
+          default: item
+          description: The objects type to move (item/auth_method/role)
+          type: string
+          x-go-name: ObjectsType
+        source:
+          description: Source path to move the objects from
+          type: string
+          x-go-name: SourcePath
+        target:
+          description: Target path to move the objects to
+          type: string
+          x-go-name: TargetPath
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - source
+      - target
+      title: moveObjects is a command that moves/renames objects.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

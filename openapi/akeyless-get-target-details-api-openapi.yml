@@ -1,0 +1,907 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Get Target Details API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Get Target Details
+paths:
+  /get-target-details:
+    post:
+      operationId: getTargetDetails
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/getTargetDetails'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTargetDetailsOutput'
+          description: getTargetDetailsResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Get Target Details
+      x-codegen-request-body-name: body
+      summary: Get target details
+      x-summary-source: derived
+components:
+  schemas:
+    Target:
+      example:
+        credentials_less: true
+        target_items_assoc:
+        - cluster_id: 1
+          assoc_id: assoc_id
+          item_type: item_type
+          attributes:
+            key: attributes
+          item_name: item_name
+          relationship: relationship
+        - cluster_id: 1
+          assoc_id: assoc_id
+          item_type: item_type
+          attributes:
+            key: attributes
+          item_name: item_name
+          relationship: relationship
+        target_name: target_name
+        access_date: 2000-01-23 04:56:07+00:00
+        target_type: target_type
+        target_id: 6
+        creation_date: 2000-01-23 04:56:07+00:00
+        is_access_request_enabled: true
+        last_version: 0
+        client_permissions:
+        - client_permissions
+        - client_permissions
+        with_customer_fragment: true
+        target_versions:
+        - item_version_state: item_version_state
+          with_customer_fragment: true
+          access_date: 2000-01-23 04:56:07+00:00
+          deletion_date: 2000-01-23 04:56:07+00:00
+          modification_date: 2000-01-23 04:56:07+00:00
+          protection_key_name: protection_key_name
+          creation_date: 2000-01-23 04:56:07+00:00
+          version: 3
+          customer_fragment_id: customer_fragment_id
+        - item_version_state: item_version_state
+          with_customer_fragment: true
+          access_date: 2000-01-23 04:56:07+00:00
+          deletion_date: 2000-01-23 04:56:07+00:00
+          modification_date: 2000-01-23 04:56:07+00:00
+          protection_key_name: protection_key_name
+          creation_date: 2000-01-23 04:56:07+00:00
+          version: 3
+          customer_fragment_id: customer_fragment_id
+        modification_date: 2000-01-23 04:56:07+00:00
+        attributes:
+          key: '{}'
+        comment: comment
+        protection_key_name: protection_key_name
+        access_request_status: access_request_status
+      properties:
+        access_date:
+          format: date-time
+          type: string
+          x-go-name: AccessDate
+        access_request_status:
+          type: string
+          x-go-name: AccessRequestStatus
+        attributes:
+          additionalProperties:
+            type: object
+          description: 'this is not "omitempty" since an empty value causes no update
+
+            while an empty map will clear the attributes'
+          type: object
+          x-go-name: Attributes
+        client_permissions:
+          items:
+            type: string
+          type: array
+          x-go-name: ClientPermissions
+        comment:
+          type: string
+          x-go-name: Comment
+        creation_date:
+          format: date-time
+          type: string
+          x-go-name: CreationDate
+        credentials_less:
+          type: boolean
+          x-go-name: CredentialsLess
+        is_access_request_enabled:
+          type: boolean
+          x-go-name: IsAccessRequestEnabled
+        last_version:
+          format: int32
+          type: integer
+          x-go-name: LastVersion
+        modification_date:
+          format: date-time
+          type: string
+          x-go-name: ModificationDate
+        protection_key_name:
+          type: string
+          x-go-name: ProtectionKeyName
+        target_id:
+          format: int64
+          type: integer
+          x-go-name: TargetID
+        target_items_assoc:
+          items:
+            $ref: '#/components/schemas/TargetItemAssociation'
+          type: array
+          x-go-name: TargetItemsAssoc
+        target_name:
+          type: string
+          x-go-name: TargetName
+        target_type:
+          title: TargetType ..
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        target_versions:
+          items:
+            $ref: '#/components/schemas/ItemVersion'
+          type: array
+          x-go-name: TargetVersions
+        with_customer_fragment:
+          type: boolean
+          x-go-name: WithCustomerFragment
+      title: Target includes target details.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    TargetTypeDetailsInput:
+      example:
+        gke_cluster_endpoint: gke_cluster_endpoint
+        user_password: user_password
+        chef_server_key: chef_server_key
+        implementation_type: implementation_type
+        ssl_connection_certificate: ssl_connection_certificate
+        github_app_id: 1
+        password: password
+        privileged_user: privileged_user
+        ldap_certificate: ldap_certificate
+        ldap_bind_dn: ldap_bind_dn
+        ldap_url: ldap_url
+        db_private_key: db_private_key
+        rabbitmq_server_password: rabbitmq_server_password
+        private_key: private_key
+        authorization_port: authorization_port
+        chef_server_username: chef_server_username
+        db_host_name: db_host_name
+        db_name: db_name
+        chef_skip_ssl: true
+        db_port: db_port
+        k8s_cluster_endpoint: k8s_cluster_endpoint
+        artifactory_base_url: artifactory_base_url
+        azure_client_secret: azure_client_secret
+        aws_session_token: aws_session_token
+        user_name: user_name
+        mongodb_username: mongodb_username
+        ssl_connection_mode: true
+        mongodb_db_name: mongodb_db_name
+        mongodb_atlas_api_public_key: mongodb_atlas_api_public_key
+        eks_access_key_id: eks_access_key_id
+        venafi_base_url: venafi_base_url
+        ping_url: ping_url
+        ldap_token_expiration: ldap_token_expiration
+        venafi_use_tpp: true
+        mongodb_password: mongodb_password
+        aws_secret_access_key: aws_secret_access_key
+        auth_flow: auth_flow
+        mongodb_atlas_api_private_key: mongodb_atlas_api_private_key
+        url: url
+        app_private_key:
+        - 0
+        - 0
+        private_key_password: private_key_password
+        artifactory_admin_username: artifactory_admin_username
+        rabbitmq_server_user: rabbitmq_server_user
+        venafi_api_key: venafi_api_key
+        mongodb_host_port: mongodb_host_port
+        gke_cluster_ca_certificate: gke_cluster_ca_certificate
+        k8s_bearer_token: k8s_bearer_token
+        azure_resource_name: azure_resource_name
+        db_private_key_passphrase: db_private_key_passphrase
+        client_id: client_id
+        azure_client_id: azure_client_id
+        ca_cert_data:
+        - 6
+        - 6
+        mongodb_default_auth_db: mongodb_default_auth_db
+        mongodb_uri_connection: mongodb_uri_connection
+        mongodb_atlas_project_id: mongodb_atlas_project_id
+        db_user_name: db_user_name
+        eks_region: eks_region
+        payload: payload
+        artifactory_admin_apikey: artifactory_admin_apikey
+        host: host
+        client_secret: client_secret
+        ldap_audience: ldap_audience
+        ldap_bind_password: ldap_bind_password
+        azure_resource_group_name: azure_resource_group_name
+        azure_subscription_id: azure_subscription_id
+        port: port
+        db_server_certificates: db_server_certificates
+        db_server_name: db_server_name
+        venafi_zone: venafi_zone
+        gcp_service_account_key: gcp_service_account_key
+        venafi_tpp_username: venafi_tpp_username
+        eks_cluster_endpoint: eks_cluster_endpoint
+        gke_service_account_key: gke_service_account_key
+        mongodb_uri_options: mongodb_uri_options
+        github_app_private_key: github_app_private_key
+        db_pwd: db_pwd
+        administrative_port: administrative_port
+        gke_service_account_name: gke_service_account_name
+        gcp_service_account_email: gcp_service_account_email
+        rabbitmq_server_uri: rabbitmq_server_uri
+        tenant_url: tenant_url
+        venafi_tpp_password: venafi_tpp_password
+        use_gw_cloud_identity: true
+        k8s_cluster_ca_certificate: k8s_cluster_ca_certificate
+        eks_secret_access_key: eks_secret_access_key
+        sf_account: sf_account
+        security_token: security_token
+        github_base_url: github_base_url
+        chef_server_host_name: chef_server_host_name
+        chef_server_port: chef_server_port
+        mongodb_is_atlas: true
+        eks_cluster_ca_certificate: eks_cluster_ca_certificate
+        aws_access_key_id: aws_access_key_id
+        aws_region: aws_region
+        ca_cert_name: ca_cert_name
+        eks_cluster_name: eks_cluster_name
+        chef_server_url: chef_server_url
+        gke_cluster_name: gke_cluster_name
+        azure_tenant_id: azure_tenant_id
+        username: username
+      properties:
+        administrative_port:
+          type: string
+          x-go-name: AdministrativePort
+        app_private_key:
+          description: 'params needed for jwt auth
+
+            AppPrivateKey is the rsa private key in PEM format'
+          items:
+            format: uint8
+            type: integer
+          type: array
+          x-go-name: AppPrivateKey
+        artifactory_admin_apikey:
+          type: string
+          x-go-name: ArtifactoryAdminApiKey
+        artifactory_admin_username:
+          type: string
+          x-go-name: ArtifactoryAdminUsername
+        artifactory_base_url:
+          type: string
+          x-go-name: ArtifactoryBaseURL
+        auth_flow:
+          type: string
+          x-go-name: AuthFlow
+        authorization_port:
+          type: string
+          x-go-name: AuthorizationPort
+        aws_access_key_id:
+          type: string
+          x-go-name: AWSAccessKeyID
+        aws_region:
+          type: string
+          x-go-name: AWSRegion
+        aws_secret_access_key:
+          type: string
+          x-go-name: AWSSecretAccessKey
+        aws_session_token:
+          type: string
+          x-go-name: AWSSessionToken
+        azure_client_id:
+          type: string
+          x-go-name: AzureClientID
+        azure_client_secret:
+          type: string
+          x-go-name: AzureClientSecret
+        azure_resource_group_name:
+          type: string
+          x-go-name: AzureResourceGroupName
+        azure_resource_name:
+          type: string
+          x-go-name: AzureResourceName
+        azure_subscription_id:
+          type: string
+          x-go-name: AzureSubscriptionId
+        azure_tenant_id:
+          type: string
+          x-go-name: AzureTenantID
+        ca_cert_data:
+          description: CACertData is the rsa 4096 certificate data in PEM format
+          items:
+            format: uint8
+            type: integer
+          type: array
+          x-go-name: CACertData
+        ca_cert_name:
+          description: CACertName is the name of the certificate in SalesForce tenant
+          type: string
+          x-go-name: CACertName
+        chef_server_host_name:
+          type: string
+          x-go-name: ChefServerHostName
+        chef_server_key:
+          type: string
+          x-go-name: ChefServerKey
+        chef_server_port:
+          type: string
+          x-go-name: ChefServerPort
+        chef_server_url:
+          type: string
+          x-go-name: ChefServerURL
+        chef_server_username:
+          type: string
+          x-go-name: ChefServerUsername
+        chef_skip_ssl:
+          type: boolean
+          x-go-name: ChefSkipSSL
+        client_id:
+          type: string
+          x-go-name: ClientId
+        client_secret:
+          description: params needed for password auth
+          type: string
+          x-go-name: ClientSecret
+        db_host_name:
+          type: string
+          x-go-name: DbHostName
+        db_name:
+          type: string
+          x-go-name: DbName
+        db_port:
+          type: string
+          x-go-name: DbPort
+        db_private_key:
+          description: (Optional) Private Key in PEM format
+          type: string
+          x-go-name: DbPrivateKey
+        db_private_key_passphrase:
+          type: string
+          x-go-name: DbPrivateKeyPassphrase
+        db_pwd:
+          type: string
+          x-go-name: DbPwd
+        db_server_certificates:
+          description: '(Optional) DBServerCertificates defines the set of root certificate authorities
+
+            that clients use when verifying server certificates.
+
+            If DBServerCertificates is empty, TLS uses the host''s root CA set.'
+          type: string
+          x-go-name: DBServerCertificates
+        db_server_name:
+          description: '(Optional) ServerName is used to verify the hostname on the returned
+
+            certificates unless InsecureSkipVerify is given. It is also included
+
+            in the client''s handshake to support virtual hosting unless it is
+
+            an IP address.'
+          type: string
+          x-go-name: DBServerName
+        db_user_name:
+          type: string
+          x-go-name: DbUserName
+        eks_access_key_id:
+          type: string
+          x-go-name: EKSAccessID
+        eks_cluster_ca_certificate:
+          type: string
+          x-go-name: EKSClusterCACertificate
+        eks_cluster_endpoint:
+          type: string
+          x-go-name: EKSClusterEndpoint
+        eks_cluster_name:
+          type: string
+          x-go-name: EKSClusterName
+        eks_region:
+          type: string
+          x-go-name: EKSRegion
+        eks_secret_access_key:
+          type: string
+          x-go-name: EKSSecretAccessKey
+        gcp_service_account_email:
+          description: deprecated
+          type: string
+          x-go-name: GCPServiceAccountEmail
+        gcp_service_account_key:
+          type: string
+          x-go-name: GCPServiceAccountKey
+        github_app_id:
+          format: int64
+          type: integer
+          x-go-name: GithubAppId
+        github_app_private_key:
+          type: string
+          x-go-name: GithubAppPrivateKey
+        github_base_url:
+          type: string
+          x-go-name: GithubBaseURL
+        gke_cluster_ca_certificate:
+          type: string
+          x-go-name: GKEClusterCACertificate
+        gke_cluster_endpoint:
+          type: string
+          x-go-name: GKEClusterEndpoint
+        gke_cluster_name:
+          type: string
+          x-go-name: GKEClusterName
+        gke_service_account_key:
+          type: string
+          x-go-name: GKEServiceAccountKey
+        gke_service_account_name:
+          type: string
+          x-go-name: GKEServiceAccountName
+        host:
+          type: string
+          x-go-name: HostName
+        implementation_type:
+          type: string
+          x-go-name: ImplementationType
+        k8s_bearer_token:
+          type: string
+          x-go-name: K8sBearerToken
+        k8s_cluster_ca_certificate:
+          type: string
+          x-go-name: K8sClusterCACertificate
+        k8s_cluster_endpoint:
+          type: string
+          x-go-name: K8sClusterEndpoint
+        ldap_audience:
+          type: string
+          x-go-name: Audience
+        ldap_bind_dn:
+          type: string
+          x-go-name: BindDn
+        ldap_bind_password:
+          type: string
+          x-go-name: BindPass
+        ldap_certificate:
+          type: string
+          x-go-name: Certificate
+        ldap_token_expiration:
+          type: string
+          x-go-name: TokenExpirationInSec
+        ldap_url:
+          type: string
+          x-go-name: Url
+        mongodb_atlas_api_private_key:
+          type: string
+          x-go-name: MongoDBAtlasAPIPrivateKey
+        mongodb_atlas_api_public_key:
+          type: string
+          x-go-name: MongoDBAtlasAPIPublicKey
+        mongodb_atlas_project_id:
+          description: mongodb atlas fields
+          type: string
+          x-go-name: MongoDBAtlasProjectID
+        mongodb_db_name:
+          description: common fields
+          type: string
+          x-go-name: MongoDBName
+        mongodb_default_auth_db:
+          type: string
+          x-go-name: MongoDBDefaultAuthDB
+        mongodb_host_port:
+          type: string
+          x-go-name: MongoDBHostAndPort
+        mongodb_is_atlas:
+          type: boolean
+          x-go-name: MongoDBAtlas
+        mongodb_password:
+          type: string
+          x-go-name: MongoDBPassword
+        mongodb_uri_connection:
+          description: mongodb fields
+          type: string
+          x-go-name: MongoDBServerURI
+        mongodb_uri_options:
+          type: string
+          x-go-name: MongoDBURIOptions
+        mongodb_username:
+          type: string
+          x-go-name: MongoDBUsername
+        password:
+          type: string
+          x-go-name: Password
+        payload:
+          type: string
+          x-go-name: Payload
+        ping_url:
+          type: string
+          x-go-name: PingURL
+        port:
+          type: string
+          x-go-name: HostPort
+        private_key:
+          type: string
+          x-go-name: SshPrivateKey
+        private_key_password:
+          type: string
+          x-go-name: SshPrivateKeyPassword
+        privileged_user:
+          type: string
+          x-go-name: PrivilegedUser
+        rabbitmq_server_password:
+          type: string
+          x-go-name: RabbitmqServerPassword
+        rabbitmq_server_uri:
+          type: string
+          x-go-name: RabbitmqServerURI
+        rabbitmq_server_user:
+          type: string
+          x-go-name: RabbitmqServerUser
+        security_token:
+          type: string
+          x-go-name: SecurityToken
+        sf_account:
+          type: string
+          x-go-name: SnowflakeAccountName
+        ssl_connection_certificate:
+          description: (Optional) SSLConnectionCertificate defines the certificate for SSL connection. Must be base64 certificate loaded by UI using file loader field
+          type: string
+          x-go-name: SSLConnectionCertificate
+        ssl_connection_mode:
+          description: (Optional) SSLConnectionMode defines if SSL mode will be used to connect to DB
+          type: boolean
+          x-go-name: SSLConnectionMode
+        tenant_url:
+          type: string
+          x-go-name: TenantUrl
+        url:
+          type: string
+          x-go-name: URL
+        use_gw_cloud_identity:
+          type: boolean
+          x-go-name: GCPUseDefaultIdentity
+        user_name:
+          type: string
+          x-go-name: Username
+        user_password:
+          type: string
+          x-go-name: UserPassword
+        username:
+          type: string
+          x-go-name: AdminName
+        venafi_api_key:
+          type: string
+          x-go-name: VenafiApiKey
+        venafi_base_url:
+          type: string
+          x-go-name: VenafiBaseURL
+        venafi_tpp_password:
+          type: string
+          x-go-name: VenafiTPPPassword
+        venafi_tpp_username:
+          type: string
+          x-go-name: VenafiTPPUserName
+        venafi_use_tpp:
+          type: boolean
+          x-go-name: VenafiUseTPP
+        venafi_zone:
+          type: string
+          x-go-name: VenafiZone
+      title: TargetTypeDetailsInput ...
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    TargetItemAssociation:
+      description: 'TargetItemAssociation includes details of an association between a target
+
+        and an item.'
+      example:
+        cluster_id: 1
+        assoc_id: assoc_id
+        item_type: item_type
+        attributes:
+          key: attributes
+        item_name: item_name
+        relationship: relationship
+      properties:
+        assoc_id:
+          type: string
+          x-go-name: AssociationID
+        attributes:
+          additionalProperties:
+            type: string
+          type: object
+          x-go-name: Attributes
+        cluster_id:
+          format: int64
+          type: integer
+          x-go-name: GWClusterID
+        item_name:
+          type: string
+          x-go-name: ItemName
+        item_type:
+          title: ItemType defines types supported by AKEYLESS.
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        relationship:
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    ItemVersion:
+      example:
+        item_version_state: item_version_state
+        with_customer_fragment: true
+        access_date: 2000-01-23 04:56:07+00:00
+        deletion_date: 2000-01-23 04:56:07+00:00
+        modification_date: 2000-01-23 04:56:07+00:00
+        protection_key_name: protection_key_name
+        creation_date: 2000-01-23 04:56:07+00:00
+        version: 3
+        customer_fragment_id: customer_fragment_id
+      properties:
+        access_date:
+          format: date-time
+          type: string
+          x-go-name: AccessDate
+        creation_date:
+          format: date-time
+          type: string
+          x-go-name: CreationDate
+        customer_fragment_id:
+          type: string
+          x-go-name: CustomerFragmentId
+        deletion_date:
+          format: date-time
+          type: string
+          x-go-name: DeletionDate
+        item_version_state:
+          description: ItemState defines the different states an Item can be in
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        modification_date:
+          format: date-time
+          type: string
+          x-go-name: ModificationDate
+        protection_key_name:
+          type: string
+          x-go-name: ProtectionKeyName
+        version:
+          format: int32
+          type: integer
+          x-go-name: Version
+        with_customer_fragment:
+          type: boolean
+          x-go-name: WithCustomerFragment
+      title: ItemVersion describes an item version in AKEYLESS.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    getTargetDetails:
+      properties:
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        name:
+          description: Target name
+          type: string
+          x-go-name: TargetName
+        show-versions:
+          default: false
+          description: Include all target versions in reply
+          type: boolean
+          x-go-name: ShowVersions
+        target-version:
+          description: Target version
+          format: int32
+          type: integer
+          x-go-name: TargetVersion
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - name
+      title: getTargetDetails is a command that returns target details.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    GetTargetDetailsOutput:
+      example:
+        value:
+          gke_cluster_endpoint: gke_cluster_endpoint
+          user_password: user_password
+          chef_server_key: chef_server_key
+          implementation_type: implementation_type
+          ssl_connection_certificate: ssl_connection_certificate
+          github_app_id: 1
+          password: password
+          privileged_user: privileged_user
+          ldap_certificate: ldap_certificate
+          ldap_bind_dn: ldap_bind_dn
+          ldap_url: ldap_url
+          db_private_key: db_private_key
+          rabbitmq_server_password: rabbitmq_server_password
+          private_key: private_key
+          authorization_port: authorization_port
+          chef_server_username: chef_server_username
+          db_host_name: db_host_name
+          db_name: db_name
+          chef_skip_ssl: true
+          db_port: db_port
+          k8s_cluster_endpoint: k8s_cluster_endpoint
+          artifactory_base_url: artifactory_base_url
+          azure_client_secret: azure_client_secret
+          aws_session_token: aws_session_token
+          user_name: user_name
+          mongodb_username: mongodb_username
+          ssl_connection_mode: true
+          mongodb_db_name: mongodb_db_name
+          mongodb_atlas_api_public_key: mongodb_atlas_api_public_key
+          eks_access_key_id: eks_access_key_id
+          venafi_base_url: venafi_base_url
+          ping_url: ping_url
+          ldap_token_expiration: ldap_token_expiration
+          venafi_use_tpp: true
+          mongodb_password: mongodb_password
+          aws_secret_access_key: aws_secret_access_key
+          auth_flow: auth_flow
+          mongodb_atlas_api_private_key: mongodb_atlas_api_private_key
+          url: url
+          app_private_key:
+          - 0
+          - 0
+          private_key_password: private_key_password
+          artifactory_admin_username: artifactory_admin_username
+          rabbitmq_server_user: rabbitmq_server_user
+          venafi_api_key: venafi_api_key
+          mongodb_host_port: mongodb_host_port
+          gke_cluster_ca_certificate: gke_cluster_ca_certificate
+          k8s_bearer_token: k8s_bearer_token
+          azure_resource_name: azure_resource_name
+          db_private_key_passphrase: db_private_key_passphrase
+          client_id: client_id
+          azure_client_id: azure_client_id
+          ca_cert_data:
+          - 6
+          - 6
+          mongodb_default_auth_db: mongodb_default_auth_db
+          mongodb_uri_connection: mongodb_uri_connection
+          mongodb_atlas_project_id: mongodb_atlas_project_id
+          db_user_name: db_user_name
+          eks_region: eks_region
+          payload: payload
+          artifactory_admin_apikey: artifactory_admin_apikey
+          host: host
+          client_secret: client_secret
+          ldap_audience: ldap_audience
+          ldap_bind_password: ldap_bind_password
+          azure_resource_group_name: azure_resource_group_name
+          azure_subscription_id: azure_subscription_id
+          port: port
+          db_server_certificates: db_server_certificates
+          db_server_name: db_server_name
+          venafi_zone: venafi_zone
+          gcp_service_account_key: gcp_service_account_key
+          venafi_tpp_username: venafi_tpp_username
+          eks_cluster_endpoint: eks_cluster_endpoint
+          gke_service_account_key: gke_service_account_key
+          mongodb_uri_options: mongodb_uri_options
+          github_app_private_key: github_app_private_key
+          db_pwd: db_pwd
+          administrative_port: administrative_port
+          gke_service_account_name: gke_service_account_name
+          gcp_service_account_email: gcp_service_account_email
+          rabbitmq_server_uri: rabbitmq_server_uri
+          tenant_url: tenant_url
+          venafi_tpp_password: venafi_tpp_password
+          use_gw_cloud_identity: true
+          k8s_cluster_ca_certificate: k8s_cluster_ca_certificate
+          eks_secret_access_key: eks_secret_access_key
+          sf_account: sf_account
+          security_token: security_token
+          github_base_url: github_base_url
+          chef_server_host_name: chef_server_host_name
+          chef_server_port: chef_server_port
+          mongodb_is_atlas: true
+          eks_cluster_ca_certificate: eks_cluster_ca_certificate
+          aws_access_key_id: aws_access_key_id
+          aws_region: aws_region
+          ca_cert_name: ca_cert_name
+          eks_cluster_name: eks_cluster_name
+          chef_server_url: chef_server_url
+          gke_cluster_name: gke_cluster_name
+          azure_tenant_id: azure_tenant_id
+          username: username
+        target:
+          credentials_less: true
+          target_items_assoc:
+          - cluster_id: 1
+            assoc_id: assoc_id
+            item_type: item_type
+            attributes:
+              key: attributes
+            item_name: item_name
+            relationship: relationship
+          - cluster_id: 1
+            assoc_id: assoc_id
+            item_type: item_type
+            attributes:
+              key: attributes
+            item_name: item_name
+            relationship: relationship
+          target_name: target_name
+          access_date: 2000-01-23 04:56:07+00:00
+          target_type: target_type
+          target_id: 6
+          creation_date: 2000-01-23 04:56:07+00:00
+          is_access_request_enabled: true
+          last_version: 0
+          client_permissions:
+          - client_permissions
+          - client_permissions
+          with_customer_fragment: true
+          target_versions:
+          - item_version_state: item_version_state
+            with_customer_fragment: true
+            access_date: 2000-01-23 04:56:07+00:00
+            deletion_date: 2000-01-23 04:56:07+00:00
+            modification_date: 2000-01-23 04:56:07+00:00
+            protection_key_name: protection_key_name
+            creation_date: 2000-01-23 04:56:07+00:00
+            version: 3
+            customer_fragment_id: customer_fragment_id
+          - item_version_state: item_version_state
+            with_customer_fragment: true
+            access_date: 2000-01-23 04:56:07+00:00
+            deletion_date: 2000-01-23 04:56:07+00:00
+            modification_date: 2000-01-23 04:56:07+00:00
+            protection_key_name: protection_key_name
+            creation_date: 2000-01-23 04:56:07+00:00
+            version: 3
+            customer_fragment_id: customer_fragment_id
+          modification_date: 2000-01-23 04:56:07+00:00
+          attributes:
+            key: '{}'
+          comment: comment
+          protection_key_name: protection_key_name
+          access_request_status: access_request_status
+      properties:
+        target:
+          $ref: '#/components/schemas/Target'
+        value:
+          $ref: '#/components/schemas/TargetTypeDetailsInput'
+      title: GetTargetDetailsOutput defines output of GetTargetDetails operation.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types

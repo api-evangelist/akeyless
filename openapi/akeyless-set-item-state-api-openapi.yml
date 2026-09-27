@@ -1,0 +1,90 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Set Item State API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Set Item State
+paths:
+  /set-item-state:
+    post:
+      operationId: setItemState
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/setItemState'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/setItemStateOutput'
+          description: setItemStateResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Set Item State
+      x-codegen-request-body-name: body
+      summary: Set item state
+      x-summary-source: derived
+components:
+  schemas:
+    setItemStateOutput:
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    setItemState:
+      properties:
+        desired-state:
+          description: Desired item state (Enabled, Disabled)
+          type: string
+          x-go-name: State
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        name:
+          description: Current item name
+          type: string
+          x-go-name: ItemName
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+        version:
+          default: 0
+          description: 'The specific version you want to update: 0=item level state (default)'
+          format: int32
+          type: integer
+          x-go-name: Version
+      required:
+      - desired-state
+      - name
+      title: setItemState is a command that sets item's state to enabled/disabled.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

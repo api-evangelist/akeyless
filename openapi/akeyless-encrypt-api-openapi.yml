@@ -1,0 +1,112 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Encrypt API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Encrypt
+paths:
+  /encrypt:
+    post:
+      operationId: encrypt
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/encrypt'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/encryptOutput'
+          description: encryptResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Encrypt
+      x-codegen-request-body-name: body
+      summary: Encrypt
+      x-summary-source: derived
+components:
+  schemas:
+    encryptOutput:
+      example:
+        result: result
+      properties:
+        result:
+          type: string
+          x-go-name: Result
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    encrypt:
+      properties:
+        display-id:
+          description: The display id of the key to use in the encryption process
+          type: string
+          x-go-name: DisplayId
+        encryption-context:
+          additionalProperties:
+            type: string
+          description: 'name-value pair that specifies the encryption context to be used for
+
+            authenticated encryption. If used here, the same value must be supplied
+
+            to the decrypt command or decryption will fail'
+          type: object
+          x-go-name: EncContext
+        input-format:
+          description: 'If specified, the plaintext input is assumed to be formatted accordingly. Current supported options: [base64]'
+          type: string
+          x-go-name: InputFormat
+        item-id:
+          description: The item id of the key to use in the encryption process
+          format: int64
+          type: integer
+          x-go-name: ItemId
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        key-name:
+          description: The name of the key to use in the encryption process
+          type: string
+          x-go-name: KeyName
+        plaintext:
+          description: Data to be encrypted
+          type: string
+          x-go-name: Plaintext
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - key-name
+      title: encrypt is a command that encrypts plaintext into ciphertext by using an AES key.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

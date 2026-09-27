@@ -1,0 +1,112 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Decrypt API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Decrypt
+paths:
+  /decrypt:
+    post:
+      operationId: decrypt
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/decrypt'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/decryptOutput'
+          description: decryptResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Decrypt
+      x-codegen-request-body-name: body
+      summary: Decrypt
+      x-summary-source: derived
+components:
+  schemas:
+    decryptOutput:
+      example:
+        result: result
+      properties:
+        result:
+          type: string
+          x-go-name: Result
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    decrypt:
+      description: 'decrypt is a command that decrypts ciphertext into plaintext by using an AES
+
+        key.'
+      properties:
+        ciphertext:
+          description: Ciphertext to be decrypted in base64 encoded format
+          type: string
+          x-go-name: Ciphertext
+        display-id:
+          description: The display id of the key to use in the decryption process
+          type: string
+          x-go-name: DisplayId
+        encryption-context:
+          additionalProperties:
+            type: string
+          description: 'The encryption context. If this was specified in the encrypt command, it
+
+            must be specified here or the decryption operation will fail'
+          type: object
+          x-go-name: EncContext
+        item-id:
+          description: The item id of the key to use in the decryption process
+          format: int64
+          type: integer
+          x-go-name: ItemId
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        key-name:
+          description: The name of the key to use in the decryption process
+          type: string
+          x-go-name: KeyName
+        output-format:
+          description: 'If specified, the output will be formatted accordingly. options: [base64]'
+          type: string
+          x-go-name: OutputFormat
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - key-name
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

@@ -1,0 +1,121 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Update Event Forwarder API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Update Event Forwarder
+paths:
+  /update-event-forwarder:
+    post:
+      operationId: updateEventForwarder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateEventForwarder'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateEventForwarderOutput'
+          description: updateEventForwarderResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Update Event Forwarder
+      x-codegen-request-body-name: body
+      summary: Update event forwarder
+      x-summary-source: derived
+components:
+  schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    updateEventForwarder:
+      properties:
+        admin-name:
+          description: Workstation Admin Name
+          type: string
+          x-go-name: AdminName
+        description:
+          default: default_comment
+          description: Description of the object
+          type: string
+          x-go-name: Description
+        email-to:
+          description: A comma seperated list of email addresses to send event to (relevant only for \"email\" Event Forwarder)
+          type: string
+          x-go-name: EmailTo
+        enable:
+          description: Enable
+          type: string
+          x-go-name: Enable
+        event-source-locations:
+          description: Event sources
+          items:
+            type: string
+          type: array
+          x-go-name: EventSources
+        event-types:
+          description: Event types
+          items:
+            type: string
+          type: array
+          x-go-name: EventTypes
+        host:
+          description: Workstation Host
+          type: string
+          x-go-name: Host
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        name:
+          description: EventForwarder name
+          type: string
+          x-go-name: EventForwarderName
+        new-comment:
+          default: default_comment
+          description: Deprecated - use description
+          type: string
+          x-go-name: NewComment
+        new-name:
+          description: New EventForwarder name
+          type: string
+          x-go-name: NewName
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - name
+      title: updateEventForwarder is a command that updates an event forwarder.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    updateEventForwarderOutput:
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

@@ -1,0 +1,129 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Update Role API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Update Role
+paths:
+  /update-role:
+    post:
+      operationId: updateRole
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateRole'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateRoleOutput'
+          description: updateRoleResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Update Role
+      x-codegen-request-body-name: body
+      summary: Update role
+      x-summary-source: derived
+components:
+  schemas:
+    updateRoleOutput:
+      example:
+        updated: true
+      properties:
+        updated:
+          type: boolean
+          x-go-name: Updated
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    updateRole:
+      properties:
+        analytics-access:
+          description: 'Allow this role to view analytics. Currently only ''none'', ''own'', ''all''
+
+            values are supported, allowing associated auth methods to view reports
+
+            produced by the same auth methods.'
+          type: string
+          x-go-name: AnalyticsAccess
+        audit-access:
+          description: 'Allow this role to view audit logs. Currently only ''none'', ''own'' and ''all''
+
+            values are supported, allowing associated auth methods to view audit
+
+            logs produced by the same auth methods.'
+          type: string
+          x-go-name: AuditAccess
+        description:
+          default: default_comment
+          description: Description of the object
+          type: string
+          x-go-name: Description
+        gw-analytics-access:
+          description: 'Allow this role to view gw analytics. Currently only ''none'', ''own'', ''all''
+
+            values are supported, allowing associated auth methods to view reports
+
+            produced by the same auth methods.'
+          type: string
+          x-go-name: GwAnalyticsAccess
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        name:
+          description: Role name
+          type: string
+          x-go-name: RoleName
+        new-comment:
+          default: default_comment
+          description: Deprecated - use description
+          type: string
+          x-go-name: NewComment
+        new-name:
+          description: New Role name
+          type: string
+          x-go-name: NewName
+        sra-reports-access:
+          description: 'Allow this role to view SRA Clusters. Currently only ''none'', ''own'',
+
+            ''all'' values are supported.'
+          type: string
+          x-go-name: SRAReportsAccess
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - name
+      title: updateRole is a command that updates an existing role.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

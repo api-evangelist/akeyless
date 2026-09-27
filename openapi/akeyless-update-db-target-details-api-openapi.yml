@@ -1,0 +1,119 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Update Db Target Details API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Update Db Target Details
+paths:
+  /update-db-target-details:
+    post:
+      operationId: updateDBTargetDetails
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateDBTargetDetails'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateTargetOutput'
+          description: updateTargetResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Update Db Target Details
+      x-codegen-request-body-name: body
+      summary: Update DB target details
+      x-summary-source: derived
+components:
+  schemas:
+    updateTargetOutput:
+      example:
+        updated: true
+      properties:
+        updated:
+          type: boolean
+          x-go-name: Updated
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    updateDBTargetDetails:
+      properties:
+        db_type:
+          type: string
+          x-go-name: DbType
+        host_name:
+          type: string
+          x-go-name: DbHostName
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        keep-prev-version:
+          type: string
+          x-go-name: KeepPrevVersion
+        mongo_db_name:
+          type: string
+          x-go-name: MongoDBName
+        mongo_uri:
+          type: string
+          x-go-name: MongoDBURIConnection
+        name:
+          description: Target name
+          type: string
+          x-go-name: TargetName
+        new-version:
+          description: Deprecated
+          type: boolean
+          x-go-name: NewVersion
+        port:
+          type: string
+          x-go-name: DbPort
+        protection_key:
+          description: 'The name of a key that used to encrypt the target secret value (if empty, the
+
+            account default protectionKey key will be used)'
+          type: string
+          x-go-name: ProtectionKey
+        pwd:
+          type: string
+          x-go-name: DbPwd
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+        user_name:
+          type: string
+          x-go-name: DbUserName
+      required:
+      - name
+      title: updateDBTargetDetails is a command that updates an existing target.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

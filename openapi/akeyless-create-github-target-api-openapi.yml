@@ -1,0 +1,113 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Create Github Target API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Create Github Target
+paths:
+  /create-github-target:
+    post:
+      operationId: createGithubTarget
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createGithubTarget'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createGithubTargetOutput'
+          description: createGithubTargetResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Create Github Target
+      x-codegen-request-body-name: body
+      summary: Create github target
+      x-summary-source: derived
+components:
+  schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    createGithubTarget:
+      properties:
+        comment:
+          description: Deprecated - use description
+          type: string
+          x-go-name: Comment
+        description:
+          description: Description of the object
+          type: string
+          x-go-name: Description
+        github-app-id:
+          description: Github app id
+          format: int64
+          type: integer
+          x-go-name: AppId
+        github-app-private-key:
+          description: App private key
+          type: string
+          x-go-name: AppPrivateKey
+        github-base-url:
+          description: Base URL
+          type: string
+          x-go-name: BaseUrl
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        key:
+          description: 'The name of a key that used to encrypt the target secret value (if empty, the
+
+            account default protectionKey key will be used)'
+          type: string
+          x-go-name: ProtectionKey
+        name:
+          description: Target name
+          type: string
+          x-go-name: TargetName
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - name
+      title: createGithubTarget is a command that creates a new target.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    createGithubTargetOutput:
+      example:
+        target_id: 0
+      properties:
+        target_id:
+          format: int64
+          type: integer
+          x-go-name: TargetID
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

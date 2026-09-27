@@ -1,0 +1,115 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Update Web Target API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Update Web Target
+paths:
+  /update-web-target:
+    post:
+      operationId: updateWebTarget
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateWebTarget'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateWebTargetOutput'
+          description: updateWebTargetResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Update Web Target
+      x-codegen-request-body-name: body
+      summary: Update web target
+      x-summary-source: derived
+components:
+  schemas:
+    updateWebTargetOutput:
+      example:
+        target_id: 0
+      properties:
+        target_id:
+          format: int64
+          type: integer
+          x-go-name: TargetID
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    updateWebTarget:
+      properties:
+        comment:
+          description: Deprecated - use description
+          type: string
+          x-go-name: Comment
+        description:
+          description: Description of the object
+          type: string
+          x-go-name: Description
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        keep-prev-version:
+          type: string
+          x-go-name: KeepPrevVersion
+        key:
+          description: 'The name of a key that used to encrypt the target secret value (if empty, the
+
+            account default protectionKey key will be used)'
+          type: string
+          x-go-name: ProtectionKey
+        name:
+          description: Target name
+          type: string
+          x-go-name: TargetName
+        new-name:
+          description: New target name
+          type: string
+          x-go-name: NewTargetName
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+        update-version:
+          description: Deprecated
+          type: boolean
+          x-go-name: CreateNewVersion
+        url:
+          description: The url
+          type: string
+          x-go-name: URL
+      required:
+      - name
+      title: updateWebTarget is a command that updates an existing target.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

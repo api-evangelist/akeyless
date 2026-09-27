@@ -1,0 +1,108 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Export Classic Key API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Export Classic Key
+paths:
+  /export-classic-key:
+    post:
+      operationId: ExportClassicKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportClassicKey'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportClassicKeyOutput'
+          description: ExportClassicKeyResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Export Classic Key
+      x-codegen-request-body-name: body
+      summary: Export classic key
+      x-summary-source: derived
+components:
+  schemas:
+    ExportClassicKey:
+      description: ExportClassicKey is a command that returns the classic key material
+      example:
+        ignore-cache: 'false'
+        name: name
+        json: true
+        version: 0
+        uid-token: uid-token
+        token: token
+      properties:
+        ignore-cache:
+          default: 'false'
+          description: 'Ignore Cache
+
+            Retrieve the Secret value without checking the Gateway''s cache. This flag is only relevant when using the RestAPI'
+          type: string
+          x-go-name: IgnoreCache
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        name:
+          description: ClassicKey name
+          type: string
+          x-go-name: ClassicKeyName
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+        version:
+          description: Classic key version
+          format: int32
+          type: integer
+          x-go-name: Version
+      required:
+      - name
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    ExportClassicKeyOutput:
+      example:
+        certificatePem: certificatePem
+        key: key
+      properties:
+        certificatePem:
+          type: string
+          x-go-name: CertificatePem
+        key:
+          type: string
+          x-go-name: Key
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

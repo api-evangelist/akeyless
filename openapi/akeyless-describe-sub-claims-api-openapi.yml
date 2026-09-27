@@ -1,0 +1,94 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Describe Sub Claims API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Describe Sub Claims
+paths:
+  /describe-sub-claims:
+    post:
+      operationId: describeSubClaims
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/describeSubClaims'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/describeSubClaimsOutput'
+          description: describeSubClaimsResponse wraps response body.
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Describe Sub Claims
+      x-codegen-request-body-name: body
+      summary: Describe sub claims
+      x-summary-source: derived
+components:
+  schemas:
+    describeSubClaimsOutput:
+      example:
+        sub_claims:
+          key:
+          - sub_claims
+          - sub_claims
+      properties:
+        sub_claims:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+          x-go-name: SubClaims
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    describeSubClaims:
+      description: describe-sub-claims Get the sub-claims associated with the provided token or authentication profile
+      properties:
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

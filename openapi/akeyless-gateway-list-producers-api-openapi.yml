@@ -1,0 +1,127 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Gateway List Producers API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Gateway List Producers
+paths:
+  /gateway-list-producers:
+    post:
+      operationId: gatewayListProducers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/gatewayListProducers'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetProducersListReplyObj'
+          description: gatewayListProducersResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Gateway List Producers
+      x-codegen-request-body-name: body
+      summary: Gateway list producers
+      x-summary-source: derived
+components:
+  schemas:
+    gatewayListProducers:
+      description: gatewayListProducers is a command that returns producer
+      properties:
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    GetProducersListReplyObj:
+      example:
+        producers_errors: '{}'
+        producers:
+        - init: true
+          name: name
+          active: true
+          failure_message: failure_message
+          id: 4
+          type: type
+        - init: true
+          name: name
+          active: true
+          failure_message: failure_message
+          id: 4
+          type: type
+      properties:
+        producers:
+          items:
+            $ref: '#/components/schemas/Producer'
+          type: array
+          x-go-name: Producers
+        producers_errors:
+          type: object
+          x-go-name: ProducersErrors
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    Producer:
+      example:
+        init: true
+        name: name
+        active: true
+        failure_message: failure_message
+        id: 4
+        type: type
+      properties:
+        active:
+          type: boolean
+          x-go-name: Active
+        failure_message:
+          type: string
+          x-go-name: FailureMessage
+        id:
+          format: int64
+          type: integer
+          x-go-name: Id
+        init:
+          type: boolean
+          x-go-name: Init
+        name:
+          type: string
+          x-go-name: Name
+        type:
+          type: string
+          x-go-name: Type
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

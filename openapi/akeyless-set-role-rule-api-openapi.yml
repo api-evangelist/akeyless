@@ -1,0 +1,103 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Set Role Rule API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Set Role Rule
+paths:
+  /set-role-rule:
+    post:
+      operationId: setRoleRule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/setRoleRule'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/setRoleRuleOutput'
+          description: setRoleRuleResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Set Role Rule
+      x-codegen-request-body-name: body
+      summary: Set role rule
+      x-summary-source: derived
+components:
+  schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    setRoleRuleOutput:
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    setRoleRule:
+      properties:
+        capability:
+          description: 'List of the approved/denied capabilities in the path options: [read,
+
+            create, update, delete, list, deny]'
+          items:
+            type: string
+          type: array
+          x-go-name: Capabilities
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        path:
+          description: The path the rule refers to
+          type: string
+          x-go-name: Path
+        role-name:
+          description: The role name to be updated
+          type: string
+          x-go-name: RoleName
+        rule-type:
+          default: item-rule
+          description: item-rule, target-rule, role-rule, auth-method-rule, search-rule, reports-rule, gw-reports-rule or sra-reports-rule
+          type: string
+          x-go-name: RuleType
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        ttl:
+          description: RoleRule ttl
+          format: int32
+          type: integer
+          x-go-name: RuleTTL
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - capability
+      - path
+      - role-name
+      title: setRoleRule is a command that sets a rule to a role.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

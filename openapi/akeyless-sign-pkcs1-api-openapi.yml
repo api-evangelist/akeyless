@@ -1,0 +1,105 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Sign Pkcs1 API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Sign Pkcs1
+paths:
+  /sign-pkcs1:
+    post:
+      operationId: signPKCS1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/signPKCS1'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/signPKCS1Output'
+          description: signPKCS1Response wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Sign Pkcs1
+      x-codegen-request-body-name: body
+      summary: Sign PKCS1
+      x-summary-source: derived
+components:
+  schemas:
+    signPKCS1Output:
+      example:
+        result:
+        - 0
+        - 0
+      properties:
+        result:
+          items:
+            format: uint8
+            type: integer
+          type: array
+          x-go-name: Result
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    signPKCS1:
+      description: 'signPKCS1 is a command that calculates the signature of hashed data using
+
+        RSASSA-PKCS1-V1_5-SIGN from RSA PKCS#1 v1.5.'
+      properties:
+        display-id:
+          description: The display id of the key to use in the signing process
+          type: string
+          x-go-name: DisplayId
+        item-id:
+          description: The item id of the key to use in the signing process
+          format: int64
+          type: integer
+          x-go-name: ItemId
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        key-name:
+          description: The name of the RSA key to use in the signing process
+          type: string
+          x-go-name: KeyName
+        message:
+          description: The message to be signed
+          type: string
+          x-go-name: Message
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - message
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

@@ -1,0 +1,79 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Kmip Renew Environment API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Kmip Renew Environment
+paths:
+  /kmip-renew-environment:
+    post:
+      operationId: kmipRenewServerCertificate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/kmipRenewServerCertificate'
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/kmipRenewServerCertificateOutput'
+          description: kmipRenewServerCertificateResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Kmip Renew Environment
+      x-codegen-request-body-name: body
+      summary: Kmip renew server certificate
+      x-summary-source: derived
+components:
+  schemas:
+    kmipRenewServerCertificate:
+      properties:
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      title: kmipRenewServerCertificate is a command that renews KMIP server certificate.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    kmipRenewServerCertificateOutput:
+      example:
+        ca_cert: ca_cert
+      properties:
+        ca_cert:
+          type: string
+          x-go-name: CACert
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

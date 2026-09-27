@@ -1,0 +1,49 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Revoke Creds API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Revoke Creds
+paths:
+  /revoke-creds:
+    post:
+      operationId: revoke-creds
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/revokeCredsOutput'
+          description: revokeCredsResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Revoke Creds
+      summary: Revoke creds
+      x-summary-source: derived
+components:
+  schemas:
+    revokeCredsOutput:
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

@@ -1,0 +1,93 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Kmip Renew Client API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Kmip Renew Client
+paths:
+  /kmip-renew-client:
+    post:
+      operationId: kmipRenewClientCertificate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/kmipRenewClientCertificate'
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/kmipRenewClientCertificateOutput'
+          description: kmipRenewClientCertificateResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Kmip Renew Client
+      x-codegen-request-body-name: body
+      summary: Kmip renew client certificate
+      x-summary-source: derived
+components:
+  schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    kmipRenewClientCertificate:
+      properties:
+        client-id:
+          type: string
+          x-go-name: ClientID
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        name:
+          type: string
+          x-go-name: ClientName
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      title: kmipRenewClientCertificate is a command that renews KMIP client certificate.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    kmipRenewClientCertificateOutput:
+      example:
+        certificate: certificate
+        id: id
+        key: key
+      properties:
+        certificate:
+          type: string
+          x-go-name: Certificate
+        id:
+          type: string
+          x-go-name: ID
+        key:
+          type: string
+          x-go-name: Key
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

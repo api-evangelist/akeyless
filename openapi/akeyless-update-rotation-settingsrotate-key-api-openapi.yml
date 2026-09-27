@@ -1,0 +1,71 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Update Rotation Settingsrotate Key API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Update Rotation Settingsrotate Key
+paths:
+  /update-rotation-settingsrotate-key:
+    post:
+      operationId: updateRotationSettings
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RotateKeyOutput'
+          description: rotateKeyResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Update Rotation Settingsrotate Key
+      summary: Update rotation settings
+      x-summary-source: derived
+components:
+  schemas:
+    RotateKeyOutput:
+      description: RotateKeyOutput defines output of RotateKey operation
+      example:
+        next_rotation_date: 2000-01-23 04:56:07+00:00
+        item_type: item_type
+        classic_key_gw_url: classic_key_gw_url
+        new_item_version: 0
+      properties:
+        classic_key_gw_url:
+          type: string
+          x-go-name: ClassicKeyGWUrl
+        item_type:
+          title: ItemType defines types supported by AKEYLESS.
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        new_item_version:
+          format: int32
+          type: integer
+          x-go-name: NewKeyVersion
+        next_rotation_date:
+          format: date-time
+          type: string
+          x-go-name: NextRotationDate
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

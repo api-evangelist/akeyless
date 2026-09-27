@@ -1,0 +1,227 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Create Pki Cert Issuer API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Create Pki Cert Issuer
+paths:
+  /create-pki-cert-issuer:
+    post:
+      operationId: CreatePKICertIssuer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePKICertIssuer'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createPKICertIssuerOutput'
+          description: createPKICertIssuerResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Create Pki Cert Issuer
+      x-codegen-request-body-name: body
+      summary: Create PKI cert issuer
+      x-summary-source: derived
+components:
+  schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    createPKICertIssuerOutput:
+      example:
+        name: name
+      properties:
+        name:
+          type: string
+          x-go-name: Name
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    CreatePKICertIssuer:
+      example:
+        key-usage: DigitalSignature,KeyAgreement,KeyEncipherment
+        country: country
+        metadata: metadata
+        description: description
+        organizational-units: organizational-units
+        uid-token: uid-token
+        allow-subdomains: true
+        not-require-cn: true
+        allowed-uri-sans: allowed-uri-sans
+        province: province
+        street-address: street-address
+        json: true
+        signer-key-name: signer-key-name
+        tag:
+        - tag
+        - tag
+        code-signing-flag: true
+        locality: locality
+        allowed-domains: allowed-domains
+        allow-any-name: true
+        ttl: 0
+        token: token
+        client-flag: true
+        delete_protection: delete_protection
+        postal-code: postal-code
+        server-flag: true
+        name: name
+        organizations: organizations
+        not-enforce-hostnames: true
+      properties:
+        allow-any-name:
+          description: If set, clients can request certificates for any CN
+          type: boolean
+          x-go-name: AllowAnyName
+        allow-subdomains:
+          description: 'If set, clients can request certificates for subdomains and wildcard
+
+            subdomains of the allowed domains'
+          type: boolean
+          x-go-name: AllowSubdomains
+        allowed-domains:
+          description: 'A list of the allowed domains that clients can request to be included in
+
+            the certificate (in a comma-delimited list)'
+          type: string
+          x-go-name: AllowedDomains
+        allowed-uri-sans:
+          description: 'A list of the allowed URIs that clients can request to be included in
+
+            the certificate as part of the URI Subject Alternative Names (in a
+
+            comma-delimited list)'
+          type: string
+          x-go-name: AllowedURISANs
+        client-flag:
+          description: If set, certificates will be flagged for client auth use
+          type: boolean
+          x-go-name: ClientFlag
+        code-signing-flag:
+          description: If set, certificates will be flagged for code signing use
+          type: boolean
+          x-go-name: CodeSigningFlag
+        country:
+          description: A comma-separated list of countries that will be set in the issued certificate
+          type: string
+          x-go-name: Country
+        delete_protection:
+          description: Protection from accidental deletion of this item
+          type: string
+          x-go-name: ItemProtected
+        description:
+          description: Description of the object
+          type: string
+          x-go-name: Description
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        key-usage:
+          default: DigitalSignature,KeyAgreement,KeyEncipherment
+          description: key-usage
+          type: string
+          x-go-name: KeyUsage
+        locality:
+          description: A comma-separated list of localities that will be set in the issued certificate
+          type: string
+          x-go-name: Locality
+        metadata:
+          description: Deprecated - use description
+          type: string
+          x-go-name: Metadata
+        name:
+          description: PKI certificate issuer name
+          type: string
+          x-go-name: IssuerName
+        not-enforce-hostnames:
+          description: 'If set, any names are allowed for CN and SANs in the certificate and not
+
+            only a valid host name'
+          type: boolean
+          x-go-name: NotEnforceHostnames
+        not-require-cn:
+          description: If set, clients can request certificates without a CN
+          type: boolean
+          x-go-name: NotRequireCN
+        organizational-units:
+          description: 'A comma-separated list of organizational units (OU) that will be set in
+
+            the issued certificate'
+          type: string
+          x-go-name: OrganizationalUnits
+        organizations:
+          description: 'A comma-separated list of organizations (O) that will be set in the
+
+            issued certificate'
+          type: string
+          x-go-name: Organizations
+        postal-code:
+          description: A comma-separated list of postal codes that will be set in the issued certificate
+          type: string
+          x-go-name: PostalCode
+        province:
+          description: A comma-separated list of provinces that will be set in the issued certificate
+          type: string
+          x-go-name: Province
+        server-flag:
+          description: If set, certificates will be flagged for server auth use
+          type: boolean
+          x-go-name: ServerFlag
+        signer-key-name:
+          description: A key to sign the certificate with
+          type: string
+          x-go-name: SignerKeyName
+        street-address:
+          description: A comma-separated list of street addresses that will be set in the issued certificate
+          type: string
+          x-go-name: StreetAddress
+        tag:
+          description: List of the tags attached to this key
+          items:
+            type: string
+          type: array
+          x-go-name: Tags
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        ttl:
+          description: he requested Time To Live for the certificate, in seconds
+          format: int64
+          type: integer
+          x-go-name: TTL
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - name
+      - signer-key-name
+      - ttl
+      title: CreatePKICertIssuer is a command that creates a new PKI certificate issuer.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

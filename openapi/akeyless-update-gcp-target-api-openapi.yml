@@ -1,0 +1,118 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Update Gcp Target API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Update Gcp Target
+paths:
+  /update-gcp-target:
+    post:
+      operationId: updateGcpTarget
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateGcpTarget'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateGcpTargetOutput'
+          description: updateGcpTargetResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Update Gcp Target
+      x-codegen-request-body-name: body
+      summary: Update gcp target
+      x-summary-source: derived
+components:
+  schemas:
+    updateGcpTarget:
+      properties:
+        comment:
+          description: Deprecated - use description
+          type: string
+          x-go-name: Comment
+        description:
+          description: Description of the object
+          type: string
+          x-go-name: Description
+        gcp-key:
+          description: Base64-encoded service account private key text
+          type: string
+          x-go-name: ServiceAccountKey
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        keep-prev-version:
+          type: string
+          x-go-name: KeepPrevVersion
+        key:
+          description: 'The name of a key that used to encrypt the target secret value (if empty, the
+
+            account default protectionKey key will be used)'
+          type: string
+          x-go-name: ProtectionKey
+        name:
+          description: Target name
+          type: string
+          x-go-name: TargetName
+        new-name:
+          description: New target name
+          type: string
+          x-go-name: NewTargetName
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+        update-version:
+          description: Deprecated
+          type: boolean
+          x-go-name: CreateNewVersion
+        use-gw-cloud-identity:
+          type: boolean
+          x-go-name: GCPUseDefaultIdentity
+      required:
+      - name
+      title: updateGcpTarget is a command that updates an existing target.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    updateGcpTargetOutput:
+      example:
+        target_id: 0
+      properties:
+        target_id:
+          format: int64
+          type: integer
+          x-go-name: TargetID
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

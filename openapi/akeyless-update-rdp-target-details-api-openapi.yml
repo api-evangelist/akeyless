@@ -1,0 +1,110 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Update Rdp Target Details API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Update Rdp Target Details
+paths:
+  /update-rdp-target-details:
+    post:
+      operationId: updateRDPTargetDetails
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateRDPTargetDetails'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateTargetOutput'
+          description: updateTargetResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Update Rdp Target Details
+      x-codegen-request-body-name: body
+      summary: Update RDP target details
+      x-summary-source: derived
+components:
+  schemas:
+    updateTargetOutput:
+      example:
+        updated: true
+      properties:
+        updated:
+          type: boolean
+          x-go-name: Updated
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    updateRDPTargetDetails:
+      properties:
+        admin_name:
+          type: string
+          x-go-name: AdminName
+        admin_pwd:
+          type: string
+          x-go-name: AdminPwd
+        host_name:
+          type: string
+          x-go-name: HostName
+        host_port:
+          type: string
+          x-go-name: HostPort
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        keep-prev-version:
+          type: string
+          x-go-name: KeepPrevVersion
+        name:
+          description: Target name
+          type: string
+          x-go-name: TargetName
+        new-version:
+          description: Deprecated
+          type: boolean
+          x-go-name: NewVersion
+        protection_key:
+          description: 'The name of a key that used to encrypt the target secret value (if empty, the
+
+            account default protectionKey key will be used)'
+          type: string
+          x-go-name: ProtectionKey
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - name
+      title: updateRDPTargetDetails is a command that updates an existing target.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

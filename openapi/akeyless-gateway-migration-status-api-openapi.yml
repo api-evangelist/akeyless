@@ -1,0 +1,153 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Gateway Migration Status API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Gateway Migration Status
+paths:
+  /gateway-migration-status:
+    post:
+      operationId: gatewayStatusMigration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/gatewayStatusMigration'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MigrationStatusReplyObj'
+          description: gatewayMigrationStatusResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Gateway Migration Status
+      x-codegen-request-body-name: body
+      summary: Gateway status migration
+      x-summary-source: derived
+components:
+  schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    MigrationStatusReplyObj:
+      example:
+        start_time: start_time
+        max_name_length: 0
+        migration_type: migration_type
+        migration_id: migration_id
+        last_status_message: last_status_message
+        duration_time: duration_time
+        max_value_length: 6
+        migration_name: migration_name
+        migration_items:
+          total: 5
+          failed: 0
+          migrated: 6
+          skipped: 1
+        migration_state: migration_state
+      properties:
+        duration_time:
+          type: string
+          x-go-name: DurationTime
+        last_status_message:
+          type: string
+          x-go-name: LastMessage
+        max_name_length:
+          format: int64
+          type: integer
+          x-go-name: MaxNameLength
+        max_value_length:
+          format: int64
+          type: integer
+          x-go-name: MaxValueLength
+        migration_id:
+          type: string
+          x-go-name: MigrationID
+        migration_items:
+          $ref: '#/components/schemas/MigrationItems'
+        migration_name:
+          type: string
+          x-go-name: MigrationName
+        migration_state:
+          type: string
+          x-go-name: MigrationState
+        migration_type:
+          type: string
+          x-go-name: MigrationType
+        start_time:
+          type: string
+          x-go-name: StartTime
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    MigrationItems:
+      example:
+        total: 5
+        failed: 0
+        migrated: 6
+        skipped: 1
+      properties:
+        failed:
+          format: int64
+          type: integer
+          x-go-name: Failed
+        migrated:
+          format: int64
+          type: integer
+          x-go-name: Migrated
+        skipped:
+          format: int64
+          type: integer
+          x-go-name: Skipped
+        total:
+          format: int64
+          type: integer
+          x-go-name: Total
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/importer/report
+    gatewayStatusMigration:
+      description: gatewayStatusMigration is a command that get migration status
+      properties:
+        id:
+          description: Migration ID
+          type: string
+          x-go-name: MigrationID
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        name:
+          description: Migration name to display
+          type: string
+          x-go-name: MigrationName
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

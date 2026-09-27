@@ -1,0 +1,89 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Gateway Sync Migration API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Gateway Sync Migration
+paths:
+  /gateway-sync-migration:
+    post:
+      operationId: gatewaySyncMigration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/gatewaySyncMigration'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayMigrationSyncOutput'
+          description: gatewayMigrationSyncResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Gateway Sync Migration
+      x-codegen-request-body-name: body
+      summary: Gateway sync migration
+      x-summary-source: derived
+components:
+  schemas:
+    GatewayMigrationSyncOutput:
+      example:
+        migration_name: migration_name
+      properties:
+        migration_name:
+          type: string
+          x-go-name: MigrationName
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    gatewaySyncMigration:
+      description: gatewaySyncMigration is a command that sync migration
+      properties:
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        name:
+          description: Migration name
+          type: string
+          x-go-name: MigrationName
+        start-sync:
+          description: true, for starting synchronization, false for stopping
+          type: boolean
+          x-go-name: Sync
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - name
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

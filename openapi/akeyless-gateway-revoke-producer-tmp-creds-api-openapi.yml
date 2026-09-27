@@ -1,0 +1,91 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Gateway Revoke Producer Tmp Creds API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Gateway Revoke Producer Tmp Creds
+paths:
+  /gateway-revoke-producer-tmp-creds:
+    post:
+      operationId: gatewayRevokeTmpUsers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/gatewayRevokeTmpUsers'
+        required: true
+      responses:
+        '200':
+          content: {}
+          description: gatewayRevokeTmpUsersResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Gateway Revoke Producer Tmp Creds
+      x-codegen-request-body-name: body
+      summary: Gateway revoke tmp users
+      x-summary-source: derived
+components:
+  schemas:
+    gatewayRevokeTmpUsers:
+      description: gatewayRevokeTmpUsers is a command that revoke producer tmp user
+      properties:
+        host:
+          description: 'Deprecated: has no effect'
+          type: string
+          x-go-name: Host
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        name:
+          description: Producer Name
+          type: string
+          x-go-name: ProducerName
+        revoke-all:
+          description: Revoke All Temp Creds
+          type: boolean
+          x-go-name: RevokeAll
+        soft-delete:
+          description: Soft Delete
+          type: boolean
+          x-go-name: SoftDelete
+        tmp-creds-id:
+          default: demo_default_tmp_creds_id_for_sdk_bc
+          description: Tmp Creds ID
+          type: string
+          x-go-name: TmpCredsID
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - name
+      - tmp-creds-id
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

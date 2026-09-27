@@ -1,0 +1,173 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Create Db Target API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Create Db Target
+paths:
+  /create-db-target:
+    post:
+      operationId: createDBTarget
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createDBTarget'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createDBTargetOutput'
+          description: createDBTargetResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Create Db Target
+      x-codegen-request-body-name: body
+      summary: Create DB target
+      x-summary-source: derived
+components:
+  schemas:
+    createDBTargetOutput:
+      example:
+        target_id: 0
+      properties:
+        target_id:
+          format: int64
+          type: integer
+          x-go-name: TargetID
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    createDBTarget:
+      properties:
+        comment:
+          description: Deprecated - use description
+          type: string
+          x-go-name: Comment
+        db-name:
+          type: string
+          x-go-name: DbName
+        db-server-certificates:
+          description: (Optional) DB server certificates
+          type: string
+          x-go-name: DBServerCertificates
+        db-server-name:
+          description: (Optional) Server name for certificate verification
+          type: string
+          x-go-name: DBServerName
+        db-type:
+          title: TargetType ..
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        description:
+          description: Description of the object
+          type: string
+          x-go-name: Description
+        host:
+          type: string
+          x-go-name: DbHostName
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        key:
+          description: 'The name of a key that used to encrypt the target secret value (if empty, the
+
+            account default protectionKey key will be used)'
+          type: string
+          x-go-name: ProtectionKey
+        mongodb-atlas:
+          type: boolean
+          x-go-name: MongoDBAtlas
+        mongodb-atlas-api-private-key:
+          description: MongoDB Atlas private key
+          type: string
+          x-go-name: MongoAPIPrivateKey
+        mongodb-atlas-api-public-key:
+          description: MongoDB Atlas public key
+          type: string
+          x-go-name: MongoAPIPublicKey
+        mongodb-atlas-project-id:
+          description: MongoDB Atlas project ID
+          type: string
+          x-go-name: MongoProjectID
+        mongodb-default-auth-db:
+          description: MongoDB server default authentication database
+          type: string
+          x-go-name: MongoDefaultAuthDB
+        mongodb-uri-options:
+          description: MongoDB server URI options
+          type: string
+          x-go-name: MongoURIOptions
+        name:
+          description: Target name
+          type: string
+          x-go-name: TargetName
+        oracle-service-name:
+          type: string
+          x-go-name: OracleServiceName
+        port:
+          type: string
+          x-go-name: DbPort
+        pwd:
+          type: string
+          x-go-name: DbPwd
+        snowflake-account:
+          type: string
+          x-go-name: SnowflakeAccount
+        snowflake-api-private-key:
+          description: RSA Private key (base64 encoded)
+          type: string
+          x-go-name: SnowflakeAPIPrivateKey
+        snowflake-api-private-key-password:
+          description: The Private key passphrase
+          type: string
+          x-go-name: SnowflakeAPIPrivateKeyPass
+        ssl:
+          description: SSL connection mode
+          type: boolean
+          x-go-name: SSLConnection
+        ssl-certificate:
+          description: SSL connection certificate
+          type: string
+          x-go-name: SSLConnectionCertificate
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+        user-name:
+          type: string
+          x-go-name: DbUserName
+      required:
+      - db-type
+      - name
+      title: createDBTarget is a command that creates a new target.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

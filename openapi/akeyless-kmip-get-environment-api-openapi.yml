@@ -1,0 +1,106 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Kmip Get Environment API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Kmip Get Environment
+paths:
+  /kmip-get-environment:
+    post:
+      operationId: kmipDescribeServer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/kmipDescribeServer'
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/kmipDescribeServerOutput'
+          description: kmipDescribeServerResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Kmip Get Environment
+      x-codegen-request-body-name: body
+      summary: Kmip describe server
+      x-summary-source: derived
+components:
+  schemas:
+    kmipDescribeServerOutput:
+      example:
+        hostname: hostname
+        root: root
+        active: true
+        certificate_issue_date: 2000-01-23 04:56:07+00:00
+        ca_cert:
+        - 0
+        - 0
+        certificate_ttl_in_seconds: 6
+      properties:
+        active:
+          type: boolean
+          x-go-name: Active
+        ca_cert:
+          items:
+            format: uint8
+            type: integer
+          type: array
+          x-go-name: CACert
+        certificate_issue_date:
+          format: date-time
+          type: string
+          x-go-name: CertificateIssueDate
+        certificate_ttl_in_seconds:
+          format: int64
+          type: integer
+          x-go-name: CertificateTTLInSeconds
+        hostname:
+          type: string
+          x-go-name: Hostname
+        root:
+          type: string
+          x-go-name: Root
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    kmipDescribeServer:
+      properties:
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      title: kmipDescribeServer is a command that shows KMIP environment details.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

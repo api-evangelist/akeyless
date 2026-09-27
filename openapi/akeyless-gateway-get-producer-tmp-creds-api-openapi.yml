@@ -1,0 +1,120 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Gateway Get Producer Tmp Creds API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Gateway Get Producer Tmp Creds
+paths:
+  /gateway-get-producer-tmp-creds:
+    post:
+      operationId: gatewayGetTmpUsers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/gatewayGetTmpUsers'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TmpUserData'
+                type: array
+          description: gatewayGetTmpUsersResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Gateway Get Producer Tmp Creds
+      x-codegen-request-body-name: body
+      summary: Gateway get tmp users
+      x-summary-source: derived
+components:
+  schemas:
+    gatewayGetTmpUsers:
+      description: gatewayGetTmpUsers is a command that returns gateway configuration
+      properties:
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        name:
+          description: Producer Name
+          type: string
+          x-go-name: ProducerName
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - name
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    TmpUserData:
+      example:
+        custom_ttl: 0
+        sub_claims:
+          key:
+          - sub_claims
+          - sub_claims
+        dynamic_secret_type: dynamic_secret_type
+        host: host
+        access_id: access_id
+        creation_date: 2000-01-23 04:56:07+00:00
+        id: id
+      properties:
+        access_id:
+          type: string
+          x-go-name: AccessID
+        creation_date:
+          format: date-time
+          type: string
+          x-go-name: CreationDate
+        custom_ttl:
+          format: int64
+          type: integer
+          x-go-name: CustomTtl
+        dynamic_secret_type:
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/producer
+        host:
+          type: string
+          x-go-name: Host
+        id:
+          type: string
+          x-go-name: ID
+        sub_claims:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+          x-go-name: SubClaims
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/producer/dynamicsecret/base
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

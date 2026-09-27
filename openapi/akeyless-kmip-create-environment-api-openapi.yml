@@ -1,0 +1,101 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Kmip Create Environment API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Kmip Create Environment
+paths:
+  /kmip-create-environment:
+    post:
+      operationId: kmipServerSetup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/kmipServerSetup'
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KMIPEnvironmentCreateResponse'
+          description: kmipServerSetupResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Kmip Create Environment
+      x-codegen-request-body-name: body
+      summary: Kmip server setup
+      x-summary-source: derived
+components:
+  schemas:
+    kmipServerSetup:
+      properties:
+        certificate-ttl:
+          format: int64
+          type: integer
+          x-go-name: CertificateTTL
+        hostname:
+          description: Hostname
+          type: string
+          x-go-name: Hostname
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        root:
+          type: string
+          x-go-name: Root
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - hostname
+      title: kmipServerSetup is a command that creates a new KMIP environment.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    KMIPEnvironmentCreateResponse:
+      example:
+        root: root
+        ca_cert:
+        - 0
+        - 0
+      properties:
+        ca_cert:
+          items:
+            format: uint8
+            type: integer
+          type: array
+          x-go-name: CACert
+        root:
+          type: string
+          x-go-name: Root
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/gateway/config
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

@@ -1,0 +1,104 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Assoc Role Am API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Assoc Role Am
+paths:
+  /assoc-role-am:
+    post:
+      operationId: assocRoleAuthMethod
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/assocRoleAuthMethod'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateRoleAuthMethodAssocOutput'
+          description: assocRoleAuthMethodResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Assoc Role Am
+      x-codegen-request-body-name: body
+      summary: Assoc role auth method
+      x-summary-source: derived
+components:
+  schemas:
+    assocRoleAuthMethod:
+      description: 'assocRoleAuthMethod is a command that creates an association between role
+
+        and auth method.'
+      properties:
+        am-name:
+          description: The auth method to associate
+          type: string
+          x-go-name: AuthMethodName
+        case-sensitive:
+          type: string
+          x-go-name: IsSubClaimsCaseSensitive
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        role-name:
+          description: The role to associate
+          type: string
+          x-go-name: RoleName
+        sub-claims:
+          additionalProperties:
+            type: string
+          description: key/val of sub claims, e.g group=admins,developers
+          type: object
+          x-go-name: SubClaims
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - am-name
+      - role-name
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    CreateRoleAuthMethodAssocOutput:
+      description: 'CreateRoleAuthMethodAssocOutput defines output of CreateRoleAuthMethodAssoc
+
+        operation.'
+      example:
+        assoc_id: assoc_id
+      properties:
+        assoc_id:
+          type: string
+          x-go-name: AssociationID
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

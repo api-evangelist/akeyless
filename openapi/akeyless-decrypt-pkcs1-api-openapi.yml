@@ -1,0 +1,99 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Decrypt Pkcs1 API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Decrypt Pkcs1
+paths:
+  /decrypt-pkcs1:
+    post:
+      operationId: decryptPKCS1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/decryptPKCS1'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/decryptPKCS1Output'
+          description: decryptPKCS1Response wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Decrypt Pkcs1
+      x-codegen-request-body-name: body
+      summary: Decrypt PKCS1
+      x-summary-source: derived
+components:
+  schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    decryptPKCS1Output:
+      example:
+        plaintext: plaintext
+      properties:
+        plaintext:
+          type: string
+          x-go-name: Plaintext
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    decryptPKCS1:
+      properties:
+        ciphertext:
+          description: Ciphertext to be decrypted in base64 encoded format
+          type: string
+          x-go-name: Ciphertext
+        display-id:
+          description: The display id of the key to use in the decryption process
+          type: string
+          x-go-name: DisplayId
+        item-id:
+          description: The item id of the key to use in the decryption process
+          format: int64
+          type: integer
+          x-go-name: ItemId
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        key-name:
+          description: The name of the key to use in the decryption process
+          type: string
+          x-go-name: KeyName
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - ciphertext
+      - key-name
+      title: decryptPKCS1 is a command that decrypts plaintext using RSA and the padding scheme from PKCS#1 v1.5.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

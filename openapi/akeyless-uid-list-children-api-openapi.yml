@@ -1,0 +1,155 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Uid List Children API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Uid List Children
+paths:
+  /uid-list-children:
+    post:
+      operationId: uidListChildren
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/uidListChildren'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UniversalIdentityDetails'
+          description: uidListChildrenResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Uid List Children
+      x-codegen-request-body-name: body
+      summary: Uid list children
+      x-summary-source: derived
+components:
+  schemas:
+    uidListChildren:
+      description: 'uidListChildren is a command that lists child token ids of Akeyless
+
+        Universal Identity.'
+      properties:
+        auth-method-name:
+          description: The universal identity auth method name, required only when uid-token is not provided
+          type: string
+          x-go-name: AuthMethodName
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    UniversalIdentityDetails:
+      example:
+        number_of_tokens: 6
+        max_depth: 0
+        root:
+          deny_inheritance: true
+          depth: 1
+          last_rotate: last_rotate
+          children: {}
+          comment: comment
+          id: id
+          revoked: true
+          ttl: 5
+          deny_rotate: true
+          expired_date: expired_date
+      properties:
+        max_depth:
+          format: uint16
+          type: integer
+          x-go-name: MaxDepth
+        number_of_tokens:
+          format: int64
+          type: integer
+          x-go-name: NumberOfTokens
+        root:
+          $ref: '#/components/schemas/UIDTokenDetails'
+      title: UniversalIdentityDetails Universal identity type.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    UIDTokenDetails:
+      example:
+        deny_inheritance: true
+        depth: 1
+        last_rotate: last_rotate
+        children: {}
+        comment: comment
+        id: id
+        revoked: true
+        ttl: 5
+        deny_rotate: true
+        expired_date: expired_date
+      properties:
+        children:
+          additionalProperties:
+            $ref: '#/components/schemas/UIDTokenDetails'
+          type: object
+          x-go-name: Children
+        comment:
+          type: string
+          x-go-name: Comment
+        deny_inheritance:
+          type: boolean
+          x-go-name: DenyInheritance
+        deny_rotate:
+          type: boolean
+          x-go-name: DenyRotate
+        depth:
+          format: uint16
+          type: integer
+          x-go-name: Depth
+        expired_date:
+          type: string
+          x-go-name: ExpiredDate
+        id:
+          type: string
+          x-go-name: ID
+        last_rotate:
+          type: string
+          x-go-name: LastRotate
+        revoked:
+          type: boolean
+          x-go-name: Revoked
+        ttl:
+          format: int32
+          type: integer
+          x-go-name: TTL
+      title: UIDTokenDetails Universal identity type.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

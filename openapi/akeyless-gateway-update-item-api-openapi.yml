@@ -1,0 +1,168 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Gateway Update Item API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Gateway Update Item
+paths:
+  /gateway-update-item:
+    post:
+      operationId: gatewayUpdateItem
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/gatewayUpdateItem'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gatewayUpdateItemOutput'
+          description: gatewayUpdateItemResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Gateway Update Item
+      x-codegen-request-body-name: body
+      summary: Gateway update item
+      x-summary-source: derived
+components:
+  schemas:
+    gatewayUpdateItemOutput:
+      example:
+        name: name
+      properties:
+        name:
+          type: string
+          x-go-name: Name
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    gatewayUpdateItem:
+      description: gatewayUpdateItem is a command that updates classic key
+      properties:
+        add-tag:
+          description: List of the new tags that will be attached to this item
+          items:
+            type: string
+          type: array
+          x-go-name: AddTags
+        api-id:
+          type: string
+          x-go-name: ApiId
+        api-key:
+          type: string
+          x-go-name: ApiKey
+        auto-rotate:
+          description: Whether to automatically rotate every --rotation-interval days, or disable existing automatic rotation
+          type: string
+          x-go-name: AutoRotate
+        custom-payload:
+          type: string
+          x-go-name: Payload
+        delete_protection:
+          description: Protection from accidental deletion of this item
+          type: string
+          x-go-name: ItemProtected
+        description:
+          default: default_metadata
+          description: Description of the object
+          type: string
+          x-go-name: Description
+        gcp-key:
+          description: Base64-encoded service account private key text
+          type: string
+          x-go-name: ServiceAccountKey
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        keep-prev-version:
+          type: string
+          x-go-name: KeepPrevVersion
+        key:
+          description: The name of a key that used to encrypt the secret value (if empty, the account default protectionKey key will be used)
+          type: string
+          x-go-name: ProtectionKey
+        name:
+          description: Item name
+          type: string
+          x-go-name: ItemName
+        new-metadata:
+          default: default_metadata
+          description: Deprecated - use description
+          type: string
+          x-go-name: NewMetadata
+        new-name:
+          description: New item name
+          type: string
+          x-go-name: NewName
+        new-version:
+          description: Deprecated
+          type: boolean
+          x-go-name: NewVersion
+        rm-tag:
+          description: List of the existent tags that will be removed from this item
+          items:
+            type: string
+          type: array
+          x-go-name: RemoveTags
+        rotated-password:
+          type: string
+          x-go-name: RotatedPassword
+        rotated-username:
+          type: string
+          x-go-name: RotatedUser
+        rotation-hour:
+          default: 0
+          description: The Rotation Hour
+          format: int32
+          type: integer
+          x-go-name: RotationHour
+        rotation-interval:
+          description: The number of days to wait between every automatic key rotation (1-365)
+          type: string
+          x-go-name: RotationInterval
+        rotator-creds-type:
+          description: The rotation credentials type
+          type: string
+          x-go-name: RotatorCredsType
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        type:
+          description: Item type
+          type: string
+          x-go-name: ItemType
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - name
+      - type
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

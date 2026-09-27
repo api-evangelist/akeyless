@@ -1,0 +1,88 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Kmip Move Environment API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Kmip Move Environment
+paths:
+  /kmip-move-environment:
+    post:
+      operationId: kmipMoveServer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/kmipMoveServer'
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/kmipMoveServerOutput'
+          description: kmipMoveServerResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Kmip Move Environment
+      x-codegen-request-body-name: body
+      summary: Kmip move server
+      x-summary-source: derived
+components:
+  schemas:
+    kmipMoveServerOutput:
+      example:
+        old_root: old_root
+        new_root: new_root
+      properties:
+        new_root:
+          type: string
+          x-go-name: NewRoot
+        old_root:
+          type: string
+          x-go-name: OldRoot
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    kmipMoveServer:
+      description: 'kmipMoveServer is a command that Moves the root location of the kmip server
+
+        and all associated items to a new root location'
+      properties:
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        new-root:
+          type: string
+          x-go-name: NewRoot
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

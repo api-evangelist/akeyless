@@ -1,0 +1,110 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Uid Create Child Token API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Uid Create Child Token
+paths:
+  /uid-create-child-token:
+    post:
+      operationId: uidCreateChildToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/uidCreateChildToken'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/uidCreateChildTokenOutput'
+          description: uidCreateChildTokenResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Uid Create Child Token
+      x-codegen-request-body-name: body
+      summary: Uid create child token
+      x-summary-source: derived
+components:
+  schemas:
+    uidCreateChildToken:
+      description: 'uidCreateChildToken is a command that creates a new child token using
+
+        Akeyless Universal Identity.'
+      properties:
+        auth-method-name:
+          description: The universal identity auth method name, required only when uid-token is not provided
+          type: string
+          x-go-name: AuthMethodName
+        child-deny-inheritance:
+          description: Deny from new child to create their own children
+          type: boolean
+          x-go-name: ChildDenyInheritance
+        child-deny-rotate:
+          description: Deny from new child to rotate
+          type: boolean
+          x-go-name: ChildDenyRotate
+        child-ttl:
+          description: New child token ttl
+          format: int32
+          type: integer
+          x-go-name: ChildTTL
+        comment:
+          description: Deprecated - use description
+          type: string
+          x-go-name: Comment
+        description:
+          description: Description of the object
+          type: string
+          x-go-name: Description
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+        uid-token-id:
+          description: The ID of the uid-token, required only when uid-token is not provided
+          type: string
+          x-go-name: UIDTokenId
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    uidCreateChildTokenOutput:
+      example:
+        token: token
+      properties:
+        token:
+          type: string
+          x-go-name: Token
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

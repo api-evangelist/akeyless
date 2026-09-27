@@ -1,0 +1,115 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Create Artifactory Target API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Create Artifactory Target
+paths:
+  /create-artifactory-target:
+    post:
+      operationId: createArtifactoryTarget
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createArtifactoryTarget'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createArtifactoryTargetOutput'
+          description: createArtifactoryTargetResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Create Artifactory Target
+      x-codegen-request-body-name: body
+      summary: Create artifactory target
+      x-summary-source: derived
+components:
+  schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    createArtifactoryTargetOutput:
+      example:
+        target_id: 0
+      properties:
+        target_id:
+          format: int64
+          type: integer
+          x-go-name: TargetID
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    createArtifactoryTarget:
+      properties:
+        artifactory-admin-name:
+          description: Artifactory Admin Name
+          type: string
+          x-go-name: AdminName
+        artifactory-admin-pwd:
+          description: Artifactory Admin password
+          type: string
+          x-go-name: AdminPwd
+        base-url:
+          description: Base URL
+          type: string
+          x-go-name: BaseUrl
+        comment:
+          description: Deprecated - use description
+          type: string
+          x-go-name: Comment
+        description:
+          description: Description of the object
+          type: string
+          x-go-name: Description
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        key:
+          description: 'The name of a key used to encrypt the target secret value (if empty, the
+
+            account default protectionKey key will be used)'
+          type: string
+          x-go-name: ProtectionKey
+        name:
+          description: Target name
+          type: string
+          x-go-name: TargetName
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - artifactory-admin-name
+      - artifactory-admin-pwd
+      - base-url
+      - name
+      title: createArtifactoryTarget is a command that creates a new target.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

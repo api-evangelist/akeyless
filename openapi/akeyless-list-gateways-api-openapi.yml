@@ -1,0 +1,177 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless List Gateways API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: List Gateways
+paths:
+  /list-gateways:
+    post:
+      operationId: listGateways
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/listGateways'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewaysListResponse'
+          description: listGatewaysResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - List Gateways
+      x-codegen-request-body-name: body
+      summary: List gateways
+      x-summary-source: derived
+components:
+  schemas:
+    GatewaysListResponse:
+      description: GatewaysListResponse Gateway cluster identity list
+      example:
+        clusters:
+        - cluster_url: cluster_url
+          cluster_name: cluster_name
+          current_gw: true
+          status_description: status_description
+          customer_fragment_ids:
+          - customer_fragment_ids
+          - customer_fragment_ids
+          allowed: true
+          allowed_access_ids:
+          - allowed_access_ids
+          - allowed_access_ids
+          default_protection_key_id: 0
+          id: 6
+          display_name: display_name
+          default_secret_location: default_secret_location
+          status: status
+        - cluster_url: cluster_url
+          cluster_name: cluster_name
+          current_gw: true
+          status_description: status_description
+          customer_fragment_ids:
+          - customer_fragment_ids
+          - customer_fragment_ids
+          allowed: true
+          allowed_access_ids:
+          - allowed_access_ids
+          - allowed_access_ids
+          default_protection_key_id: 0
+          id: 6
+          display_name: display_name
+          default_secret_location: default_secret_location
+          status: status
+      properties:
+        clusters:
+          items:
+            $ref: '#/components/schemas/GwClusterIdentity'
+          type: array
+          x-go-name: GwClusterList
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    listGateways:
+      properties:
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      title: listGateways is a command that returns a list of gateways.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    GwClusterIdentity:
+      example:
+        cluster_url: cluster_url
+        cluster_name: cluster_name
+        current_gw: true
+        status_description: status_description
+        customer_fragment_ids:
+        - customer_fragment_ids
+        - customer_fragment_ids
+        allowed: true
+        allowed_access_ids:
+        - allowed_access_ids
+        - allowed_access_ids
+        default_protection_key_id: 0
+        id: 6
+        display_name: display_name
+        default_secret_location: default_secret_location
+        status: status
+      properties:
+        allowed:
+          type: boolean
+          x-go-name: Allowed
+        allowed_access_ids:
+          items:
+            type: string
+          type: array
+          x-go-name: AllowedAccessIDs
+        cluster_name:
+          type: string
+          x-go-name: ClusterName
+        cluster_url:
+          type: string
+          x-go-name: ClusterUrl
+        current_gw:
+          type: boolean
+          x-go-name: CurrentGW
+        customer_fragment_ids:
+          items:
+            type: string
+          type: array
+          x-go-name: CustomerFragmentIDs
+        default_protection_key_id:
+          format: int64
+          type: integer
+          x-go-name: DefProtectionKeyID
+        default_secret_location:
+          type: string
+          x-go-name: DefSecretLocation
+        display_name:
+          type: string
+          x-go-name: DisplayName
+        id:
+          format: int64
+          type: integer
+          x-go-name: Id
+        status:
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        status_description:
+          type: string
+          x-go-name: StatusDescription
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

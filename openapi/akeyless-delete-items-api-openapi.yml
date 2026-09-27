@@ -1,0 +1,85 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Delete Items API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Delete Items
+paths:
+  /delete-items:
+    post:
+      operationId: deleteItems
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/deleteItems'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/deleteItemsOutput'
+          description: deleteItemsResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Delete Items
+      x-codegen-request-body-name: body
+      summary: Delete items
+      x-summary-source: derived
+components:
+  schemas:
+    deleteItemsOutput:
+      example:
+        path: path
+      properties:
+        path:
+          type: string
+          x-go-name: Path
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    deleteItems:
+      properties:
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        path:
+          description: Path to delete the items from
+          type: string
+          x-go-name: Path
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - path
+      title: deleteItems is a command that deletes multiple items from a given path.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

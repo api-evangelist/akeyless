@@ -1,0 +1,105 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Update Certificate Value API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Update Certificate Value
+paths:
+  /update-certificate-value:
+    post:
+      operationId: updateCertificateValue
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateCertificateValue'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateCertificateOutput'
+          description: updateCertificateValueResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Update Certificate Value
+      x-codegen-request-body-name: body
+      summary: Update certificate value
+      x-summary-source: derived
+components:
+  schemas:
+    updateCertificateOutput:
+      example:
+        name: name
+      properties:
+        name:
+          type: string
+          x-go-name: Name
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    updateCertificateValue:
+      properties:
+        certificate-data:
+          description: Content of the certificate PEM in a Base64 format.
+          type: string
+          x-go-name: CertificateData
+        expiration-event-in:
+          description: How many days before the expiration of the certificate would you like to be notified.
+          items:
+            type: string
+          type: array
+          x-go-name: ExpirationEventsInDays
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        key:
+          description: 'The name of a key to use to encrypt the certificate''s key (if empty, the
+
+            account default protectionKey key will be used)'
+          type: string
+          x-go-name: ProtectionKey
+        key-data:
+          description: Content of the certificate's private key PEM in a Base64 format.
+          type: string
+          x-go-name: PrivateKeyData
+        name:
+          description: Certificate name
+          type: string
+          x-go-name: CertificateName
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - name
+      title: updateCertificateValue is a command that updates a certificate.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

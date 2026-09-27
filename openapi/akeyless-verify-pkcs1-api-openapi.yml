@@ -1,0 +1,98 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Verify Pkcs1 API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Verify Pkcs1
+paths:
+  /verify-pkcs1:
+    post:
+      operationId: verifyPKCS1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/verifyPKCS1'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/verifyPKCS1Output'
+          description: verifyPKCS1Response wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Verify Pkcs1
+      x-codegen-request-body-name: body
+      summary: Verify PKCS1
+      x-summary-source: derived
+components:
+  schemas:
+    verifyPKCS1Output:
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    verifyPKCS1:
+      properties:
+        display-id:
+          description: The display id of the key to use in the verification process
+          type: string
+          x-go-name: DisplayId
+        item-id:
+          description: The item id of the key to use in the verification process
+          format: int64
+          type: integer
+          x-go-name: ItemId
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        key-name:
+          description: The name of the RSA key to use in the verification process
+          type: string
+          x-go-name: KeyName
+        message:
+          description: The message to be verified
+          type: string
+          x-go-name: Message
+        signature:
+          description: The message's signature
+          type: string
+          x-go-name: Signature
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - key-name
+      - message
+      - signature
+      title: verifyPKCS1 is a command that verifies an RSA PKCS#1 v1.5 signature.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

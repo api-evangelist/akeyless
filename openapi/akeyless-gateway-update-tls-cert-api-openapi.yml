@@ -1,0 +1,93 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Gateway Update Tls Cert API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Gateway Update Tls Cert
+paths:
+  /gateway-update-tls-cert:
+    post:
+      operationId: GatewayUpdateTlsCert
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GatewayUpdateTlsCert'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GatewayUpdateTlsCertOutput'
+          description: GatewayUpdateTlsCertResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Gateway Update Tls Cert
+      x-codegen-request-body-name: body
+      summary: Gateway update tls cert
+      x-summary-source: derived
+components:
+  schemas:
+    GatewayUpdateTlsCert:
+      description: gatewayUpdateTlsCert is a command that updates Gateway TLS certificate
+      example:
+        json: true
+        cert-data: cert-data
+        key-data: key-data
+        uid-token: uid-token
+        token: token
+      properties:
+        cert-data:
+          description: TLS Certificate (base64 encoded)
+          type: string
+          x-go-name: CertData
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        key-data:
+          description: TLS Private Key (base64 encoded)
+          type: string
+          x-go-name: KeyData
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    GatewayUpdateTlsCertOutput:
+      example:
+        updated: true
+      properties:
+        updated:
+          type: boolean
+          x-go-name: Updated
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

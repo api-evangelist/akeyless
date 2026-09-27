@@ -1,0 +1,142 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Gateway List Allowed Management Access API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Gateway List Allowed Management Access
+paths:
+  /gateway-list-allowed-management-access:
+    post:
+      operationId: gatewayListAllowedManagementAccess
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/gatewayListAllowedManagementAccess'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSubAdminsListReplyObj'
+          description: gatewayListSubAdminsResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Gateway List Allowed Management Access
+      x-codegen-request-body-name: body
+      summary: Gateway list allowed management access
+      x-summary-source: derived
+components:
+  schemas:
+    gatewayListAllowedManagementAccess:
+      description: gatewayListAllowedManagementAccess is a command that returns list sub admins
+      properties:
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    GetSubAdminsListReplyObj:
+      example:
+        allowed_access:
+          key:
+            sub_claims:
+              key:
+              - sub_claims
+              - sub_claims
+            allowed_api: true
+            alloweds_login: true
+            err_msg: err_msg
+            is_valid: true
+            name: name
+            access_rules_type: access_rules_type
+            acc_id: acc_id
+            hash: hash
+      properties:
+        allowed_access:
+          additionalProperties:
+            $ref: '#/components/schemas/AllowedAccess'
+          type: object
+          x-go-name: AllowedAccess
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    AllowedAccess:
+      example:
+        sub_claims:
+          key:
+          - sub_claims
+          - sub_claims
+        allowed_api: true
+        alloweds_login: true
+        err_msg: err_msg
+        is_valid: true
+        name: name
+        access_rules_type: access_rules_type
+        acc_id: acc_id
+        hash: hash
+      properties:
+        acc_id:
+          type: string
+          x-go-name: AccId
+        access_rules_type:
+          type: string
+          x-go-name: AccessRulesType
+        allowed_api:
+          type: boolean
+          x-go-name: AllowedApi
+        alloweds_login:
+          type: boolean
+          x-go-name: AllowedsLogin
+        err_msg:
+          type: string
+          x-go-name: ErrMsg
+        hash:
+          type: string
+          x-go-name: Hash
+        is_valid:
+          type: boolean
+          x-go-name: IsValid
+        name:
+          type: string
+          x-go-name: Name
+        sub_claims:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+          x-go-name: SubClaims
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

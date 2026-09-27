@@ -1,0 +1,100 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Kmip Create Client API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Kmip Create Client
+paths:
+  /kmip-create-client:
+    post:
+      operationId: kmipCreateClient
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/kmipCreateClient'
+        required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/kmipCreateClientOutput'
+          description: kmipCreateClientResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Kmip Create Client
+      x-codegen-request-body-name: body
+      summary: Kmip create client
+      x-summary-source: derived
+components:
+  schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    kmipCreateClient:
+      properties:
+        activate-keys-on-creation:
+          type: string
+          x-go-name: ActivateKeysOnCreation
+        certificate-ttl:
+          format: int64
+          type: integer
+          x-go-name: CertificateTTL
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        name:
+          description: Client name
+          type: string
+          x-go-name: ClientName
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - name
+      title: kmipCreateClient is a command that creates a new KMIP client.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    kmipCreateClientOutput:
+      example:
+        certificate: certificate
+        id: id
+        key: key
+      properties:
+        certificate:
+          type: string
+          x-go-name: Certificate
+        id:
+          type: string
+          x-go-name: ID
+        key:
+          type: string
+          x-go-name: Key
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

@@ -1,0 +1,144 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Create Event Forwarder API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Create Event Forwarder
+paths:
+  /create-event-forwarder:
+    post:
+      operationId: createEventForwarder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createEventForwarder'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createEventForwarderOutput'
+          description: createEventForwarderResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Create Event Forwarder
+      x-codegen-request-body-name: body
+      summary: Create event forwarder
+      x-summary-source: derived
+components:
+  schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    createEventForwarderOutput:
+      example:
+        event_forwarder_id: 0
+      properties:
+        event_forwarder_id:
+          format: int64
+          type: integer
+          x-go-name: EventForwarderID
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    createEventForwarder:
+      properties:
+        admin-name:
+          description: Workstation Admin Name
+          type: string
+          x-go-name: AdminName
+        admin-pwd:
+          description: Workstation Admin password
+          type: string
+          x-go-name: AdminPwd
+        comment:
+          description: Deprecated - use description
+          type: string
+          x-go-name: Comment
+        description:
+          description: Description of the object
+          type: string
+          x-go-name: Description
+        email-to:
+          description: A comma seperated list of email addresses to send event to (relevant only for \"email\" Event Forwarder)
+          type: string
+          x-go-name: EmailTo
+        event-source-locations:
+          description: Event sources
+          items:
+            type: string
+          type: array
+          x-go-name: EventSources
+        event-source-type:
+          default: item
+          description: Event Source type [item, target]
+          type: string
+          x-go-name: EventSourceType
+        event-types:
+          description: Event types
+          items:
+            type: string
+          type: array
+          x-go-name: EventTypes
+        every:
+          description: Rate of periodic runner repetition in hours
+          type: string
+          x-go-name: RunEvery
+        forwarder-type:
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        host:
+          description: Workstation Host
+          type: string
+          x-go-name: Host
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        key:
+          description: The name of a key that used to encrypt the EventForwarder secret value (if empty, the account default protectionKey key will be used)
+          type: string
+          x-go-name: ProtectionKey
+        name:
+          description: EventForwarder name
+          type: string
+          x-go-name: EventForwarderName
+        runner-type:
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - event-source-locations
+      - forwarder-type
+      - name
+      - runner-type
+      title: createEventForwarder is a command that creates a new event forwarder.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

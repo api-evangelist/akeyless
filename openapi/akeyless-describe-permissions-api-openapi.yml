@@ -1,0 +1,97 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Describe Permissions API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Describe Permissions
+paths:
+  /describe-permissions:
+    post:
+      operationId: describePermissions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/describePermissions'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DescribePermissionsOutput'
+          description: DescribePermissionsResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Describe Permissions
+      x-codegen-request-body-name: body
+      summary: Describe permissions
+      x-summary-source: derived
+components:
+  schemas:
+    DescribePermissionsOutput:
+      example:
+        client_permissions:
+        - client_permissions
+        - client_permissions
+      properties:
+        client_permissions:
+          items:
+            type: string
+          type: array
+          x-go-name: ClientPermissions
+      title: DescribePermissionsOutput defines output of DescribePermissionsOutput operation.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    describePermissions:
+      description: 'describePermissions is a command that shows which permissions your have to a
+
+        particular path.'
+      properties:
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        path:
+          description: Path to an object
+          type: string
+          x-go-name: Path
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        type:
+          description: Type of object (item, am, role, target)
+          type: string
+          x-go-name: Type
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - path
+      - type
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

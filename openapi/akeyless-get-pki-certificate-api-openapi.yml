@@ -1,0 +1,140 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Get Pki Certificate API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Get Pki Certificate
+paths:
+  /get-pki-certificate:
+    post:
+      operationId: GetPKICertificate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetPKICertificate'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getPKICertificateOutput'
+          description: getPKICertificateResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Get Pki Certificate
+      x-codegen-request-body-name: body
+      summary: Get PKI certificate
+      x-summary-source: derived
+components:
+  schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    GetPKICertificate:
+      example:
+        alt-names: alt-names
+        cert-issuer-name: cert-issuer-name
+        extended-key-usage: extended-key-usage
+        key-data-base64: key-data-base64
+        uri-sans: uri-sans
+        json: true
+        csr-data-base64: csr-data-base64
+        ttl: 0
+        uid-token: uid-token
+        common-name: common-name
+        token: token
+      properties:
+        alt-names:
+          description: 'The Subject Alternative Names to be included in the PKI certificate (in
+
+            a comma-separated list) (if CSR is supplied this flag is ignored and any DNS.* names are taken from it)'
+          type: string
+          x-go-name: AltNames
+        cert-issuer-name:
+          description: The name of the PKI certificate issuer
+          type: string
+          x-go-name: CertIssuerName
+        common-name:
+          description: The common name to be included in the PKI certificate (if CSR is supplied this flag is ignored and the CSR subject CN is taken)
+          type: string
+          x-go-name: CommonName
+        csr-data-base64:
+          description: Certificate Signing Request contents encoded in base64 to generate the certificate with
+          type: string
+          x-go-name: CSRData
+        extended-key-usage:
+          description: 'A comma-separated list of extended key usage requests which will be used for certificate issuance. Supported values: ''clientauth'', ''serverauth''.'
+          type: string
+          x-go-name: ExtKeyUsage
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        key-data-base64:
+          description: 'PKI key file contents. If this option is used, the certificate
+
+            will be printed to stdout'
+          type: string
+          x-go-name: KeyData
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        ttl:
+          description: Updated certificate lifetime in seconds (must be less than the Certificate Issuer default TTL)
+          format: int64
+          type: integer
+          x-go-name: Ttl
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+        uri-sans:
+          description: 'The URI Subject Alternative Names to be included in the PKI certificate
+
+            (in a comma-separated list) (if CSR is supplied this flag is ignored and any URI.* names are taken from it)'
+          type: string
+          x-go-name: URISANs
+      required:
+      - cert-issuer-name
+      title: GetPKICertificate is a command that generates PKI certificate.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    getPKICertificateOutput:
+      example:
+        path: path
+        parent_cert: parent_cert
+        data: data
+      properties:
+        data:
+          type: string
+          x-go-name: Data
+        parent_cert:
+          type: string
+          x-go-name: ParentCert
+        path:
+          type: string
+          x-go-name: Path
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

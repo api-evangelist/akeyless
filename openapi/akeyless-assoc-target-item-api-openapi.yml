@@ -1,0 +1,144 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Assoc Target Item API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Assoc Target Item
+paths:
+  /assoc-target-item:
+    post:
+      operationId: assocTargetItem
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/assocTargetItem'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTargetItemAssocOutput'
+          description: assocTargetItemResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Assoc Target Item
+      x-codegen-request-body-name: body
+      summary: Assoc target item
+      x-summary-source: derived
+components:
+  schemas:
+    CreateTargetItemAssocOutput:
+      description: 'CreateTargetItemAssocOutput defines output of CreateTargetItemAssoc
+
+        operation.'
+      example:
+        assoc_id: assoc_id
+      properties:
+        assoc_id:
+          type: string
+          x-go-name: AssociationID
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    assocTargetItem:
+      description: 'assocTargetItem is a command that creates an association between target
+
+        and item.'
+      properties:
+        disable-previous-key-version:
+          description: Automatically disable previous key version (required for azure targets)
+          type: boolean
+          x-go-name: AutoDisablePreviousKeyVersion
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        key-operations:
+          description: A list of allowed operations for the key (required for azure targets)
+          items:
+            type: string
+          type: array
+          x-go-name: KeyOperations
+        keyring-name:
+          description: Keyring name of the GCP KMS (required for gcp targets)
+          type: string
+          x-go-name: KeyringName
+        kms-algorithm:
+          description: Algorithm of the key in GCP KMS (required for gcp targets)
+          type: string
+          x-go-name: KMSAlgorithm
+        location-id:
+          description: Location id of the GCP KMS (required for gcp targets)
+          type: string
+          x-go-name: LocationId
+        multi-region:
+          default: 'false'
+          description: Set to 'true' to create a multi region managed key (relevant for aws targets)
+          type: string
+          x-go-name: MultiRegion
+        name:
+          description: The item to associate
+          type: string
+          x-go-name: ItemName
+        project-id:
+          description: Project id of the GCP KMS (required for gcp targets)
+          type: string
+          x-go-name: ProjectId
+        purpose:
+          description: Purpose of the key in GCP KMS (required for gcp targets)
+          type: string
+          x-go-name: Purpose
+        regions:
+          description: The list of regions to create a copy of the key in (relevant for aws targets)
+          items:
+            type: string
+          type: array
+          x-go-name: Regions
+        target-name:
+          description: The target to associate
+          type: string
+          x-go-name: TargetName
+        tenant-secret-type:
+          description: The tenant secret type [Data/SearchIndex/Analytics] (required for salesforce targets)
+          type: string
+          x-go-name: TenantSecretType
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+        vault-name:
+          description: Name of the vault used (required for azure targets)
+          type: string
+          x-go-name: VaultName
+      required:
+      - name
+      - target-name
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

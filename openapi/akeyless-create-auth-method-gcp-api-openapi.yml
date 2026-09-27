@@ -1,0 +1,173 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Create Auth Method Gcp API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Create Auth Method Gcp
+paths:
+  /create-auth-method-gcp:
+    post:
+      operationId: createAuthMethodGCP
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createAuthMethodGCP'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createAuthMethodGCPOutput'
+          description: createAuthMethodGCPResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Create Auth Method Gcp
+      x-codegen-request-body-name: body
+      summary: Create auth method GCP
+      x-summary-source: derived
+components:
+  schemas:
+    createAuthMethodGCP:
+      description: 'createAuthMethodGCP is a command that creates a new auth method that
+
+        will be able to authenticate using GCP IAM Service Account credentials
+
+        or GCE instance credentials.'
+      properties:
+        access-expires:
+          default: 0
+          description: 'Access expiration date in Unix timestamp (select 0 for access without
+
+            expiry date)'
+          format: int64
+          type: integer
+          x-go-name: AccessExpires
+        audience:
+          default: akeyless.io
+          description: The audience to verify in the JWT received by the client
+          type: string
+          x-go-name: Audience
+        bound-ips:
+          description: A CIDR whitelist with the IPs that the access is restricted to
+          items:
+            type: string
+          type: array
+          x-go-name: CIDRWhitelist
+        bound-labels:
+          description: 'A comma-separated list of GCP labels formatted as "key:value" strings that must be set on authorized GCE instances.
+
+            TODO: Because GCP labels are not currently ACL''d ....'
+          items:
+            type: string
+          type: array
+          x-go-name: BoundLabels
+        bound-projects:
+          description: '=== Human and Machine authentication section ===
+
+            Array of GCP project IDs. Only entities belonging to any of the provided projects can authenticate.'
+          items:
+            type: string
+          type: array
+          x-go-name: BoundProjects
+        bound-regions:
+          description: 'List of regions that a GCE instance must belong to in order to be authenticated.
+
+            TODO: If bound_instance_groups is provided, it is assumed to be a regional group and the group must belong to this region. If bound_zones are provided, this attribute is ignored.'
+          items:
+            type: string
+          type: array
+          x-go-name: BoundRegions
+        bound-service-accounts:
+          description: List of service accounts the service account must be part of in order to be authenticated.
+          items:
+            type: string
+          type: array
+          x-go-name: BoundServiceAccounts
+        bound-zones:
+          description: '=== Machine authentication section ===
+
+            List of zones that a GCE instance must belong to in order to be authenticated.
+
+            TODO: If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.'
+          items:
+            type: string
+          type: array
+          x-go-name: BoundZones
+        force-sub-claims:
+          description: 'if true: enforce role-association must include sub claims'
+          type: boolean
+          x-go-name: ForceSubClaims
+        gw-bound-ips:
+          description: A CIDR whitelist with the GW IPs that the access is restricted to
+          items:
+            type: string
+          type: array
+          x-go-name: GWCIDRWhitelist
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        jwt-ttl:
+          description: Jwt TTL
+          format: int64
+          type: integer
+          x-go-name: JwtTtl
+        name:
+          description: Auth Method name
+          type: string
+          x-go-name: AuthMethodName
+        service-account-creds-data:
+          description: ServiceAccount credentials data instead of giving a file path, base64 encoded
+          type: string
+          x-go-name: ServiceAccountCredsFileData
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        type:
+          description: Type of the GCP Access Rules
+          type: string
+          x-go-name: Type
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - audience
+      - name
+      - type
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    createAuthMethodGCPOutput:
+      example:
+        access_id: access_id
+      properties:
+        access_id:
+          type: string
+          x-go-name: AccessID
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

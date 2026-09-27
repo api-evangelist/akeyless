@@ -1,0 +1,149 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Create Classic Key API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Create Classic Key
+paths:
+  /create-classic-key:
+    post:
+      operationId: CreateClassicKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateClassicKey'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateClassicKeyOutput'
+          description: CreateClassicKeyResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Create Classic Key
+      x-codegen-request-body-name: body
+      summary: Create classic key
+      x-summary-source: derived
+components:
+  schemas:
+    CreateClassicKeyOutput:
+      example:
+        classic_key_id: classic_key_id
+        classic_key_type: classic_key_type
+        classic_key_name: classic_key_name
+      properties:
+        classic_key_id:
+          type: string
+          x-go-name: ClassicKeyId
+        classic_key_name:
+          type: string
+          x-go-name: ClassicKeyName
+        classic_key_type:
+          title: ClassicKeyType defines types of keys that can be managed by ClassicKey supported by AKEYLESS.
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    CreateClassicKey:
+      description: CreateClassicKey is a command that creates classic key
+      example:
+        protection-key-name: protection-key-name
+        metadata: metadata
+        description: description
+        gpg-alg: gpg-alg
+        cert-file-data: cert-file-data
+        key-data: key-data
+        uid-token: uid-token
+        tags:
+        - tags
+        - tags
+        token: token
+        delete_protection: delete_protection
+        name: name
+        json: true
+        alg: alg
+      properties:
+        alg:
+          description: 'Classic Key type; options: [AES128GCM, AES256GCM, AES128SIV, AES256SIV, RSA1024, RSA2048, RSA3072, RSA4096, EC256, EC384, GPG]'
+          type: string
+          x-go-name: Alg
+        cert-file-data:
+          description: Certificate in a PEM format.
+          type: string
+          x-go-name: CertFileData
+        delete_protection:
+          description: Protection from accidental deletion of this item
+          type: string
+          x-go-name: ItemProtected
+        description:
+          description: Description of the object
+          type: string
+          x-go-name: Description
+        gpg-alg:
+          description: 'gpg alg: Relevant only if GPG key type selected; options: [RSA1024, RSA2048, RSA3072, RSA4096, Ed25519]'
+          type: string
+          x-go-name: GPGAlg
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        key-data:
+          description: Base64-encoded classic key value
+          type: string
+          x-go-name: ClassicKeyValue
+        metadata:
+          description: Deprecated - use description
+          type: string
+          x-go-name: Metadata
+        name:
+          description: ClassicKey name
+          type: string
+          x-go-name: ClassicKeyName
+        protection-key-name:
+          description: The name of a key that used to encrypt the secret value (if empty, the account default protectionKey key will be used)
+          type: string
+          x-go-name: ProtectionKey
+        tags:
+          description: List of the tags attached to this classic key
+          items:
+            type: string
+          type: array
+          x-go-name: Tags
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - alg
+      - name
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

@@ -1,0 +1,81 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Delete Assoc API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Delete Assoc
+paths:
+  /delete-assoc:
+    post:
+      operationId: deleteRoleAssociation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/deleteRoleAssociation'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/deleteRoleAssociationOutput'
+          description: deleteRoleAssociationResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Delete Assoc
+      x-codegen-request-body-name: body
+      summary: Delete role association
+      x-summary-source: derived
+components:
+  schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    deleteRoleAssociationOutput:
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    deleteRoleAssociation:
+      description: 'deleteRoleAssociation is a command that deletes an association between role
+
+        and auth method.'
+      properties:
+        assoc-id:
+          description: The association id to be deleted
+          type: string
+          x-go-name: AssocID
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - assoc-id
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

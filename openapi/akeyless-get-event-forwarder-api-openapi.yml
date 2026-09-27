@@ -1,0 +1,325 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Get Event Forwarder API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Get Event Forwarder
+paths:
+  /get-event-forwarder:
+    post:
+      operationId: getEventForwarder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/getEventForwarder'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getEventForwarderOutput'
+          description: getEventForwarderResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Get Event Forwarder
+      x-codegen-request-body-name: body
+      summary: Get event forwarder
+      x-summary-source: derived
+components:
+  schemas:
+    EventType:
+      type: string
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    EmailEntry:
+      example:
+        to_email: to_email
+        to_name: to_name
+      properties:
+        to_email:
+          type: string
+          x-go-name: ToEmail
+        to_name:
+          type: string
+          x-go-name: ToName
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    ItemVersion:
+      example:
+        item_version_state: item_version_state
+        with_customer_fragment: true
+        access_date: 2000-01-23 04:56:07+00:00
+        deletion_date: 2000-01-23 04:56:07+00:00
+        modification_date: 2000-01-23 04:56:07+00:00
+        protection_key_name: protection_key_name
+        creation_date: 2000-01-23 04:56:07+00:00
+        version: 3
+        customer_fragment_id: customer_fragment_id
+      properties:
+        access_date:
+          format: date-time
+          type: string
+          x-go-name: AccessDate
+        creation_date:
+          format: date-time
+          type: string
+          x-go-name: CreationDate
+        customer_fragment_id:
+          type: string
+          x-go-name: CustomerFragmentId
+        deletion_date:
+          format: date-time
+          type: string
+          x-go-name: DeletionDate
+        item_version_state:
+          description: ItemState defines the different states an Item can be in
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        modification_date:
+          format: date-time
+          type: string
+          x-go-name: ModificationDate
+        protection_key_name:
+          type: string
+          x-go-name: ProtectionKeyName
+        version:
+          format: int32
+          type: integer
+          x-go-name: Version
+        with_customer_fragment:
+          type: boolean
+          x-go-name: WithCustomerFragment
+      title: ItemVersion describes an item version in AKEYLESS.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    getEventForwarder:
+      properties:
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        name:
+          description: EventForwarder name
+          type: string
+          x-go-name: EventForwarderName
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - name
+      title: getEventForwarder is a command that creates a new event forwarder.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    getEventForwarderOutput:
+      example:
+        event_forwarder:
+          to_emails:
+          - to_email: to_email
+            to_name: to_name
+          - to_email: to_email
+            to_name: to_name
+          gateway_cluster_id: 0
+          noti_forwarder_id: 1
+          runner_type: runner_type
+          noti_forwarder_type: noti_forwarder_type
+          creation_date: 2000-01-23 04:56:07+00:00
+          noti_forwarder_versions:
+          - item_version_state: item_version_state
+            with_customer_fragment: true
+            access_date: 2000-01-23 04:56:07+00:00
+            deletion_date: 2000-01-23 04:56:07+00:00
+            modification_date: 2000-01-23 04:56:07+00:00
+            protection_key_name: protection_key_name
+            creation_date: 2000-01-23 04:56:07+00:00
+            version: 3
+            customer_fragment_id: customer_fragment_id
+          - item_version_state: item_version_state
+            with_customer_fragment: true
+            access_date: 2000-01-23 04:56:07+00:00
+            deletion_date: 2000-01-23 04:56:07+00:00
+            modification_date: 2000-01-23 04:56:07+00:00
+            protection_key_name: protection_key_name
+            creation_date: 2000-01-23 04:56:07+00:00
+            version: 3
+            customer_fragment_id: customer_fragment_id
+          protection_key: protection_key
+          is_enabled: true
+          last_version: 6
+          endpoint: endpoint
+          timespan_in_seconds: 5
+          client_permissions:
+          - client_permissions
+          - client_permissions
+          with_customer_fragment: true
+          event_types:
+          - null
+          - null
+          noti_forwarder_name: noti_forwarder_name
+          paths:
+          - paths
+          - paths
+          modification_date: 2000-01-23 04:56:07+00:00
+          comment: comment
+          username: username
+      properties:
+        event_forwarder:
+          $ref: '#/components/schemas/NotiForwarder'
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    NotiForwarder:
+      example:
+        to_emails:
+        - to_email: to_email
+          to_name: to_name
+        - to_email: to_email
+          to_name: to_name
+        gateway_cluster_id: 0
+        noti_forwarder_id: 1
+        runner_type: runner_type
+        noti_forwarder_type: noti_forwarder_type
+        creation_date: 2000-01-23 04:56:07+00:00
+        noti_forwarder_versions:
+        - item_version_state: item_version_state
+          with_customer_fragment: true
+          access_date: 2000-01-23 04:56:07+00:00
+          deletion_date: 2000-01-23 04:56:07+00:00
+          modification_date: 2000-01-23 04:56:07+00:00
+          protection_key_name: protection_key_name
+          creation_date: 2000-01-23 04:56:07+00:00
+          version: 3
+          customer_fragment_id: customer_fragment_id
+        - item_version_state: item_version_state
+          with_customer_fragment: true
+          access_date: 2000-01-23 04:56:07+00:00
+          deletion_date: 2000-01-23 04:56:07+00:00
+          modification_date: 2000-01-23 04:56:07+00:00
+          protection_key_name: protection_key_name
+          creation_date: 2000-01-23 04:56:07+00:00
+          version: 3
+          customer_fragment_id: customer_fragment_id
+        protection_key: protection_key
+        is_enabled: true
+        last_version: 6
+        endpoint: endpoint
+        timespan_in_seconds: 5
+        client_permissions:
+        - client_permissions
+        - client_permissions
+        with_customer_fragment: true
+        event_types:
+        - null
+        - null
+        noti_forwarder_name: noti_forwarder_name
+        paths:
+        - paths
+        - paths
+        modification_date: 2000-01-23 04:56:07+00:00
+        comment: comment
+        username: username
+      properties:
+        client_permissions:
+          items:
+            type: string
+          type: array
+          x-go-name: ClientPermissions
+        comment:
+          type: string
+          x-go-name: Comment
+        creation_date:
+          format: date-time
+          type: string
+          x-go-name: CreationDate
+        endpoint:
+          type: string
+          x-go-name: Endpoint
+        event_types:
+          items:
+            $ref: '#/components/schemas/EventType'
+          type: array
+          x-go-name: NotificationTypes
+        gateway_cluster_id:
+          format: int64
+          type: integer
+          x-go-name: GatewayClusterId
+        is_enabled:
+          type: boolean
+          x-go-name: IsEnabled
+        last_version:
+          format: int32
+          type: integer
+          x-go-name: LastVersion
+        modification_date:
+          format: date-time
+          type: string
+          x-go-name: ModificationDate
+        noti_forwarder_id:
+          format: int64
+          type: integer
+          x-go-name: NotiForwarderID
+        noti_forwarder_name:
+          type: string
+          x-go-name: Name
+        noti_forwarder_type:
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        noti_forwarder_versions:
+          items:
+            $ref: '#/components/schemas/ItemVersion'
+          type: array
+          x-go-name: NotiForwarderVersions
+        paths:
+          items:
+            type: string
+          type: array
+          x-go-name: Paths
+        protection_key:
+          type: string
+          x-go-name: ProtectionKey
+        runner_type:
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        timespan_in_seconds:
+          format: int64
+          type: integer
+          x-go-name: TimespanInSeconds
+        to_emails:
+          items:
+            $ref: '#/components/schemas/EmailEntry'
+          type: array
+          x-go-name: ToEmails
+        username:
+          type: string
+          x-go-name: Username
+        with_customer_fragment:
+          type: boolean
+          x-go-name: WithCustomerFragment
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types

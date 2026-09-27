@@ -1,0 +1,99 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Share Item API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Share Item
+paths:
+  /share-item:
+    post:
+      operationId: shareItem
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/shareItem'
+        required: true
+      responses:
+        '200':
+          content: {}
+          description: ''
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Share Item
+      x-codegen-request-body-name: body
+      summary: Share item
+      x-summary-source: derived
+components:
+  schemas:
+    shareItem:
+      properties:
+        accessibility:
+          default: regular
+          description: for personal password manager
+          type: string
+          x-go-name: ItemAccessibilityString
+        action:
+          description: Action to be performed on the item [start/stop/describe]
+          type: string
+          x-go-name: Action
+        emails:
+          description: For Password Management use, reflect the website context
+          items:
+            type: string
+          type: array
+          x-go-name: Emails
+        item-name:
+          description: Item name
+          type: string
+          x-go-name: ItemName
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        ttl:
+          description: TTL of the Availability of the shared secret in seconds
+          format: int32
+          type: integer
+          x-go-name: TTL
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+        view-once:
+          default: false
+          description: ViewOnlyOnce Shared secrets can only be viewed once [true/false]
+          type: boolean
+          x-go-name: ViewOnlyOnce
+      required:
+      - action
+      - item-name
+      title: shareItem is a command to start/stop/describe sharing a given item with user that don't use akeyless.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

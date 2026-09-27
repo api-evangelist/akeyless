@@ -1,0 +1,201 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Update Item API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Update Item
+paths:
+  /update-item:
+    post:
+      operationId: updateItem
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateItem'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateItemOutput'
+          description: updateItemResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Update Item
+      x-codegen-request-body-name: body
+      summary: Update item
+      x-summary-source: derived
+components:
+  schemas:
+    updateItem:
+      properties:
+        accessibility:
+          default: regular
+          description: for personal password manager
+          type: string
+          x-go-name: ItemAccessibilityString
+        add-tag:
+          description: List of the new tags that will be attached to this item
+          items:
+            type: string
+          type: array
+          x-go-name: AddTags
+        cert-file-data:
+          description: PEM Certificate in a Base64 format. Used for updating RSA keys' certificates.
+          type: string
+          x-go-name: CertFileData
+        delete_protection:
+          type: string
+          x-go-name: ItemProtected
+        description:
+          default: default_metadata
+          description: Description of the object
+          type: string
+          x-go-name: Description
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        name:
+          description: Current item name
+          type: string
+          x-go-name: ItemName
+        new-metadata:
+          default: default_metadata
+          description: Deprecated - use description
+          type: string
+          x-go-name: NewMetadata
+        new-name:
+          description: New item name
+          type: string
+          x-go-name: NewName
+        rm-tag:
+          description: List of the existent tags that will be removed from this item
+          items:
+            type: string
+          type: array
+          x-go-name: RemoveTags
+        secure-access-add-host:
+          items:
+            type: string
+          type: array
+          x-go-name: SecureAccessAddHost
+        secure-access-allow-external-user:
+          type: string
+          x-go-name: SecureAccessAllowProvidingExternalUser
+        secure-access-allow-port-forwading:
+          type: boolean
+          x-go-name: SecureAccessK8SAllowPortForwading
+        secure-access-aws-account-id:
+          type: string
+          x-go-name: SecureAccessAccountId
+        secure-access-aws-native-cli:
+          type: boolean
+          x-go-name: SecureAccessAwsNativeCli
+        secure-access-aws-region:
+          type: string
+          x-go-name: SecureAccessAwsRegion
+        secure-access-bastion-api:
+          type: string
+          x-go-name: SecureAccessBastionAPI
+        secure-access-bastion-issuer:
+          type: string
+          x-go-name: SecureAccessBastionIssuer
+        secure-access-bastion-ssh:
+          type: string
+          x-go-name: SecureAccessBastionSSH
+        secure-access-cluster-endpoint:
+          type: string
+          x-go-name: SecureAccessEndpoint
+        secure-access-dashboard-url:
+          type: string
+          x-go-name: SecureAccessDashboardURL
+        secure-access-db-name:
+          type: string
+          x-go-name: SecureAccessDBName
+        secure-access-db-schema:
+          type: string
+          x-go-name: SecureAccessSchema
+        secure-access-enable:
+          type: string
+          x-go-name: SecureAccessEnabled
+        secure-access-host:
+          items:
+            type: string
+          type: array
+          x-go-name: SecureAccessHost
+        secure-access-rdp-domain:
+          type: string
+          x-go-name: SecureAccessDomain
+        secure-access-rdp-user:
+          type: string
+          x-go-name: SecureAccessOverrideUser
+        secure-access-rm-host:
+          items:
+            type: string
+          type: array
+          x-go-name: SecureAccessRemoveHost
+        secure-access-ssh-creds:
+          type: string
+          x-go-name: SecureAccessSSHCategory
+        secure-access-ssh-creds-user:
+          type: string
+          x-go-name: SecureAccessSSHUser
+        secure-access-url:
+          type: string
+          x-go-name: SecureAccessURL
+        secure-access-use-internal-bastion:
+          type: boolean
+          x-go-name: SecureAccessUseInternalBastion
+        secure-access-web-browsing:
+          type: boolean
+          x-go-name: SecureAccessIsolated
+        secure-access-web-proxy:
+          type: boolean
+          x-go-name: SecureAccessWebProxy
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - name
+      title: updateItem is a command that updates item.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    updateItemOutput:
+      example:
+        updated: true
+      properties:
+        updated:
+          type: boolean
+          x-go-name: Updated
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

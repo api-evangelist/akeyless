@@ -1,0 +1,131 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Gateway Get Ldap Auth Config API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Gateway Get Ldap Auth Config
+paths:
+  /gateway-get-ldap-auth-config:
+    post:
+      operationId: gatewayGetLdapAuthConfig
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/gatewayGetLdapAuthConfig'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gatewayGetLdapAuthConfigOutput'
+          description: gatewayGetLdapAuthConfigResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Gateway Get Ldap Auth Config
+      x-codegen-request-body-name: body
+      summary: Gateway get ldap auth config
+      x-summary-source: derived
+components:
+  schemas:
+    gatewayGetLdapAuthConfigOutput:
+      example:
+        ldap_anonymous_search: true
+        ldap_cert: ldap_cert
+        ldap_bind_password: ldap_bind_password
+        ldap_group_dn: ldap_group_dn
+        ldap_group_filter: ldap_group_filter
+        ldap_user_dn: ldap_user_dn
+        ldap_group_attr: ldap_group_attr
+        ldap_access_id: ldap_access_id
+        ldap_enable: true
+        ldap_private_key: ldap_private_key
+        ldap_bind_dn: ldap_bind_dn
+        ldap_url: ldap_url
+        ldap_token_expiration: ldap_token_expiration
+        ldap_user_attr: ldap_user_attr
+      properties:
+        ldap_access_id:
+          type: string
+          x-go-name: LdapAccessId
+        ldap_anonymous_search:
+          type: boolean
+          x-go-name: LdapAnonymousSearch
+        ldap_bind_dn:
+          type: string
+          x-go-name: LdapBindDn
+        ldap_bind_password:
+          type: string
+          x-go-name: LdapBindPassword
+        ldap_cert:
+          type: string
+          x-go-name: LdapCertificate
+        ldap_enable:
+          type: boolean
+          x-go-name: LdapEnable
+        ldap_group_attr:
+          type: string
+          x-go-name: LdapGroupAttr
+        ldap_group_dn:
+          type: string
+          x-go-name: LdapGroupDn
+        ldap_group_filter:
+          type: string
+          x-go-name: LdapGroupFilter
+        ldap_private_key:
+          type: string
+          x-go-name: LdapPrivateKey
+        ldap_token_expiration:
+          type: string
+          x-go-name: LdapTokenExpiration
+        ldap_url:
+          type: string
+          x-go-name: LdapUrlAddress
+        ldap_user_attr:
+          type: string
+          x-go-name: LdapUserAttr
+        ldap_user_dn:
+          type: string
+          x-go-name: LdapUserDn
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    gatewayGetLdapAuthConfig:
+      description: gatewayGetLdapAuth is a command that gets ldap auth config
+      properties:
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

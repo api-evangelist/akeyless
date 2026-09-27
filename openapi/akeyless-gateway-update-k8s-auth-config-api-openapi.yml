@@ -1,0 +1,490 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Gateway Update K8s Auth Config API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Gateway Update K8s Auth Config
+paths:
+  /gateway-update-k8s-auth-config:
+    post:
+      operationId: gatewayUpdateK8SAuthConfig
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/gatewayUpdateK8SAuthConfig'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gatewayUpdateK8SAuthConfigOutput'
+          description: gatewayUpdateK8SAuthConfigResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Gateway Update K8s Auth Config
+      x-codegen-request-body-name: body
+      summary: Gateway update K8 SAuth config
+      x-summary-source: derived
+components:
+  schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    LastStatusInfo:
+      example:
+        migrations_status:
+          last_messages:
+            key: last_messages
+          last_reports:
+            key: last_reports
+          last_statuses:
+            key: last_statuses
+        producers_errors: '{}'
+      properties:
+        migrations_status:
+          $ref: '#/components/schemas/MigrationStatus'
+        producers_errors:
+          type: object
+          x-go-name: Producers
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    gatewayUpdateK8SAuthConfigOutput:
+      example:
+        cluster_id: cluster_id
+        total_hash: total_hash
+        parts_change:
+          required_activity:
+            migrations_required_activity:
+              key: true
+          last_change:
+            last_k8s_auths_change:
+              created_k8s_auths_ids:
+              - created_k8s_auths_ids
+              - created_k8s_auths_ids
+              deleted_k8s_auths_ids:
+              - deleted_k8s_auths_ids
+              - deleted_k8s_auths_ids
+              changed_k8s_auths_ids:
+              - changed_k8s_auths_ids
+              - changed_k8s_auths_ids
+            last_migrations_change:
+              deleted_migrations:
+              - deleted_migrations
+              - deleted_migrations
+              changed_migrations:
+              - changed_migrations
+              - changed_migrations
+              created_migrations:
+              - created_migrations
+              - created_migrations
+          last_status:
+            migrations_status:
+              last_messages:
+                key: last_messages
+              last_reports:
+                key: last_reports
+              last_statuses:
+                key: last_statuses
+            producers_errors: '{}'
+          update_stamp: 0
+          config_hash:
+            k8s_auths: k8s_auths
+            cache: cache
+            migration_status: migration_status
+            producers_status: producers_status
+            universal_identity: universal_identity
+            customer_fragements: customer_fragements
+            m_queue: m_queue
+            producers: '{}'
+            general: general
+            ldap: ldap
+            migrations: migrations
+            leadership: leadership
+            log_forwarding: log_forwarding
+            saml: saml
+            kmip: kmip
+            admins: admins
+            rotators: '{}'
+      properties:
+        cluster_id:
+          type: string
+          x-go-name: ClusterId
+        parts_change:
+          $ref: '#/components/schemas/ConfigChange'
+        total_hash:
+          type: string
+          x-go-name: TotalHash
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    K8SAuthsConfigLastChange:
+      example:
+        created_k8s_auths_ids:
+        - created_k8s_auths_ids
+        - created_k8s_auths_ids
+        deleted_k8s_auths_ids:
+        - deleted_k8s_auths_ids
+        - deleted_k8s_auths_ids
+        changed_k8s_auths_ids:
+        - changed_k8s_auths_ids
+        - changed_k8s_auths_ids
+      properties:
+        changed_k8s_auths_ids:
+          items:
+            type: string
+          type: array
+          x-go-name: ChangedK8SAuthsIDs
+        created_k8s_auths_ids:
+          items:
+            type: string
+          type: array
+          x-go-name: CreatedK8SAuthsIDs
+        deleted_k8s_auths_ids:
+          items:
+            type: string
+          type: array
+          x-go-name: DeletedK8SAuthsIDs
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    ConfigChange:
+      example:
+        required_activity:
+          migrations_required_activity:
+            key: true
+        last_change:
+          last_k8s_auths_change:
+            created_k8s_auths_ids:
+            - created_k8s_auths_ids
+            - created_k8s_auths_ids
+            deleted_k8s_auths_ids:
+            - deleted_k8s_auths_ids
+            - deleted_k8s_auths_ids
+            changed_k8s_auths_ids:
+            - changed_k8s_auths_ids
+            - changed_k8s_auths_ids
+          last_migrations_change:
+            deleted_migrations:
+            - deleted_migrations
+            - deleted_migrations
+            changed_migrations:
+            - changed_migrations
+            - changed_migrations
+            created_migrations:
+            - created_migrations
+            - created_migrations
+        last_status:
+          migrations_status:
+            last_messages:
+              key: last_messages
+            last_reports:
+              key: last_reports
+            last_statuses:
+              key: last_statuses
+          producers_errors: '{}'
+        update_stamp: 0
+        config_hash:
+          k8s_auths: k8s_auths
+          cache: cache
+          migration_status: migration_status
+          producers_status: producers_status
+          universal_identity: universal_identity
+          customer_fragements: customer_fragements
+          m_queue: m_queue
+          producers: '{}'
+          general: general
+          ldap: ldap
+          migrations: migrations
+          leadership: leadership
+          log_forwarding: log_forwarding
+          saml: saml
+          kmip: kmip
+          admins: admins
+          rotators: '{}'
+      properties:
+        config_hash:
+          $ref: '#/components/schemas/ConfigHash'
+        last_change:
+          $ref: '#/components/schemas/LastConfigChange'
+        last_status:
+          $ref: '#/components/schemas/LastStatusInfo'
+        required_activity:
+          $ref: '#/components/schemas/RequiredActivity'
+        update_stamp:
+          format: int64
+          type: integer
+          x-go-name: UpdateStamp
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    LastConfigChange:
+      example:
+        last_k8s_auths_change:
+          created_k8s_auths_ids:
+          - created_k8s_auths_ids
+          - created_k8s_auths_ids
+          deleted_k8s_auths_ids:
+          - deleted_k8s_auths_ids
+          - deleted_k8s_auths_ids
+          changed_k8s_auths_ids:
+          - changed_k8s_auths_ids
+          - changed_k8s_auths_ids
+        last_migrations_change:
+          deleted_migrations:
+          - deleted_migrations
+          - deleted_migrations
+          changed_migrations:
+          - changed_migrations
+          - changed_migrations
+          created_migrations:
+          - created_migrations
+          - created_migrations
+      properties:
+        last_k8s_auths_change:
+          $ref: '#/components/schemas/K8SAuthsConfigLastChange'
+        last_migrations_change:
+          $ref: '#/components/schemas/MigrationsConfigLastChange'
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    gatewayUpdateK8SAuthConfig:
+      description: gatewayUpdateK8SAuth is a command that updates k8s auth config
+      properties:
+        access-id:
+          description: The access ID of the Kubernetes auth method
+          type: string
+          x-go-name: AuthMethodAccessId
+        cluster-api-type:
+          default: native_k8s
+          description: 'Cluster access type. options: [native_k8s, rancher]'
+          type: string
+          x-go-name: ClusterApiType
+        config-encryption-key-name:
+          description: Config encryption key
+          type: string
+          x-go-name: ConfigEncryptionKey
+        disable-issuer-validation:
+          description: Disable issuer validation
+          type: string
+          x-go-name: DisableISSValidation
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        k8s-ca-cert:
+          description: The CA Certificate (base64 encoded) to use to call into the kubernetes API server
+          type: string
+          x-go-name: K8SCACert
+        k8s-host:
+          description: The URL of the kubernetes API server
+          type: string
+          x-go-name: K8SHost
+        k8s-issuer:
+          description: The Kubernetes JWT issuer name. If not set, kubernetes/serviceaccount will use as an issuer.
+          type: string
+          x-go-name: K8SIssuer
+        name:
+          description: K8S Auth config name
+          type: string
+          x-go-name: K8SAuthConfigName
+        new-name:
+          description: K8S Auth config new name
+          type: string
+          x-go-name: K8SAuthConfigNewName
+        rancher-api-key:
+          description: The api key used to access the TokenReview API to validate other JWTs (relevant for "rancher" only)
+          type: string
+          x-go-name: RancherApiKey
+        rancher-cluster-id:
+          description: The cluster id as define in rancher (relevant for "rancher" only)
+          type: string
+          x-go-name: RancherClusterId
+        signing-key:
+          description: The private key (base64 encoded) associated with the public key defined in the Kubernetes auth
+          type: string
+          x-go-name: AuthMethodSigningKey
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        token-exp:
+          default: 300
+          description: Time in seconds of expiration of the Akeyless Kube Auth Method token
+          format: int64
+          type: integer
+          x-go-name: AuthMethodTokenExpiration
+        token-reviewer-jwt:
+          description: 'A Kubernetes service account JWT used to access the TokenReview API to validate other JWTs (relevant for "native_k8s" only).
+
+            If not set, the JWT submitted in the authentication process will be used to access the Kubernetes TokenReview API.'
+          type: string
+          x-go-name: K8STokenReviewerJWT
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - access-id
+      - k8s-host
+      - name
+      - new-name
+      - signing-key
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    RequiredActivity:
+      example:
+        migrations_required_activity:
+          key: true
+      properties:
+        migrations_required_activity:
+          additionalProperties:
+            type: boolean
+          type: object
+          x-go-name: Migrations
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    ConfigHash:
+      example:
+        k8s_auths: k8s_auths
+        cache: cache
+        migration_status: migration_status
+        producers_status: producers_status
+        universal_identity: universal_identity
+        customer_fragements: customer_fragements
+        m_queue: m_queue
+        producers: '{}'
+        general: general
+        ldap: ldap
+        migrations: migrations
+        leadership: leadership
+        log_forwarding: log_forwarding
+        saml: saml
+        kmip: kmip
+        admins: admins
+        rotators: '{}'
+      properties:
+        admins:
+          type: string
+          x-go-name: Admins
+        cache:
+          type: string
+          x-go-name: Cache
+        customer_fragements:
+          type: string
+          x-go-name: CFragements
+        general:
+          type: string
+          x-go-name: General
+        k8s_auths:
+          type: string
+          x-go-name: K8SAuths
+        kmip:
+          type: string
+          x-go-name: KMIP
+        ldap:
+          type: string
+          x-go-name: Ldap
+        leadership:
+          type: string
+          x-go-name: Leadership
+        log_forwarding:
+          type: string
+          x-go-name: LogForwarding
+        m_queue:
+          type: string
+          x-go-name: MQueue
+        migration_status:
+          type: string
+          x-go-name: MigrationStatus
+        migrations:
+          type: string
+          x-go-name: Migrations
+        producers:
+          type: object
+          x-go-name: Producers
+        producers_status:
+          type: string
+          x-go-name: ProducersStatus
+        rotators:
+          type: object
+          x-go-name: Rotators
+        saml:
+          type: string
+          x-go-name: Default
+        universal_identity:
+          type: string
+          x-go-name: UIdentity
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    MigrationsConfigLastChange:
+      example:
+        deleted_migrations:
+        - deleted_migrations
+        - deleted_migrations
+        changed_migrations:
+        - changed_migrations
+        - changed_migrations
+        created_migrations:
+        - created_migrations
+        - created_migrations
+      properties:
+        changed_migrations:
+          items:
+            type: string
+          type: array
+          x-go-name: ChangedMigrations
+        created_migrations:
+          items:
+            type: string
+          type: array
+          x-go-name: CreatedMigrations
+        deleted_migrations:
+          items:
+            type: string
+          type: array
+          x-go-name: DeletedMigrations
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    MigrationStatus:
+      example:
+        last_messages:
+          key: last_messages
+        last_reports:
+          key: last_reports
+        last_statuses:
+          key: last_statuses
+      properties:
+        last_messages:
+          additionalProperties:
+            type: string
+          type: object
+          x-go-name: LastMessages
+        last_reports:
+          additionalProperties:
+            type: string
+          type: object
+          x-go-name: LastReports
+        last_statuses:
+          additionalProperties:
+            type: string
+          type: object
+          x-go-name: LastStatuses
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator

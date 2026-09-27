@@ -1,0 +1,91 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Uid Rotate Token API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Uid Rotate Token
+paths:
+  /uid-rotate-token:
+    post:
+      operationId: uidRotateToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/uidRotateToken'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/uidRotateTokenOutput'
+          description: uidRotateTokenResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Uid Rotate Token
+      x-codegen-request-body-name: body
+      summary: Uid rotate token
+      x-summary-source: derived
+components:
+  schemas:
+    uidRotateTokenOutput:
+      example:
+        token: token
+      properties:
+        token:
+          type: string
+          x-go-name: Token
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    uidRotateToken:
+      description: 'uidRotateToken is a command that rotates an Akeyless Universal Identity
+
+        token.'
+      properties:
+        fork:
+          description: Create a new child token with default parameters
+          type: boolean
+          x-go-name: Fork
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        send-manual-ack-token:
+          description: 'The new rotated token to send manual ack for (with
+
+            uid-token=the-orig-token)'
+          type: string
+          x-go-name: SendManualAckToken
+        uid-token:
+          description: The Universal identity token
+          type: string
+          x-go-name: UIDToken
+        with-manual-ack:
+          description: Disable automatic ack
+          type: boolean
+          x-go-name: WithManualAck
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

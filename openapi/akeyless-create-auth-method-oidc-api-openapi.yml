@@ -1,0 +1,167 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Create Auth Method Oidc API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Create Auth Method Oidc
+paths:
+  /create-auth-method-oidc:
+    post:
+      operationId: createAuthMethodOIDC
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createAuthMethodOIDC'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createAuthMethodOIDCOutput'
+          description: createAuthMethodOIDCResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Create Auth Method Oidc
+      x-codegen-request-body-name: body
+      summary: Create auth method OIDC
+      x-summary-source: derived
+components:
+  schemas:
+    createAuthMethodOIDCOutput:
+      example:
+        access_id: access_id
+      properties:
+        access_id:
+          type: string
+          x-go-name: AccessID
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    createAuthMethodOIDC:
+      description: 'createAuthMethodOIDC is a command that creates a new auth method that will
+
+        be available to authenticate using OIDC.'
+      properties:
+        access-expires:
+          default: 0
+          description: 'Access expiration date in Unix timestamp (select 0 for access without
+
+            expiry date)'
+          format: int64
+          type: integer
+          x-go-name: AccessExpires
+        allowed-redirect-uri:
+          description: Allowed redirect URIs after the authentication
+          items:
+            type: string
+          type: array
+          x-go-name: AllowedRedirectURIs
+        audience:
+          description: Audience claim to be used as part of the authentication flow. In case set, it must match the one configured on the Identity Provider's Application
+          type: string
+          x-go-name: Audience
+        bound-ips:
+          description: A CIDR whitelist with the IPs that the access is restricted to
+          items:
+            type: string
+          type: array
+          x-go-name: CIDRWhitelist
+        client-id:
+          description: Client ID
+          type: string
+          x-go-name: ClientID
+        client-secret:
+          description: Client Secret
+          type: string
+          x-go-name: ClientSecret
+        force-sub-claims:
+          description: 'if true: enforce role-association must include sub claims'
+          type: boolean
+          x-go-name: ForceSubClaims
+        gw-bound-ips:
+          description: A CIDR whitelist with the GW IPs that the access is restricted to
+          items:
+            type: string
+          type: array
+          x-go-name: GWCIDRWhitelist
+        issuer:
+          description: Issuer URL
+          type: string
+          x-go-name: Issuer
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        jwt-ttl:
+          description: Jwt TTL
+          format: int64
+          type: integer
+          x-go-name: JwtTtl
+        name:
+          description: Auth Method name
+          type: string
+          x-go-name: AuthMethodName
+        required-scopes:
+          description: RequiredScopes is a list of required scopes that the oidc method will request from the oidc provider and the user must approve
+          items:
+            type: string
+          type: array
+          x-go-name: RequiredScopes
+        required-scopes-prefix:
+          description: RequiredScopesPrefix is a a prefix to add to all required-scopes when requesting them from the oidc server (for example, azures' Application ID URI)
+          type: string
+          x-go-name: RequiredScopesPrefix
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+        unique-identifier:
+          description: 'A unique identifier (ID) value should be configured for OIDC, OAuth2,
+
+            LDAP and SAML authentication method types and is usually a value such
+
+            as the email, username, or upn for example.
+
+            Whenever a user logs in with a token, these authentication types issue
+
+            a "sub claim" that contains details uniquely identifying that user.
+
+            This sub claim includes a key containing the ID value that you
+
+            configured, and is used to distinguish between different users from
+
+            within the same organization.'
+          type: string
+          x-go-name: UniqueIdentifier
+      required:
+      - name
+      - unique-identifier
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

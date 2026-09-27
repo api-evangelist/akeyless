@@ -1,0 +1,109 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Get Ssh Certificate API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Get Ssh Certificate
+paths:
+  /get-ssh-certificate:
+    post:
+      operationId: getSSHCertificate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/getSSHCertificate'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getSSHCertificateOutput'
+          description: getSSHCertificateResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Get Ssh Certificate
+      x-codegen-request-body-name: body
+      summary: Get SSH certificate
+      x-summary-source: derived
+components:
+  schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    getSSHCertificateOutput:
+      example:
+        path: path
+        data: data
+      properties:
+        data:
+          type: string
+          x-go-name: Data
+        path:
+          type: string
+          x-go-name: Path
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    getSSHCertificate:
+      properties:
+        cert-issuer-name:
+          description: The name of the SSH certificate issuer
+          type: string
+          x-go-name: CertIssuerName
+        cert-username:
+          description: The username to sign in the SSH certificate
+          type: string
+          x-go-name: Username
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        legacy-signing-alg-name:
+          description: Set this option to output legacy ('ssh-rsa-cert-v01@openssh.com') signing algorithm name in the certificate.
+          type: boolean
+          x-go-name: LegacySigningAlgName
+        public-key-data:
+          description: 'SSH public key file contents. If this option is used, the certificate
+
+            will be printed to stdout'
+          type: string
+          x-go-name: PublicKeyData
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        ttl:
+          description: Updated certificate lifetime in seconds (must be less than the Certificate Issuer default TTL)
+          format: int64
+          type: integer
+          x-go-name: Ttl
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - cert-issuer-name
+      - cert-username
+      title: getSSHCertificate is a command that generates SSH certificate.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

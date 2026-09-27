@@ -1,0 +1,191 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Auth API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Auth
+paths:
+  /auth:
+    post:
+      operationId: auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/auth'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthOutput'
+          description: authResponse wraps response body.
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Auth
+      x-codegen-request-body-name: body
+      summary: Auth
+      x-summary-source: derived
+components:
+  schemas:
+    SystemAccessCredentialsReplyObj:
+      example:
+        auth_creds: auth_creds
+        uam_creds: uam_creds
+        kfm_creds: kfm_creds
+        expiry: 0
+        token: token
+      properties:
+        auth_creds:
+          description: Temporary credentials for accessing Auth
+          type: string
+          x-go-name: AuthAccessCredentials
+        expiry:
+          description: Credentials expiration date
+          format: int64
+          type: integer
+          x-go-name: Expiry
+        kfm_creds:
+          description: Temporary credentials for accessing the KFMs instances
+          type: string
+          x-go-name: KFMsAccessCredentials
+        token:
+          description: Credentials tmp token
+          type: string
+          x-go-name: Token
+        uam_creds:
+          description: Temporary credentials for accessing the UAM service
+          type: string
+          x-go-name: UAMAccessCredentials
+      title: Combination of three temporary credentials signed by Auth for accessing Auth, UAM and KFMs instances.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/auth
+    auth:
+      properties:
+        access-id:
+          description: Access ID
+          type: string
+          x-go-name: AccessID
+        access-key:
+          description: Access key (relevant only for access-type=access_key)
+          type: string
+          x-go-name: AccessKey
+        access-type:
+          default: access_key
+          description: 'Access Type
+
+            (access_key/password/saml/ldap/k8s/azure_ad/oidc/aws_iam/universal_identity/jwt/gcp/cert)'
+          type: string
+          x-go-name: AccessType
+        admin-email:
+          description: Email (relevant only for access-type=password)
+          type: string
+          x-go-name: AdminEmail
+        admin-password:
+          description: Password (relevant only for access-type=password)
+          type: string
+          x-go-name: AdminPass
+        cert-data:
+          description: Certificate data encoded in base64. Used if file was not provided. (relevant only for access-type=cert)
+          type: string
+          x-go-name: CertData
+        cloud-id:
+          description: The cloud identity (relevant only for access-type=azure_ad,aws_iam,gcp)
+          type: string
+          x-go-name: CloudIdentity
+        debug:
+          type: boolean
+          x-go-name: Debug
+        gateway-url:
+          description: Gateway URL for the K8S authenticated (relevant only for access-type=k8s)
+          type: string
+          x-go-name: GatewayURL
+        gcp-audience:
+          description: GCP JWT audience
+          type: string
+          x-go-name: GCPAudience
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        jwt:
+          description: The Json Web Token (relevant only for access-type=jwt/oidc)
+          type: string
+          x-go-name: JWT
+        k8s-auth-config-name:
+          description: The K8S Auth config name (relevant only for access-type=k8s)
+          type: string
+          x-go-name: K8SAuthConfigName
+        k8s-service-account-token:
+          description: The K8S service account token. (relevant only for access-type=k8s)
+          type: string
+          x-go-name: K8SServiceAccountToken
+        key-data:
+          description: Private key data encoded in base64. Used if file was not provided.(relevant only for access-type=cert)
+          type: string
+          x-go-name: KeyData
+        ldap_password:
+          description: LDAP password (relevant only for access-type=ldap)
+          type: string
+          x-go-name: LDAPPassword
+        ldap_username:
+          description: LDAP username (relevant only for access-type=ldap)
+          type: string
+          x-go-name: LDAPUsername
+        uid_token:
+          description: 'The universal_identity token (relevant only for
+
+            access-type=universal_identity)'
+          type: string
+          x-go-name: UIDToken
+      title: auth is a command that creates temporary access credentials.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    AuthOutput:
+      example:
+        creds:
+          auth_creds: auth_creds
+          uam_creds: uam_creds
+          kfm_creds: kfm_creds
+          expiry: 0
+          token: token
+        token: token
+      properties:
+        creds:
+          $ref: '#/components/schemas/SystemAccessCredentialsReplyObj'
+        token:
+          type: string
+          x-go-name: Token
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

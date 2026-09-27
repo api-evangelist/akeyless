@@ -1,0 +1,155 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless Update Account Settings API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: Update Account Settings
+paths:
+  /update-account-settings:
+    post:
+      operationId: updateAccountSettings
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateAccountSettings'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateAccountSettingsOutput'
+          description: updateAccountSettingsResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - Update Account Settings
+      x-codegen-request-body-name: body
+      summary: Update account settings
+      x-summary-source: derived
+components:
+  schemas:
+    updateAccountSettings:
+      properties:
+        address:
+          description: Address
+          type: string
+          x-go-name: Address
+        city:
+          description: City
+          type: string
+          x-go-name: City
+        company-name:
+          description: Company name
+          type: string
+          x-go-name: CompanyName
+        country:
+          description: Country
+          type: string
+          x-go-name: Country
+        default-versioning:
+          description: Should create version by default
+          type: string
+          x-go-name: CreateVersionByDefault
+        dp-enable-classic-key-protection:
+          description: Enable classic key protection ["true"/"false"]
+          type: string
+          x-go-name: EnableClassicKeyProtection
+        item-type:
+          description: VersionSettingsObjectType defines object types for account version settings
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        jwt-ttl-default:
+          description: Default ttl
+          format: int64
+          type: integer
+          x-go-name: JwtTtlDefault
+        jwt-ttl-max:
+          description: Maximum ttl
+          format: int64
+          type: integer
+          x-go-name: JwtTtlMax
+        jwt-ttl-min:
+          description: Minimum ttl
+          format: int64
+          type: integer
+          x-go-name: JwtTtlMin
+        max-versions:
+          description: Max versions
+          type: string
+          x-go-name: MaxVersions
+        password-length:
+          description: For PasswordPolicy use
+          format: int64
+          type: integer
+          x-go-name: PasswordLength
+        phone:
+          description: Phone number
+          type: string
+          x-go-name: Phone
+        postal-code:
+          description: Postal code
+          type: string
+          x-go-name: PostalCode
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+        use-lower-letters:
+          description: For PasswordPolicy use
+          type: string
+          x-go-name: UseLowerLetters
+        use-numbers:
+          description: For PasswordPolicy use
+          type: string
+          x-go-name: UseNumbers
+        use-special-characters:
+          description: For PasswordPolicy use
+          type: string
+          x-go-name: UseSpecialCharacters
+        use_capital-letters:
+          description: For PasswordPolicy use
+          type: string
+          x-go-name: UseCapitalLetters
+      title: updateAccountSettings is a command that updates an existing account settings.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    updateAccountSettingsOutput:
+      example:
+        updated: true
+      properties:
+        updated:
+          type: boolean
+          x-go-name: Updated
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

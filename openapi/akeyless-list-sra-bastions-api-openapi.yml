@@ -1,0 +1,161 @@
+openapi: 3.2.0
+info:
+  contact:
+    email: support@akeyless.io
+    name: Akeyless
+    url: http://akeyless.io
+  description: The purpose of this application is to provide access to Akeyless API.
+  title: Akeyless List Sra Bastions API
+  version: '2.0'
+servers:
+- url: https://api.akeyless.io/
+tags:
+- name: List Sra Bastions
+paths:
+  /list-sra-bastions:
+    post:
+      operationId: listSRABastions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/listSRABastions'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BastionsList'
+          description: listSRABastionsResponse wraps response body.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONError'
+          description: 'errorResponse wraps any error to return it as a JSON object with one "error"
+
+            field.'
+      tags:
+      - List Sra Bastions
+      x-codegen-request-body-name: body
+      summary: List SRA bastions
+      x-summary-source: derived
+components:
+  schemas:
+    BastionsList:
+      example:
+        clusters:
+        - allowed_urls:
+          - allowed_urls
+          - allowed_urls
+          cluster_name: cluster_name
+          allowed_urls_per_instance:
+            key:
+            - allowed_urls_per_instance
+            - allowed_urls_per_instance
+          access_id: access_id
+          allowed_access_ids:
+          - allowed_access_ids
+          - allowed_access_ids
+          display_name: display_name
+          last_report: 2000-01-23 04:56:07+00:00
+        - allowed_urls:
+          - allowed_urls
+          - allowed_urls
+          cluster_name: cluster_name
+          allowed_urls_per_instance:
+            key:
+            - allowed_urls_per_instance
+            - allowed_urls_per_instance
+          access_id: access_id
+          allowed_access_ids:
+          - allowed_access_ids
+          - allowed_access_ids
+          display_name: display_name
+          last_report: 2000-01-23 04:56:07+00:00
+      properties:
+        clusters:
+          items:
+            $ref: '#/components/schemas/BastionListEntry'
+          type: array
+          x-go-name: Clusters
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    BastionListEntry:
+      example:
+        allowed_urls:
+        - allowed_urls
+        - allowed_urls
+        cluster_name: cluster_name
+        allowed_urls_per_instance:
+          key:
+          - allowed_urls_per_instance
+          - allowed_urls_per_instance
+        access_id: access_id
+        allowed_access_ids:
+        - allowed_access_ids
+        - allowed_access_ids
+        display_name: display_name
+        last_report: 2000-01-23 04:56:07+00:00
+      properties:
+        access_id:
+          type: string
+          x-go-name: AccessID
+        allowed_access_ids:
+          items:
+            type: string
+          type: array
+          x-go-name: AllowedAccessIDs
+        allowed_urls:
+          items:
+            type: string
+          type: array
+          x-go-name: AllowedUrls
+        allowed_urls_per_instance:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+          x-go-name: AllowedUrlsPerInstance
+        cluster_name:
+          type: string
+          x-go-name: ClusterName
+        display_name:
+          type: string
+          x-go-name: DisplayName
+        last_report:
+          format: date-time
+          type: string
+          x-go-name: LastReport
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    listSRABastions:
+      properties:
+        allowed-urls-only:
+          type: boolean
+          x-go-name: BastionsAllowedURLsOnly
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      title: listSRABastions is a command that returns a list of bastions.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

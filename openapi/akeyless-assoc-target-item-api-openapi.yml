@@ -43,18 +43,14 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    CreateTargetItemAssocOutput:
-      description: 'CreateTargetItemAssocOutput defines output of CreateTargetItemAssoc
-
-        operation.'
-      example:
-        assoc_id: assoc_id
+    JSONError:
       properties:
-        assoc_id:
+        error:
           type: string
-          x-go-name: AssociationID
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
     assocTargetItem:
       description: 'assocTargetItem is a command that creates an association between target
 
@@ -134,11 +130,15 @@ components:
       - target-name
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    JSONError:
+    CreateTargetItemAssocOutput:
+      description: 'CreateTargetItemAssocOutput defines output of CreateTargetItemAssoc
+
+        operation.'
+      example:
+        assoc_id: assoc_id
       properties:
-        error:
+        assoc_id:
           type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+          x-go-name: AssociationID
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types

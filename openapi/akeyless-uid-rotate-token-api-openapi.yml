@@ -43,15 +43,14 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    uidRotateTokenOutput:
-      example:
-        token: token
+    JSONError:
       properties:
-        token:
+        error:
           type: string
-          x-go-name: Token
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
     uidRotateToken:
       description: 'uidRotateToken is a command that rotates an Akeyless Universal Identity
 
@@ -81,11 +80,12 @@ components:
           x-go-name: WithManualAck
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    JSONError:
+    uidRotateTokenOutput:
+      example:
+        token: token
       properties:
-        error:
+        token:
           type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+          x-go-name: Token
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

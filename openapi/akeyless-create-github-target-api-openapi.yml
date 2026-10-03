@@ -51,6 +51,16 @@ components:
       title: JSONError wraps an error with JSON object.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    createGithubTargetOutput:
+      example:
+        target_id: 0
+      properties:
+        target_id:
+          format: int64
+          type: integer
+          x-go-name: TargetID
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     createGithubTarget:
       properties:
         comment:
@@ -99,15 +109,5 @@ components:
       required:
       - name
       title: createGithubTarget is a command that creates a new target.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    createGithubTargetOutput:
-      example:
-        target_id: 0
-      properties:
-        target_id:
-          format: int64
-          type: integer
-          x-go-name: TargetID
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

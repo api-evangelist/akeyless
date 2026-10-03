@@ -51,9 +51,6 @@ components:
       title: JSONError wraps an error with JSON object.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client
-    deleteRoleAssociationOutput:
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     deleteRoleAssociation:
       description: 'deleteRoleAssociation is a command that deletes an association between role
 
@@ -77,5 +74,8 @@ components:
           x-go-name: UIDToken
       required:
       - assoc-id
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    deleteRoleAssociationOutput:
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

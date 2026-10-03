@@ -51,16 +51,6 @@ components:
       title: JSONError wraps an error with JSON object.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client
-    updateAzureTargetOutput:
-      example:
-        target_id: 0
-      properties:
-        target_id:
-          format: int64
-          type: integer
-          x-go-name: TargetID
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     updateAzureTarget:
       properties:
         client-id:
@@ -131,5 +121,15 @@ components:
       required:
       - name
       title: updateAzureTarget is a command that updates an existing target.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    updateAzureTargetOutput:
+      example:
+        target_id: 0
+      properties:
+        target_id:
+          format: int64
+          type: integer
+          x-go-name: TargetID
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

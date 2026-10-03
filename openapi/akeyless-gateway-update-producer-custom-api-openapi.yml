@@ -43,312 +43,126 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    gatewayUpdateProducerCustomOutput:
+    SecureRemoteAccess:
       example:
-        producer_details:
-          gke_cluster_endpoint: gke_cluster_endpoint
-          dynamic_secret_type: dynamic_secret_type
-          metadata: metadata
-          last_admin_rotation: 9
-          db_max_open_conns: db_max_open_conns
-          admin_rotation_interval_days: 0
-          ssl_connection_certificate: ssl_connection_certificate
-          oracle_creation_statements: oracle_creation_statements
-          mssql_creation_statements: mssql_creation_statements
-          password: password
-          sf_user_role: sf_user_role
-          privileged_user: privileged_user
-          ldap_certificate: ldap_certificate
-          gcp_role_bindings:
-            key:
-            - gcp_role_bindings
-            - gcp_role_bindings
-          ldap_url: ldap_url
-          username_policy: username_policy
-          gcp_token_scope: gcp_token_scope
-          venafi_allowed_domains:
-          - venafi_allowed_domains
-          - venafi_allowed_domains
-          warn_before_user_expiration_min: 1
-          db_private_key: db_private_key
-          fixed_user_only: fixed_user_only
-          rabbitmq_server_password: rabbitmq_server_password
-          aws_user_policies: aws_user_policies
-          aws_role_arns: aws_role_arns
-          active: true
-          item_targets_assoc:
-          - assoc_id: assoc_id
-            target_name: target_name
-            target_type: target_type
-            attributes:
-              key: attributes
-            target_id: 6
-          - assoc_id: assoc_id
-            target_name: target_name
-            target_type: target_type
-            attributes:
-              key: attributes
-            target_id: 6
-          chef_server_username: chef_server_username
-          tags:
-          - tags
-          - tags
-          mongodb_custom_data: mongodb_custom_data
-          k8s_service_account: k8s_service_account
-          chef_skip_ssl: true
-          k8s_cluster_endpoint: k8s_cluster_endpoint
-          azure_client_secret: azure_client_secret
-          azure_user_groups_obj_id: azure_user_groups_obj_id
-          gcp_token_type: gcp_token_type
-          access_token_manager_id: access_token_manager_id
-          gcp_token_lifetime: gcp_token_lifetime
-          user_name: user_name
-          rabbitmq_user_vhost: rabbitmq_user_vhost
-          mongodb_username: mongodb_username
-          postgres_revocation_statements: postgres_revocation_statements
-          venafi_signer_key_name: venafi_signer_key_name
-          should_stop: should_stop
-          artifactory_token_audience: artifactory_token_audience
-          mongodb_atlas_api_public_key: mongodb_atlas_api_public_key
-          github_installation_token_permissions:
-            key: github_installation_token_permissions
-          timeout_seconds: 4
-          eks_assume_role: eks_assume_role
-          db_max_idle_conns: db_max_idle_conns
-          admin_name: admin_name
-          rabbitmq_server_user: rabbitmq_server_user
-          venafi_api_key: venafi_api_key
-          mongodb_host_port: mongodb_host_port
-          gke_cluster_ca_certificate: gke_cluster_ca_certificate
-          k8s_bearer_token: k8s_bearer_token
-          azure_resource_name: azure_resource_name
-          cassandra_creation_statements: cassandra_creation_statements
-          failure_message: failure_message
-          db_private_key_passphrase: db_private_key_passphrase
-          rabbitmq_user_read_permission: rabbitmq_user_read_permission
-          azure_client_id: azure_client_id
-          mongodb_default_auth_db: mongodb_default_auth_db
-          mongodb_atlas_project_id: mongodb_atlas_project_id
-          payload: payload
-          redshift_creation_statements: redshift_creation_statements
-          enforce_replay_prevention: true
-          ldap_audience: ldap_audience
-          redirect_uris:
-          - redirect_uris
-          - redirect_uris
-          venafi_allow_subdomains: true
-          aws_user_console_access: true
-          azure_resource_group_name: azure_resource_group_name
-          user_principal_name: user_principal_name
-          azure_subscription_id: azure_subscription_id
-          gcp_key_algo: gcp_key_algo
-          venafi_zone: venafi_zone
-          github_installation_token_repositories:
-          - github_installation_token_repositories
-          - github_installation_token_repositories
-          gcp_service_account_key: gcp_service_account_key
-          gcp_service_account_type: gcp_service_account_type
-          session_extension_warn_interval_min: 2
-          venafi_store_private_key: true
-          eks_cluster_endpoint: eks_cluster_endpoint
-          gke_service_account_key: gke_service_account_key
-          mongodb_uri_options: mongodb_uri_options
-          github_app_private_key: github_app_private_key
-          gke_service_account_name: gke_service_account_name
-          mysql_creation_statements: mysql_creation_statements
-          github_installation_id: 5
-          k8s_allowed_namespaces: k8s_allowed_namespaces
-          rabbitmq_server_uri: rabbitmq_server_uri
-          chef_server_access_mode: chef_server_access_mode
-          rabbitmq_user_conf_permission: rabbitmq_user_conf_permission
-          is_fixed_user: is_fixed_user
-          sf_account: sf_account
-          secure_remote_access_details:
-            schema: schema
-            web_proxy: true
-            bastion_ssh: bastion_ssh
-            isolated: true
-            ssh_private_key: true
-            allow_port_forwarding: true
-            is_web: true
-            endpoint: endpoint
-            native: true
-            enable: true
-            host:
-            - host
-            - host
-            dashboard_url: dashboard_url
-            bastion_issuer: bastion_issuer
-            ssh_user: ssh_user
-            is_cli: true
-            use_internal_bastion: true
-            rdp_user: rdp_user
-            url: url
-            account_id: account_id
-            db_name: db_name
-            allow_providing_external_username: true
-            domain: domain
-            bastion_api: bastion_api
-            rotate_after_disconnect: true
-            category: category
-            region: region
-            ssh_password: true
-            bastion_issuer_id: 9
-          chef_server_host_name: chef_server_host_name
-          k8s_role_type: k8s_role_type
-          mongodb_is_atlas: true
-          eks_cluster_ca_certificate: eks_cluster_ca_certificate
-          rotate_sync_url: rotate_sync_url
-          chef_server_url: chef_server_url
-          aws_user_groups: aws_user_groups
-          azure_tenant_id: azure_tenant_id
-          jwks_url: jwks_url
-          k8s_namespace: k8s_namespace
-          user_password: user_password
-          venafi_sign_using_akeyless_pki: true
-          dynamic_secret_key: dynamic_secret_key
-          chef_server_key: chef_server_key
-          implementation_type: implementation_type
-          gcp_tmp_service_account_name: gcp_tmp_service_account_name
-          issuer: issuer
-          github_app_id: 1
-          ldap_bind_dn: ldap_bind_dn
-          k8s_temp_role_definition:
-          - 7
-          - 7
-          admin_pwd: admin_pwd
-          azure_fixed_user_only: true
-          azure_user_roles_template_id: azure_user_roles_template_id
-          aws_access_mode: aws_access_mode
-          username_length: 7
-          authorization_port: authorization_port
-          db_host_name: db_host_name
-          ldap_user_dn: ldap_user_dn
-          azure_fixed_user_name_sub_claim_key: azure_fixed_user_name_sub_claim_key
-          delete_protection: true
-          db_name: db_name
-          k8s_role_name: k8s_role_name
-          db_port: db_port
-          artifactory_base_url: artifactory_base_url
-          create_sync_url: create_sync_url
-          aws_session_token: aws_session_token
-          jwks: jwks
-          hanadb_revocation_statements: hanadb_revocation_statements
-          db_isolation_level: db_isolation_level
-          ssl_connection_mode: true
-          mongodb_roles: mongodb_roles
-          mongodb_db_name: mongodb_db_name
-          eks_access_key_id: eks_access_key_id
-          venafi_base_url: venafi_base_url
-          user_ttl: user_ttl
-          ping_url: ping_url
-          ldap_token_expiration: ldap_token_expiration
-          venafi_use_tpp: true
-          mongodb_password: mongodb_password
-          aws_secret_access_key: aws_secret_access_key
-          mongodb_atlas_api_private_key: mongodb_atlas_api_private_key
-          postgres_creation_statements: postgres_creation_statements
-          password_policy: password_policy
-          artifactory_admin_username: artifactory_admin_username
-          restricted_scopes:
-          - restricted_scopes
-          - restricted_scopes
-          scopes:
-          - scopes
-          - scopes
-          sf_warehouse_name: sf_warehouse_name
-          artifactory_token_scope: artifactory_token_scope
-          k8s_dynamic_mode: true
-          revoke_sync_url: revoke_sync_url
-          host_port: host_port
-          enable_admin_rotation: true
-          client_authentication_type: client_authentication_type
-          mongodb_uri_connection: mongodb_uri_connection
-          db_user_name: db_user_name
-          eks_region: eks_region
-          artifactory_admin_apikey: artifactory_admin_apikey
-          azure_app_object_id: azure_app_object_id
-          ldap_bind_password: ldap_bind_password
-          subject_dn: subject_dn
-          externally_provided_user: externally_provided_user
-          db_server_certificates: db_server_certificates
-          db_server_name: db_server_name
-          venafi_tpp_username: venafi_tpp_username
-          azure_user_portal_access: true
-          venafi_root_first_in_chain: true
-          venafi_auto_generated_folder: venafi_auto_generated_folder
-          db_pwd: db_pwd
-          signing_algorithm: signing_algorithm
-          administrative_port: administrative_port
-          github_installation_token_repositories_ids:
-          - 5
-          - 5
-          gcp_service_account_email: gcp_service_account_email
-          hanadb_creation_statements: hanadb_creation_statements
-          password_length: 3
-          dynamic_secret_name: dynamic_secret_name
-          aws_user_programmatic_access: true
-          rabbitmq_user_write_permission: rabbitmq_user_write_permission
-          rabbitmq_user_tags: rabbitmq_user_tags
-          venafi_tpp_password: venafi_tpp_password
-          ldap_user_attr: ldap_user_attr
-          use_gw_cloud_identity: true
-          azure_user_programmatic_access: true
-          k8s_cluster_ca_certificate: k8s_cluster_ca_certificate
-          eks_secret_access_key: eks_secret_access_key
-          grant_types:
-          - grant_types
-          - grant_types
-          github_base_url: github_base_url
-          groups: groups
-          chef_organizations: chef_organizations
-          dynamic_secret_id: 6
-          mssql_revocation_statements: mssql_revocation_statements
-          chef_server_port: chef_server_port
-          github_repository_path: github_repository_path
-          aws_access_key_id: aws_access_key_id
-          aws_region: aws_region
-          eks_cluster_name: eks_cluster_name
-          gke_cluster_name: gke_cluster_name
-          k8s_temp_role_binding_definition:
-          - 2
-          - 2
-          host_name: host_name
+        schema: schema
+        web_proxy: true
+        bastion_ssh: bastion_ssh
+        isolated: true
+        ssh_private_key: true
+        allow_port_forwarding: true
+        is_web: true
+        endpoint: endpoint
+        native: true
+        enable: true
+        host:
+        - host
+        - host
+        dashboard_url: dashboard_url
+        bastion_issuer: bastion_issuer
+        ssh_user: ssh_user
+        is_cli: true
+        use_internal_bastion: true
+        rdp_user: rdp_user
+        url: url
+        account_id: account_id
+        db_name: db_name
+        allow_providing_external_username: true
+        domain: domain
+        bastion_api: bastion_api
+        rotate_after_disconnect: true
+        category: category
+        region: region
+        ssh_password: true
+        bastion_issuer_id: 9
       properties:
-        producer_details:
-          $ref: '#/components/schemas/DSProducerDetails'
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    ItemTargetAssociation:
-      description: 'ItemTargetAssociation includes details of an association between an item
-
-        and a target.'
-      example:
-        assoc_id: assoc_id
-        target_name: target_name
-        target_type: target_type
-        attributes:
-          key: attributes
-        target_id: 6
-      properties:
-        assoc_id:
+        account_id:
           type: string
-          x-go-name: AssociationID
-        attributes:
-          additionalProperties:
-            type: string
-          type: object
-          x-go-name: Attributes
-        target_id:
+          x-go-name: AwsAccountId
+        allow_port_forwarding:
+          type: boolean
+          x-go-name: K8SAllowPortForwading
+        allow_providing_external_username:
+          type: boolean
+          x-go-name: AllowProvidingExternalUser
+        bastion_api:
+          type: string
+          x-go-name: BastionAPI
+        bastion_issuer:
+          type: string
+          x-go-name: BastionIssuer
+        bastion_issuer_id:
           format: int64
           type: integer
-          x-go-name: TargetID
-        target_name:
+          x-go-name: BastionIssuerID
+        bastion_ssh:
           type: string
-          x-go-name: TargetName
-        target_type:
+          x-go-name: BastionSSH
+        category:
           type: string
-          x-go-name: TargetType
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        dashboard_url:
+          type: string
+          x-go-name: K8SDashboardURL
+        db_name:
+          type: string
+          x-go-name: DbName
+        domain:
+          type: string
+          x-go-name: RDPDomain
+        enable:
+          type: boolean
+          x-go-name: Enable
+        endpoint:
+          type: string
+          x-go-name: K8SEndpoint
+        host:
+          items:
+            type: string
+          type: array
+          x-go-name: Host
+        is_cli:
+          type: boolean
+          x-go-name: AccessCliCategory
+        is_web:
+          type: boolean
+          x-go-name: AccessWebCategory
+        isolated:
+          type: boolean
+          x-go-name: Isolated
+        native:
+          type: boolean
+          x-go-name: AwsNativeCli
+        rdp_user:
+          type: string
+          x-go-name: RDPUser
+        region:
+          type: string
+          x-go-name: AwsRegion
+        rotate_after_disconnect:
+          type: boolean
+          x-go-name: RotateAfterDisconnect
+        schema:
+          type: string
+          x-go-name: Schema
+        ssh_password:
+          type: boolean
+          x-go-name: SSHPassword
+        ssh_private_key:
+          type: boolean
+          x-go-name: SSHPrivateKey
+        ssh_user:
+          type: string
+          x-go-name: SSHUser
+        url:
+          type: string
+          x-go-name: URL
+        use_internal_bastion:
+          type: boolean
+          x-go-name: UseInternalBastion
+        web_proxy:
+          type: boolean
+          x-go-name: WebProxy
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     DSProducerDetails:
@@ -1305,128 +1119,6 @@ components:
           x-go-name: WarnBeforeUserExpirationInMin
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/producer/config
-    SecureRemoteAccess:
-      example:
-        schema: schema
-        web_proxy: true
-        bastion_ssh: bastion_ssh
-        isolated: true
-        ssh_private_key: true
-        allow_port_forwarding: true
-        is_web: true
-        endpoint: endpoint
-        native: true
-        enable: true
-        host:
-        - host
-        - host
-        dashboard_url: dashboard_url
-        bastion_issuer: bastion_issuer
-        ssh_user: ssh_user
-        is_cli: true
-        use_internal_bastion: true
-        rdp_user: rdp_user
-        url: url
-        account_id: account_id
-        db_name: db_name
-        allow_providing_external_username: true
-        domain: domain
-        bastion_api: bastion_api
-        rotate_after_disconnect: true
-        category: category
-        region: region
-        ssh_password: true
-        bastion_issuer_id: 9
-      properties:
-        account_id:
-          type: string
-          x-go-name: AwsAccountId
-        allow_port_forwarding:
-          type: boolean
-          x-go-name: K8SAllowPortForwading
-        allow_providing_external_username:
-          type: boolean
-          x-go-name: AllowProvidingExternalUser
-        bastion_api:
-          type: string
-          x-go-name: BastionAPI
-        bastion_issuer:
-          type: string
-          x-go-name: BastionIssuer
-        bastion_issuer_id:
-          format: int64
-          type: integer
-          x-go-name: BastionIssuerID
-        bastion_ssh:
-          type: string
-          x-go-name: BastionSSH
-        category:
-          type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-        dashboard_url:
-          type: string
-          x-go-name: K8SDashboardURL
-        db_name:
-          type: string
-          x-go-name: DbName
-        domain:
-          type: string
-          x-go-name: RDPDomain
-        enable:
-          type: boolean
-          x-go-name: Enable
-        endpoint:
-          type: string
-          x-go-name: K8SEndpoint
-        host:
-          items:
-            type: string
-          type: array
-          x-go-name: Host
-        is_cli:
-          type: boolean
-          x-go-name: AccessCliCategory
-        is_web:
-          type: boolean
-          x-go-name: AccessWebCategory
-        isolated:
-          type: boolean
-          x-go-name: Isolated
-        native:
-          type: boolean
-          x-go-name: AwsNativeCli
-        rdp_user:
-          type: string
-          x-go-name: RDPUser
-        region:
-          type: string
-          x-go-name: AwsRegion
-        rotate_after_disconnect:
-          type: boolean
-          x-go-name: RotateAfterDisconnect
-        schema:
-          type: string
-          x-go-name: Schema
-        ssh_password:
-          type: boolean
-          x-go-name: SSHPassword
-        ssh_private_key:
-          type: boolean
-          x-go-name: SSHPrivateKey
-        ssh_user:
-          type: string
-          x-go-name: SSHUser
-        url:
-          type: string
-          x-go-name: URL
-        use_internal_bastion:
-          type: boolean
-          x-go-name: UseInternalBastion
-        web_proxy:
-          type: boolean
-          x-go-name: WebProxy
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     JSONError:
       properties:
         error:
@@ -1435,6 +1127,314 @@ components:
       title: JSONError wraps an error with JSON object.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    gatewayUpdateProducerCustomOutput:
+      example:
+        producer_details:
+          gke_cluster_endpoint: gke_cluster_endpoint
+          dynamic_secret_type: dynamic_secret_type
+          metadata: metadata
+          last_admin_rotation: 9
+          db_max_open_conns: db_max_open_conns
+          admin_rotation_interval_days: 0
+          ssl_connection_certificate: ssl_connection_certificate
+          oracle_creation_statements: oracle_creation_statements
+          mssql_creation_statements: mssql_creation_statements
+          password: password
+          sf_user_role: sf_user_role
+          privileged_user: privileged_user
+          ldap_certificate: ldap_certificate
+          gcp_role_bindings:
+            key:
+            - gcp_role_bindings
+            - gcp_role_bindings
+          ldap_url: ldap_url
+          username_policy: username_policy
+          gcp_token_scope: gcp_token_scope
+          venafi_allowed_domains:
+          - venafi_allowed_domains
+          - venafi_allowed_domains
+          warn_before_user_expiration_min: 1
+          db_private_key: db_private_key
+          fixed_user_only: fixed_user_only
+          rabbitmq_server_password: rabbitmq_server_password
+          aws_user_policies: aws_user_policies
+          aws_role_arns: aws_role_arns
+          active: true
+          item_targets_assoc:
+          - assoc_id: assoc_id
+            target_name: target_name
+            target_type: target_type
+            attributes:
+              key: attributes
+            target_id: 6
+          - assoc_id: assoc_id
+            target_name: target_name
+            target_type: target_type
+            attributes:
+              key: attributes
+            target_id: 6
+          chef_server_username: chef_server_username
+          tags:
+          - tags
+          - tags
+          mongodb_custom_data: mongodb_custom_data
+          k8s_service_account: k8s_service_account
+          chef_skip_ssl: true
+          k8s_cluster_endpoint: k8s_cluster_endpoint
+          azure_client_secret: azure_client_secret
+          azure_user_groups_obj_id: azure_user_groups_obj_id
+          gcp_token_type: gcp_token_type
+          access_token_manager_id: access_token_manager_id
+          gcp_token_lifetime: gcp_token_lifetime
+          user_name: user_name
+          rabbitmq_user_vhost: rabbitmq_user_vhost
+          mongodb_username: mongodb_username
+          postgres_revocation_statements: postgres_revocation_statements
+          venafi_signer_key_name: venafi_signer_key_name
+          should_stop: should_stop
+          artifactory_token_audience: artifactory_token_audience
+          mongodb_atlas_api_public_key: mongodb_atlas_api_public_key
+          github_installation_token_permissions:
+            key: github_installation_token_permissions
+          timeout_seconds: 4
+          eks_assume_role: eks_assume_role
+          db_max_idle_conns: db_max_idle_conns
+          admin_name: admin_name
+          rabbitmq_server_user: rabbitmq_server_user
+          venafi_api_key: venafi_api_key
+          mongodb_host_port: mongodb_host_port
+          gke_cluster_ca_certificate: gke_cluster_ca_certificate
+          k8s_bearer_token: k8s_bearer_token
+          azure_resource_name: azure_resource_name
+          cassandra_creation_statements: cassandra_creation_statements
+          failure_message: failure_message
+          db_private_key_passphrase: db_private_key_passphrase
+          rabbitmq_user_read_permission: rabbitmq_user_read_permission
+          azure_client_id: azure_client_id
+          mongodb_default_auth_db: mongodb_default_auth_db
+          mongodb_atlas_project_id: mongodb_atlas_project_id
+          payload: payload
+          redshift_creation_statements: redshift_creation_statements
+          enforce_replay_prevention: true
+          ldap_audience: ldap_audience
+          redirect_uris:
+          - redirect_uris
+          - redirect_uris
+          venafi_allow_subdomains: true
+          aws_user_console_access: true
+          azure_resource_group_name: azure_resource_group_name
+          user_principal_name: user_principal_name
+          azure_subscription_id: azure_subscription_id
+          gcp_key_algo: gcp_key_algo
+          venafi_zone: venafi_zone
+          github_installation_token_repositories:
+          - github_installation_token_repositories
+          - github_installation_token_repositories
+          gcp_service_account_key: gcp_service_account_key
+          gcp_service_account_type: gcp_service_account_type
+          session_extension_warn_interval_min: 2
+          venafi_store_private_key: true
+          eks_cluster_endpoint: eks_cluster_endpoint
+          gke_service_account_key: gke_service_account_key
+          mongodb_uri_options: mongodb_uri_options
+          github_app_private_key: github_app_private_key
+          gke_service_account_name: gke_service_account_name
+          mysql_creation_statements: mysql_creation_statements
+          github_installation_id: 5
+          k8s_allowed_namespaces: k8s_allowed_namespaces
+          rabbitmq_server_uri: rabbitmq_server_uri
+          chef_server_access_mode: chef_server_access_mode
+          rabbitmq_user_conf_permission: rabbitmq_user_conf_permission
+          is_fixed_user: is_fixed_user
+          sf_account: sf_account
+          secure_remote_access_details:
+            schema: schema
+            web_proxy: true
+            bastion_ssh: bastion_ssh
+            isolated: true
+            ssh_private_key: true
+            allow_port_forwarding: true
+            is_web: true
+            endpoint: endpoint
+            native: true
+            enable: true
+            host:
+            - host
+            - host
+            dashboard_url: dashboard_url
+            bastion_issuer: bastion_issuer
+            ssh_user: ssh_user
+            is_cli: true
+            use_internal_bastion: true
+            rdp_user: rdp_user
+            url: url
+            account_id: account_id
+            db_name: db_name
+            allow_providing_external_username: true
+            domain: domain
+            bastion_api: bastion_api
+            rotate_after_disconnect: true
+            category: category
+            region: region
+            ssh_password: true
+            bastion_issuer_id: 9
+          chef_server_host_name: chef_server_host_name
+          k8s_role_type: k8s_role_type
+          mongodb_is_atlas: true
+          eks_cluster_ca_certificate: eks_cluster_ca_certificate
+          rotate_sync_url: rotate_sync_url
+          chef_server_url: chef_server_url
+          aws_user_groups: aws_user_groups
+          azure_tenant_id: azure_tenant_id
+          jwks_url: jwks_url
+          k8s_namespace: k8s_namespace
+          user_password: user_password
+          venafi_sign_using_akeyless_pki: true
+          dynamic_secret_key: dynamic_secret_key
+          chef_server_key: chef_server_key
+          implementation_type: implementation_type
+          gcp_tmp_service_account_name: gcp_tmp_service_account_name
+          issuer: issuer
+          github_app_id: 1
+          ldap_bind_dn: ldap_bind_dn
+          k8s_temp_role_definition:
+          - 7
+          - 7
+          admin_pwd: admin_pwd
+          azure_fixed_user_only: true
+          azure_user_roles_template_id: azure_user_roles_template_id
+          aws_access_mode: aws_access_mode
+          username_length: 7
+          authorization_port: authorization_port
+          db_host_name: db_host_name
+          ldap_user_dn: ldap_user_dn
+          azure_fixed_user_name_sub_claim_key: azure_fixed_user_name_sub_claim_key
+          delete_protection: true
+          db_name: db_name
+          k8s_role_name: k8s_role_name
+          db_port: db_port
+          artifactory_base_url: artifactory_base_url
+          create_sync_url: create_sync_url
+          aws_session_token: aws_session_token
+          jwks: jwks
+          hanadb_revocation_statements: hanadb_revocation_statements
+          db_isolation_level: db_isolation_level
+          ssl_connection_mode: true
+          mongodb_roles: mongodb_roles
+          mongodb_db_name: mongodb_db_name
+          eks_access_key_id: eks_access_key_id
+          venafi_base_url: venafi_base_url
+          user_ttl: user_ttl
+          ping_url: ping_url
+          ldap_token_expiration: ldap_token_expiration
+          venafi_use_tpp: true
+          mongodb_password: mongodb_password
+          aws_secret_access_key: aws_secret_access_key
+          mongodb_atlas_api_private_key: mongodb_atlas_api_private_key
+          postgres_creation_statements: postgres_creation_statements
+          password_policy: password_policy
+          artifactory_admin_username: artifactory_admin_username
+          restricted_scopes:
+          - restricted_scopes
+          - restricted_scopes
+          scopes:
+          - scopes
+          - scopes
+          sf_warehouse_name: sf_warehouse_name
+          artifactory_token_scope: artifactory_token_scope
+          k8s_dynamic_mode: true
+          revoke_sync_url: revoke_sync_url
+          host_port: host_port
+          enable_admin_rotation: true
+          client_authentication_type: client_authentication_type
+          mongodb_uri_connection: mongodb_uri_connection
+          db_user_name: db_user_name
+          eks_region: eks_region
+          artifactory_admin_apikey: artifactory_admin_apikey
+          azure_app_object_id: azure_app_object_id
+          ldap_bind_password: ldap_bind_password
+          subject_dn: subject_dn
+          externally_provided_user: externally_provided_user
+          db_server_certificates: db_server_certificates
+          db_server_name: db_server_name
+          venafi_tpp_username: venafi_tpp_username
+          azure_user_portal_access: true
+          venafi_root_first_in_chain: true
+          venafi_auto_generated_folder: venafi_auto_generated_folder
+          db_pwd: db_pwd
+          signing_algorithm: signing_algorithm
+          administrative_port: administrative_port
+          github_installation_token_repositories_ids:
+          - 5
+          - 5
+          gcp_service_account_email: gcp_service_account_email
+          hanadb_creation_statements: hanadb_creation_statements
+          password_length: 3
+          dynamic_secret_name: dynamic_secret_name
+          aws_user_programmatic_access: true
+          rabbitmq_user_write_permission: rabbitmq_user_write_permission
+          rabbitmq_user_tags: rabbitmq_user_tags
+          venafi_tpp_password: venafi_tpp_password
+          ldap_user_attr: ldap_user_attr
+          use_gw_cloud_identity: true
+          azure_user_programmatic_access: true
+          k8s_cluster_ca_certificate: k8s_cluster_ca_certificate
+          eks_secret_access_key: eks_secret_access_key
+          grant_types:
+          - grant_types
+          - grant_types
+          github_base_url: github_base_url
+          groups: groups
+          chef_organizations: chef_organizations
+          dynamic_secret_id: 6
+          mssql_revocation_statements: mssql_revocation_statements
+          chef_server_port: chef_server_port
+          github_repository_path: github_repository_path
+          aws_access_key_id: aws_access_key_id
+          aws_region: aws_region
+          eks_cluster_name: eks_cluster_name
+          gke_cluster_name: gke_cluster_name
+          k8s_temp_role_binding_definition:
+          - 2
+          - 2
+          host_name: host_name
+      properties:
+        producer_details:
+          $ref: '#/components/schemas/DSProducerDetails'
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    ItemTargetAssociation:
+      description: 'ItemTargetAssociation includes details of an association between an item
+
+        and a target.'
+      example:
+        assoc_id: assoc_id
+        target_name: target_name
+        target_type: target_type
+        attributes:
+          key: attributes
+        target_id: 6
+      properties:
+        assoc_id:
+          type: string
+          x-go-name: AssociationID
+        attributes:
+          additionalProperties:
+            type: string
+          type: object
+          x-go-name: Attributes
+        target_id:
+          format: int64
+          type: integer
+          x-go-name: TargetID
+        target_name:
+          type: string
+          x-go-name: TargetName
+        target_type:
+          type: string
+          x-go-name: TargetType
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     gatewayUpdateProducerCustom:
       properties:
         admin_rotation_interval_days:

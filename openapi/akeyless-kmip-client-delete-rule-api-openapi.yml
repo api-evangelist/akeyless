@@ -43,6 +43,63 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    RuleAssigner:
+      example:
+        unique_id: unique_id
+        access_id: access_id
+      properties:
+        access_id:
+          type: string
+          x-go-name: AccessId
+        unique_id:
+          type: string
+          x-go-name: UniqueId
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    KMIPClientUpdateResponse:
+      example:
+        client:
+          name: name
+          certificate_issue_date: 2000-01-23 04:56:07+00:00
+          rules:
+          - path: path
+            start_time: 5
+            capabilities:
+            - capabilities
+            - capabilities
+            number_of_allowed_access: 5
+            is_limit_access: true
+            assigners:
+            - unique_id: unique_id
+              access_id: access_id
+            - unique_id: unique_id
+              access_id: access_id
+            number_of_access_used: 1
+            type: type
+            ttl: 2
+          - path: path
+            start_time: 5
+            capabilities:
+            - capabilities
+            - capabilities
+            number_of_allowed_access: 5
+            is_limit_access: true
+            assigners:
+            - unique_id: unique_id
+              access_id: access_id
+            - unique_id: unique_id
+              access_id: access_id
+            number_of_access_used: 1
+            type: type
+            ttl: 2
+          id: id
+          activate_keys_on_creation: true
+          certificate_ttl_in_seconds: 6
+      properties:
+        client:
+          $ref: '#/components/schemas/KMIPClient'
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/gateway/config
     PathRule:
       example:
         path: path
@@ -103,6 +160,43 @@ components:
       title: PathRule is a single rule used in AKEYLESS RBAC.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    kmipClientDeleteRule:
+      properties:
+        client-id:
+          type: string
+          x-go-name: ClientID
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        name:
+          type: string
+          x-go-name: ClientName
+        path:
+          description: Access path
+          type: string
+          x-go-name: Path
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - path
+      title: kmipClientDeleteRule is a command that deletes an RBAC rule from a client.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     KMIPClient:
       example:
         name: name
@@ -166,97 +260,3 @@ components:
           x-go-name: Rules
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    KMIPClientUpdateResponse:
-      example:
-        client:
-          name: name
-          certificate_issue_date: 2000-01-23 04:56:07+00:00
-          rules:
-          - path: path
-            start_time: 5
-            capabilities:
-            - capabilities
-            - capabilities
-            number_of_allowed_access: 5
-            is_limit_access: true
-            assigners:
-            - unique_id: unique_id
-              access_id: access_id
-            - unique_id: unique_id
-              access_id: access_id
-            number_of_access_used: 1
-            type: type
-            ttl: 2
-          - path: path
-            start_time: 5
-            capabilities:
-            - capabilities
-            - capabilities
-            number_of_allowed_access: 5
-            is_limit_access: true
-            assigners:
-            - unique_id: unique_id
-              access_id: access_id
-            - unique_id: unique_id
-              access_id: access_id
-            number_of_access_used: 1
-            type: type
-            ttl: 2
-          id: id
-          activate_keys_on_creation: true
-          certificate_ttl_in_seconds: 6
-      properties:
-        client:
-          $ref: '#/components/schemas/KMIPClient'
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/gateway/config
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
-    RuleAssigner:
-      example:
-        unique_id: unique_id
-        access_id: access_id
-      properties:
-        access_id:
-          type: string
-          x-go-name: AccessId
-        unique_id:
-          type: string
-          x-go-name: UniqueId
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    kmipClientDeleteRule:
-      properties:
-        client-id:
-          type: string
-          x-go-name: ClientID
-        json:
-          description: Set output format to JSON
-          type: boolean
-          x-go-name: Json
-        name:
-          type: string
-          x-go-name: ClientName
-        path:
-          description: Access path
-          type: string
-          x-go-name: Path
-        token:
-          description: Authentication token (see `/auth` and `/configure`)
-          type: string
-          x-go-name: Profile
-        uid-token:
-          description: The universal identity token, Required only for universal_identity authentication
-          type: string
-          x-go-name: UIDToken
-      required:
-      - path
-      title: kmipClientDeleteRule is a command that deletes an RBAC rule from a client.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

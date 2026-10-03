@@ -43,6 +43,19 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    RuleAssigner:
+      example:
+        unique_id: unique_id
+        access_id: access_id
+      properties:
+        access_id:
+          type: string
+          x-go-name: AccessId
+        unique_id:
+          type: string
+          x-go-name: UniqueId
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     PathRule:
       example:
         path: path
@@ -103,69 +116,31 @@ components:
       title: PathRule is a single rule used in AKEYLESS RBAC.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    KMIPClient:
-      example:
-        name: name
-        certificate_issue_date: 2000-01-23 04:56:07+00:00
-        rules:
-        - path: path
-          start_time: 5
-          capabilities:
-          - capabilities
-          - capabilities
-          number_of_allowed_access: 5
-          is_limit_access: true
-          assigners:
-          - unique_id: unique_id
-            access_id: access_id
-          - unique_id: unique_id
-            access_id: access_id
-          number_of_access_used: 1
-          type: type
-          ttl: 2
-        - path: path
-          start_time: 5
-          capabilities:
-          - capabilities
-          - capabilities
-          number_of_allowed_access: 5
-          is_limit_access: true
-          assigners:
-          - unique_id: unique_id
-            access_id: access_id
-          - unique_id: unique_id
-            access_id: access_id
-          number_of_access_used: 1
-          type: type
-          ttl: 2
-        id: id
-        activate_keys_on_creation: true
-        certificate_ttl_in_seconds: 6
+    JSONError:
       properties:
-        activate_keys_on_creation:
-          type: boolean
-          x-go-name: ActivateKeysOnCreation
-        certificate_issue_date:
-          format: date-time
+        error:
           type: string
-          x-go-name: CertificateIssueDate
-        certificate_ttl_in_seconds:
-          format: int64
-          type: integer
-          x-go-name: CertificateTTLInSeconds
-        id:
-          type: string
-          x-go-name: ID
-        name:
-          type: string
-          x-go-name: Name
-        rules:
-          items:
-            $ref: '#/components/schemas/PathRule'
-          type: array
-          x-go-name: Rules
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    kmipListClients:
+      properties:
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      title: kmipListClients is a command that shows existing KMIP clients.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     KMIPClientListResponse:
       example:
         clients:
@@ -249,41 +224,66 @@ components:
           x-go-name: Clients
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/gateway/config
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
-    RuleAssigner:
+    KMIPClient:
       example:
-        unique_id: unique_id
-        access_id: access_id
+        name: name
+        certificate_issue_date: 2000-01-23 04:56:07+00:00
+        rules:
+        - path: path
+          start_time: 5
+          capabilities:
+          - capabilities
+          - capabilities
+          number_of_allowed_access: 5
+          is_limit_access: true
+          assigners:
+          - unique_id: unique_id
+            access_id: access_id
+          - unique_id: unique_id
+            access_id: access_id
+          number_of_access_used: 1
+          type: type
+          ttl: 2
+        - path: path
+          start_time: 5
+          capabilities:
+          - capabilities
+          - capabilities
+          number_of_allowed_access: 5
+          is_limit_access: true
+          assigners:
+          - unique_id: unique_id
+            access_id: access_id
+          - unique_id: unique_id
+            access_id: access_id
+          number_of_access_used: 1
+          type: type
+          ttl: 2
+        id: id
+        activate_keys_on_creation: true
+        certificate_ttl_in_seconds: 6
       properties:
-        access_id:
+        activate_keys_on_creation:
+          type: boolean
+          x-go-name: ActivateKeysOnCreation
+        certificate_issue_date:
+          format: date-time
           type: string
-          x-go-name: AccessId
-        unique_id:
+          x-go-name: CertificateIssueDate
+        certificate_ttl_in_seconds:
+          format: int64
+          type: integer
+          x-go-name: CertificateTTLInSeconds
+        id:
           type: string
-          x-go-name: UniqueId
+          x-go-name: ID
+        name:
+          type: string
+          x-go-name: Name
+        rules:
+          items:
+            $ref: '#/components/schemas/PathRule'
+          type: array
+          x-go-name: Rules
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    kmipListClients:
-      properties:
-        json:
-          description: Set output format to JSON
-          type: boolean
-          x-go-name: Json
-        token:
-          description: Authentication token (see `/auth` and `/configure`)
-          type: string
-          x-go-name: Profile
-        uid-token:
-          description: The universal identity token, Required only for universal_identity authentication
-          type: string
-          x-go-name: UIDToken
-      title: kmipListClients is a command that shows existing KMIP clients.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

@@ -43,6 +43,23 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    GatewayMigrationCreateOutput:
+      example:
+        migration_name: migration_name
+      properties:
+        migration_name:
+          type: string
+          x-go-name: MigrationName
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     gatewayCreateMigration:
       description: gatewayCreateMigration is a command that create migration
       properties:
@@ -264,20 +281,3 @@ components:
       - target-location
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    GatewayMigrationCreateOutput:
-      example:
-        migration_name: migration_name
-      properties:
-        migration_name:
-          type: string
-          x-go-name: MigrationName
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

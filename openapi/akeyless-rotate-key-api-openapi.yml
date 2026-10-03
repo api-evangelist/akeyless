@@ -43,6 +43,39 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    RotateKeyOutput:
+      description: RotateKeyOutput defines output of RotateKey operation
+      example:
+        next_rotation_date: 2000-01-23 04:56:07+00:00
+        item_type: item_type
+        classic_key_gw_url: classic_key_gw_url
+        new_item_version: 0
+      properties:
+        classic_key_gw_url:
+          type: string
+          x-go-name: ClassicKeyGWUrl
+        item_type:
+          title: ItemType defines types supported by AKEYLESS.
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        new_item_version:
+          format: int32
+          type: integer
+          x-go-name: NewKeyVersion
+        next_rotation_date:
+          format: date-time
+          type: string
+          x-go-name: NextRotationDate
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     updateRotationSettings:
       description: updateRotationSettings is a command that updates rotations settings of an existing key
       properties:
@@ -76,36 +109,3 @@ components:
       - name
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    RotateKeyOutput:
-      description: RotateKeyOutput defines output of RotateKey operation
-      example:
-        next_rotation_date: 2000-01-23 04:56:07+00:00
-        item_type: item_type
-        classic_key_gw_url: classic_key_gw_url
-        new_item_version: 0
-      properties:
-        classic_key_gw_url:
-          type: string
-          x-go-name: ClassicKeyGWUrl
-        item_type:
-          title: ItemType defines types supported by AKEYLESS.
-          type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-        new_item_version:
-          format: int32
-          type: integer
-          x-go-name: NewKeyVersion
-        next_rotation_date:
-          format: date-time
-          type: string
-          x-go-name: NextRotationDate
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

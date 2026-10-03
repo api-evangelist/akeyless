@@ -36,6 +36,14 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
     RotateKeyOutput:
       description: RotateKeyOutput defines output of RotateKey operation
       example:
@@ -61,11 +69,3 @@ components:
           x-go-name: NextRotationDate
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

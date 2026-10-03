@@ -43,749 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    DefaultConfigPart:
-      example:
-        saml_access_id: saml_access_id
-        default_protection_key_id: 9
-        oidc_access_id: oidc_access_id
-        default_secret_location: default_secret_location
-      properties:
-        default_protection_key_id:
-          format: int64
-          type: integer
-          x-go-name: ProtectionKeyID
-        default_secret_location:
-          type: string
-          x-go-name: SecretLocation
-        oidc_access_id:
-          type: string
-          x-go-name: OIDCAccessId
-        saml_access_id:
-          type: string
-          x-go-name: SamlAccessId
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    ActiveDirectoryMigration:
-      example:
-        general:
-          prefix: prefix
-          name: name
-          id: id
-          type: type
-          protection_key: protection_key
-          new_name: new_name
-          status: status
-        payload:
-          auto_rotate: true
-          ssh_port: ssh_port
-          discover_local_users: true
-          auto_rotate_interval_in_days: 1
-          active_directory_target_id: 1
-          local_users_rotated_secrets_path_template: local_users_rotated_secrets_path_template
-          auto_rotate_rotation_hour: 1
-          domain_name: domain_name
-          enable_rdp_sra: true
-          domain_server_targets_path_template: domain_server_targets_path_template
-          user_base_dn: user_base_dn
-          computer_base_dn: computer_base_dn
-          domain_users_rotated_secrets_path_template: domain_users_rotated_secrets_path_template
-          local_users_ignore_list:
-            key: true
-          user_groups:
-          - user_groups
-          - user_groups
-      properties:
-        general:
-          $ref: '#/components/schemas/MigrationGeneral'
-        payload:
-          $ref: '#/components/schemas/ActiveDirectoryPayload'
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    HashiMigration:
-      example:
-        general:
-          prefix: prefix
-          name: name
-          id: id
-          type: type
-          protection_key: protection_key
-          new_name: new_name
-          status: status
-        payload:
-          import_as_json: true
-          url: url
-          namespaces:
-          - namespaces
-          - namespaces
-          token: token
-      properties:
-        general:
-          $ref: '#/components/schemas/MigrationGeneral'
-        payload:
-          $ref: '#/components/schemas/HashiPayload'
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    LeadershipConfigPart:
-      example:
-        open_leadership:
-        - 7
-        - 7
-      properties:
-        open_leadership:
-          items:
-            format: uint32
-            type: integer
-          type: array
-          x-go-name: OpenLeadership
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    PathRule:
-      example:
-        path: path
-        start_time: 5
-        capabilities:
-        - capabilities
-        - capabilities
-        number_of_allowed_access: 5
-        is_limit_access: true
-        assigners:
-        - unique_id: unique_id
-          access_id: access_id
-        - unique_id: unique_id
-          access_id: access_id
-        number_of_access_used: 1
-        type: type
-        ttl: 2
-      properties:
-        assigners:
-          items:
-            $ref: '#/components/schemas/RuleAssigner'
-          type: array
-          x-go-name: Assigners
-        capabilities:
-          description: The approved/denied capabilities in the path
-          items:
-            type: string
-          type: array
-          x-go-name: Capabilities
-        is_limit_access:
-          description: flag that indicate that this rule is allowed to be access RemainingAccess of times.
-          type: boolean
-          x-go-name: IsLimitAccess
-        number_of_access_used:
-          format: int64
-          type: integer
-          x-go-name: NumberOfAccessUsed
-        number_of_allowed_access:
-          format: int64
-          type: integer
-          x-go-name: NumberOfAllowedAccess
-        path:
-          description: The path the rule refers to
-          type: string
-          x-go-name: Path
-        start_time:
-          format: int64
-          type: integer
-          x-go-name: StartTime
-        ttl:
-          format: int64
-          type: integer
-          x-go-name: TTL
-        type:
-          title: PathRuleType defines a kind of every PathRule assigned to a Role.
-          type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-      title: PathRule is a single rule used in AKEYLESS RBAC.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    CacheConfigPart:
-      example:
-        proactive_cache_enable: true
-        proactive_cache_dump_interval: proactive_cache_dump_interval
-        cache_ttl: cache_ttl
-        cache_enable: true
-        proactive_cache_minimum_fetching_time: proactive_cache_minimum_fetching_time
-      properties:
-        cache_enable:
-          type: boolean
-          x-go-name: CacheEnable
-        cache_ttl:
-          type: string
-          x-go-name: CacheTTL
-        proactive_cache_dump_interval:
-          type: string
-          x-go-name: ProActiveCacheDumpInterval
-        proactive_cache_enable:
-          type: boolean
-          x-go-name: ProActiveCacheEnable
-        proactive_cache_minimum_fetching_time:
-          type: string
-          x-go-name: ProActiveCacheMinimumFetchingTime
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    AWSSecretsMigration:
-      example:
-        general:
-          prefix: prefix
-          name: name
-          id: id
-          type: type
-          protection_key: protection_key
-          new_name: new_name
-          status: status
-        payload:
-          secret: secret
-          region: region
-          key: key
-      properties:
-        general:
-          $ref: '#/components/schemas/MigrationGeneral'
-        payload:
-          $ref: '#/components/schemas/AWSPayload'
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    GatewayMessageQueueInfo:
-      example:
-        queue_name: queue_name
-        queue_url: queue_url
-        mq_type: mq_type
-      properties:
-        mq_type:
-          type: string
-          x-go-name: MQType
-        queue_name:
-          type: string
-          x-go-name: QueueName
-        queue_url:
-          type: string
-          x-go-name: QueueURL
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    MigrationsConfigPart:
-      example:
-        hashi_migrations:
-        - general:
-            prefix: prefix
-            name: name
-            id: id
-            type: type
-            protection_key: protection_key
-            new_name: new_name
-            status: status
-          payload:
-            import_as_json: true
-            url: url
-            namespaces:
-            - namespaces
-            - namespaces
-            token: token
-        - general:
-            prefix: prefix
-            name: name
-            id: id
-            type: type
-            protection_key: protection_key
-            new_name: new_name
-            status: status
-          payload:
-            import_as_json: true
-            url: url
-            namespaces:
-            - namespaces
-            - namespaces
-            token: token
-        azure_kv_migrations:
-        - general:
-            prefix: prefix
-            name: name
-            id: id
-            type: type
-            protection_key: protection_key
-            new_name: new_name
-            status: status
-          payload:
-            name: name
-            client: client
-            secret: secret
-            tenant: tenant
-        - general:
-            prefix: prefix
-            name: name
-            id: id
-            type: type
-            protection_key: protection_key
-            new_name: new_name
-            status: status
-          payload:
-            name: name
-            client: client
-            secret: secret
-            tenant: tenant
-        k8s_migrations:
-        - general:
-            prefix: prefix
-            name: name
-            id: id
-            type: type
-            protection_key: protection_key
-            new_name: new_name
-            status: status
-          payload:
-            client_key:
-            - 1
-            - 1
-            server: server
-            password: password
-            client_cert:
-            - 7
-            - 7
-            namespace: namespace
-            ca:
-            - 6
-            - 6
-            skip_system: true
-            token: token
-            username: username
-        - general:
-            prefix: prefix
-            name: name
-            id: id
-            type: type
-            protection_key: protection_key
-            new_name: new_name
-            status: status
-          payload:
-            client_key:
-            - 1
-            - 1
-            server: server
-            password: password
-            client_cert:
-            - 7
-            - 7
-            namespace: namespace
-            ca:
-            - 6
-            - 6
-            skip_system: true
-            token: token
-            username: username
-        aws_secrets_migrations:
-        - general:
-            prefix: prefix
-            name: name
-            id: id
-            type: type
-            protection_key: protection_key
-            new_name: new_name
-            status: status
-          payload:
-            secret: secret
-            region: region
-            key: key
-        - general:
-            prefix: prefix
-            name: name
-            id: id
-            type: type
-            protection_key: protection_key
-            new_name: new_name
-            status: status
-          payload:
-            secret: secret
-            region: region
-            key: key
-        mock_migrations:
-        - general:
-            prefix: prefix
-            name: name
-            id: id
-            type: type
-            protection_key: protection_key
-            new_name: new_name
-            status: status
-          payload:
-            vaults:
-            - vaults
-            - vaults
-        - general:
-            prefix: prefix
-            name: name
-            id: id
-            type: type
-            protection_key: protection_key
-            new_name: new_name
-            status: status
-          payload:
-            vaults:
-            - vaults
-            - vaults
-        one_password_migrations:
-        - general:
-            prefix: prefix
-            name: name
-            id: id
-            type: type
-            protection_key: protection_key
-            new_name: new_name
-            status: status
-          payload:
-            secret_key: secret_key
-            password: password
-            vaults:
-            - vaults
-            - vaults
-            email: email
-            url: url
-        - general:
-            prefix: prefix
-            name: name
-            id: id
-            type: type
-            protection_key: protection_key
-            new_name: new_name
-            status: status
-          payload:
-            secret_key: secret_key
-            password: password
-            vaults:
-            - vaults
-            - vaults
-            email: email
-            url: url
-        active_directory_migrations:
-        - general:
-            prefix: prefix
-            name: name
-            id: id
-            type: type
-            protection_key: protection_key
-            new_name: new_name
-            status: status
-          payload:
-            auto_rotate: true
-            ssh_port: ssh_port
-            discover_local_users: true
-            auto_rotate_interval_in_days: 1
-            active_directory_target_id: 1
-            local_users_rotated_secrets_path_template: local_users_rotated_secrets_path_template
-            auto_rotate_rotation_hour: 1
-            domain_name: domain_name
-            enable_rdp_sra: true
-            domain_server_targets_path_template: domain_server_targets_path_template
-            user_base_dn: user_base_dn
-            computer_base_dn: computer_base_dn
-            domain_users_rotated_secrets_path_template: domain_users_rotated_secrets_path_template
-            local_users_ignore_list:
-              key: true
-            user_groups:
-            - user_groups
-            - user_groups
-        - general:
-            prefix: prefix
-            name: name
-            id: id
-            type: type
-            protection_key: protection_key
-            new_name: new_name
-            status: status
-          payload:
-            auto_rotate: true
-            ssh_port: ssh_port
-            discover_local_users: true
-            auto_rotate_interval_in_days: 1
-            active_directory_target_id: 1
-            local_users_rotated_secrets_path_template: local_users_rotated_secrets_path_template
-            auto_rotate_rotation_hour: 1
-            domain_name: domain_name
-            enable_rdp_sra: true
-            domain_server_targets_path_template: domain_server_targets_path_template
-            user_base_dn: user_base_dn
-            computer_base_dn: computer_base_dn
-            domain_users_rotated_secrets_path_template: domain_users_rotated_secrets_path_template
-            local_users_ignore_list:
-              key: true
-            user_groups:
-            - user_groups
-            - user_groups
-        gcp_secrets_migrations:
-        - general:
-            prefix: prefix
-            name: name
-            id: id
-            type: type
-            protection_key: protection_key
-            new_name: new_name
-            status: status
-          payload:
-            gcp_credentials_json: gcp_credentials_json
-        - general:
-            prefix: prefix
-            name: name
-            id: id
-            type: type
-            protection_key: protection_key
-            new_name: new_name
-            status: status
-          payload:
-            gcp_credentials_json: gcp_credentials_json
-      properties:
-        active_directory_migrations:
-          items:
-            $ref: '#/components/schemas/ActiveDirectoryMigration'
-          type: array
-          x-go-name: ActiveDirectoryMigrations
-        aws_secrets_migrations:
-          items:
-            $ref: '#/components/schemas/AWSSecretsMigration'
-          type: array
-          x-go-name: AWSSecretsMigrations
-        azure_kv_migrations:
-          items:
-            $ref: '#/components/schemas/AzureKeyVaultMigration'
-          type: array
-          x-go-name: AzureKVMigrations
-        gcp_secrets_migrations:
-          items:
-            $ref: '#/components/schemas/GCPSecretsMigration'
-          type: array
-          x-go-name: GCPSecretsMigrations
-        hashi_migrations:
-          items:
-            $ref: '#/components/schemas/HashiMigration'
-          type: array
-          x-go-name: HashiMigrations
-        k8s_migrations:
-          items:
-            $ref: '#/components/schemas/K8SMigration'
-          type: array
-          x-go-name: K8SMigrations
-        mock_migrations:
-          items:
-            $ref: '#/components/schemas/MockMigration'
-          type: array
-          x-go-name: MockMigrations
-        one_password_migrations:
-          items:
-            $ref: '#/components/schemas/OnePasswordMigration'
-          type: array
-          x-go-name: OnePasswordMigrations
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    AWSPayload:
-      example:
-        secret: secret
-        region: region
-        key: key
-      properties:
-        key:
-          type: string
-          x-go-name: Key
-        region:
-          type: string
-          x-go-name: Region
-        secret:
-          type: string
-          x-go-name: Secret
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    Rotator:
-      example:
-        rotation_interval: 9
-        name: name
-        id: 5
-        last_error: last_error
-        type: type
-      properties:
-        id:
-          format: int64
-          type: integer
-          x-go-name: Id
-        last_error:
-          type: string
-          x-go-name: LastError
-        name:
-          type: string
-          x-go-name: Name
-        rotation_interval:
-          format: int32
-          type: integer
-          x-go-name: RotationInterval
-        type:
-          type: string
-          x-go-name: Type
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    OnePasswordMigration:
-      example:
-        general:
-          prefix: prefix
-          name: name
-          id: id
-          type: type
-          protection_key: protection_key
-          new_name: new_name
-          status: status
-        payload:
-          secret_key: secret_key
-          password: password
-          vaults:
-          - vaults
-          - vaults
-          email: email
-          url: url
-      properties:
-        general:
-          $ref: '#/components/schemas/MigrationGeneral'
-        payload:
-          $ref: '#/components/schemas/OnePasswordPayload'
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    MigrationGeneral:
-      example:
-        prefix: prefix
-        name: name
-        id: id
-        type: type
-        protection_key: protection_key
-        new_name: new_name
-        status: status
-      properties:
-        id:
-          type: string
-          x-go-name: Id
-        name:
-          type: string
-          x-go-name: Name
-        new_name:
-          type: string
-          x-go-name: NewName
-        prefix:
-          type: string
-          x-go-name: Prefix
-        protection_key:
-          type: string
-          x-go-name: ProtectionKey
-        status:
-          type: string
-          x-go-name: Status
-        type:
-          type: string
-          x-go-name: Type
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    ActiveDirectoryPayload:
-      example:
-        auto_rotate: true
-        ssh_port: ssh_port
-        discover_local_users: true
-        auto_rotate_interval_in_days: 1
-        active_directory_target_id: 1
-        local_users_rotated_secrets_path_template: local_users_rotated_secrets_path_template
-        auto_rotate_rotation_hour: 1
-        domain_name: domain_name
-        enable_rdp_sra: true
-        domain_server_targets_path_template: domain_server_targets_path_template
-        user_base_dn: user_base_dn
-        computer_base_dn: computer_base_dn
-        domain_users_rotated_secrets_path_template: domain_users_rotated_secrets_path_template
-        local_users_ignore_list:
-          key: true
-        user_groups:
-        - user_groups
-        - user_groups
-      properties:
-        active_directory_target_id:
-          format: int64
-          type: integer
-          x-go-name: ActiveDirectoryTargetID
-        auto_rotate:
-          type: boolean
-          x-go-name: AutoRotate
-        auto_rotate_interval_in_days:
-          format: int32
-          type: integer
-          x-go-name: AutoRotateIntervalInDays
-        auto_rotate_rotation_hour:
-          format: int32
-          type: integer
-          x-go-name: AutoRotateRotationHour
-        computer_base_dn:
-          type: string
-          x-go-name: ComputerBaseDN
-        discover_local_users:
-          type: boolean
-          x-go-name: DiscoverLocalUsers
-        domain_name:
-          type: string
-          x-go-name: DomainName
-        domain_server_targets_path_template:
-          type: string
-          x-go-name: DomainServerTargetsPathTemplate
-        domain_users_rotated_secrets_path_template:
-          type: string
-          x-go-name: DomainUsersRotatedSecretsPathTemplate
-        enable_rdp_sra:
-          type: boolean
-          x-go-name: EnableRdpSRA
-        local_users_ignore_list:
-          additionalProperties:
-            type: boolean
-          type: object
-          x-go-name: LocalUsersIgnoreList
-        local_users_rotated_secrets_path_template:
-          type: string
-          x-go-name: LocalUsersRotatedSecretsPathTemplate
-        ssh_port:
-          type: string
-          x-go-name: SshPort
-        user_base_dn:
-          type: string
-          x-go-name: UserBaseDN
-        user_groups:
-          items:
-            type: string
-          type: array
-          x-go-name: UserGroups
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    LogzIoLogForwardingConfig:
-      example:
-        target_logz_io_protocol: target_logz_io_protocol
-        target_logz_io_token: target_logz_io_token
-      properties:
-        target_logz_io_protocol:
-          type: string
-          x-go-name: TargetLogzIoProtocol
-        target_logz_io_token:
-          type: string
-          x-go-name: TargetLogzIoToken
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    ProducersConfigPart:
-      example:
-        producers:
-        - init: true
-          name: name
-          active: true
-          failure_message: failure_message
-          id: 4
-          type: type
-        - init: true
-          name: name
-          active: true
-          failure_message: failure_message
-          id: 4
-          type: type
-      properties:
-        producers:
-          items:
-            $ref: '#/components/schemas/Producer'
-          type: array
-          x-go-name: Producers
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
     AkeylessGatewayConfig:
       example:
         k8s_auths:
@@ -1328,6 +585,921 @@ components:
           x-go-name: Version
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    HashiPayload:
+      example:
+        import_as_json: true
+        url: url
+        namespaces:
+        - namespaces
+        - namespaces
+        token: token
+      properties:
+        import_as_json:
+          type: boolean
+          x-go-name: ImportAsJson
+        namespaces:
+          items:
+            type: string
+          type: array
+          x-go-name: Namespaces
+        token:
+          type: string
+          x-go-name: Token
+        url:
+          type: string
+          x-go-name: Url
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    RuleAssigner:
+      example:
+        unique_id: unique_id
+        access_id: access_id
+      properties:
+        access_id:
+          type: string
+          x-go-name: AccessId
+        unique_id:
+          type: string
+          x-go-name: UniqueId
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    MockPayload:
+      example:
+        vaults:
+        - vaults
+        - vaults
+      properties:
+        vaults:
+          items:
+            type: string
+          type: array
+          x-go-name: Vaults
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    LogstashLogForwardingConfig:
+      example:
+        logstash_protocol: logstash_protocol
+        logstash_dns: logstash_dns
+      properties:
+        logstash_dns:
+          type: string
+          x-go-name: LogstashDns
+        logstash_protocol:
+          type: string
+          x-go-name: LogstashProtocol
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    AzureLogAnalyticsForwardingConfig:
+      example:
+        azure_workspace_key: azure_workspace_key
+        azure_workspace_id: azure_workspace_id
+      properties:
+        azure_workspace_id:
+          type: string
+          x-go-name: AzureWorkspaceId
+        azure_workspace_key:
+          type: string
+          x-go-name: AzureWorkspaceKey
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    AWSSecretsMigration:
+      example:
+        general:
+          prefix: prefix
+          name: name
+          id: id
+          type: type
+          protection_key: protection_key
+          new_name: new_name
+          status: status
+        payload:
+          secret: secret
+          region: region
+          key: key
+      properties:
+        general:
+          $ref: '#/components/schemas/MigrationGeneral'
+        payload:
+          $ref: '#/components/schemas/AWSPayload'
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    KMIPConfigPart:
+      example:
+        key_enc:
+        - 7
+        - 7
+        server:
+          hostname: hostname
+          root: root
+          certificate:
+          - 3
+          - 3
+          active: true
+          certificate_issue_date: 2000-01-23 04:56:07+00:00
+          ca:
+          - 9
+          - 9
+          certificate_ttl_in_seconds: 2
+        server_enc:
+        - 4
+        - 4
+        clients:
+          key:
+            name: name
+            certificate_issue_date: 2000-01-23 04:56:07+00:00
+            rules:
+            - path: path
+              start_time: 5
+              capabilities:
+              - capabilities
+              - capabilities
+              number_of_allowed_access: 5
+              is_limit_access: true
+              assigners:
+              - unique_id: unique_id
+                access_id: access_id
+              - unique_id: unique_id
+                access_id: access_id
+              number_of_access_used: 1
+              type: type
+              ttl: 2
+            - path: path
+              start_time: 5
+              capabilities:
+              - capabilities
+              - capabilities
+              number_of_allowed_access: 5
+              is_limit_access: true
+              assigners:
+              - unique_id: unique_id
+                access_id: access_id
+              - unique_id: unique_id
+                access_id: access_id
+              number_of_access_used: 1
+              type: type
+              ttl: 2
+            id: id
+            activate_keys_on_creation: true
+            certificate_ttl_in_seconds: 6
+      properties:
+        clients:
+          additionalProperties:
+            $ref: '#/components/schemas/KMIPClient'
+          type: object
+          x-go-name: Clients
+        key_enc:
+          description: Saves the private key of the cert issuer in encypted form
+          items:
+            format: uint8
+            type: integer
+          type: array
+          x-go-name: KeyEnc
+        server:
+          $ref: '#/components/schemas/KMIPServer'
+        server_enc:
+          description: 'Saved for backward compatibility
+
+            TODO: remove this after all clients upgrade'
+          items:
+            format: uint8
+            type: integer
+          type: array
+          x-go-name: ServerEnc
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    LogzIoLogForwardingConfig:
+      example:
+        target_logz_io_protocol: target_logz_io_protocol
+        target_logz_io_token: target_logz_io_token
+      properties:
+        target_logz_io_protocol:
+          type: string
+          x-go-name: TargetLogzIoProtocol
+        target_logz_io_token:
+          type: string
+          x-go-name: TargetLogzIoToken
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    Rotator:
+      example:
+        rotation_interval: 9
+        name: name
+        id: 5
+        last_error: last_error
+        type: type
+      properties:
+        id:
+          format: int64
+          type: integer
+          x-go-name: Id
+        last_error:
+          type: string
+          x-go-name: LastError
+        name:
+          type: string
+          x-go-name: Name
+        rotation_interval:
+          format: int32
+          type: integer
+          x-go-name: RotationInterval
+        type:
+          type: string
+          x-go-name: Type
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    ActiveDirectoryMigration:
+      example:
+        general:
+          prefix: prefix
+          name: name
+          id: id
+          type: type
+          protection_key: protection_key
+          new_name: new_name
+          status: status
+        payload:
+          auto_rotate: true
+          ssh_port: ssh_port
+          discover_local_users: true
+          auto_rotate_interval_in_days: 1
+          active_directory_target_id: 1
+          local_users_rotated_secrets_path_template: local_users_rotated_secrets_path_template
+          auto_rotate_rotation_hour: 1
+          domain_name: domain_name
+          enable_rdp_sra: true
+          domain_server_targets_path_template: domain_server_targets_path_template
+          user_base_dn: user_base_dn
+          computer_base_dn: computer_base_dn
+          domain_users_rotated_secrets_path_template: domain_users_rotated_secrets_path_template
+          local_users_ignore_list:
+            key: true
+          user_groups:
+          - user_groups
+          - user_groups
+      properties:
+        general:
+          $ref: '#/components/schemas/MigrationGeneral'
+        payload:
+          $ref: '#/components/schemas/ActiveDirectoryPayload'
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    AllowedAccess:
+      example:
+        sub_claims:
+          key:
+          - sub_claims
+          - sub_claims
+        allowed_api: true
+        alloweds_login: true
+        err_msg: err_msg
+        is_valid: true
+        name: name
+        access_rules_type: access_rules_type
+        acc_id: acc_id
+        hash: hash
+      properties:
+        acc_id:
+          type: string
+          x-go-name: AccId
+        access_rules_type:
+          type: string
+          x-go-name: AccessRulesType
+        allowed_api:
+          type: boolean
+          x-go-name: AllowedApi
+        alloweds_login:
+          type: boolean
+          x-go-name: AllowedsLogin
+        err_msg:
+          type: string
+          x-go-name: ErrMsg
+        hash:
+          type: string
+          x-go-name: Hash
+        is_valid:
+          type: boolean
+          x-go-name: IsValid
+        name:
+          type: string
+          x-go-name: Name
+        sub_claims:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+          x-go-name: SubClaims
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    MigrationGeneral:
+      example:
+        prefix: prefix
+        name: name
+        id: id
+        type: type
+        protection_key: protection_key
+        new_name: new_name
+        status: status
+      properties:
+        id:
+          type: string
+          x-go-name: Id
+        name:
+          type: string
+          x-go-name: Name
+        new_name:
+          type: string
+          x-go-name: NewName
+        prefix:
+          type: string
+          x-go-name: Prefix
+        protection_key:
+          type: string
+          x-go-name: ProtectionKey
+        status:
+          type: string
+          x-go-name: Status
+        type:
+          type: string
+          x-go-name: Type
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    GCPPayload:
+      example:
+        gcp_credentials_json: gcp_credentials_json
+      properties:
+        gcp_credentials_json:
+          type: string
+          x-go-name: Key
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    SplunkLogForwardingConfig:
+      example:
+        splunk_token: splunk_token
+        splunk_source: splunk_source
+        splunk_index: splunk_index
+        splunk_sourcetype: splunk_sourcetype
+        splunk_url: splunk_url
+      properties:
+        splunk_index:
+          type: string
+          x-go-name: SplunkIndex
+        splunk_source:
+          type: string
+          x-go-name: SplunkSource
+        splunk_sourcetype:
+          type: string
+          x-go-name: SplunkSourcetype
+        splunk_token:
+          type: string
+          x-go-name: SplunkToken
+        splunk_url:
+          type: string
+          x-go-name: SplunkUrl
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    ActiveDirectoryPayload:
+      example:
+        auto_rotate: true
+        ssh_port: ssh_port
+        discover_local_users: true
+        auto_rotate_interval_in_days: 1
+        active_directory_target_id: 1
+        local_users_rotated_secrets_path_template: local_users_rotated_secrets_path_template
+        auto_rotate_rotation_hour: 1
+        domain_name: domain_name
+        enable_rdp_sra: true
+        domain_server_targets_path_template: domain_server_targets_path_template
+        user_base_dn: user_base_dn
+        computer_base_dn: computer_base_dn
+        domain_users_rotated_secrets_path_template: domain_users_rotated_secrets_path_template
+        local_users_ignore_list:
+          key: true
+        user_groups:
+        - user_groups
+        - user_groups
+      properties:
+        active_directory_target_id:
+          format: int64
+          type: integer
+          x-go-name: ActiveDirectoryTargetID
+        auto_rotate:
+          type: boolean
+          x-go-name: AutoRotate
+        auto_rotate_interval_in_days:
+          format: int32
+          type: integer
+          x-go-name: AutoRotateIntervalInDays
+        auto_rotate_rotation_hour:
+          format: int32
+          type: integer
+          x-go-name: AutoRotateRotationHour
+        computer_base_dn:
+          type: string
+          x-go-name: ComputerBaseDN
+        discover_local_users:
+          type: boolean
+          x-go-name: DiscoverLocalUsers
+        domain_name:
+          type: string
+          x-go-name: DomainName
+        domain_server_targets_path_template:
+          type: string
+          x-go-name: DomainServerTargetsPathTemplate
+        domain_users_rotated_secrets_path_template:
+          type: string
+          x-go-name: DomainUsersRotatedSecretsPathTemplate
+        enable_rdp_sra:
+          type: boolean
+          x-go-name: EnableRdpSRA
+        local_users_ignore_list:
+          additionalProperties:
+            type: boolean
+          type: object
+          x-go-name: LocalUsersIgnoreList
+        local_users_rotated_secrets_path_template:
+          type: string
+          x-go-name: LocalUsersRotatedSecretsPathTemplate
+        ssh_port:
+          type: string
+          x-go-name: SshPort
+        user_base_dn:
+          type: string
+          x-go-name: UserBaseDN
+        user_groups:
+          items:
+            type: string
+          type: array
+          x-go-name: UserGroups
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    AzureKeyVaultMigration:
+      example:
+        general:
+          prefix: prefix
+          name: name
+          id: id
+          type: type
+          protection_key: protection_key
+          new_name: new_name
+          status: status
+        payload:
+          name: name
+          client: client
+          secret: secret
+          tenant: tenant
+      properties:
+        general:
+          $ref: '#/components/schemas/MigrationGeneral'
+        payload:
+          $ref: '#/components/schemas/AzurePayload'
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    Producer:
+      example:
+        init: true
+        name: name
+        active: true
+        failure_message: failure_message
+        id: 4
+        type: type
+      properties:
+        active:
+          type: boolean
+          x-go-name: Active
+        failure_message:
+          type: string
+          x-go-name: FailureMessage
+        id:
+          format: int64
+          type: integer
+          x-go-name: Id
+        init:
+          type: boolean
+          x-go-name: Init
+        name:
+          type: string
+          x-go-name: Name
+        type:
+          type: string
+          x-go-name: Type
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    gatewayGetConfig:
+      description: gatewayGetConfig is a command that returns gateway configuration
+      properties:
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    OnePasswordPayload:
+      example:
+        secret_key: secret_key
+        password: password
+        vaults:
+        - vaults
+        - vaults
+        email: email
+        url: url
+      properties:
+        email:
+          type: string
+          x-go-name: Email
+        password:
+          type: string
+          x-go-name: Password
+        secret_key:
+          type: string
+          x-go-name: SecretKey
+        url:
+          type: string
+          x-go-name: AccountUrl
+        vaults:
+          items:
+            type: string
+          type: array
+          x-go-name: Vaults
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    ProducersConfigPart:
+      example:
+        producers:
+        - init: true
+          name: name
+          active: true
+          failure_message: failure_message
+          id: 4
+          type: type
+        - init: true
+          name: name
+          active: true
+          failure_message: failure_message
+          id: 4
+          type: type
+      properties:
+        producers:
+          items:
+            $ref: '#/components/schemas/Producer'
+          type: array
+          x-go-name: Producers
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    K8SPayload:
+      example:
+        client_key:
+        - 1
+        - 1
+        server: server
+        password: password
+        client_cert:
+        - 7
+        - 7
+        namespace: namespace
+        ca:
+        - 6
+        - 6
+        skip_system: true
+        token: token
+        username: username
+      properties:
+        ca:
+          items:
+            format: uint8
+            type: integer
+          type: array
+          x-go-name: CA
+        client_cert:
+          items:
+            format: uint8
+            type: integer
+          type: array
+          x-go-name: ClientCert
+        client_key:
+          items:
+            format: uint8
+            type: integer
+          type: array
+          x-go-name: ClientKey
+        namespace:
+          type: string
+          x-go-name: Namespace
+        password:
+          type: string
+          x-go-name: Password
+        server:
+          type: string
+          x-go-name: Server
+        skip_system:
+          type: boolean
+          x-go-name: SkipSystem
+        token:
+          type: string
+          x-go-name: Token
+        username:
+          type: string
+          x-go-name: Username
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    KMIPClient:
+      example:
+        name: name
+        certificate_issue_date: 2000-01-23 04:56:07+00:00
+        rules:
+        - path: path
+          start_time: 5
+          capabilities:
+          - capabilities
+          - capabilities
+          number_of_allowed_access: 5
+          is_limit_access: true
+          assigners:
+          - unique_id: unique_id
+            access_id: access_id
+          - unique_id: unique_id
+            access_id: access_id
+          number_of_access_used: 1
+          type: type
+          ttl: 2
+        - path: path
+          start_time: 5
+          capabilities:
+          - capabilities
+          - capabilities
+          number_of_allowed_access: 5
+          is_limit_access: true
+          assigners:
+          - unique_id: unique_id
+            access_id: access_id
+          - unique_id: unique_id
+            access_id: access_id
+          number_of_access_used: 1
+          type: type
+          ttl: 2
+        id: id
+        activate_keys_on_creation: true
+        certificate_ttl_in_seconds: 6
+      properties:
+        activate_keys_on_creation:
+          type: boolean
+          x-go-name: ActivateKeysOnCreation
+        certificate_issue_date:
+          format: date-time
+          type: string
+          x-go-name: CertificateIssueDate
+        certificate_ttl_in_seconds:
+          format: int64
+          type: integer
+          x-go-name: CertificateTTLInSeconds
+        id:
+          type: string
+          x-go-name: ID
+        name:
+          type: string
+          x-go-name: Name
+        rules:
+          items:
+            $ref: '#/components/schemas/PathRule'
+          type: array
+          x-go-name: Rules
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    MockMigration:
+      example:
+        general:
+          prefix: prefix
+          name: name
+          id: id
+          type: type
+          protection_key: protection_key
+          new_name: new_name
+          status: status
+        payload:
+          vaults:
+          - vaults
+          - vaults
+      properties:
+        general:
+          $ref: '#/components/schemas/MigrationGeneral'
+        payload:
+          $ref: '#/components/schemas/MockPayload'
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    AwsS3LogForwardingConfig:
+      example:
+        aws_access_id: aws_access_id
+        aws_region: aws_region
+        aws_use_gateway_cloud_identity: true
+        aws_access_key: aws_access_key
+        bucket_name: bucket_name
+        log_folder: log_folder
+      properties:
+        aws_access_id:
+          type: string
+          x-go-name: AwsAccessId
+        aws_access_key:
+          type: string
+          x-go-name: AwsAccessKey
+        aws_region:
+          type: string
+          x-go-name: AwsRegion
+        aws_use_gateway_cloud_identity:
+          type: boolean
+          x-go-name: AwsUseGatewayCloudIdentity
+        bucket_name:
+          type: string
+          x-go-name: BucketName
+        log_folder:
+          type: string
+          x-go-name: LogFolder
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    GeneralConfigPart:
+      example:
+        tcp_port: tcp_port
+        api_token_ttl: api_token_ttl
+        gw_cluster_url: gw_cluster_url
+        enable_tls: true
+        enable_tls_curl: true
+        tls_key: tls_key
+        enable_tls_configure: true
+        enable_tls_hvp: true
+        tls_cert: tls_cert
+        akeyless_url: akeyless_url
+        display_name: display_name
+      properties:
+        akeyless_url:
+          description: 'AkeylessUrl is here for BC only. Gator will still return it if it exists in
+
+            the configuration, but new clients (>=2.34.0) will ignore it and override it with what exists in
+
+            their local file.
+
+            It will no longer be sent to Gator for update, so new clusters will only have
+
+            the default value saved in the DB.'
+          type: string
+          x-go-name: AkeylessUrl
+        api_token_ttl:
+          type: string
+          x-go-name: ApiTokenTtl
+        display_name:
+          type: string
+          x-go-name: DisplayName
+        enable_tls:
+          type: boolean
+          x-go-name: EnableTLS
+        enable_tls_configure:
+          type: boolean
+          x-go-name: EnableTLSConfig
+        enable_tls_curl:
+          type: boolean
+          x-go-name: EnableTLSCurl
+        enable_tls_hvp:
+          type: boolean
+          x-go-name: EnableTLSHpv
+        gw_cluster_url:
+          type: string
+          x-go-name: GwClusterUrl
+        tcp_port:
+          type: string
+          x-go-name: TcpPort
+        tls_cert:
+          type: string
+          x-go-name: TLSCert
+        tls_key:
+          type: string
+          x-go-name: TLSKey
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    K8SMigration:
+      example:
+        general:
+          prefix: prefix
+          name: name
+          id: id
+          type: type
+          protection_key: protection_key
+          new_name: new_name
+          status: status
+        payload:
+          client_key:
+          - 1
+          - 1
+          server: server
+          password: password
+          client_cert:
+          - 7
+          - 7
+          namespace: namespace
+          ca:
+          - 6
+          - 6
+          skip_system: true
+          token: token
+          username: username
+      properties:
+        general:
+          $ref: '#/components/schemas/MigrationGeneral'
+        payload:
+          $ref: '#/components/schemas/K8SPayload'
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    LdapConfigPart:
+      example:
+        ldap_anonymous_search: true
+        ldap_cert: ldap_cert
+        ldap_bind_password: ldap_bind_password
+        ldap_group_dn: ldap_group_dn
+        ldap_group_filter: ldap_group_filter
+        ldap_user_dn: ldap_user_dn
+        ldap_group_attr: ldap_group_attr
+        ldap_access_id: ldap_access_id
+        ldap_enable: true
+        ldap_private_key: ldap_private_key
+        ldap_bind_dn: ldap_bind_dn
+        ldap_url: ldap_url
+        ldap_token_expiration: ldap_token_expiration
+        ldap_user_attr: ldap_user_attr
+      properties:
+        ldap_access_id:
+          type: string
+          x-go-name: LdapAccessId
+        ldap_anonymous_search:
+          type: boolean
+          x-go-name: LdapAnonymousSearch
+        ldap_bind_dn:
+          type: string
+          x-go-name: LdapBindDn
+        ldap_bind_password:
+          type: string
+          x-go-name: LdapBindPassword
+        ldap_cert:
+          type: string
+          x-go-name: LdapCertificate
+        ldap_enable:
+          type: boolean
+          x-go-name: LdapEnable
+        ldap_group_attr:
+          type: string
+          x-go-name: LdapGroupAttr
+        ldap_group_dn:
+          type: string
+          x-go-name: LdapGroupDn
+        ldap_group_filter:
+          type: string
+          x-go-name: LdapGroupFilter
+        ldap_private_key:
+          type: string
+          x-go-name: LdapPrivateKey
+        ldap_token_expiration:
+          type: string
+          x-go-name: LdapTokenExpiration
+        ldap_url:
+          type: string
+          x-go-name: LdapUrlAddress
+        ldap_user_attr:
+          type: string
+          x-go-name: LdapUserAttr
+        ldap_user_dn:
+          type: string
+          x-go-name: LdapUserDn
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    DatadogForwardingConfig:
+      example:
+        datadog_log_source: datadog_log_source
+        datadog_log_service: datadog_log_service
+        datadog_log_tags: datadog_log_tags
+        datadog_host: datadog_host
+        datadog_api_key: datadog_api_key
+      properties:
+        datadog_api_key:
+          type: string
+          x-go-name: DatadogApiKey
+        datadog_host:
+          type: string
+          x-go-name: DatadogHost
+        datadog_log_service:
+          type: string
+          x-go-name: DatadogLogService
+        datadog_log_source:
+          type: string
+          x-go-name: DatadogLogSource
+        datadog_log_tags:
+          type: string
+          x-go-name: DatadogLogTags
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
     SyslogLogForwardingConfig:
       example:
         syslog_host: syslog_host
@@ -1432,260 +1604,149 @@ components:
           x-go-name: TargetLogType
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    LogstashLogForwardingConfig:
+    RotatorsConfigPart:
       example:
-        logstash_protocol: logstash_protocol
-        logstash_dns: logstash_dns
+        rotators:
+        - rotation_interval: 9
+          name: name
+          id: 5
+          last_error: last_error
+          type: type
+        - rotation_interval: 9
+          name: name
+          id: 5
+          last_error: last_error
+          type: type
       properties:
-        logstash_dns:
-          type: string
-          x-go-name: LogstashDns
-        logstash_protocol:
-          type: string
-          x-go-name: LogstashProtocol
+        rotators:
+          items:
+            $ref: '#/components/schemas/Rotator'
+          type: array
+          x-go-name: Rotators
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    AllowedAccess:
+    AdminsConfigPart:
       example:
-        sub_claims:
+        allowed_access:
           key:
-          - sub_claims
-          - sub_claims
-        allowed_api: true
-        alloweds_login: true
-        err_msg: err_msg
-        is_valid: true
-        name: name
-        access_rules_type: access_rules_type
-        acc_id: acc_id
-        hash: hash
+            sub_claims:
+              key:
+              - sub_claims
+              - sub_claims
+            allowed_api: true
+            alloweds_login: true
+            err_msg: err_msg
+            is_valid: true
+            name: name
+            access_rules_type: access_rules_type
+            acc_id: acc_id
+            hash: hash
       properties:
-        acc_id:
-          type: string
-          x-go-name: AccId
-        access_rules_type:
-          type: string
-          x-go-name: AccessRulesType
-        allowed_api:
-          type: boolean
-          x-go-name: AllowedApi
-        alloweds_login:
-          type: boolean
-          x-go-name: AllowedsLogin
-        err_msg:
-          type: string
-          x-go-name: ErrMsg
-        hash:
-          type: string
-          x-go-name: Hash
-        is_valid:
-          type: boolean
-          x-go-name: IsValid
-        name:
-          type: string
-          x-go-name: Name
-        sub_claims:
+        allowed_access:
           additionalProperties:
-            items:
-              type: string
-            type: array
+            $ref: '#/components/schemas/AllowedAccess'
           type: object
-          x-go-name: SubClaims
+          x-go-name: Allowed
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    SplunkLogForwardingConfig:
+    DefaultConfigPart:
       example:
-        splunk_token: splunk_token
-        splunk_source: splunk_source
-        splunk_index: splunk_index
-        splunk_sourcetype: splunk_sourcetype
-        splunk_url: splunk_url
+        saml_access_id: saml_access_id
+        default_protection_key_id: 9
+        oidc_access_id: oidc_access_id
+        default_secret_location: default_secret_location
       properties:
-        splunk_index:
-          type: string
-          x-go-name: SplunkIndex
-        splunk_source:
-          type: string
-          x-go-name: SplunkSource
-        splunk_sourcetype:
-          type: string
-          x-go-name: SplunkSourcetype
-        splunk_token:
-          type: string
-          x-go-name: SplunkToken
-        splunk_url:
-          type: string
-          x-go-name: SplunkUrl
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    AwsS3LogForwardingConfig:
-      example:
-        aws_access_id: aws_access_id
-        aws_region: aws_region
-        aws_use_gateway_cloud_identity: true
-        aws_access_key: aws_access_key
-        bucket_name: bucket_name
-        log_folder: log_folder
-      properties:
-        aws_access_id:
-          type: string
-          x-go-name: AwsAccessId
-        aws_access_key:
-          type: string
-          x-go-name: AwsAccessKey
-        aws_region:
-          type: string
-          x-go-name: AwsRegion
-        aws_use_gateway_cloud_identity:
-          type: boolean
-          x-go-name: AwsUseGatewayCloudIdentity
-        bucket_name:
-          type: string
-          x-go-name: BucketName
-        log_folder:
-          type: string
-          x-go-name: LogFolder
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    KMIPClient:
-      example:
-        name: name
-        certificate_issue_date: 2000-01-23 04:56:07+00:00
-        rules:
-        - path: path
-          start_time: 5
-          capabilities:
-          - capabilities
-          - capabilities
-          number_of_allowed_access: 5
-          is_limit_access: true
-          assigners:
-          - unique_id: unique_id
-            access_id: access_id
-          - unique_id: unique_id
-            access_id: access_id
-          number_of_access_used: 1
-          type: type
-          ttl: 2
-        - path: path
-          start_time: 5
-          capabilities:
-          - capabilities
-          - capabilities
-          number_of_allowed_access: 5
-          is_limit_access: true
-          assigners:
-          - unique_id: unique_id
-            access_id: access_id
-          - unique_id: unique_id
-            access_id: access_id
-          number_of_access_used: 1
-          type: type
-          ttl: 2
-        id: id
-        activate_keys_on_creation: true
-        certificate_ttl_in_seconds: 6
-      properties:
-        activate_keys_on_creation:
-          type: boolean
-          x-go-name: ActivateKeysOnCreation
-        certificate_issue_date:
-          format: date-time
-          type: string
-          x-go-name: CertificateIssueDate
-        certificate_ttl_in_seconds:
+        default_protection_key_id:
           format: int64
           type: integer
-          x-go-name: CertificateTTLInSeconds
-        id:
+          x-go-name: ProtectionKeyID
+        default_secret_location:
           type: string
-          x-go-name: ID
-        name:
+          x-go-name: SecretLocation
+        oidc_access_id:
           type: string
-          x-go-name: Name
-        rules:
-          items:
-            $ref: '#/components/schemas/PathRule'
-          type: array
-          x-go-name: Rules
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    AzureKeyVaultMigration:
-      example:
-        general:
-          prefix: prefix
-          name: name
-          id: id
-          type: type
-          protection_key: protection_key
-          new_name: new_name
-          status: status
-        payload:
-          name: name
-          client: client
-          secret: secret
-          tenant: tenant
-      properties:
-        general:
-          $ref: '#/components/schemas/MigrationGeneral'
-        payload:
-          $ref: '#/components/schemas/AzurePayload'
+          x-go-name: OIDCAccessId
+        saml_access_id:
+          type: string
+          x-go-name: SamlAccessId
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    K8SPayload:
+    LeadershipConfigPart:
       example:
-        client_key:
-        - 1
-        - 1
-        server: server
-        password: password
-        client_cert:
+        open_leadership:
         - 7
         - 7
-        namespace: namespace
-        ca:
-        - 6
-        - 6
-        skip_system: true
-        token: token
-        username: username
       properties:
-        ca:
+        open_leadership:
           items:
-            format: uint8
+            format: uint32
             type: integer
           type: array
-          x-go-name: CA
-        client_cert:
+          x-go-name: OpenLeadership
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    K8SAuthsConfigPart:
+      example:
+        k8s_auths:
+        - k8s_ca_cert: k8s_ca_cert
+          k8s_host: k8s_host
+          k8s_token_reviewer_jwt: k8s_token_reviewer_jwt
+          cluster_api_type: cluster_api_type
+          k8s_issuer: k8s_issuer
+          protection_key: protection_key
+          auth_method_access_id: auth_method_access_id
+          k8s_pub_keys_pem:
+          - k8s_pub_keys_pem
+          - k8s_pub_keys_pem
+          rancher_api_key: rancher_api_key
+          am_token_expiration: 0
+          name: name
+          auth_method_prv_key_pem: auth_method_prv_key_pem
+          disable_iss_validation: true
+          id: id
+          rancher_cluster_id: rancher_cluster_id
+          use_local_ca_jwt: true
+        - k8s_ca_cert: k8s_ca_cert
+          k8s_host: k8s_host
+          k8s_token_reviewer_jwt: k8s_token_reviewer_jwt
+          cluster_api_type: cluster_api_type
+          k8s_issuer: k8s_issuer
+          protection_key: protection_key
+          auth_method_access_id: auth_method_access_id
+          k8s_pub_keys_pem:
+          - k8s_pub_keys_pem
+          - k8s_pub_keys_pem
+          rancher_api_key: rancher_api_key
+          am_token_expiration: 0
+          name: name
+          auth_method_prv_key_pem: auth_method_prv_key_pem
+          disable_iss_validation: true
+          id: id
+          rancher_cluster_id: rancher_cluster_id
+          use_local_ca_jwt: true
+      properties:
+        k8s_auths:
           items:
-            format: uint8
-            type: integer
+            $ref: '#/components/schemas/K8SAuth'
           type: array
-          x-go-name: ClientCert
-        client_key:
-          items:
-            format: uint8
-            type: integer
-          type: array
-          x-go-name: ClientKey
-        namespace:
+          x-go-name: K8SAuths
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    GatewayMessageQueueInfo:
+      example:
+        queue_name: queue_name
+        queue_url: queue_url
+        mq_type: mq_type
+      properties:
+        mq_type:
           type: string
-          x-go-name: Namespace
-        password:
+          x-go-name: MQType
+        queue_name:
           type: string
-          x-go-name: Password
-        server:
+          x-go-name: QueueName
+        queue_url:
           type: string
-          x-go-name: Server
-        skip_system:
-          type: boolean
-          x-go-name: SkipSystem
-        token:
-          type: string
-          x-go-name: Token
-        username:
-          type: string
-          x-go-name: Username
+          x-go-name: QueueURL
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
     ElasticsearchLogForwardingConfig:
@@ -1725,31 +1786,437 @@ components:
           x-go-name: ElasticsearchUserName
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    CFConfigPart:
+    AWSPayload:
       example:
-        customer_fragements:
-          key: customer_fragements
+        secret: secret
+        region: region
+        key: key
       properties:
-        customer_fragements:
-          additionalProperties:
+        key:
+          type: string
+          x-go-name: Key
+        region:
+          type: string
+          x-go-name: Region
+        secret:
+          type: string
+          x-go-name: Secret
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    HashiMigration:
+      example:
+        general:
+          prefix: prefix
+          name: name
+          id: id
+          type: type
+          protection_key: protection_key
+          new_name: new_name
+          status: status
+        payload:
+          import_as_json: true
+          url: url
+          namespaces:
+          - namespaces
+          - namespaces
+          token: token
+      properties:
+        general:
+          $ref: '#/components/schemas/MigrationGeneral'
+        payload:
+          $ref: '#/components/schemas/HashiPayload'
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    MigrationsConfigPart:
+      example:
+        hashi_migrations:
+        - general:
+            prefix: prefix
+            name: name
+            id: id
+            type: type
+            protection_key: protection_key
+            new_name: new_name
+            status: status
+          payload:
+            import_as_json: true
+            url: url
+            namespaces:
+            - namespaces
+            - namespaces
+            token: token
+        - general:
+            prefix: prefix
+            name: name
+            id: id
+            type: type
+            protection_key: protection_key
+            new_name: new_name
+            status: status
+          payload:
+            import_as_json: true
+            url: url
+            namespaces:
+            - namespaces
+            - namespaces
+            token: token
+        azure_kv_migrations:
+        - general:
+            prefix: prefix
+            name: name
+            id: id
+            type: type
+            protection_key: protection_key
+            new_name: new_name
+            status: status
+          payload:
+            name: name
+            client: client
+            secret: secret
+            tenant: tenant
+        - general:
+            prefix: prefix
+            name: name
+            id: id
+            type: type
+            protection_key: protection_key
+            new_name: new_name
+            status: status
+          payload:
+            name: name
+            client: client
+            secret: secret
+            tenant: tenant
+        k8s_migrations:
+        - general:
+            prefix: prefix
+            name: name
+            id: id
+            type: type
+            protection_key: protection_key
+            new_name: new_name
+            status: status
+          payload:
+            client_key:
+            - 1
+            - 1
+            server: server
+            password: password
+            client_cert:
+            - 7
+            - 7
+            namespace: namespace
+            ca:
+            - 6
+            - 6
+            skip_system: true
+            token: token
+            username: username
+        - general:
+            prefix: prefix
+            name: name
+            id: id
+            type: type
+            protection_key: protection_key
+            new_name: new_name
+            status: status
+          payload:
+            client_key:
+            - 1
+            - 1
+            server: server
+            password: password
+            client_cert:
+            - 7
+            - 7
+            namespace: namespace
+            ca:
+            - 6
+            - 6
+            skip_system: true
+            token: token
+            username: username
+        aws_secrets_migrations:
+        - general:
+            prefix: prefix
+            name: name
+            id: id
+            type: type
+            protection_key: protection_key
+            new_name: new_name
+            status: status
+          payload:
+            secret: secret
+            region: region
+            key: key
+        - general:
+            prefix: prefix
+            name: name
+            id: id
+            type: type
+            protection_key: protection_key
+            new_name: new_name
+            status: status
+          payload:
+            secret: secret
+            region: region
+            key: key
+        mock_migrations:
+        - general:
+            prefix: prefix
+            name: name
+            id: id
+            type: type
+            protection_key: protection_key
+            new_name: new_name
+            status: status
+          payload:
+            vaults:
+            - vaults
+            - vaults
+        - general:
+            prefix: prefix
+            name: name
+            id: id
+            type: type
+            protection_key: protection_key
+            new_name: new_name
+            status: status
+          payload:
+            vaults:
+            - vaults
+            - vaults
+        one_password_migrations:
+        - general:
+            prefix: prefix
+            name: name
+            id: id
+            type: type
+            protection_key: protection_key
+            new_name: new_name
+            status: status
+          payload:
+            secret_key: secret_key
+            password: password
+            vaults:
+            - vaults
+            - vaults
+            email: email
+            url: url
+        - general:
+            prefix: prefix
+            name: name
+            id: id
+            type: type
+            protection_key: protection_key
+            new_name: new_name
+            status: status
+          payload:
+            secret_key: secret_key
+            password: password
+            vaults:
+            - vaults
+            - vaults
+            email: email
+            url: url
+        active_directory_migrations:
+        - general:
+            prefix: prefix
+            name: name
+            id: id
+            type: type
+            protection_key: protection_key
+            new_name: new_name
+            status: status
+          payload:
+            auto_rotate: true
+            ssh_port: ssh_port
+            discover_local_users: true
+            auto_rotate_interval_in_days: 1
+            active_directory_target_id: 1
+            local_users_rotated_secrets_path_template: local_users_rotated_secrets_path_template
+            auto_rotate_rotation_hour: 1
+            domain_name: domain_name
+            enable_rdp_sra: true
+            domain_server_targets_path_template: domain_server_targets_path_template
+            user_base_dn: user_base_dn
+            computer_base_dn: computer_base_dn
+            domain_users_rotated_secrets_path_template: domain_users_rotated_secrets_path_template
+            local_users_ignore_list:
+              key: true
+            user_groups:
+            - user_groups
+            - user_groups
+        - general:
+            prefix: prefix
+            name: name
+            id: id
+            type: type
+            protection_key: protection_key
+            new_name: new_name
+            status: status
+          payload:
+            auto_rotate: true
+            ssh_port: ssh_port
+            discover_local_users: true
+            auto_rotate_interval_in_days: 1
+            active_directory_target_id: 1
+            local_users_rotated_secrets_path_template: local_users_rotated_secrets_path_template
+            auto_rotate_rotation_hour: 1
+            domain_name: domain_name
+            enable_rdp_sra: true
+            domain_server_targets_path_template: domain_server_targets_path_template
+            user_base_dn: user_base_dn
+            computer_base_dn: computer_base_dn
+            domain_users_rotated_secrets_path_template: domain_users_rotated_secrets_path_template
+            local_users_ignore_list:
+              key: true
+            user_groups:
+            - user_groups
+            - user_groups
+        gcp_secrets_migrations:
+        - general:
+            prefix: prefix
+            name: name
+            id: id
+            type: type
+            protection_key: protection_key
+            new_name: new_name
+            status: status
+          payload:
+            gcp_credentials_json: gcp_credentials_json
+        - general:
+            prefix: prefix
+            name: name
+            id: id
+            type: type
+            protection_key: protection_key
+            new_name: new_name
+            status: status
+          payload:
+            gcp_credentials_json: gcp_credentials_json
+      properties:
+        active_directory_migrations:
+          items:
+            $ref: '#/components/schemas/ActiveDirectoryMigration'
+          type: array
+          x-go-name: ActiveDirectoryMigrations
+        aws_secrets_migrations:
+          items:
+            $ref: '#/components/schemas/AWSSecretsMigration'
+          type: array
+          x-go-name: AWSSecretsMigrations
+        azure_kv_migrations:
+          items:
+            $ref: '#/components/schemas/AzureKeyVaultMigration'
+          type: array
+          x-go-name: AzureKVMigrations
+        gcp_secrets_migrations:
+          items:
+            $ref: '#/components/schemas/GCPSecretsMigration'
+          type: array
+          x-go-name: GCPSecretsMigrations
+        hashi_migrations:
+          items:
+            $ref: '#/components/schemas/HashiMigration'
+          type: array
+          x-go-name: HashiMigrations
+        k8s_migrations:
+          items:
+            $ref: '#/components/schemas/K8SMigration'
+          type: array
+          x-go-name: K8SMigrations
+        mock_migrations:
+          items:
+            $ref: '#/components/schemas/MockMigration'
+          type: array
+          x-go-name: MockMigrations
+        one_password_migrations:
+          items:
+            $ref: '#/components/schemas/OnePasswordMigration'
+          type: array
+          x-go-name: OnePasswordMigrations
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    GCPSecretsMigration:
+      example:
+        general:
+          prefix: prefix
+          name: name
+          id: id
+          type: type
+          protection_key: protection_key
+          new_name: new_name
+          status: status
+        payload:
+          gcp_credentials_json: gcp_credentials_json
+      properties:
+        general:
+          $ref: '#/components/schemas/MigrationGeneral'
+        payload:
+          $ref: '#/components/schemas/GCPPayload'
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    PathRule:
+      example:
+        path: path
+        start_time: 5
+        capabilities:
+        - capabilities
+        - capabilities
+        number_of_allowed_access: 5
+        is_limit_access: true
+        assigners:
+        - unique_id: unique_id
+          access_id: access_id
+        - unique_id: unique_id
+          access_id: access_id
+        number_of_access_used: 1
+        type: type
+        ttl: 2
+      properties:
+        assigners:
+          items:
+            $ref: '#/components/schemas/RuleAssigner'
+          type: array
+          x-go-name: Assigners
+        capabilities:
+          description: The approved/denied capabilities in the path
+          items:
             type: string
-          type: object
-          x-go-name: CFragments
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    AzureLogAnalyticsForwardingConfig:
-      example:
-        azure_workspace_key: azure_workspace_key
-        azure_workspace_id: azure_workspace_id
-      properties:
-        azure_workspace_id:
+          type: array
+          x-go-name: Capabilities
+        is_limit_access:
+          description: flag that indicate that this rule is allowed to be access RemainingAccess of times.
+          type: boolean
+          x-go-name: IsLimitAccess
+        number_of_access_used:
+          format: int64
+          type: integer
+          x-go-name: NumberOfAccessUsed
+        number_of_allowed_access:
+          format: int64
+          type: integer
+          x-go-name: NumberOfAllowedAccess
+        path:
+          description: The path the rule refers to
           type: string
-          x-go-name: AzureWorkspaceId
-        azure_workspace_key:
+          x-go-name: Path
+        start_time:
+          format: int64
+          type: integer
+          x-go-name: StartTime
+        ttl:
+          format: int64
+          type: integer
+          x-go-name: TTL
+        type:
+          title: PathRuleType defines a kind of every PathRule assigned to a Role.
           type: string
-          x-go-name: AzureWorkspaceKey
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+      title: PathRule is a single rule used in AKEYLESS RBAC.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     JSONError:
       properties:
         error:
@@ -1758,6 +2225,27 @@ components:
       title: JSONError wraps an error with JSON object.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    AzurePayload:
+      example:
+        name: name
+        client: client
+        secret: secret
+        tenant: tenant
+      properties:
+        client:
+          type: string
+          x-go-name: Client
+        name:
+          type: string
+          x-go-name: Name
+        secret:
+          type: string
+          x-go-name: Secret
+        tenant:
+          type: string
+          x-go-name: Tenant
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
     K8SAuth:
       example:
         k8s_ca_cert: k8s_ca_cert
@@ -1851,16 +2339,32 @@ components:
           x-go-name: UseLocalCAJwt
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    GCPPayload:
+    CacheConfigPart:
       example:
-        gcp_credentials_json: gcp_credentials_json
+        proactive_cache_enable: true
+        proactive_cache_dump_interval: proactive_cache_dump_interval
+        cache_ttl: cache_ttl
+        cache_enable: true
+        proactive_cache_minimum_fetching_time: proactive_cache_minimum_fetching_time
       properties:
-        gcp_credentials_json:
+        cache_enable:
+          type: boolean
+          x-go-name: CacheEnable
+        cache_ttl:
           type: string
-          x-go-name: Key
+          x-go-name: CacheTTL
+        proactive_cache_dump_interval:
+          type: string
+          x-go-name: ProActiveCacheDumpInterval
+        proactive_cache_enable:
+          type: boolean
+          x-go-name: ProActiveCacheEnable
+        proactive_cache_minimum_fetching_time:
+          type: string
+          x-go-name: ProActiveCacheMinimumFetchingTime
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    GCPSecretsMigration:
+    OnePasswordMigration:
       example:
         general:
           prefix: prefix
@@ -1871,12 +2375,18 @@ components:
           new_name: new_name
           status: status
         payload:
-          gcp_credentials_json: gcp_credentials_json
+          secret_key: secret_key
+          password: password
+          vaults:
+          - vaults
+          - vaults
+          email: email
+          url: url
       properties:
         general:
           $ref: '#/components/schemas/MigrationGeneral'
         payload:
-          $ref: '#/components/schemas/GCPPayload'
+          $ref: '#/components/schemas/OnePasswordPayload'
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
     KMIPServer:
@@ -1924,525 +2434,15 @@ components:
           x-go-name: Root
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    AzurePayload:
+    CFConfigPart:
       example:
-        name: name
-        client: client
-        secret: secret
-        tenant: tenant
+        customer_fragements:
+          key: customer_fragements
       properties:
-        client:
-          type: string
-          x-go-name: Client
-        name:
-          type: string
-          x-go-name: Name
-        secret:
-          type: string
-          x-go-name: Secret
-        tenant:
-          type: string
-          x-go-name: Tenant
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    GeneralConfigPart:
-      example:
-        tcp_port: tcp_port
-        api_token_ttl: api_token_ttl
-        gw_cluster_url: gw_cluster_url
-        enable_tls: true
-        enable_tls_curl: true
-        tls_key: tls_key
-        enable_tls_configure: true
-        enable_tls_hvp: true
-        tls_cert: tls_cert
-        akeyless_url: akeyless_url
-        display_name: display_name
-      properties:
-        akeyless_url:
-          description: 'AkeylessUrl is here for BC only. Gator will still return it if it exists in
-
-            the configuration, but new clients (>=2.34.0) will ignore it and override it with what exists in
-
-            their local file.
-
-            It will no longer be sent to Gator for update, so new clusters will only have
-
-            the default value saved in the DB.'
-          type: string
-          x-go-name: AkeylessUrl
-        api_token_ttl:
-          type: string
-          x-go-name: ApiTokenTtl
-        display_name:
-          type: string
-          x-go-name: DisplayName
-        enable_tls:
-          type: boolean
-          x-go-name: EnableTLS
-        enable_tls_configure:
-          type: boolean
-          x-go-name: EnableTLSConfig
-        enable_tls_curl:
-          type: boolean
-          x-go-name: EnableTLSCurl
-        enable_tls_hvp:
-          type: boolean
-          x-go-name: EnableTLSHpv
-        gw_cluster_url:
-          type: string
-          x-go-name: GwClusterUrl
-        tcp_port:
-          type: string
-          x-go-name: TcpPort
-        tls_cert:
-          type: string
-          x-go-name: TLSCert
-        tls_key:
-          type: string
-          x-go-name: TLSKey
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    RotatorsConfigPart:
-      example:
-        rotators:
-        - rotation_interval: 9
-          name: name
-          id: 5
-          last_error: last_error
-          type: type
-        - rotation_interval: 9
-          name: name
-          id: 5
-          last_error: last_error
-          type: type
-      properties:
-        rotators:
-          items:
-            $ref: '#/components/schemas/Rotator'
-          type: array
-          x-go-name: Rotators
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    AdminsConfigPart:
-      example:
-        allowed_access:
-          key:
-            sub_claims:
-              key:
-              - sub_claims
-              - sub_claims
-            allowed_api: true
-            alloweds_login: true
-            err_msg: err_msg
-            is_valid: true
-            name: name
-            access_rules_type: access_rules_type
-            acc_id: acc_id
-            hash: hash
-      properties:
-        allowed_access:
+        customer_fragements:
           additionalProperties:
-            $ref: '#/components/schemas/AllowedAccess'
+            type: string
           type: object
-          x-go-name: Allowed
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    K8SAuthsConfigPart:
-      example:
-        k8s_auths:
-        - k8s_ca_cert: k8s_ca_cert
-          k8s_host: k8s_host
-          k8s_token_reviewer_jwt: k8s_token_reviewer_jwt
-          cluster_api_type: cluster_api_type
-          k8s_issuer: k8s_issuer
-          protection_key: protection_key
-          auth_method_access_id: auth_method_access_id
-          k8s_pub_keys_pem:
-          - k8s_pub_keys_pem
-          - k8s_pub_keys_pem
-          rancher_api_key: rancher_api_key
-          am_token_expiration: 0
-          name: name
-          auth_method_prv_key_pem: auth_method_prv_key_pem
-          disable_iss_validation: true
-          id: id
-          rancher_cluster_id: rancher_cluster_id
-          use_local_ca_jwt: true
-        - k8s_ca_cert: k8s_ca_cert
-          k8s_host: k8s_host
-          k8s_token_reviewer_jwt: k8s_token_reviewer_jwt
-          cluster_api_type: cluster_api_type
-          k8s_issuer: k8s_issuer
-          protection_key: protection_key
-          auth_method_access_id: auth_method_access_id
-          k8s_pub_keys_pem:
-          - k8s_pub_keys_pem
-          - k8s_pub_keys_pem
-          rancher_api_key: rancher_api_key
-          am_token_expiration: 0
-          name: name
-          auth_method_prv_key_pem: auth_method_prv_key_pem
-          disable_iss_validation: true
-          id: id
-          rancher_cluster_id: rancher_cluster_id
-          use_local_ca_jwt: true
-      properties:
-        k8s_auths:
-          items:
-            $ref: '#/components/schemas/K8SAuth'
-          type: array
-          x-go-name: K8SAuths
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    HashiPayload:
-      example:
-        import_as_json: true
-        url: url
-        namespaces:
-        - namespaces
-        - namespaces
-        token: token
-      properties:
-        import_as_json:
-          type: boolean
-          x-go-name: ImportAsJson
-        namespaces:
-          items:
-            type: string
-          type: array
-          x-go-name: Namespaces
-        token:
-          type: string
-          x-go-name: Token
-        url:
-          type: string
-          x-go-name: Url
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    RuleAssigner:
-      example:
-        unique_id: unique_id
-        access_id: access_id
-      properties:
-        access_id:
-          type: string
-          x-go-name: AccessId
-        unique_id:
-          type: string
-          x-go-name: UniqueId
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    MockMigration:
-      example:
-        general:
-          prefix: prefix
-          name: name
-          id: id
-          type: type
-          protection_key: protection_key
-          new_name: new_name
-          status: status
-        payload:
-          vaults:
-          - vaults
-          - vaults
-      properties:
-        general:
-          $ref: '#/components/schemas/MigrationGeneral'
-        payload:
-          $ref: '#/components/schemas/MockPayload'
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    DatadogForwardingConfig:
-      example:
-        datadog_log_source: datadog_log_source
-        datadog_log_service: datadog_log_service
-        datadog_log_tags: datadog_log_tags
-        datadog_host: datadog_host
-        datadog_api_key: datadog_api_key
-      properties:
-        datadog_api_key:
-          type: string
-          x-go-name: DatadogApiKey
-        datadog_host:
-          type: string
-          x-go-name: DatadogHost
-        datadog_log_service:
-          type: string
-          x-go-name: DatadogLogService
-        datadog_log_source:
-          type: string
-          x-go-name: DatadogLogSource
-        datadog_log_tags:
-          type: string
-          x-go-name: DatadogLogTags
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    gatewayGetConfig:
-      description: gatewayGetConfig is a command that returns gateway configuration
-      properties:
-        json:
-          description: Set output format to JSON
-          type: boolean
-          x-go-name: Json
-        token:
-          description: Authentication token (see `/auth` and `/configure`)
-          type: string
-          x-go-name: Profile
-        uid-token:
-          description: The universal identity token, Required only for universal_identity authentication
-          type: string
-          x-go-name: UIDToken
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    Producer:
-      example:
-        init: true
-        name: name
-        active: true
-        failure_message: failure_message
-        id: 4
-        type: type
-      properties:
-        active:
-          type: boolean
-          x-go-name: Active
-        failure_message:
-          type: string
-          x-go-name: FailureMessage
-        id:
-          format: int64
-          type: integer
-          x-go-name: Id
-        init:
-          type: boolean
-          x-go-name: Init
-        name:
-          type: string
-          x-go-name: Name
-        type:
-          type: string
-          x-go-name: Type
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    LdapConfigPart:
-      example:
-        ldap_anonymous_search: true
-        ldap_cert: ldap_cert
-        ldap_bind_password: ldap_bind_password
-        ldap_group_dn: ldap_group_dn
-        ldap_group_filter: ldap_group_filter
-        ldap_user_dn: ldap_user_dn
-        ldap_group_attr: ldap_group_attr
-        ldap_access_id: ldap_access_id
-        ldap_enable: true
-        ldap_private_key: ldap_private_key
-        ldap_bind_dn: ldap_bind_dn
-        ldap_url: ldap_url
-        ldap_token_expiration: ldap_token_expiration
-        ldap_user_attr: ldap_user_attr
-      properties:
-        ldap_access_id:
-          type: string
-          x-go-name: LdapAccessId
-        ldap_anonymous_search:
-          type: boolean
-          x-go-name: LdapAnonymousSearch
-        ldap_bind_dn:
-          type: string
-          x-go-name: LdapBindDn
-        ldap_bind_password:
-          type: string
-          x-go-name: LdapBindPassword
-        ldap_cert:
-          type: string
-          x-go-name: LdapCertificate
-        ldap_enable:
-          type: boolean
-          x-go-name: LdapEnable
-        ldap_group_attr:
-          type: string
-          x-go-name: LdapGroupAttr
-        ldap_group_dn:
-          type: string
-          x-go-name: LdapGroupDn
-        ldap_group_filter:
-          type: string
-          x-go-name: LdapGroupFilter
-        ldap_private_key:
-          type: string
-          x-go-name: LdapPrivateKey
-        ldap_token_expiration:
-          type: string
-          x-go-name: LdapTokenExpiration
-        ldap_url:
-          type: string
-          x-go-name: LdapUrlAddress
-        ldap_user_attr:
-          type: string
-          x-go-name: LdapUserAttr
-        ldap_user_dn:
-          type: string
-          x-go-name: LdapUserDn
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    KMIPConfigPart:
-      example:
-        key_enc:
-        - 7
-        - 7
-        server:
-          hostname: hostname
-          root: root
-          certificate:
-          - 3
-          - 3
-          active: true
-          certificate_issue_date: 2000-01-23 04:56:07+00:00
-          ca:
-          - 9
-          - 9
-          certificate_ttl_in_seconds: 2
-        server_enc:
-        - 4
-        - 4
-        clients:
-          key:
-            name: name
-            certificate_issue_date: 2000-01-23 04:56:07+00:00
-            rules:
-            - path: path
-              start_time: 5
-              capabilities:
-              - capabilities
-              - capabilities
-              number_of_allowed_access: 5
-              is_limit_access: true
-              assigners:
-              - unique_id: unique_id
-                access_id: access_id
-              - unique_id: unique_id
-                access_id: access_id
-              number_of_access_used: 1
-              type: type
-              ttl: 2
-            - path: path
-              start_time: 5
-              capabilities:
-              - capabilities
-              - capabilities
-              number_of_allowed_access: 5
-              is_limit_access: true
-              assigners:
-              - unique_id: unique_id
-                access_id: access_id
-              - unique_id: unique_id
-                access_id: access_id
-              number_of_access_used: 1
-              type: type
-              ttl: 2
-            id: id
-            activate_keys_on_creation: true
-            certificate_ttl_in_seconds: 6
-      properties:
-        clients:
-          additionalProperties:
-            $ref: '#/components/schemas/KMIPClient'
-          type: object
-          x-go-name: Clients
-        key_enc:
-          description: Saves the private key of the cert issuer in encypted form
-          items:
-            format: uint8
-            type: integer
-          type: array
-          x-go-name: KeyEnc
-        server:
-          $ref: '#/components/schemas/KMIPServer'
-        server_enc:
-          description: 'Saved for backward compatibility
-
-            TODO: remove this after all clients upgrade'
-          items:
-            format: uint8
-            type: integer
-          type: array
-          x-go-name: ServerEnc
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    MockPayload:
-      example:
-        vaults:
-        - vaults
-        - vaults
-      properties:
-        vaults:
-          items:
-            type: string
-          type: array
-          x-go-name: Vaults
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    K8SMigration:
-      example:
-        general:
-          prefix: prefix
-          name: name
-          id: id
-          type: type
-          protection_key: protection_key
-          new_name: new_name
-          status: status
-        payload:
-          client_key:
-          - 1
-          - 1
-          server: server
-          password: password
-          client_cert:
-          - 7
-          - 7
-          namespace: namespace
-          ca:
-          - 6
-          - 6
-          skip_system: true
-          token: token
-          username: username
-      properties:
-        general:
-          $ref: '#/components/schemas/MigrationGeneral'
-        payload:
-          $ref: '#/components/schemas/K8SPayload'
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    OnePasswordPayload:
-      example:
-        secret_key: secret_key
-        password: password
-        vaults:
-        - vaults
-        - vaults
-        email: email
-        url: url
-      properties:
-        email:
-          type: string
-          x-go-name: Email
-        password:
-          type: string
-          x-go-name: Password
-        secret_key:
-          type: string
-          x-go-name: SecretKey
-        url:
-          type: string
-          x-go-name: AccountUrl
-        vaults:
-          items:
-            type: string
-          type: array
-          x-go-name: Vaults
+          x-go-name: CFragments
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator

@@ -46,98 +46,6 @@ components:
     EventType:
       type: string
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    EmailEntry:
-      example:
-        to_email: to_email
-        to_name: to_name
-      properties:
-        to_email:
-          type: string
-          x-go-name: ToEmail
-        to_name:
-          type: string
-          x-go-name: ToName
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    ItemVersion:
-      example:
-        item_version_state: item_version_state
-        with_customer_fragment: true
-        access_date: 2000-01-23 04:56:07+00:00
-        deletion_date: 2000-01-23 04:56:07+00:00
-        modification_date: 2000-01-23 04:56:07+00:00
-        protection_key_name: protection_key_name
-        creation_date: 2000-01-23 04:56:07+00:00
-        version: 3
-        customer_fragment_id: customer_fragment_id
-      properties:
-        access_date:
-          format: date-time
-          type: string
-          x-go-name: AccessDate
-        creation_date:
-          format: date-time
-          type: string
-          x-go-name: CreationDate
-        customer_fragment_id:
-          type: string
-          x-go-name: CustomerFragmentId
-        deletion_date:
-          format: date-time
-          type: string
-          x-go-name: DeletionDate
-        item_version_state:
-          description: ItemState defines the different states an Item can be in
-          type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-        modification_date:
-          format: date-time
-          type: string
-          x-go-name: ModificationDate
-        protection_key_name:
-          type: string
-          x-go-name: ProtectionKeyName
-        version:
-          format: int32
-          type: integer
-          x-go-name: Version
-        with_customer_fragment:
-          type: boolean
-          x-go-name: WithCustomerFragment
-      title: ItemVersion describes an item version in AKEYLESS.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
-    getEventForwarder:
-      properties:
-        json:
-          description: Set output format to JSON
-          type: boolean
-          x-go-name: Json
-        name:
-          description: EventForwarder name
-          type: string
-          x-go-name: EventForwarderName
-        token:
-          description: Authentication token (see `/auth` and `/configure`)
-          type: string
-          x-go-name: Profile
-        uid-token:
-          description: The universal identity token, Required only for universal_identity authentication
-          type: string
-          x-go-name: UIDToken
-      required:
-      - name
-      title: getEventForwarder is a command that creates a new event forwarder.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     getEventForwarderOutput:
       example:
         event_forwarder:
@@ -323,3 +231,95 @@ components:
           x-go-name: WithCustomerFragment
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    EmailEntry:
+      example:
+        to_email: to_email
+        to_name: to_name
+      properties:
+        to_email:
+          type: string
+          x-go-name: ToEmail
+        to_name:
+          type: string
+          x-go-name: ToName
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    ItemVersion:
+      example:
+        item_version_state: item_version_state
+        with_customer_fragment: true
+        access_date: 2000-01-23 04:56:07+00:00
+        deletion_date: 2000-01-23 04:56:07+00:00
+        modification_date: 2000-01-23 04:56:07+00:00
+        protection_key_name: protection_key_name
+        creation_date: 2000-01-23 04:56:07+00:00
+        version: 3
+        customer_fragment_id: customer_fragment_id
+      properties:
+        access_date:
+          format: date-time
+          type: string
+          x-go-name: AccessDate
+        creation_date:
+          format: date-time
+          type: string
+          x-go-name: CreationDate
+        customer_fragment_id:
+          type: string
+          x-go-name: CustomerFragmentId
+        deletion_date:
+          format: date-time
+          type: string
+          x-go-name: DeletionDate
+        item_version_state:
+          description: ItemState defines the different states an Item can be in
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        modification_date:
+          format: date-time
+          type: string
+          x-go-name: ModificationDate
+        protection_key_name:
+          type: string
+          x-go-name: ProtectionKeyName
+        version:
+          format: int32
+          type: integer
+          x-go-name: Version
+        with_customer_fragment:
+          type: boolean
+          x-go-name: WithCustomerFragment
+      title: ItemVersion describes an item version in AKEYLESS.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    getEventForwarder:
+      properties:
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        name:
+          description: EventForwarder name
+          type: string
+          x-go-name: EventForwarderName
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - name
+      title: getEventForwarder is a command that creates a new event forwarder.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

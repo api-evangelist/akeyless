@@ -45,29 +45,14 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    gatewayGetTmpUsers:
-      description: gatewayGetTmpUsers is a command that returns gateway configuration
+    JSONError:
       properties:
-        json:
-          description: Set output format to JSON
-          type: boolean
-          x-go-name: Json
-        name:
-          description: Producer Name
+        error:
           type: string
-          x-go-name: ProducerName
-        token:
-          description: Authentication token (see `/auth` and `/configure`)
-          type: string
-          x-go-name: Profile
-        uid-token:
-          description: The universal identity token, Required only for universal_identity authentication
-          type: string
-          x-go-name: UIDToken
-      required:
-      - name
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
     TmpUserData:
       example:
         custom_ttl: 0
@@ -110,11 +95,26 @@ components:
           x-go-name: SubClaims
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/producer/dynamicsecret/base
-    JSONError:
+    gatewayGetTmpUsers:
+      description: gatewayGetTmpUsers is a command that returns gateway configuration
       properties:
-        error:
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        name:
+          description: Producer Name
           type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+          x-go-name: ProducerName
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - name
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

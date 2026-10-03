@@ -43,15 +43,14 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    requestAccessOutput:
-      example:
-        response: response
+    JSONError:
       properties:
-        response:
+        error:
           type: string
-          x-go-name: Response
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
     requestAccess:
       properties:
         capability:
@@ -90,11 +89,12 @@ components:
       title: requestAccess is a command that requests access for an item.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    JSONError:
+    requestAccessOutput:
+      example:
+        response: response
       properties:
-        error:
+        response:
           type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+          x-go-name: Response
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

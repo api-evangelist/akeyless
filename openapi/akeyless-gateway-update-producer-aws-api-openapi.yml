@@ -43,156 +43,126 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    gatewayUpdateProducerAws:
-      description: gatewayUpdateProducerAws is a command that Updates aws producer
+    SecureRemoteAccess:
+      example:
+        schema: schema
+        web_proxy: true
+        bastion_ssh: bastion_ssh
+        isolated: true
+        ssh_private_key: true
+        allow_port_forwarding: true
+        is_web: true
+        endpoint: endpoint
+        native: true
+        enable: true
+        host:
+        - host
+        - host
+        dashboard_url: dashboard_url
+        bastion_issuer: bastion_issuer
+        ssh_user: ssh_user
+        is_cli: true
+        use_internal_bastion: true
+        rdp_user: rdp_user
+        url: url
+        account_id: account_id
+        db_name: db_name
+        allow_providing_external_username: true
+        domain: domain
+        bastion_api: bastion_api
+        rotate_after_disconnect: true
+        category: category
+        region: region
+        ssh_password: true
+        bastion_issuer_id: 9
       properties:
-        access-mode:
+        account_id:
           type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/producer/config
-        admin-rotation-interval-days:
-          default: 0
-          description: Admin credentials rotation interval (days)
+          x-go-name: AwsAccountId
+        allow_port_forwarding:
+          type: boolean
+          x-go-name: K8SAllowPortForwading
+        allow_providing_external_username:
+          type: boolean
+          x-go-name: AllowProvidingExternalUser
+        bastion_api:
+          type: string
+          x-go-name: BastionAPI
+        bastion_issuer:
+          type: string
+          x-go-name: BastionIssuer
+        bastion_issuer_id:
           format: int64
           type: integer
-          x-go-name: AdminCredsRotationInterval
-        aws-access-key-id:
-          description: Access Key ID
+          x-go-name: BastionIssuerID
+        bastion_ssh:
           type: string
-          x-go-name: AccessId
-        aws-access-secret-key:
-          description: Secret Access Key
+          x-go-name: BastionSSH
+        category:
           type: string
-          x-go-name: AccessKey
-        aws-role-arns:
-          description: AWS Role ARNs to be used in the Assume Role operation (relevant only for assume_role mode)
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        dashboard_url:
           type: string
-          x-go-name: RoleARNs
-        aws-user-console-access:
-          default: false
-          description: AWS User console access
+          x-go-name: K8SDashboardURL
+        db_name:
+          type: string
+          x-go-name: DbName
+        domain:
+          type: string
+          x-go-name: RDPDomain
+        enable:
           type: boolean
-          x-go-name: UserConsoleAccess
-        aws-user-groups:
-          description: AWS User groups
+          x-go-name: Enable
+        endpoint:
           type: string
-          x-go-name: UserGroups
-        aws-user-policies:
-          description: AWS User policies
-          type: string
-          x-go-name: UserPolicies
-        aws-user-programmatic-access:
-          default: true
-          description: AWS User programmatic access
-          type: boolean
-          x-go-name: UserProgrammaticAccess
-        delete_protection:
-          description: Protection from accidental deletion of this item
-          type: string
-          x-go-name: ItemProtected
-        enable-admin-rotation:
-          default: false
-          description: Automatic admin credentials rotation
-          type: boolean
-          x-go-name: AutomaticAdminCredsRotation
-        json:
-          description: Set output format to JSON
-          type: boolean
-          x-go-name: Json
-        name:
-          description: Producer name
-          type: string
-          x-go-name: ProducerName
-        new-name:
-          description: Producer name
-          type: string
-          x-go-name: ProducerNewName
-        producer-encryption-key-name:
-          description: Dynamic producer encryption key
-          type: string
-          x-go-name: ProducerEncryptionKey
-        region:
-          default: us-east-2
-          description: Region
-          type: string
-          x-go-name: Region
-        secure-access-aws-account-id:
-          type: string
-          x-go-name: SecureAccessAccountId
-        secure-access-aws-native-cli:
-          type: boolean
-          x-go-name: SecureAccessAwsNativeCli
-        secure-access-bastion-issuer:
-          type: string
-          x-go-name: SecureAccessBastionIssuer
-        secure-access-enable:
-          type: string
-          x-go-name: SecureAccessEnabled
-        secure-access-web:
-          type: boolean
-          x-go-name: AccessWebCategory
-        secure-access-web-browsing:
-          type: boolean
-          x-go-name: SecureAccessIsolated
-        secure-access-web-proxy:
-          type: boolean
-          x-go-name: SecureAccessWebProxy
-        tags:
-          description: List of the tags attached to this secret
+          x-go-name: K8SEndpoint
+        host:
           items:
             type: string
           type: array
-          x-go-name: Tags
-        target-name:
-          description: Target name
+          x-go-name: Host
+        is_cli:
+          type: boolean
+          x-go-name: AccessCliCategory
+        is_web:
+          type: boolean
+          x-go-name: AccessWebCategory
+        isolated:
+          type: boolean
+          x-go-name: Isolated
+        native:
+          type: boolean
+          x-go-name: AwsNativeCli
+        rdp_user:
           type: string
-          x-go-name: TargetName
-        token:
-          description: Authentication token (see `/auth` and `/configure`)
+          x-go-name: RDPUser
+        region:
           type: string
-          x-go-name: Profile
-        uid-token:
-          description: The universal identity token, Required only for universal_identity authentication
+          x-go-name: AwsRegion
+        rotate_after_disconnect:
+          type: boolean
+          x-go-name: RotateAfterDisconnect
+        schema:
           type: string
-          x-go-name: UIDToken
-        user-ttl:
-          default: 60m
-          description: User TTL
+          x-go-name: Schema
+        ssh_password:
+          type: boolean
+          x-go-name: SSHPassword
+        ssh_private_key:
+          type: boolean
+          x-go-name: SSHPrivateKey
+        ssh_user:
           type: string
-          x-go-name: UserTtl
-      required:
-      - name
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    ItemTargetAssociation:
-      description: 'ItemTargetAssociation includes details of an association between an item
-
-        and a target.'
-      example:
-        assoc_id: assoc_id
-        target_name: target_name
-        target_type: target_type
-        attributes:
-          key: attributes
-        target_id: 6
-      properties:
-        assoc_id:
+          x-go-name: SSHUser
+        url:
           type: string
-          x-go-name: AssociationID
-        attributes:
-          additionalProperties:
-            type: string
-          type: object
-          x-go-name: Attributes
-        target_id:
-          format: int64
-          type: integer
-          x-go-name: TargetID
-        target_name:
-          type: string
-          x-go-name: TargetName
-        target_type:
-          type: string
-          x-go-name: TargetType
+          x-go-name: URL
+        use_internal_bastion:
+          type: boolean
+          x-go-name: UseInternalBastion
+        web_proxy:
+          type: boolean
+          x-go-name: WebProxy
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     DSProducerDetails:
@@ -1149,128 +1119,6 @@ components:
           x-go-name: WarnBeforeUserExpirationInMin
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/producer/config
-    SecureRemoteAccess:
-      example:
-        schema: schema
-        web_proxy: true
-        bastion_ssh: bastion_ssh
-        isolated: true
-        ssh_private_key: true
-        allow_port_forwarding: true
-        is_web: true
-        endpoint: endpoint
-        native: true
-        enable: true
-        host:
-        - host
-        - host
-        dashboard_url: dashboard_url
-        bastion_issuer: bastion_issuer
-        ssh_user: ssh_user
-        is_cli: true
-        use_internal_bastion: true
-        rdp_user: rdp_user
-        url: url
-        account_id: account_id
-        db_name: db_name
-        allow_providing_external_username: true
-        domain: domain
-        bastion_api: bastion_api
-        rotate_after_disconnect: true
-        category: category
-        region: region
-        ssh_password: true
-        bastion_issuer_id: 9
-      properties:
-        account_id:
-          type: string
-          x-go-name: AwsAccountId
-        allow_port_forwarding:
-          type: boolean
-          x-go-name: K8SAllowPortForwading
-        allow_providing_external_username:
-          type: boolean
-          x-go-name: AllowProvidingExternalUser
-        bastion_api:
-          type: string
-          x-go-name: BastionAPI
-        bastion_issuer:
-          type: string
-          x-go-name: BastionIssuer
-        bastion_issuer_id:
-          format: int64
-          type: integer
-          x-go-name: BastionIssuerID
-        bastion_ssh:
-          type: string
-          x-go-name: BastionSSH
-        category:
-          type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-        dashboard_url:
-          type: string
-          x-go-name: K8SDashboardURL
-        db_name:
-          type: string
-          x-go-name: DbName
-        domain:
-          type: string
-          x-go-name: RDPDomain
-        enable:
-          type: boolean
-          x-go-name: Enable
-        endpoint:
-          type: string
-          x-go-name: K8SEndpoint
-        host:
-          items:
-            type: string
-          type: array
-          x-go-name: Host
-        is_cli:
-          type: boolean
-          x-go-name: AccessCliCategory
-        is_web:
-          type: boolean
-          x-go-name: AccessWebCategory
-        isolated:
-          type: boolean
-          x-go-name: Isolated
-        native:
-          type: boolean
-          x-go-name: AwsNativeCli
-        rdp_user:
-          type: string
-          x-go-name: RDPUser
-        region:
-          type: string
-          x-go-name: AwsRegion
-        rotate_after_disconnect:
-          type: boolean
-          x-go-name: RotateAfterDisconnect
-        schema:
-          type: string
-          x-go-name: Schema
-        ssh_password:
-          type: boolean
-          x-go-name: SSHPassword
-        ssh_private_key:
-          type: boolean
-          x-go-name: SSHPrivateKey
-        ssh_user:
-          type: string
-          x-go-name: SSHUser
-        url:
-          type: string
-          x-go-name: URL
-        use_internal_bastion:
-          type: boolean
-          x-go-name: UseInternalBastion
-        web_proxy:
-          type: boolean
-          x-go-name: WebProxy
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     JSONError:
       properties:
         error:
@@ -1553,5 +1401,157 @@ components:
       properties:
         producer_details:
           $ref: '#/components/schemas/DSProducerDetails'
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    ItemTargetAssociation:
+      description: 'ItemTargetAssociation includes details of an association between an item
+
+        and a target.'
+      example:
+        assoc_id: assoc_id
+        target_name: target_name
+        target_type: target_type
+        attributes:
+          key: attributes
+        target_id: 6
+      properties:
+        assoc_id:
+          type: string
+          x-go-name: AssociationID
+        attributes:
+          additionalProperties:
+            type: string
+          type: object
+          x-go-name: Attributes
+        target_id:
+          format: int64
+          type: integer
+          x-go-name: TargetID
+        target_name:
+          type: string
+          x-go-name: TargetName
+        target_type:
+          type: string
+          x-go-name: TargetType
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    gatewayUpdateProducerAws:
+      description: gatewayUpdateProducerAws is a command that Updates aws producer
+      properties:
+        access-mode:
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/producer/config
+        admin-rotation-interval-days:
+          default: 0
+          description: Admin credentials rotation interval (days)
+          format: int64
+          type: integer
+          x-go-name: AdminCredsRotationInterval
+        aws-access-key-id:
+          description: Access Key ID
+          type: string
+          x-go-name: AccessId
+        aws-access-secret-key:
+          description: Secret Access Key
+          type: string
+          x-go-name: AccessKey
+        aws-role-arns:
+          description: AWS Role ARNs to be used in the Assume Role operation (relevant only for assume_role mode)
+          type: string
+          x-go-name: RoleARNs
+        aws-user-console-access:
+          default: false
+          description: AWS User console access
+          type: boolean
+          x-go-name: UserConsoleAccess
+        aws-user-groups:
+          description: AWS User groups
+          type: string
+          x-go-name: UserGroups
+        aws-user-policies:
+          description: AWS User policies
+          type: string
+          x-go-name: UserPolicies
+        aws-user-programmatic-access:
+          default: true
+          description: AWS User programmatic access
+          type: boolean
+          x-go-name: UserProgrammaticAccess
+        delete_protection:
+          description: Protection from accidental deletion of this item
+          type: string
+          x-go-name: ItemProtected
+        enable-admin-rotation:
+          default: false
+          description: Automatic admin credentials rotation
+          type: boolean
+          x-go-name: AutomaticAdminCredsRotation
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        name:
+          description: Producer name
+          type: string
+          x-go-name: ProducerName
+        new-name:
+          description: Producer name
+          type: string
+          x-go-name: ProducerNewName
+        producer-encryption-key-name:
+          description: Dynamic producer encryption key
+          type: string
+          x-go-name: ProducerEncryptionKey
+        region:
+          default: us-east-2
+          description: Region
+          type: string
+          x-go-name: Region
+        secure-access-aws-account-id:
+          type: string
+          x-go-name: SecureAccessAccountId
+        secure-access-aws-native-cli:
+          type: boolean
+          x-go-name: SecureAccessAwsNativeCli
+        secure-access-bastion-issuer:
+          type: string
+          x-go-name: SecureAccessBastionIssuer
+        secure-access-enable:
+          type: string
+          x-go-name: SecureAccessEnabled
+        secure-access-web:
+          type: boolean
+          x-go-name: AccessWebCategory
+        secure-access-web-browsing:
+          type: boolean
+          x-go-name: SecureAccessIsolated
+        secure-access-web-proxy:
+          type: boolean
+          x-go-name: SecureAccessWebProxy
+        tags:
+          description: List of the tags attached to this secret
+          items:
+            type: string
+          type: array
+          x-go-name: Tags
+        target-name:
+          description: Target name
+          type: string
+          x-go-name: TargetName
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+        user-ttl:
+          default: 60m
+          description: User TTL
+          type: string
+          x-go-name: UserTtl
+      required:
+      - name
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

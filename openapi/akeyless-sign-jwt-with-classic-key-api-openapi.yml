@@ -43,15 +43,14 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    signJWTOutput:
-      example:
-        result: result
+    JSONError:
       properties:
-        result:
+        error:
           type: string
-          x-go-name: Result
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
     signJWTWithClassicKey:
       properties:
         display-id:
@@ -91,11 +90,12 @@ components:
       title: signJWTWithClassicKey is a command that signs JWT by using an Classic key.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    JSONError:
+    signJWTOutput:
+      example:
+        result: result
       properties:
-        error:
+        result:
           type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+          x-go-name: Result
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

@@ -43,6 +43,27 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    ExportClassicKeyOutput:
+      example:
+        certificatePem: certificatePem
+        key: key
+      properties:
+        certificatePem:
+          type: string
+          x-go-name: CertificatePem
+        key:
+          type: string
+          x-go-name: Key
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     ExportClassicKey:
       description: ExportClassicKey is a command that returns the classic key material
       example:
@@ -85,24 +106,3 @@ components:
       - name
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    ExportClassicKeyOutput:
-      example:
-        certificatePem: certificatePem
-        key: key
-      properties:
-        certificatePem:
-          type: string
-          x-go-name: CertificatePem
-        key:
-          type: string
-          x-go-name: Key
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

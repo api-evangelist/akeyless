@@ -51,6 +51,14 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
     SystemAccessCredentialsReplyObj:
       example:
         auth_creds: auth_creds
@@ -83,6 +91,23 @@ components:
       title: Combination of three temporary credentials signed by Auth for accessing Auth, UAM and KFMs instances.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/auth
+    AuthOutput:
+      example:
+        creds:
+          auth_creds: auth_creds
+          uam_creds: uam_creds
+          kfm_creds: kfm_creds
+          expiry: 0
+          token: token
+        token: token
+      properties:
+        creds:
+          $ref: '#/components/schemas/SystemAccessCredentialsReplyObj'
+        token:
+          type: string
+          x-go-name: Token
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     auth:
       properties:
         access-id:
@@ -164,28 +189,3 @@ components:
       title: auth is a command that creates temporary access credentials.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    AuthOutput:
-      example:
-        creds:
-          auth_creds: auth_creds
-          uam_creds: uam_creds
-          kfm_creds: kfm_creds
-          expiry: 0
-          token: token
-        token: token
-      properties:
-        creds:
-          $ref: '#/components/schemas/SystemAccessCredentialsReplyObj'
-        token:
-          type: string
-          x-go-name: Token
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

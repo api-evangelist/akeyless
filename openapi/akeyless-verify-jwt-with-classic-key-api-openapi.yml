@@ -43,6 +43,23 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    verifyJWTOutput:
+      example:
+        result: result
+      properties:
+        result:
+          type: string
+          x-go-name: Result
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     verifyJWTWithClassicKey:
       properties:
         display-id:
@@ -82,20 +99,3 @@ components:
       title: verifyJWTWithClassicKey is a command that verifies JWT by using an Classic key.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    verifyJWTOutput:
-      example:
-        result: result
-      properties:
-        result:
-          type: string
-          x-go-name: Result
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

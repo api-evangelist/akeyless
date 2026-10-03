@@ -43,34 +43,14 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    getTarget:
+    JSONError:
       properties:
-        json:
-          description: Set output format to JSON
-          type: boolean
-          x-go-name: Json
-        name:
-          description: Target name
+        error:
           type: string
-          x-go-name: TargetName
-        show-versions:
-          default: false
-          description: Include all target versions in reply
-          type: boolean
-          x-go-name: ShowVersions
-        token:
-          description: Authentication token (see `/auth` and `/configure`)
-          type: string
-          x-go-name: Profile
-        uid-token:
-          description: The universal identity token, Required only for universal_identity authentication
-          type: string
-          x-go-name: UIDToken
-      required:
-      - name
-      title: getTarget is a command that returns target.
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
     Target:
       example:
         credentials_less: true
@@ -197,43 +177,6 @@ components:
       title: Target includes target details.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    TargetItemAssociation:
-      description: 'TargetItemAssociation includes details of an association between a target
-
-        and an item.'
-      example:
-        cluster_id: 1
-        assoc_id: assoc_id
-        item_type: item_type
-        attributes:
-          key: attributes
-        item_name: item_name
-        relationship: relationship
-      properties:
-        assoc_id:
-          type: string
-          x-go-name: AssociationID
-        attributes:
-          additionalProperties:
-            type: string
-          type: object
-          x-go-name: Attributes
-        cluster_id:
-          format: int64
-          type: integer
-          x-go-name: GWClusterID
-        item_name:
-          type: string
-          x-go-name: ItemName
-        item_type:
-          title: ItemType defines types supported by AKEYLESS.
-          type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-        relationship:
-          type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     ItemVersion:
       example:
         item_version_state: item_version_state
@@ -282,11 +225,68 @@ components:
       title: ItemVersion describes an item version in AKEYLESS.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    JSONError:
+    getTarget:
       properties:
-        error:
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        name:
+          description: Target name
           type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+          x-go-name: TargetName
+        show-versions:
+          default: false
+          description: Include all target versions in reply
+          type: boolean
+          x-go-name: ShowVersions
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - name
+      title: getTarget is a command that returns target.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    TargetItemAssociation:
+      description: 'TargetItemAssociation includes details of an association between a target
+
+        and an item.'
+      example:
+        cluster_id: 1
+        assoc_id: assoc_id
+        item_type: item_type
+        attributes:
+          key: attributes
+        item_name: item_name
+        relationship: relationship
+      properties:
+        assoc_id:
+          type: string
+          x-go-name: AssociationID
+        attributes:
+          additionalProperties:
+            type: string
+          type: object
+          x-go-name: Attributes
+        cluster_id:
+          format: int64
+          type: integer
+          x-go-name: GWClusterID
+        item_name:
+          type: string
+          x-go-name: ItemName
+        item_type:
+          title: ItemType defines types supported by AKEYLESS.
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        relationship:
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types

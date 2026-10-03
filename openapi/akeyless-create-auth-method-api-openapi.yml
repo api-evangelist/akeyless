@@ -43,23 +43,14 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    createAuthMethodOutput:
-      example:
-        access_key: access_key
-        name: name
-        access_id: access_id
+    JSONError:
       properties:
-        access_id:
+        error:
           type: string
-          x-go-name: AccessID
-        access_key:
-          type: string
-          x-go-name: AccessKey
-        name:
-          type: string
-          x-go-name: Name
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
     createAuthMethod:
       properties:
         access-expires:
@@ -112,11 +103,20 @@ components:
       title: createAuthMethod is a command that creates a new auth method.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    JSONError:
+    createAuthMethodOutput:
+      example:
+        access_key: access_key
+        name: name
+        access_id: access_id
       properties:
-        error:
+        access_id:
           type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+          x-go-name: AccessID
+        access_key:
+          type: string
+          x-go-name: AccessKey
+        name:
+          type: string
+          x-go-name: Name
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

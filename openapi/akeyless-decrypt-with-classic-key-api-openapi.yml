@@ -51,15 +51,6 @@ components:
       title: JSONError wraps an error with JSON object.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client
-    decryptWithClassicKeyOutput:
-      example:
-        result: result
-      properties:
-        result:
-          type: string
-          x-go-name: Result
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     decryptWithClassicKey:
       properties:
         ciphertext:
@@ -92,5 +83,14 @@ components:
       - display-id
       - version
       title: decryptWithClassicKey is a command that decryptWithClassicKeys ciphertext into plaintext by using a classic key.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    decryptWithClassicKeyOutput:
+      example:
+        result: result
+      properties:
+        result:
+          type: string
+          x-go-name: Result
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

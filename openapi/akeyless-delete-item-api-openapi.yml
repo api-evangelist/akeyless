@@ -43,6 +43,39 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    DeleteItemOutput:
+      example:
+        version_deleted: 6
+        item_id: 0
+        deletion_date: 2000-01-23 04:56:07+00:00
+        item_name: item_name
+      properties:
+        deletion_date:
+          format: date-time
+          type: string
+          x-go-name: DeletionDate
+        item_id:
+          format: int64
+          type: integer
+          x-go-name: ItemID
+        item_name:
+          type: string
+          x-go-name: ItemName
+        version_deleted:
+          format: int32
+          type: integer
+          x-go-name: VersionDeleted
+      title: DeleteItemOutput defines output of DeleteItem operation.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     deleteItem:
       properties:
         accessibility:
@@ -92,36 +125,3 @@ components:
       title: deleteItem is a command that deletes an item from Akeyless.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    DeleteItemOutput:
-      example:
-        version_deleted: 6
-        item_id: 0
-        deletion_date: 2000-01-23 04:56:07+00:00
-        item_name: item_name
-      properties:
-        deletion_date:
-          format: date-time
-          type: string
-          x-go-name: DeletionDate
-        item_id:
-          format: int64
-          type: integer
-          x-go-name: ItemID
-        item_name:
-          type: string
-          x-go-name: ItemName
-        version_deleted:
-          format: int32
-          type: integer
-          x-go-name: VersionDeleted
-      title: DeleteItemOutput defines output of DeleteItem operation.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

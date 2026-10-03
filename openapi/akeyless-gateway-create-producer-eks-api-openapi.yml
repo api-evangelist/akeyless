@@ -43,128 +43,128 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ItemTargetAssociation:
-      description: 'ItemTargetAssociation includes details of an association between an item
-
-        and a target.'
+    SecureRemoteAccess:
       example:
-        assoc_id: assoc_id
-        target_name: target_name
-        target_type: target_type
-        attributes:
-          key: attributes
-        target_id: 6
+        schema: schema
+        web_proxy: true
+        bastion_ssh: bastion_ssh
+        isolated: true
+        ssh_private_key: true
+        allow_port_forwarding: true
+        is_web: true
+        endpoint: endpoint
+        native: true
+        enable: true
+        host:
+        - host
+        - host
+        dashboard_url: dashboard_url
+        bastion_issuer: bastion_issuer
+        ssh_user: ssh_user
+        is_cli: true
+        use_internal_bastion: true
+        rdp_user: rdp_user
+        url: url
+        account_id: account_id
+        db_name: db_name
+        allow_providing_external_username: true
+        domain: domain
+        bastion_api: bastion_api
+        rotate_after_disconnect: true
+        category: category
+        region: region
+        ssh_password: true
+        bastion_issuer_id: 9
       properties:
-        assoc_id:
+        account_id:
           type: string
-          x-go-name: AssociationID
-        attributes:
-          additionalProperties:
-            type: string
-          type: object
-          x-go-name: Attributes
-        target_id:
+          x-go-name: AwsAccountId
+        allow_port_forwarding:
+          type: boolean
+          x-go-name: K8SAllowPortForwading
+        allow_providing_external_username:
+          type: boolean
+          x-go-name: AllowProvidingExternalUser
+        bastion_api:
+          type: string
+          x-go-name: BastionAPI
+        bastion_issuer:
+          type: string
+          x-go-name: BastionIssuer
+        bastion_issuer_id:
           format: int64
           type: integer
-          x-go-name: TargetID
-        target_name:
+          x-go-name: BastionIssuerID
+        bastion_ssh:
           type: string
-          x-go-name: TargetName
-        target_type:
+          x-go-name: BastionSSH
+        category:
           type: string
-          x-go-name: TargetType
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    gatewayCreateProducerEks:
-      description: gatewayCreateProducerEks is a command that creates eks producer
-      properties:
-        delete_protection:
-          description: Protection from accidental deletion of this item
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        dashboard_url:
           type: string
-          x-go-name: ItemProtected
-        eks-access-key-id:
-          description: Access Key ID
+          x-go-name: K8SDashboardURL
+        db_name:
           type: string
-          x-go-name: AccessId
-        eks-assume-role:
-          description: IAM assume role
+          x-go-name: DbName
+        domain:
           type: string
-          x-go-name: AssumeRole
-        eks-cluster-ca-cert:
-          description: EKS cluster CA certificate
-          type: string
-          x-go-name: ClusterCACert
-        eks-cluster-endpoint:
-          description: EKS cluster URL endpoint
-          type: string
-          x-go-name: ClusterEndpoint
-        eks-cluster-name:
-          description: EKS cluster name
-          type: string
-          x-go-name: ClusterName
-        eks-region:
-          default: us-east-2
-          description: Region
-          type: string
-          x-go-name: Region
-        eks-secret-access-key:
-          description: Secret Access Key
-          type: string
-          x-go-name: AccessKey
-        json:
-          description: Set output format to JSON
+          x-go-name: RDPDomain
+        enable:
           type: boolean
-          x-go-name: Json
-        name:
-          description: Producer name
+          x-go-name: Enable
+        endpoint:
           type: string
-          x-go-name: ProducerName
-        producer-encryption-key-name:
-          description: Dynamic producer encryption key
-          type: string
-          x-go-name: ProducerEncryptionKey
-        secure-access-allow-port-forwading:
-          type: boolean
-          x-go-name: SecureAccessK8SAllowPortForwading
-        secure-access-bastion-issuer:
-          type: string
-          x-go-name: SecureAccessBastionIssuer
-        secure-access-cluster-endpoint:
-          type: string
-          x-go-name: SecureAccessEndpoint
-        secure-access-enable:
-          type: string
-          x-go-name: SecureAccessEnabled
-        secure-access-web:
-          type: boolean
-          x-go-name: AccessWebCategory
-        tags:
-          description: List of the tags attached to this secret
+          x-go-name: K8SEndpoint
+        host:
           items:
             type: string
           type: array
-          x-go-name: Tags
-        target-name:
-          description: Target name
+          x-go-name: Host
+        is_cli:
+          type: boolean
+          x-go-name: AccessCliCategory
+        is_web:
+          type: boolean
+          x-go-name: AccessWebCategory
+        isolated:
+          type: boolean
+          x-go-name: Isolated
+        native:
+          type: boolean
+          x-go-name: AwsNativeCli
+        rdp_user:
           type: string
-          x-go-name: TargetName
-        token:
-          description: Authentication token (see `/auth` and `/configure`)
+          x-go-name: RDPUser
+        region:
           type: string
-          x-go-name: Profile
-        uid-token:
-          description: The universal identity token, Required only for universal_identity authentication
+          x-go-name: AwsRegion
+        rotate_after_disconnect:
+          type: boolean
+          x-go-name: RotateAfterDisconnect
+        schema:
           type: string
-          x-go-name: UIDToken
-        user-ttl:
-          default: 15m
-          description: User TTL
+          x-go-name: Schema
+        ssh_password:
+          type: boolean
+          x-go-name: SSHPassword
+        ssh_private_key:
+          type: boolean
+          x-go-name: SSHPrivateKey
+        ssh_user:
           type: string
-          x-go-name: UserTtl
-      required:
-      - name
+          x-go-name: SSHUser
+        url:
+          type: string
+          x-go-name: URL
+        use_internal_bastion:
+          type: boolean
+          x-go-name: UseInternalBastion
+        web_proxy:
+          type: boolean
+          x-go-name: WebProxy
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     DSProducerDetails:
       example:
         gke_cluster_endpoint: gke_cluster_endpoint
@@ -1119,6 +1119,14 @@ components:
           x-go-name: WarnBeforeUserExpirationInMin
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/producer/config
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
     gatewayCreateProducerEksOutput:
       example:
         producer_details:
@@ -1395,133 +1403,125 @@ components:
           $ref: '#/components/schemas/DSProducerDetails'
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    SecureRemoteAccess:
+    ItemTargetAssociation:
+      description: 'ItemTargetAssociation includes details of an association between an item
+
+        and a target.'
       example:
-        schema: schema
-        web_proxy: true
-        bastion_ssh: bastion_ssh
-        isolated: true
-        ssh_private_key: true
-        allow_port_forwarding: true
-        is_web: true
-        endpoint: endpoint
-        native: true
-        enable: true
-        host:
-        - host
-        - host
-        dashboard_url: dashboard_url
-        bastion_issuer: bastion_issuer
-        ssh_user: ssh_user
-        is_cli: true
-        use_internal_bastion: true
-        rdp_user: rdp_user
-        url: url
-        account_id: account_id
-        db_name: db_name
-        allow_providing_external_username: true
-        domain: domain
-        bastion_api: bastion_api
-        rotate_after_disconnect: true
-        category: category
-        region: region
-        ssh_password: true
-        bastion_issuer_id: 9
+        assoc_id: assoc_id
+        target_name: target_name
+        target_type: target_type
+        attributes:
+          key: attributes
+        target_id: 6
       properties:
-        account_id:
+        assoc_id:
           type: string
-          x-go-name: AwsAccountId
-        allow_port_forwarding:
-          type: boolean
-          x-go-name: K8SAllowPortForwading
-        allow_providing_external_username:
-          type: boolean
-          x-go-name: AllowProvidingExternalUser
-        bastion_api:
-          type: string
-          x-go-name: BastionAPI
-        bastion_issuer:
-          type: string
-          x-go-name: BastionIssuer
-        bastion_issuer_id:
+          x-go-name: AssociationID
+        attributes:
+          additionalProperties:
+            type: string
+          type: object
+          x-go-name: Attributes
+        target_id:
           format: int64
           type: integer
-          x-go-name: BastionIssuerID
-        bastion_ssh:
+          x-go-name: TargetID
+        target_name:
           type: string
-          x-go-name: BastionSSH
-        category:
+          x-go-name: TargetName
+        target_type:
           type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-        dashboard_url:
+          x-go-name: TargetType
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    gatewayCreateProducerEks:
+      description: gatewayCreateProducerEks is a command that creates eks producer
+      properties:
+        delete_protection:
+          description: Protection from accidental deletion of this item
           type: string
-          x-go-name: K8SDashboardURL
-        db_name:
+          x-go-name: ItemProtected
+        eks-access-key-id:
+          description: Access Key ID
           type: string
-          x-go-name: DbName
-        domain:
+          x-go-name: AccessId
+        eks-assume-role:
+          description: IAM assume role
           type: string
-          x-go-name: RDPDomain
-        enable:
+          x-go-name: AssumeRole
+        eks-cluster-ca-cert:
+          description: EKS cluster CA certificate
+          type: string
+          x-go-name: ClusterCACert
+        eks-cluster-endpoint:
+          description: EKS cluster URL endpoint
+          type: string
+          x-go-name: ClusterEndpoint
+        eks-cluster-name:
+          description: EKS cluster name
+          type: string
+          x-go-name: ClusterName
+        eks-region:
+          default: us-east-2
+          description: Region
+          type: string
+          x-go-name: Region
+        eks-secret-access-key:
+          description: Secret Access Key
+          type: string
+          x-go-name: AccessKey
+        json:
+          description: Set output format to JSON
           type: boolean
-          x-go-name: Enable
-        endpoint:
+          x-go-name: Json
+        name:
+          description: Producer name
           type: string
-          x-go-name: K8SEndpoint
-        host:
+          x-go-name: ProducerName
+        producer-encryption-key-name:
+          description: Dynamic producer encryption key
+          type: string
+          x-go-name: ProducerEncryptionKey
+        secure-access-allow-port-forwading:
+          type: boolean
+          x-go-name: SecureAccessK8SAllowPortForwading
+        secure-access-bastion-issuer:
+          type: string
+          x-go-name: SecureAccessBastionIssuer
+        secure-access-cluster-endpoint:
+          type: string
+          x-go-name: SecureAccessEndpoint
+        secure-access-enable:
+          type: string
+          x-go-name: SecureAccessEnabled
+        secure-access-web:
+          type: boolean
+          x-go-name: AccessWebCategory
+        tags:
+          description: List of the tags attached to this secret
           items:
             type: string
           type: array
-          x-go-name: Host
-        is_cli:
-          type: boolean
-          x-go-name: AccessCliCategory
-        is_web:
-          type: boolean
-          x-go-name: AccessWebCategory
-        isolated:
-          type: boolean
-          x-go-name: Isolated
-        native:
-          type: boolean
-          x-go-name: AwsNativeCli
-        rdp_user:
+          x-go-name: Tags
+        target-name:
+          description: Target name
           type: string
-          x-go-name: RDPUser
-        region:
+          x-go-name: TargetName
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
           type: string
-          x-go-name: AwsRegion
-        rotate_after_disconnect:
-          type: boolean
-          x-go-name: RotateAfterDisconnect
-        schema:
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
           type: string
-          x-go-name: Schema
-        ssh_password:
-          type: boolean
-          x-go-name: SSHPassword
-        ssh_private_key:
-          type: boolean
-          x-go-name: SSHPrivateKey
-        ssh_user:
+          x-go-name: UIDToken
+        user-ttl:
+          default: 15m
+          description: User TTL
           type: string
-          x-go-name: SSHUser
-        url:
-          type: string
-          x-go-name: URL
-        use_internal_bastion:
-          type: boolean
-          x-go-name: UseInternalBastion
-        web_proxy:
-          type: boolean
-          x-go-name: WebProxy
+          x-go-name: UserTtl
+      required:
+      - name
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

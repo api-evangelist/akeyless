@@ -43,19 +43,14 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    createDFCKeyOutput:
-      example:
-        fragment_results:
-        - null
-        - null
+    JSONError:
       properties:
-        fragment_results:
-          items:
-            $ref: '#/components/schemas/Duration'
-          type: array
-          x-go-name: FragmentResults
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
     createDFCKey:
       properties:
         alg:
@@ -116,6 +111,19 @@ components:
       title: createDFCKey is a command that creates a new DFC key.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    createDFCKeyOutput:
+      example:
+        fragment_results:
+        - null
+        - null
+      properties:
+        fragment_results:
+          items:
+            $ref: '#/components/schemas/Duration'
+          type: array
+          x-go-name: FragmentResults
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     Duration:
       description: 'A Duration represents the elapsed time between two instants
 
@@ -125,11 +133,3 @@ components:
       format: int64
       type: integer
       x-go-package: time
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

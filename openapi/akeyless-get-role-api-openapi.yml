@@ -43,37 +43,54 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JSONError:
+    RuleAssigner:
+      example:
+        unique_id: unique_id
+        access_id: access_id
       properties:
-        error:
+        access_id:
           type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+          x-go-name: AccessId
+        unique_id:
+          type: string
+          x-go-name: UniqueId
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
-    getRole:
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    RoleAuthMethodAssociation:
+      description: 'RoleAuthMethodAssociation includes details of an association between a role
+
+        and an auth method.'
+      example:
+        assoc_id: assoc_id
+        auth_method_name: auth_method_name
+        auth_method_sub_claims:
+          key:
+          - auth_method_sub_claims
+          - auth_method_sub_claims
+        auth_method_access_id: auth_method_access_id
+        sub_claims_case_sensitive: true
       properties:
-        json:
-          description: Set output format to JSON
+        assoc_id:
+          type: string
+          x-go-name: AssociationID
+        auth_method_access_id:
+          type: string
+          x-go-name: AuthMethodAccessID
+        auth_method_name:
+          type: string
+          x-go-name: AuthMethodName
+        auth_method_sub_claims:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+          x-go-name: AuthMethodSubClaims
+        sub_claims_case_sensitive:
           type: boolean
-          x-go-name: Json
-        name:
-          description: Role name
-          type: string
-          x-go-name: RoleName
-        token:
-          description: Authentication token (see `/auth` and `/configure`)
-          type: string
-          x-go-name: Profile
-        uid-token:
-          description: The universal identity token, Required only for universal_identity authentication
-          type: string
-          x-go-name: UIDToken
-      required:
-      - name
-      title: getRole is a command that returns role details.
+          x-go-name: IsSubClaimsCaseSensitive
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     PathRule:
       example:
         path: path
@@ -134,102 +151,37 @@ components:
       title: PathRule is a single rule used in AKEYLESS RBAC.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    Rules:
-      example:
-        path_rules:
-        - path: path
-          start_time: 5
-          capabilities:
-          - capabilities
-          - capabilities
-          number_of_allowed_access: 5
-          is_limit_access: true
-          assigners:
-          - unique_id: unique_id
-            access_id: access_id
-          - unique_id: unique_id
-            access_id: access_id
-          number_of_access_used: 1
-          type: type
-          ttl: 2
-        - path: path
-          start_time: 5
-          capabilities:
-          - capabilities
-          - capabilities
-          number_of_allowed_access: 5
-          is_limit_access: true
-          assigners:
-          - unique_id: unique_id
-            access_id: access_id
-          - unique_id: unique_id
-            access_id: access_id
-          number_of_access_used: 1
-          type: type
-          ttl: 2
-        admin: true
+    JSONError:
       properties:
-        admin:
-          description: Is admin
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    getRole:
+      properties:
+        json:
+          description: Set output format to JSON
           type: boolean
-          x-go-name: Admin
-        path_rules:
-          description: The path the rules refers to
-          items:
-            $ref: '#/components/schemas/PathRule'
-          type: array
-          x-go-name: PathRules
-      title: Rules are a part of AKEYLESS RBAC.
+          x-go-name: Json
+        name:
+          description: Role name
+          type: string
+          x-go-name: RoleName
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - name
+      title: getRole is a command that returns role details.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    RoleAuthMethodAssociation:
-      description: 'RoleAuthMethodAssociation includes details of an association between a role
-
-        and an auth method.'
-      example:
-        assoc_id: assoc_id
-        auth_method_name: auth_method_name
-        auth_method_sub_claims:
-          key:
-          - auth_method_sub_claims
-          - auth_method_sub_claims
-        auth_method_access_id: auth_method_access_id
-        sub_claims_case_sensitive: true
-      properties:
-        assoc_id:
-          type: string
-          x-go-name: AssociationID
-        auth_method_access_id:
-          type: string
-          x-go-name: AuthMethodAccessID
-        auth_method_name:
-          type: string
-          x-go-name: AuthMethodName
-        auth_method_sub_claims:
-          additionalProperties:
-            items:
-              type: string
-            type: array
-          type: object
-          x-go-name: AuthMethodSubClaims
-        sub_claims_case_sensitive:
-          type: boolean
-          x-go-name: IsSubClaimsCaseSensitive
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    RuleAssigner:
-      example:
-        unique_id: unique_id
-        access_id: access_id
-      properties:
-        access_id:
-          type: string
-          x-go-name: AccessId
-        unique_id:
-          type: string
-          x-go-name: UniqueId
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     Role:
       example:
         role_name: role_name
@@ -322,5 +274,53 @@ components:
         rules:
           $ref: '#/components/schemas/Rules'
       title: Role includes role details.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    Rules:
+      example:
+        path_rules:
+        - path: path
+          start_time: 5
+          capabilities:
+          - capabilities
+          - capabilities
+          number_of_allowed_access: 5
+          is_limit_access: true
+          assigners:
+          - unique_id: unique_id
+            access_id: access_id
+          - unique_id: unique_id
+            access_id: access_id
+          number_of_access_used: 1
+          type: type
+          ttl: 2
+        - path: path
+          start_time: 5
+          capabilities:
+          - capabilities
+          - capabilities
+          number_of_allowed_access: 5
+          is_limit_access: true
+          assigners:
+          - unique_id: unique_id
+            access_id: access_id
+          - unique_id: unique_id
+            access_id: access_id
+          number_of_access_used: 1
+          type: type
+          ttl: 2
+        admin: true
+      properties:
+        admin:
+          description: Is admin
+          type: boolean
+          x-go-name: Admin
+        path_rules:
+          description: The path the rules refers to
+          items:
+            $ref: '#/components/schemas/PathRule'
+          type: array
+          x-go-name: PathRules
+      title: Rules are a part of AKEYLESS RBAC.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types

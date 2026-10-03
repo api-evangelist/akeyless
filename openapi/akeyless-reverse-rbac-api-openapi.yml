@@ -43,6 +43,265 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    RuleAssigner:
+      example:
+        unique_id: unique_id
+        access_id: access_id
+      properties:
+        access_id:
+          type: string
+          x-go-name: AccessId
+        unique_id:
+          type: string
+          x-go-name: UniqueId
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    PathRule:
+      example:
+        path: path
+        start_time: 5
+        capabilities:
+        - capabilities
+        - capabilities
+        number_of_allowed_access: 5
+        is_limit_access: true
+        assigners:
+        - unique_id: unique_id
+          access_id: access_id
+        - unique_id: unique_id
+          access_id: access_id
+        number_of_access_used: 1
+        type: type
+        ttl: 2
+      properties:
+        assigners:
+          items:
+            $ref: '#/components/schemas/RuleAssigner'
+          type: array
+          x-go-name: Assigners
+        capabilities:
+          description: The approved/denied capabilities in the path
+          items:
+            type: string
+          type: array
+          x-go-name: Capabilities
+        is_limit_access:
+          description: flag that indicate that this rule is allowed to be access RemainingAccess of times.
+          type: boolean
+          x-go-name: IsLimitAccess
+        number_of_access_used:
+          format: int64
+          type: integer
+          x-go-name: NumberOfAccessUsed
+        number_of_allowed_access:
+          format: int64
+          type: integer
+          x-go-name: NumberOfAllowedAccess
+        path:
+          description: The path the rule refers to
+          type: string
+          x-go-name: Path
+        start_time:
+          format: int64
+          type: integer
+          x-go-name: StartTime
+        ttl:
+          format: int64
+          type: integer
+          x-go-name: TTL
+        type:
+          title: PathRuleType defines a kind of every PathRule assigned to a Role.
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+      title: PathRule is a single rule used in AKEYLESS RBAC.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    ReverseRBACClient:
+      example:
+        auth_method_name: auth_method_name
+        assocs:
+        - role_name: role_name
+          assoc_id: assoc_id
+          allowed_ops:
+          - allowed_ops
+          - allowed_ops
+          rules:
+            path_rules:
+            - path: path
+              start_time: 5
+              capabilities:
+              - capabilities
+              - capabilities
+              number_of_allowed_access: 5
+              is_limit_access: true
+              assigners:
+              - unique_id: unique_id
+                access_id: access_id
+              - unique_id: unique_id
+                access_id: access_id
+              number_of_access_used: 1
+              type: type
+              ttl: 2
+            - path: path
+              start_time: 5
+              capabilities:
+              - capabilities
+              - capabilities
+              number_of_allowed_access: 5
+              is_limit_access: true
+              assigners:
+              - unique_id: unique_id
+                access_id: access_id
+              - unique_id: unique_id
+                access_id: access_id
+              number_of_access_used: 1
+              type: type
+              ttl: 2
+            admin: true
+          auth_method_sub_claims:
+            key:
+            - auth_method_sub_claims
+            - auth_method_sub_claims
+        - role_name: role_name
+          assoc_id: assoc_id
+          allowed_ops:
+          - allowed_ops
+          - allowed_ops
+          rules:
+            path_rules:
+            - path: path
+              start_time: 5
+              capabilities:
+              - capabilities
+              - capabilities
+              number_of_allowed_access: 5
+              is_limit_access: true
+              assigners:
+              - unique_id: unique_id
+                access_id: access_id
+              - unique_id: unique_id
+                access_id: access_id
+              number_of_access_used: 1
+              type: type
+              ttl: 2
+            - path: path
+              start_time: 5
+              capabilities:
+              - capabilities
+              - capabilities
+              number_of_allowed_access: 5
+              is_limit_access: true
+              assigners:
+              - unique_id: unique_id
+                access_id: access_id
+              - unique_id: unique_id
+                access_id: access_id
+              number_of_access_used: 1
+              type: type
+              ttl: 2
+            admin: true
+          auth_method_sub_claims:
+            key:
+            - auth_method_sub_claims
+            - auth_method_sub_claims
+      properties:
+        assocs:
+          items:
+            $ref: '#/components/schemas/AuthMethodRoleAssociation'
+          type: array
+          x-go-name: Assocs
+        auth_method_name:
+          type: string
+          x-go-name: AuthMethodName
+      title: ReverseRBACClient is a single entity that has access to a given object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    Rules:
+      example:
+        path_rules:
+        - path: path
+          start_time: 5
+          capabilities:
+          - capabilities
+          - capabilities
+          number_of_allowed_access: 5
+          is_limit_access: true
+          assigners:
+          - unique_id: unique_id
+            access_id: access_id
+          - unique_id: unique_id
+            access_id: access_id
+          number_of_access_used: 1
+          type: type
+          ttl: 2
+        - path: path
+          start_time: 5
+          capabilities:
+          - capabilities
+          - capabilities
+          number_of_allowed_access: 5
+          is_limit_access: true
+          assigners:
+          - unique_id: unique_id
+            access_id: access_id
+          - unique_id: unique_id
+            access_id: access_id
+          number_of_access_used: 1
+          type: type
+          ttl: 2
+        admin: true
+      properties:
+        admin:
+          description: Is admin
+          type: boolean
+          x-go-name: Admin
+        path_rules:
+          description: The path the rules refers to
+          items:
+            $ref: '#/components/schemas/PathRule'
+          type: array
+          x-go-name: PathRules
+      title: Rules are a part of AKEYLESS RBAC.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    reverseRBAC:
+      description: 'reverseRBAC is a command that shows which auth methods have access to a
+
+        particular object.'
+      properties:
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        path:
+          description: Path to an object
+          type: string
+          x-go-name: Path
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        type:
+          description: Type of object (item, am, role)
+          type: string
+          x-go-name: Type
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - path
+      - type
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     ReverseRBACOutput:
       example:
         clients:
@@ -142,144 +401,6 @@ components:
       title: ReverseRBACOutput defines output of ReverseRBAC operation.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    PathRule:
-      example:
-        path: path
-        start_time: 5
-        capabilities:
-        - capabilities
-        - capabilities
-        number_of_allowed_access: 5
-        is_limit_access: true
-        assigners:
-        - unique_id: unique_id
-          access_id: access_id
-        - unique_id: unique_id
-          access_id: access_id
-        number_of_access_used: 1
-        type: type
-        ttl: 2
-      properties:
-        assigners:
-          items:
-            $ref: '#/components/schemas/RuleAssigner'
-          type: array
-          x-go-name: Assigners
-        capabilities:
-          description: The approved/denied capabilities in the path
-          items:
-            type: string
-          type: array
-          x-go-name: Capabilities
-        is_limit_access:
-          description: flag that indicate that this rule is allowed to be access RemainingAccess of times.
-          type: boolean
-          x-go-name: IsLimitAccess
-        number_of_access_used:
-          format: int64
-          type: integer
-          x-go-name: NumberOfAccessUsed
-        number_of_allowed_access:
-          format: int64
-          type: integer
-          x-go-name: NumberOfAllowedAccess
-        path:
-          description: The path the rule refers to
-          type: string
-          x-go-name: Path
-        start_time:
-          format: int64
-          type: integer
-          x-go-name: StartTime
-        ttl:
-          format: int64
-          type: integer
-          x-go-name: TTL
-        type:
-          title: PathRuleType defines a kind of every PathRule assigned to a Role.
-          type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-      title: PathRule is a single rule used in AKEYLESS RBAC.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    Rules:
-      example:
-        path_rules:
-        - path: path
-          start_time: 5
-          capabilities:
-          - capabilities
-          - capabilities
-          number_of_allowed_access: 5
-          is_limit_access: true
-          assigners:
-          - unique_id: unique_id
-            access_id: access_id
-          - unique_id: unique_id
-            access_id: access_id
-          number_of_access_used: 1
-          type: type
-          ttl: 2
-        - path: path
-          start_time: 5
-          capabilities:
-          - capabilities
-          - capabilities
-          number_of_allowed_access: 5
-          is_limit_access: true
-          assigners:
-          - unique_id: unique_id
-            access_id: access_id
-          - unique_id: unique_id
-            access_id: access_id
-          number_of_access_used: 1
-          type: type
-          ttl: 2
-        admin: true
-      properties:
-        admin:
-          description: Is admin
-          type: boolean
-          x-go-name: Admin
-        path_rules:
-          description: The path the rules refers to
-          items:
-            $ref: '#/components/schemas/PathRule'
-          type: array
-          x-go-name: PathRules
-      title: Rules are a part of AKEYLESS RBAC.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    reverseRBAC:
-      description: 'reverseRBAC is a command that shows which auth methods have access to a
-
-        particular object.'
-      properties:
-        json:
-          description: Set output format to JSON
-          type: boolean
-          x-go-name: Json
-        path:
-          description: Path to an object
-          type: string
-          x-go-name: Path
-        token:
-          description: Authentication token (see `/auth` and `/configure`)
-          type: string
-          x-go-name: Profile
-        type:
-          description: Type of object (item, am, role)
-          type: string
-          x-go-name: Type
-        uid-token:
-          description: The universal identity token, Required only for universal_identity authentication
-          type: string
-          x-go-name: UIDToken
-      required:
-      - path
-      - type
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     AuthMethodRoleAssociation:
       description: 'AuthMethodRoleAssociation includes details of an association between an auth
 
@@ -348,126 +469,5 @@ components:
           x-go-name: RoleName
         rules:
           $ref: '#/components/schemas/Rules'
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
-    RuleAssigner:
-      example:
-        unique_id: unique_id
-        access_id: access_id
-      properties:
-        access_id:
-          type: string
-          x-go-name: AccessId
-        unique_id:
-          type: string
-          x-go-name: UniqueId
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    ReverseRBACClient:
-      example:
-        auth_method_name: auth_method_name
-        assocs:
-        - role_name: role_name
-          assoc_id: assoc_id
-          allowed_ops:
-          - allowed_ops
-          - allowed_ops
-          rules:
-            path_rules:
-            - path: path
-              start_time: 5
-              capabilities:
-              - capabilities
-              - capabilities
-              number_of_allowed_access: 5
-              is_limit_access: true
-              assigners:
-              - unique_id: unique_id
-                access_id: access_id
-              - unique_id: unique_id
-                access_id: access_id
-              number_of_access_used: 1
-              type: type
-              ttl: 2
-            - path: path
-              start_time: 5
-              capabilities:
-              - capabilities
-              - capabilities
-              number_of_allowed_access: 5
-              is_limit_access: true
-              assigners:
-              - unique_id: unique_id
-                access_id: access_id
-              - unique_id: unique_id
-                access_id: access_id
-              number_of_access_used: 1
-              type: type
-              ttl: 2
-            admin: true
-          auth_method_sub_claims:
-            key:
-            - auth_method_sub_claims
-            - auth_method_sub_claims
-        - role_name: role_name
-          assoc_id: assoc_id
-          allowed_ops:
-          - allowed_ops
-          - allowed_ops
-          rules:
-            path_rules:
-            - path: path
-              start_time: 5
-              capabilities:
-              - capabilities
-              - capabilities
-              number_of_allowed_access: 5
-              is_limit_access: true
-              assigners:
-              - unique_id: unique_id
-                access_id: access_id
-              - unique_id: unique_id
-                access_id: access_id
-              number_of_access_used: 1
-              type: type
-              ttl: 2
-            - path: path
-              start_time: 5
-              capabilities:
-              - capabilities
-              - capabilities
-              number_of_allowed_access: 5
-              is_limit_access: true
-              assigners:
-              - unique_id: unique_id
-                access_id: access_id
-              - unique_id: unique_id
-                access_id: access_id
-              number_of_access_used: 1
-              type: type
-              ttl: 2
-            admin: true
-          auth_method_sub_claims:
-            key:
-            - auth_method_sub_claims
-            - auth_method_sub_claims
-      properties:
-        assocs:
-          items:
-            $ref: '#/components/schemas/AuthMethodRoleAssociation'
-          type: array
-          x-go-name: Assocs
-        auth_method_name:
-          type: string
-          x-go-name: AuthMethodName
-      title: ReverseRBACClient is a single entity that has access to a given object.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types

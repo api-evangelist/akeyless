@@ -43,6 +43,17 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    updateAssocOutput:
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     updateAssoc:
       description: 'updateAssoc is a command that updates the sub-claims of an association between role
 
@@ -77,14 +88,3 @@ components:
       - assoc-id
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    updateAssocOutput:
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

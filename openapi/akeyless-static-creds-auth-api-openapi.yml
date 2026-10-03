@@ -51,6 +51,15 @@ components:
       title: JSONError wraps an error with JSON object.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    staticCredsAuthOutput:
+      example:
+        token: token
+      properties:
+        token:
+          type: string
+          x-go-name: Token
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     staticCredsAuth:
       description: 'staticCredsAuth is a command that creates a temporary access profile using
 
@@ -72,14 +81,5 @@ components:
           description: Set output format to JSON
           type: boolean
           x-go-name: Json
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    staticCredsAuthOutput:
-      example:
-        token: token
-      properties:
-        token:
-          type: string
-          x-go-name: Token
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

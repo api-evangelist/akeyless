@@ -43,15 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    deleteItemsOutput:
-      example:
-        path: path
-      properties:
-        path:
-          type: string
-          x-go-name: Path
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     JSONError:
       properties:
         error:
@@ -81,5 +72,14 @@ components:
       required:
       - path
       title: deleteItems is a command that deletes multiple items from a given path.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    deleteItemsOutput:
+      example:
+        path: path
+      properties:
+        path:
+          type: string
+          x-go-name: Path
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

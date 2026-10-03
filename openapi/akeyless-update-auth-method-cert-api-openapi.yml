@@ -43,15 +43,14 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    updateAuthMethodCertOutput:
-      example:
-        access_id: access_id
+    JSONError:
       properties:
-        access_id:
+        error:
           type: string
-          x-go-name: AccessID
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
     updateAuthMethodCert:
       description: 'updateAuthMethodCert is a command that updates a new auth method that
 
@@ -171,11 +170,12 @@ components:
       - unique-identifier
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    JSONError:
+    updateAuthMethodCertOutput:
+      example:
+        access_id: access_id
       properties:
-        error:
+        access_id:
           type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+          x-go-name: AccessID
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

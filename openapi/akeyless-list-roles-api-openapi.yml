@@ -43,14 +43,79 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JSONError:
+    listRoles:
       properties:
-        error:
+        filter:
+          description: Filter by item name or part of it
           type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+          x-go-name: Filter
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        pagination-token:
+          description: Next page reference
+          type: string
+          x-go-name: PaginationToken
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      title: listRoles is a command that returns a list of roles.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    RuleAssigner:
+      example:
+        unique_id: unique_id
+        access_id: access_id
+      properties:
+        access_id:
+          type: string
+          x-go-name: AccessId
+        unique_id:
+          type: string
+          x-go-name: UniqueId
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    RoleAuthMethodAssociation:
+      description: 'RoleAuthMethodAssociation includes details of an association between a role
+
+        and an auth method.'
+      example:
+        assoc_id: assoc_id
+        auth_method_name: auth_method_name
+        auth_method_sub_claims:
+          key:
+          - auth_method_sub_claims
+          - auth_method_sub_claims
+        auth_method_access_id: auth_method_access_id
+        sub_claims_case_sensitive: true
+      properties:
+        assoc_id:
+          type: string
+          x-go-name: AssociationID
+        auth_method_access_id:
+          type: string
+          x-go-name: AuthMethodAccessID
+        auth_method_name:
+          type: string
+          x-go-name: AuthMethodName
+        auth_method_sub_claims:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+          x-go-name: AuthMethodSubClaims
+        sub_claims_case_sensitive:
+          type: boolean
+          x-go-name: IsSubClaimsCaseSensitive
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     PathRule:
       example:
         path: path
@@ -111,6 +176,108 @@ components:
       title: PathRule is a single rule used in AKEYLESS RBAC.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    Role:
+      example:
+        role_name: role_name
+        client_permissions:
+        - client_permissions
+        - client_permissions
+        role_auth_methods_assoc:
+        - assoc_id: assoc_id
+          auth_method_name: auth_method_name
+          auth_method_sub_claims:
+            key:
+            - auth_method_sub_claims
+            - auth_method_sub_claims
+          auth_method_access_id: auth_method_access_id
+          sub_claims_case_sensitive: true
+        - assoc_id: assoc_id
+          auth_method_name: auth_method_name
+          auth_method_sub_claims:
+            key:
+            - auth_method_sub_claims
+            - auth_method_sub_claims
+          auth_method_access_id: auth_method_access_id
+          sub_claims_case_sensitive: true
+        access_date: 2000-01-23 04:56:07+00:00
+        modification_date: 2000-01-23 04:56:07+00:00
+        comment: comment
+        rules:
+          path_rules:
+          - path: path
+            start_time: 5
+            capabilities:
+            - capabilities
+            - capabilities
+            number_of_allowed_access: 5
+            is_limit_access: true
+            assigners:
+            - unique_id: unique_id
+              access_id: access_id
+            - unique_id: unique_id
+              access_id: access_id
+            number_of_access_used: 1
+            type: type
+            ttl: 2
+          - path: path
+            start_time: 5
+            capabilities:
+            - capabilities
+            - capabilities
+            number_of_allowed_access: 5
+            is_limit_access: true
+            assigners:
+            - unique_id: unique_id
+              access_id: access_id
+            - unique_id: unique_id
+              access_id: access_id
+            number_of_access_used: 1
+            type: type
+            ttl: 2
+          admin: true
+        creation_date: 2000-01-23 04:56:07+00:00
+      properties:
+        access_date:
+          format: date-time
+          type: string
+          x-go-name: AccessDate
+        client_permissions:
+          items:
+            type: string
+          type: array
+          x-go-name: ClientPermissions
+        comment:
+          type: string
+          x-go-name: Comment
+        creation_date:
+          format: date-time
+          type: string
+          x-go-name: CreationDate
+        modification_date:
+          format: date-time
+          type: string
+          x-go-name: ModificationDate
+        role_auth_methods_assoc:
+          items:
+            $ref: '#/components/schemas/RoleAuthMethodAssociation'
+          type: array
+          x-go-name: RoleAuthMethodsAssoc
+        role_name:
+          type: string
+          x-go-name: RoleName
+        rules:
+          $ref: '#/components/schemas/Rules'
+      title: Role includes role details.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
     ListRolesOutput:
       example:
         next_page: next_page
@@ -289,172 +456,5 @@ components:
           type: array
           x-go-name: PathRules
       title: Rules are a part of AKEYLESS RBAC.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    listRoles:
-      properties:
-        filter:
-          description: Filter by item name or part of it
-          type: string
-          x-go-name: Filter
-        json:
-          description: Set output format to JSON
-          type: boolean
-          x-go-name: Json
-        pagination-token:
-          description: Next page reference
-          type: string
-          x-go-name: PaginationToken
-        token:
-          description: Authentication token (see `/auth` and `/configure`)
-          type: string
-          x-go-name: Profile
-        uid-token:
-          description: The universal identity token, Required only for universal_identity authentication
-          type: string
-          x-go-name: UIDToken
-      title: listRoles is a command that returns a list of roles.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    RoleAuthMethodAssociation:
-      description: 'RoleAuthMethodAssociation includes details of an association between a role
-
-        and an auth method.'
-      example:
-        assoc_id: assoc_id
-        auth_method_name: auth_method_name
-        auth_method_sub_claims:
-          key:
-          - auth_method_sub_claims
-          - auth_method_sub_claims
-        auth_method_access_id: auth_method_access_id
-        sub_claims_case_sensitive: true
-      properties:
-        assoc_id:
-          type: string
-          x-go-name: AssociationID
-        auth_method_access_id:
-          type: string
-          x-go-name: AuthMethodAccessID
-        auth_method_name:
-          type: string
-          x-go-name: AuthMethodName
-        auth_method_sub_claims:
-          additionalProperties:
-            items:
-              type: string
-            type: array
-          type: object
-          x-go-name: AuthMethodSubClaims
-        sub_claims_case_sensitive:
-          type: boolean
-          x-go-name: IsSubClaimsCaseSensitive
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    RuleAssigner:
-      example:
-        unique_id: unique_id
-        access_id: access_id
-      properties:
-        access_id:
-          type: string
-          x-go-name: AccessId
-        unique_id:
-          type: string
-          x-go-name: UniqueId
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    Role:
-      example:
-        role_name: role_name
-        client_permissions:
-        - client_permissions
-        - client_permissions
-        role_auth_methods_assoc:
-        - assoc_id: assoc_id
-          auth_method_name: auth_method_name
-          auth_method_sub_claims:
-            key:
-            - auth_method_sub_claims
-            - auth_method_sub_claims
-          auth_method_access_id: auth_method_access_id
-          sub_claims_case_sensitive: true
-        - assoc_id: assoc_id
-          auth_method_name: auth_method_name
-          auth_method_sub_claims:
-            key:
-            - auth_method_sub_claims
-            - auth_method_sub_claims
-          auth_method_access_id: auth_method_access_id
-          sub_claims_case_sensitive: true
-        access_date: 2000-01-23 04:56:07+00:00
-        modification_date: 2000-01-23 04:56:07+00:00
-        comment: comment
-        rules:
-          path_rules:
-          - path: path
-            start_time: 5
-            capabilities:
-            - capabilities
-            - capabilities
-            number_of_allowed_access: 5
-            is_limit_access: true
-            assigners:
-            - unique_id: unique_id
-              access_id: access_id
-            - unique_id: unique_id
-              access_id: access_id
-            number_of_access_used: 1
-            type: type
-            ttl: 2
-          - path: path
-            start_time: 5
-            capabilities:
-            - capabilities
-            - capabilities
-            number_of_allowed_access: 5
-            is_limit_access: true
-            assigners:
-            - unique_id: unique_id
-              access_id: access_id
-            - unique_id: unique_id
-              access_id: access_id
-            number_of_access_used: 1
-            type: type
-            ttl: 2
-          admin: true
-        creation_date: 2000-01-23 04:56:07+00:00
-      properties:
-        access_date:
-          format: date-time
-          type: string
-          x-go-name: AccessDate
-        client_permissions:
-          items:
-            type: string
-          type: array
-          x-go-name: ClientPermissions
-        comment:
-          type: string
-          x-go-name: Comment
-        creation_date:
-          format: date-time
-          type: string
-          x-go-name: CreationDate
-        modification_date:
-          format: date-time
-          type: string
-          x-go-name: ModificationDate
-        role_auth_methods_assoc:
-          items:
-            $ref: '#/components/schemas/RoleAuthMethodAssociation'
-          type: array
-          x-go-name: RoleAuthMethodsAssoc
-        role_name:
-          type: string
-          x-go-name: RoleName
-        rules:
-          $ref: '#/components/schemas/Rules'
-      title: Role includes role details.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types

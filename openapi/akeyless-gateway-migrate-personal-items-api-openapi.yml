@@ -43,6 +43,26 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    gatewayMigratePersonalItemsOutput:
+      example:
+        migration_items:
+          total: 5
+          failed: 0
+          migrated: 6
+          skipped: 1
+      properties:
+        migration_items:
+          $ref: '#/components/schemas/MigrationItems'
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     gatewayMigratePersonalItems:
       description: gatewayMigratePersonalItems is a command that migrate personal items from external vault
       properties:
@@ -120,23 +140,3 @@ components:
           x-go-name: Total
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/importer/report
-    gatewayMigratePersonalItemsOutput:
-      example:
-        migration_items:
-          total: 5
-          failed: 0
-          migrated: 6
-          skipped: 1
-      properties:
-        migration_items:
-          $ref: '#/components/schemas/MigrationItems'
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

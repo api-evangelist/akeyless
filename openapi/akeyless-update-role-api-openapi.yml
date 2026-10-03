@@ -43,15 +43,14 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    updateRoleOutput:
-      example:
-        updated: true
+    JSONError:
       properties:
-        updated:
-          type: boolean
-          x-go-name: Updated
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
     updateRole:
       properties:
         analytics-access:
@@ -119,11 +118,12 @@ components:
       title: updateRole is a command that updates an existing role.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    JSONError:
+    updateRoleOutput:
+      example:
+        updated: true
       properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+        updated:
+          type: boolean
+          x-go-name: Updated
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

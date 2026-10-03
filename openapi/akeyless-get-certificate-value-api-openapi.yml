@@ -43,6 +43,27 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    GetCertificateValueOutput:
+      example:
+        certificate_pem: certificate_pem
+        private_key_pem: private_key_pem
+      properties:
+        certificate_pem:
+          type: string
+          x-go-name: CertificatePem
+        private_key_pem:
+          type: string
+          x-go-name: PrivateKeyPem
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     getCertificateValue:
       properties:
         json:
@@ -71,24 +92,3 @@ components:
       title: getCertificateValue is a command that gets a certificate value.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    GetCertificateValueOutput:
-      example:
-        certificate_pem: certificate_pem
-        private_key_pem: private_key_pem
-      properties:
-        certificate_pem:
-          type: string
-          x-go-name: CertificatePem
-        private_key_pem:
-          type: string
-          x-go-name: PrivateKeyPem
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

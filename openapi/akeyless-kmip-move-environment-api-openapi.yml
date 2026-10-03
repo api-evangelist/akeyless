@@ -43,19 +43,14 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    kmipMoveServerOutput:
-      example:
-        old_root: old_root
-        new_root: new_root
+    JSONError:
       properties:
-        new_root:
+        error:
           type: string
-          x-go-name: NewRoot
-        old_root:
-          type: string
-          x-go-name: OldRoot
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
     kmipMoveServer:
       description: 'kmipMoveServer is a command that Moves the root location of the kmip server
 
@@ -78,11 +73,16 @@ components:
           x-go-name: UIDToken
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    JSONError:
+    kmipMoveServerOutput:
+      example:
+        old_root: old_root
+        new_root: new_root
       properties:
-        error:
+        new_root:
           type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+          x-go-name: NewRoot
+        old_root:
+          type: string
+          x-go-name: OldRoot
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

@@ -43,15 +43,14 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    gatewayStartProducerOutput:
-      example:
-        producer_name: producer_name
+    JSONError:
       properties:
-        producer_name:
+        error:
           type: string
-          x-go-name: ProducerName
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
     gatewayStartProducer:
       description: gatewayStartProducer is a command that starts producer
       properties:
@@ -75,11 +74,12 @@ components:
       - name
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    JSONError:
+    gatewayStartProducerOutput:
+      example:
+        producer_name: producer_name
       properties:
-        error:
+        producer_name:
           type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+          x-go-name: ProducerName
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

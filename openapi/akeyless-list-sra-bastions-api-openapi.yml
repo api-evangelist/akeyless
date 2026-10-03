@@ -43,45 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    BastionsList:
-      example:
-        clusters:
-        - allowed_urls:
-          - allowed_urls
-          - allowed_urls
-          cluster_name: cluster_name
-          allowed_urls_per_instance:
-            key:
-            - allowed_urls_per_instance
-            - allowed_urls_per_instance
-          access_id: access_id
-          allowed_access_ids:
-          - allowed_access_ids
-          - allowed_access_ids
-          display_name: display_name
-          last_report: 2000-01-23 04:56:07+00:00
-        - allowed_urls:
-          - allowed_urls
-          - allowed_urls
-          cluster_name: cluster_name
-          allowed_urls_per_instance:
-            key:
-            - allowed_urls_per_instance
-            - allowed_urls_per_instance
-          access_id: access_id
-          allowed_access_ids:
-          - allowed_access_ids
-          - allowed_access_ids
-          display_name: display_name
-          last_report: 2000-01-23 04:56:07+00:00
-      properties:
-        clusters:
-          items:
-            $ref: '#/components/schemas/BastionListEntry'
-          type: array
-          x-go-name: Clusters
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     JSONError:
       properties:
         error:
@@ -137,6 +98,45 @@ components:
           format: date-time
           type: string
           x-go-name: LastReport
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    BastionsList:
+      example:
+        clusters:
+        - allowed_urls:
+          - allowed_urls
+          - allowed_urls
+          cluster_name: cluster_name
+          allowed_urls_per_instance:
+            key:
+            - allowed_urls_per_instance
+            - allowed_urls_per_instance
+          access_id: access_id
+          allowed_access_ids:
+          - allowed_access_ids
+          - allowed_access_ids
+          display_name: display_name
+          last_report: 2000-01-23 04:56:07+00:00
+        - allowed_urls:
+          - allowed_urls
+          - allowed_urls
+          cluster_name: cluster_name
+          allowed_urls_per_instance:
+            key:
+            - allowed_urls_per_instance
+            - allowed_urls_per_instance
+          access_id: access_id
+          allowed_access_ids:
+          - allowed_access_ids
+          - allowed_access_ids
+          display_name: display_name
+          last_report: 2000-01-23 04:56:07+00:00
+      properties:
+        clusters:
+          items:
+            $ref: '#/components/schemas/BastionListEntry'
+          type: array
+          x-go-name: Clusters
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     listSRABastions:

@@ -43,23 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
-    decryptPKCS1Output:
-      example:
-        plaintext: plaintext
-      properties:
-        plaintext:
-          type: string
-          x-go-name: Plaintext
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     decryptPKCS1:
       properties:
         ciphertext:
@@ -97,3 +80,20 @@ components:
       title: decryptPKCS1 is a command that decrypts plaintext using RSA and the padding scheme from PKCS#1 v1.5.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    decryptPKCS1Output:
+      example:
+        plaintext: plaintext
+      properties:
+        plaintext:
+          type: string
+          x-go-name: Plaintext
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

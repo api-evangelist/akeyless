@@ -43,28 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
-    signPKCS1Output:
-      example:
-        result:
-        - 0
-        - 0
-      properties:
-        result:
-          items:
-            format: uint8
-            type: integer
-          type: array
-          x-go-name: Result
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     signPKCS1:
       description: 'signPKCS1 is a command that calculates the signature of hashed data using
 
@@ -103,3 +81,25 @@ components:
       - message
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    signPKCS1Output:
+      example:
+        result:
+        - 0
+        - 0
+      properties:
+        result:
+          items:
+            format: uint8
+            type: integer
+          type: array
+          x-go-name: Result
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

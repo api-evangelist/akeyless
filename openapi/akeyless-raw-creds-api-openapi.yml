@@ -43,14 +43,17 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JSONError:
+    rawCreds:
       properties:
-        error:
+        access-id:
           type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+          x-go-name: AccessID
+        access-key:
+          type: string
+          x-go-name: AccessKey
+      title: rawCreds is a command that returns raw Akeyless access credentials.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     SystemAccessCredentialsReplyObj:
       example:
         auth_creds: auth_creds
@@ -83,14 +86,11 @@ components:
       title: Combination of three temporary credentials signed by Auth for accessing Auth, UAM and KFMs instances.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/auth
-    rawCreds:
+    JSONError:
       properties:
-        access-id:
+        error:
           type: string
-          x-go-name: AccessID
-        access-key:
-          type: string
-          x-go-name: AccessKey
-      title: rawCreds is a command that returns raw Akeyless access credentials.
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

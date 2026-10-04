@@ -43,14 +43,15 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JSONError:
+    updateItemOutput:
+      example:
+        updated: true
       properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+        updated:
+          type: boolean
+          x-go-name: Updated
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     updateItem:
       properties:
         accessibility:
@@ -190,12 +191,11 @@ components:
       title: updateItem is a command that updates item.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    updateItemOutput:
-      example:
-        updated: true
+    JSONError:
       properties:
-        updated:
-          type: boolean
-          x-go-name: Updated
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

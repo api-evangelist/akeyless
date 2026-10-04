@@ -43,23 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
-    updatePKICertIssuerOutput:
-      example:
-        name: name
-      properties:
-        name:
-          type: string
-          x-go-name: Name
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     UpdatePKICertIssuer:
       example:
         key-usage: DigitalSignature,KeyAgreement,KeyEncipherment
@@ -244,3 +227,20 @@ components:
       title: UpdatePKICertIssuer is a command that updates a new PKI certificate issuer.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    updatePKICertIssuerOutput:
+      example:
+        name: name
+      properties:
+        name:
+          type: string
+          x-go-name: Name
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

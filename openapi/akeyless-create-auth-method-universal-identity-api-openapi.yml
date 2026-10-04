@@ -43,14 +43,15 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JSONError:
+    createAuthMethodUniversalIdentityOutput:
+      example:
+        access_id: access_id
       properties:
-        error:
+        access_id:
           type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+          x-go-name: AccessID
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     createAuthMethodUniversalIdentity:
       description: 'createAuthMethodUniversalIdentity is a command that creates a new auth
 
@@ -119,12 +120,11 @@ components:
       - name
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    createAuthMethodUniversalIdentityOutput:
-      example:
-        access_id: access_id
+    JSONError:
       properties:
-        access_id:
+        error:
           type: string
-          x-go-name: AccessID
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

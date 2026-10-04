@@ -51,6 +51,207 @@ components:
       title: JSONError wraps an error with JSON object.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    ListTargetsOutput:
+      example:
+        next_page: next_page
+        targets:
+        - credentials_less: true
+          target_items_assoc:
+          - cluster_id: 1
+            assoc_id: assoc_id
+            item_type: item_type
+            attributes:
+              key: attributes
+            item_name: item_name
+            relationship: relationship
+          - cluster_id: 1
+            assoc_id: assoc_id
+            item_type: item_type
+            attributes:
+              key: attributes
+            item_name: item_name
+            relationship: relationship
+          target_name: target_name
+          access_date: 2000-01-23 04:56:07+00:00
+          target_type: target_type
+          target_id: 6
+          creation_date: 2000-01-23 04:56:07+00:00
+          is_access_request_enabled: true
+          last_version: 0
+          client_permissions:
+          - client_permissions
+          - client_permissions
+          with_customer_fragment: true
+          target_versions:
+          - item_version_state: item_version_state
+            with_customer_fragment: true
+            access_date: 2000-01-23 04:56:07+00:00
+            deletion_date: 2000-01-23 04:56:07+00:00
+            modification_date: 2000-01-23 04:56:07+00:00
+            protection_key_name: protection_key_name
+            creation_date: 2000-01-23 04:56:07+00:00
+            version: 3
+            customer_fragment_id: customer_fragment_id
+          - item_version_state: item_version_state
+            with_customer_fragment: true
+            access_date: 2000-01-23 04:56:07+00:00
+            deletion_date: 2000-01-23 04:56:07+00:00
+            modification_date: 2000-01-23 04:56:07+00:00
+            protection_key_name: protection_key_name
+            creation_date: 2000-01-23 04:56:07+00:00
+            version: 3
+            customer_fragment_id: customer_fragment_id
+          modification_date: 2000-01-23 04:56:07+00:00
+          attributes:
+            key: '{}'
+          comment: comment
+          protection_key_name: protection_key_name
+          access_request_status: access_request_status
+        - credentials_less: true
+          target_items_assoc:
+          - cluster_id: 1
+            assoc_id: assoc_id
+            item_type: item_type
+            attributes:
+              key: attributes
+            item_name: item_name
+            relationship: relationship
+          - cluster_id: 1
+            assoc_id: assoc_id
+            item_type: item_type
+            attributes:
+              key: attributes
+            item_name: item_name
+            relationship: relationship
+          target_name: target_name
+          access_date: 2000-01-23 04:56:07+00:00
+          target_type: target_type
+          target_id: 6
+          creation_date: 2000-01-23 04:56:07+00:00
+          is_access_request_enabled: true
+          last_version: 0
+          client_permissions:
+          - client_permissions
+          - client_permissions
+          with_customer_fragment: true
+          target_versions:
+          - item_version_state: item_version_state
+            with_customer_fragment: true
+            access_date: 2000-01-23 04:56:07+00:00
+            deletion_date: 2000-01-23 04:56:07+00:00
+            modification_date: 2000-01-23 04:56:07+00:00
+            protection_key_name: protection_key_name
+            creation_date: 2000-01-23 04:56:07+00:00
+            version: 3
+            customer_fragment_id: customer_fragment_id
+          - item_version_state: item_version_state
+            with_customer_fragment: true
+            access_date: 2000-01-23 04:56:07+00:00
+            deletion_date: 2000-01-23 04:56:07+00:00
+            modification_date: 2000-01-23 04:56:07+00:00
+            protection_key_name: protection_key_name
+            creation_date: 2000-01-23 04:56:07+00:00
+            version: 3
+            customer_fragment_id: customer_fragment_id
+          modification_date: 2000-01-23 04:56:07+00:00
+          attributes:
+            key: '{}'
+          comment: comment
+          protection_key_name: protection_key_name
+          access_request_status: access_request_status
+      properties:
+        next_page:
+          type: string
+          x-go-name: NextPage
+        targets:
+          items:
+            $ref: '#/components/schemas/Target'
+          type: array
+          x-go-name: Targets
+      title: ListTargetsOutput is a list of targets.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    listTargets:
+      properties:
+        filter:
+          description: Filter by auth method name or part of it
+          type: string
+          x-go-name: Filter
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        pagination-token:
+          description: Next page reference
+          type: string
+          x-go-name: PaginationToken
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        type:
+          description: 'The target types list . In case it is empty, all
+
+            types of targets will be returned. options: [hanadb cassandra aws ssh gke eks mysql mongodb snowflake mssql redshift artifactory azure rabbitmq k8s venafi gcp oracle dockerhub ldap github chef web salesforce postgres]'
+          items:
+            type: string
+          type: array
+          x-go-name: Types
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      title: listTargets is a command that returns a list of targets.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    ItemVersion:
+      example:
+        item_version_state: item_version_state
+        with_customer_fragment: true
+        access_date: 2000-01-23 04:56:07+00:00
+        deletion_date: 2000-01-23 04:56:07+00:00
+        modification_date: 2000-01-23 04:56:07+00:00
+        protection_key_name: protection_key_name
+        creation_date: 2000-01-23 04:56:07+00:00
+        version: 3
+        customer_fragment_id: customer_fragment_id
+      properties:
+        access_date:
+          format: date-time
+          type: string
+          x-go-name: AccessDate
+        creation_date:
+          format: date-time
+          type: string
+          x-go-name: CreationDate
+        customer_fragment_id:
+          type: string
+          x-go-name: CustomerFragmentId
+        deletion_date:
+          format: date-time
+          type: string
+          x-go-name: DeletionDate
+        item_version_state:
+          description: ItemState defines the different states an Item can be in
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        modification_date:
+          format: date-time
+          type: string
+          x-go-name: ModificationDate
+        protection_key_name:
+          type: string
+          x-go-name: ProtectionKeyName
+        version:
+          format: int32
+          type: integer
+          x-go-name: Version
+        with_customer_fragment:
+          type: boolean
+          x-go-name: WithCustomerFragment
+      title: ItemVersion describes an item version in AKEYLESS.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     Target:
       example:
         credentials_less: true
@@ -177,87 +378,6 @@ components:
       title: Target includes target details.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    ItemVersion:
-      example:
-        item_version_state: item_version_state
-        with_customer_fragment: true
-        access_date: 2000-01-23 04:56:07+00:00
-        deletion_date: 2000-01-23 04:56:07+00:00
-        modification_date: 2000-01-23 04:56:07+00:00
-        protection_key_name: protection_key_name
-        creation_date: 2000-01-23 04:56:07+00:00
-        version: 3
-        customer_fragment_id: customer_fragment_id
-      properties:
-        access_date:
-          format: date-time
-          type: string
-          x-go-name: AccessDate
-        creation_date:
-          format: date-time
-          type: string
-          x-go-name: CreationDate
-        customer_fragment_id:
-          type: string
-          x-go-name: CustomerFragmentId
-        deletion_date:
-          format: date-time
-          type: string
-          x-go-name: DeletionDate
-        item_version_state:
-          description: ItemState defines the different states an Item can be in
-          type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-        modification_date:
-          format: date-time
-          type: string
-          x-go-name: ModificationDate
-        protection_key_name:
-          type: string
-          x-go-name: ProtectionKeyName
-        version:
-          format: int32
-          type: integer
-          x-go-name: Version
-        with_customer_fragment:
-          type: boolean
-          x-go-name: WithCustomerFragment
-      title: ItemVersion describes an item version in AKEYLESS.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    listTargets:
-      properties:
-        filter:
-          description: Filter by auth method name or part of it
-          type: string
-          x-go-name: Filter
-        json:
-          description: Set output format to JSON
-          type: boolean
-          x-go-name: Json
-        pagination-token:
-          description: Next page reference
-          type: string
-          x-go-name: PaginationToken
-        token:
-          description: Authentication token (see `/auth` and `/configure`)
-          type: string
-          x-go-name: Profile
-        type:
-          description: 'The target types list . In case it is empty, all
-
-            types of targets will be returned. options: [hanadb cassandra aws ssh gke eks mysql mongodb snowflake mssql redshift artifactory azure rabbitmq k8s venafi gcp oracle dockerhub ldap github chef web salesforce postgres]'
-          items:
-            type: string
-          type: array
-          x-go-name: Types
-        uid-token:
-          description: The universal identity token, Required only for universal_identity authentication
-          type: string
-          x-go-name: UIDToken
-      title: listTargets is a command that returns a list of targets.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     TargetItemAssociation:
       description: 'TargetItemAssociation includes details of an association between a target
 
@@ -293,125 +413,5 @@ components:
         relationship:
           type: string
           x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    ListTargetsOutput:
-      example:
-        next_page: next_page
-        targets:
-        - credentials_less: true
-          target_items_assoc:
-          - cluster_id: 1
-            assoc_id: assoc_id
-            item_type: item_type
-            attributes:
-              key: attributes
-            item_name: item_name
-            relationship: relationship
-          - cluster_id: 1
-            assoc_id: assoc_id
-            item_type: item_type
-            attributes:
-              key: attributes
-            item_name: item_name
-            relationship: relationship
-          target_name: target_name
-          access_date: 2000-01-23 04:56:07+00:00
-          target_type: target_type
-          target_id: 6
-          creation_date: 2000-01-23 04:56:07+00:00
-          is_access_request_enabled: true
-          last_version: 0
-          client_permissions:
-          - client_permissions
-          - client_permissions
-          with_customer_fragment: true
-          target_versions:
-          - item_version_state: item_version_state
-            with_customer_fragment: true
-            access_date: 2000-01-23 04:56:07+00:00
-            deletion_date: 2000-01-23 04:56:07+00:00
-            modification_date: 2000-01-23 04:56:07+00:00
-            protection_key_name: protection_key_name
-            creation_date: 2000-01-23 04:56:07+00:00
-            version: 3
-            customer_fragment_id: customer_fragment_id
-          - item_version_state: item_version_state
-            with_customer_fragment: true
-            access_date: 2000-01-23 04:56:07+00:00
-            deletion_date: 2000-01-23 04:56:07+00:00
-            modification_date: 2000-01-23 04:56:07+00:00
-            protection_key_name: protection_key_name
-            creation_date: 2000-01-23 04:56:07+00:00
-            version: 3
-            customer_fragment_id: customer_fragment_id
-          modification_date: 2000-01-23 04:56:07+00:00
-          attributes:
-            key: '{}'
-          comment: comment
-          protection_key_name: protection_key_name
-          access_request_status: access_request_status
-        - credentials_less: true
-          target_items_assoc:
-          - cluster_id: 1
-            assoc_id: assoc_id
-            item_type: item_type
-            attributes:
-              key: attributes
-            item_name: item_name
-            relationship: relationship
-          - cluster_id: 1
-            assoc_id: assoc_id
-            item_type: item_type
-            attributes:
-              key: attributes
-            item_name: item_name
-            relationship: relationship
-          target_name: target_name
-          access_date: 2000-01-23 04:56:07+00:00
-          target_type: target_type
-          target_id: 6
-          creation_date: 2000-01-23 04:56:07+00:00
-          is_access_request_enabled: true
-          last_version: 0
-          client_permissions:
-          - client_permissions
-          - client_permissions
-          with_customer_fragment: true
-          target_versions:
-          - item_version_state: item_version_state
-            with_customer_fragment: true
-            access_date: 2000-01-23 04:56:07+00:00
-            deletion_date: 2000-01-23 04:56:07+00:00
-            modification_date: 2000-01-23 04:56:07+00:00
-            protection_key_name: protection_key_name
-            creation_date: 2000-01-23 04:56:07+00:00
-            version: 3
-            customer_fragment_id: customer_fragment_id
-          - item_version_state: item_version_state
-            with_customer_fragment: true
-            access_date: 2000-01-23 04:56:07+00:00
-            deletion_date: 2000-01-23 04:56:07+00:00
-            modification_date: 2000-01-23 04:56:07+00:00
-            protection_key_name: protection_key_name
-            creation_date: 2000-01-23 04:56:07+00:00
-            version: 3
-            customer_fragment_id: customer_fragment_id
-          modification_date: 2000-01-23 04:56:07+00:00
-          attributes:
-            key: '{}'
-          comment: comment
-          protection_key_name: protection_key_name
-          access_request_status: access_request_status
-      properties:
-        next_page:
-          type: string
-          x-go-name: NextPage
-        targets:
-          items:
-            $ref: '#/components/schemas/Target'
-          type: array
-          x-go-name: Targets
-      title: ListTargetsOutput is a list of targets.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types

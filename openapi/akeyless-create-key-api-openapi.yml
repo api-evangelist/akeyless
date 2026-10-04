@@ -43,36 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
-    createKeyOutput:
-      example:
-        display_id: display_id
-        item_id: 0
-        fragment_results:
-        - null
-        - null
-      properties:
-        display_id:
-          type: string
-          x-go-name: DisplayId
-        fragment_results:
-          items:
-            $ref: '#/components/schemas/Duration'
-          type: array
-          x-go-name: FragmentResults
-        item_id:
-          format: int64
-          type: integer
-          x-go-name: ItemId
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     createKey:
       description: 'createKey is a command that creates a new key. [Deprecated: Use command create-dfc-key]'
       properties:
@@ -144,3 +114,33 @@ components:
       format: int64
       type: integer
       x-go-package: time
+    createKeyOutput:
+      example:
+        display_id: display_id
+        item_id: 0
+        fragment_results:
+        - null
+        - null
+      properties:
+        display_id:
+          type: string
+          x-go-name: DisplayId
+        fragment_results:
+          items:
+            $ref: '#/components/schemas/Duration'
+          type: array
+          x-go-name: FragmentResults
+        item_id:
+          format: int64
+          type: integer
+          x-go-name: ItemId
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

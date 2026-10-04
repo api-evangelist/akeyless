@@ -43,6 +43,14 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
     RuleAssigner:
       example:
         unique_id: unique_id
@@ -54,41 +62,6 @@ components:
         unique_id:
           type: string
           x-go-name: UniqueId
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    RoleAuthMethodAssociation:
-      description: 'RoleAuthMethodAssociation includes details of an association between a role
-
-        and an auth method.'
-      example:
-        assoc_id: assoc_id
-        auth_method_name: auth_method_name
-        auth_method_sub_claims:
-          key:
-          - auth_method_sub_claims
-          - auth_method_sub_claims
-        auth_method_access_id: auth_method_access_id
-        sub_claims_case_sensitive: true
-      properties:
-        assoc_id:
-          type: string
-          x-go-name: AssociationID
-        auth_method_access_id:
-          type: string
-          x-go-name: AuthMethodAccessID
-        auth_method_name:
-          type: string
-          x-go-name: AuthMethodName
-        auth_method_sub_claims:
-          additionalProperties:
-            items:
-              type: string
-            type: array
-          type: object
-          x-go-name: AuthMethodSubClaims
-        sub_claims_case_sensitive:
-          type: boolean
-          x-go-name: IsSubClaimsCaseSensitive
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     PathRule:
@@ -151,14 +124,54 @@ components:
       title: PathRule is a single rule used in AKEYLESS RBAC.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    JSONError:
+    Rules:
+      example:
+        path_rules:
+        - path: path
+          start_time: 5
+          capabilities:
+          - capabilities
+          - capabilities
+          number_of_allowed_access: 5
+          is_limit_access: true
+          assigners:
+          - unique_id: unique_id
+            access_id: access_id
+          - unique_id: unique_id
+            access_id: access_id
+          number_of_access_used: 1
+          type: type
+          ttl: 2
+        - path: path
+          start_time: 5
+          capabilities:
+          - capabilities
+          - capabilities
+          number_of_allowed_access: 5
+          is_limit_access: true
+          assigners:
+          - unique_id: unique_id
+            access_id: access_id
+          - unique_id: unique_id
+            access_id: access_id
+          number_of_access_used: 1
+          type: type
+          ttl: 2
+        admin: true
       properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+        admin:
+          description: Is admin
+          type: boolean
+          x-go-name: Admin
+        path_rules:
+          description: The path the rules refers to
+          items:
+            $ref: '#/components/schemas/PathRule'
+          type: array
+          x-go-name: PathRules
+      title: Rules are a part of AKEYLESS RBAC.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     getRole:
       properties:
         json:
@@ -276,51 +289,38 @@ components:
       title: Role includes role details.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    Rules:
+    RoleAuthMethodAssociation:
+      description: 'RoleAuthMethodAssociation includes details of an association between a role
+
+        and an auth method.'
       example:
-        path_rules:
-        - path: path
-          start_time: 5
-          capabilities:
-          - capabilities
-          - capabilities
-          number_of_allowed_access: 5
-          is_limit_access: true
-          assigners:
-          - unique_id: unique_id
-            access_id: access_id
-          - unique_id: unique_id
-            access_id: access_id
-          number_of_access_used: 1
-          type: type
-          ttl: 2
-        - path: path
-          start_time: 5
-          capabilities:
-          - capabilities
-          - capabilities
-          number_of_allowed_access: 5
-          is_limit_access: true
-          assigners:
-          - unique_id: unique_id
-            access_id: access_id
-          - unique_id: unique_id
-            access_id: access_id
-          number_of_access_used: 1
-          type: type
-          ttl: 2
-        admin: true
+        assoc_id: assoc_id
+        auth_method_name: auth_method_name
+        auth_method_sub_claims:
+          key:
+          - auth_method_sub_claims
+          - auth_method_sub_claims
+        auth_method_access_id: auth_method_access_id
+        sub_claims_case_sensitive: true
       properties:
-        admin:
-          description: Is admin
+        assoc_id:
+          type: string
+          x-go-name: AssociationID
+        auth_method_access_id:
+          type: string
+          x-go-name: AuthMethodAccessID
+        auth_method_name:
+          type: string
+          x-go-name: AuthMethodName
+        auth_method_sub_claims:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+          x-go-name: AuthMethodSubClaims
+        sub_claims_case_sensitive:
           type: boolean
-          x-go-name: Admin
-        path_rules:
-          description: The path the rules refers to
-          items:
-            $ref: '#/components/schemas/PathRule'
-          type: array
-          x-go-name: PathRules
-      title: Rules are a part of AKEYLESS RBAC.
+          x-go-name: IsSubClaimsCaseSensitive
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types

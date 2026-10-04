@@ -51,6 +51,15 @@ components:
       title: JSONError wraps an error with JSON object.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    signGPGOutput:
+      example:
+        result: result
+      properties:
+        result:
+          type: string
+          x-go-name: Result
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     signGPG:
       properties:
         display-id:
@@ -90,14 +99,5 @@ components:
       - key-name
       - message
       title: signGPG is a command that calculates the GPG signature of a message using RSA key.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    signGPGOutput:
-      example:
-        result: result
-      properties:
-        result:
-          type: string
-          x-go-name: Result
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

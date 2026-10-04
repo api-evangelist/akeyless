@@ -51,6 +51,15 @@ components:
       title: JSONError wraps an error with JSON object.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    createCertificateOutput:
+      example:
+        name: name
+      properties:
+        name:
+          type: string
+          x-go-name: Name
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     createCertificate:
       properties:
         certificate-data:
@@ -110,14 +119,5 @@ components:
       required:
       - name
       title: createCertificate is a command that creates a certificate.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    createCertificateOutput:
-      example:
-        name: name
-      properties:
-        name:
-          type: string
-          x-go-name: Name
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

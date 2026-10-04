@@ -43,6 +43,9 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    updateAuthMethodGCPOutput:
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     JSONError:
       properties:
         error:
@@ -51,9 +54,6 @@ components:
       title: JSONError wraps an error with JSON object.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client
-    updateAuthMethodGCPOutput:
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     updateAuthMethodGCP:
       description: 'updateAuthMethodGCP is a command that updates a new auth method that
 

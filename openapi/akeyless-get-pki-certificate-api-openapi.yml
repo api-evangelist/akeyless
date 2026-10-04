@@ -43,14 +43,23 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JSONError:
+    getPKICertificateOutput:
+      example:
+        path: path
+        parent_cert: parent_cert
+        data: data
       properties:
-        error:
+        data:
           type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+          x-go-name: Data
+        parent_cert:
+          type: string
+          x-go-name: ParentCert
+        path:
+          type: string
+          x-go-name: Path
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     GetPKICertificate:
       example:
         alt-names: alt-names
@@ -121,20 +130,11 @@ components:
       title: GetPKICertificate is a command that generates PKI certificate.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    getPKICertificateOutput:
-      example:
-        path: path
-        parent_cert: parent_cert
-        data: data
+    JSONError:
       properties:
-        data:
+        error:
           type: string
-          x-go-name: Data
-        parent_cert:
-          type: string
-          x-go-name: ParentCert
-        path:
-          type: string
-          x-go-name: Path
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

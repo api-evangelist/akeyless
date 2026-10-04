@@ -43,43 +43,29 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JSONError:
+    uidListChildren:
+      description: 'uidListChildren is a command that lists child token ids of Akeyless
+
+        Universal Identity.'
       properties:
-        error:
+        auth-method-name:
+          description: The universal identity auth method name, required only when uid-token is not provided
           type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+          x-go-name: AuthMethodName
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
-    UniversalIdentityDetails:
-      example:
-        number_of_tokens: 6
-        max_depth: 0
-        root:
-          deny_inheritance: true
-          depth: 1
-          last_rotate: last_rotate
-          children: {}
-          comment: comment
-          id: id
-          revoked: true
-          ttl: 5
-          deny_rotate: true
-          expired_date: expired_date
-      properties:
-        max_depth:
-          format: uint16
-          type: integer
-          x-go-name: MaxDepth
-        number_of_tokens:
-          format: int64
-          type: integer
-          x-go-name: NumberOfTokens
-        root:
-          $ref: '#/components/schemas/UIDTokenDetails'
-      title: UniversalIdentityDetails Universal identity type.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     UIDTokenDetails:
       example:
         deny_inheritance: true
@@ -130,26 +116,40 @@ components:
       title: UIDTokenDetails Universal identity type.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    uidListChildren:
-      description: 'uidListChildren is a command that lists child token ids of Akeyless
-
-        Universal Identity.'
+    UniversalIdentityDetails:
+      example:
+        number_of_tokens: 6
+        max_depth: 0
+        root:
+          deny_inheritance: true
+          depth: 1
+          last_rotate: last_rotate
+          children: {}
+          comment: comment
+          id: id
+          revoked: true
+          ttl: 5
+          deny_rotate: true
+          expired_date: expired_date
       properties:
-        auth-method-name:
-          description: The universal identity auth method name, required only when uid-token is not provided
-          type: string
-          x-go-name: AuthMethodName
-        json:
-          description: Set output format to JSON
-          type: boolean
-          x-go-name: Json
-        token:
-          description: Authentication token (see `/auth` and `/configure`)
-          type: string
-          x-go-name: Profile
-        uid-token:
-          description: The universal identity token, Required only for universal_identity authentication
-          type: string
-          x-go-name: UIDToken
+        max_depth:
+          format: uint16
+          type: integer
+          x-go-name: MaxDepth
+        number_of_tokens:
+          format: int64
+          type: integer
+          x-go-name: NumberOfTokens
+        root:
+          $ref: '#/components/schemas/UIDTokenDetails'
+      title: UniversalIdentityDetails Universal identity type.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

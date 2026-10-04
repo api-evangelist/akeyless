@@ -43,1126 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ClassicKeyPurpose:
-      description: ClassicKeyPurpose defines purpose for classic keys
-      type: string
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    ClassicKeyStatusInfo:
-      example:
-        last_status: last_status
-        error_date: 2000-01-23 04:56:07+00:00
-        last_error: last_error
-        version: 1
-      properties:
-        error_date:
-          format: date-time
-          type: string
-          x-go-name: ErrorDate
-        last_error:
-          type: string
-          x-go-name: LastError
-        last_status:
-          description: ClassicKeyTargetStatus defines status of classic key target
-          type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-        version:
-          format: int64
-          type: integer
-          x-go-name: Version
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    RuleAssigner:
-      example:
-        unique_id: unique_id
-        access_id: access_id
-      properties:
-        access_id:
-          type: string
-          x-go-name: AccessId
-        unique_id:
-          type: string
-          x-go-name: UniqueId
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    describeItem:
-      properties:
-        display-id:
-          description: The display id of the item
-          type: string
-          x-go-name: DisplayId
-        item-id:
-          description: Item id of the item
-          format: int64
-          type: integer
-          x-go-name: ItemId
-        json:
-          description: Set output format to JSON
-          type: boolean
-          x-go-name: Json
-        name:
-          description: Item name
-          type: string
-          x-go-name: ItemName
-        show-versions:
-          default: false
-          description: Include all item versions in reply
-          type: boolean
-          x-go-name: ShowVersions
-        token:
-          description: Authentication token (see `/auth` and `/configure`)
-          type: string
-          x-go-name: Profile
-        uid-token:
-          description: The universal identity token, Required only for universal_identity authentication
-          type: string
-          x-go-name: UIDToken
-      required:
-      - name
-      title: describeItem is a command that returns a single item.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    Extension:
-      example:
-        Value: Value
-        Critical: true
-        Name: Name
-      properties:
-        Critical:
-          type: boolean
-        Name:
-          type: string
-        Value:
-          type: string
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    CertificateExpirationEvent:
-      example:
-        seconds_before: 4
-      properties:
-        seconds_before:
-          format: int64
-          type: integer
-          x-go-name: SecondsBefore
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    PKICertificateIssueDetails:
-      example:
-        country:
-        - country
-        - country
-        street_address:
-        - street_address
-        - street_address
-        allow_subdomains: true
-        key_type: key_type
-        allow_any_name: true
-        locality:
-        - locality
-        - locality
-        basic_constraints_valid_for_non_ca: true
-        organization_unit_list:
-        - organization_unit_list
-        - organization_unit_list
-        server_flag: true
-        is_ca: true
-        not_before_duration: 1
-        key_bits: 6
-        organization_list:
-        - organization_list
-        - organization_list
-        require_cn: true
-        code_signing_flag: true
-        province:
-        - province
-        - province
-        allowed_domains_list:
-        - allowed_domains_list
-        - allowed_domains_list
-        enforce_hostnames: true
-        allowed_uri_sans:
-        - allowed_uri_sans
-        - allowed_uri_sans
-        postal_code:
-        - postal_code
-        - postal_code
-        client_flag: true
-        key_usage_list:
-        - key_usage_list
-        - key_usage_list
-      properties:
-        allow_any_name:
-          type: boolean
-          x-go-name: AllowAnyName
-        allow_subdomains:
-          type: boolean
-          x-go-name: AllowSubdomains
-        allowed_domains_list:
-          items:
-            type: string
-          type: array
-          x-go-name: AllowedDomains
-        allowed_uri_sans:
-          items:
-            type: string
-          type: array
-          x-go-name: AllowedURISANs
-        basic_constraints_valid_for_non_ca:
-          type: boolean
-          x-go-name: BasicConstraintsValidForNonCA
-        client_flag:
-          type: boolean
-          x-go-name: ClientFlag
-        code_signing_flag:
-          type: boolean
-          x-go-name: CodeSigningFlag
-        country:
-          items:
-            type: string
-          type: array
-          x-go-name: Country
-        enforce_hostnames:
-          type: boolean
-          x-go-name: EnforceHostnames
-        is_ca:
-          type: boolean
-          x-go-name: IsCA
-        key_bits:
-          format: int64
-          type: integer
-          x-go-name: KeyBits
-        key_type:
-          type: string
-          x-go-name: KeyType
-        key_usage_list:
-          items:
-            type: string
-          type: array
-          x-go-name: KeyUsage
-        locality:
-          items:
-            type: string
-          type: array
-          x-go-name: Locality
-        not_before_duration:
-          description: 'A Duration represents the elapsed time between two instants
-
-            as an int64 nanosecond count. The representation limits the
-
-            largest representable duration to approximately 290 years.'
-          format: int64
-          type: integer
-          x-go-package: time
-        organization_list:
-          items:
-            type: string
-          type: array
-          x-go-name: Organization
-        organization_unit_list:
-          items:
-            type: string
-          type: array
-          x-go-name: OrganizationalUnit
-        postal_code:
-          items:
-            type: string
-          type: array
-          x-go-name: PostalCode
-        province:
-          items:
-            type: string
-          type: array
-          x-go-name: Province
-        require_cn:
-          type: boolean
-          x-go-name: RequireCN
-        server_flag:
-          type: boolean
-          x-go-name: ServerFlag
-        street_address:
-          items:
-            type: string
-          type: array
-          x-go-name: StreetAddress
-      title: PKICertificateIssueDetails defines PKI certificate details.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    ClassicKeyTargetInfo:
-      example:
-        external_kms_id:
-          key_id: key_id
-          key_reference: key_reference
-        target_assoc_id: target_assoc_id
-        target_type: target_type
-        key_purpose:
-        - null
-        - null
-        key_status:
-          last_status: last_status
-          error_date: 2000-01-23 04:56:07+00:00
-          last_error: last_error
-          version: 1
-      properties:
-        external_kms_id:
-          $ref: '#/components/schemas/ExternalKMSKeyId'
-        key_purpose:
-          items:
-            $ref: '#/components/schemas/ClassicKeyPurpose'
-          type: array
-          x-go-name: Purpose
-        key_status:
-          $ref: '#/components/schemas/ClassicKeyStatusInfo'
-        target_assoc_id:
-          type: string
-          x-go-name: TargetAssociationID
-        target_type:
-          title: TargetType ..
-          type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    SSHCertificateIssueDetails:
-      example:
-        static_key_id: static_key_id
-        allowed_users:
-        - allowed_users
-        - allowed_users
-        cert_type: 5
-        extensions:
-          key: extensions
-        allowed_domains:
-        - allowed_domains
-        - allowed_domains
-        critical_options:
-          key: critical_options
-        principals:
-        - principals
-        - principals
-        allowed_user_key_lengths:
-          key: 5
-      properties:
-        allowed_domains:
-          description: Relevant for host certificate
-          items:
-            type: string
-          type: array
-          x-go-name: AllowedDomains
-        allowed_user_key_lengths:
-          additionalProperties:
-            format: int64
-            type: integer
-          type: object
-          x-go-name: AllowedUserKeyLengths
-        allowed_users:
-          description: Relevant for user certificate
-          items:
-            type: string
-          type: array
-          x-go-name: AllowedUsers
-        cert_type:
-          format: uint32
-          title: SSHCertificateType defines the types of SSH certificates.
-          type: integer
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-        critical_options:
-          additionalProperties:
-            type: string
-          type: object
-          x-go-name: CriticalOptions
-        extensions:
-          additionalProperties:
-            type: string
-          type: object
-          x-go-name: Extensions
-        principals:
-          items:
-            type: string
-          type: array
-          x-go-name: Principals
-        static_key_id:
-          description: In case it is empty, the key ID will be combination of user identifiers and a random string
-          type: string
-          x-go-name: StaticKeyID
-      title: SSHCertificateIssueDetails defines SSH certificate details.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    CertificateInfo:
-      example:
-        email_addresses:
-        - email_addresses
-        - email_addresses
-        signature: signature
-        ip_addresses:
-        - ip_addresses
-        - ip_addresses
-        not_before: 2000-01-23 04:56:07+00:00
-        subject:
-          Names:
-          - Type:
-            - 9
-            - 9
-            Value: '{}'
-          - Type:
-            - 9
-            - 9
-            Value: '{}'
-          StreetAddress:
-          - StreetAddress
-          - StreetAddress
-          SerialNumber: SerialNumber
-          ExtraNames:
-          - Type:
-            - 9
-            - 9
-            Value: '{}'
-          - Type:
-            - 9
-            - 9
-            Value: '{}'
-          Locality:
-          - Locality
-          - Locality
-          Country:
-          - Country
-          - Country
-        issuing_certificate_url:
-        - issuing_certificate_url
-        - issuing_certificate_url
-        KeyUsage: 7
-        serial_number: serial_number
-        version: 2
-        is_ca: true
-        issuer:
-          Names:
-          - Type:
-            - 9
-            - 9
-            Value: '{}'
-          - Type:
-            - 9
-            - 9
-            Value: '{}'
-          StreetAddress:
-          - StreetAddress
-          - StreetAddress
-          SerialNumber: SerialNumber
-          ExtraNames:
-          - Type:
-            - 9
-            - 9
-            Value: '{}'
-          - Type:
-            - 9
-            - 9
-            Value: '{}'
-          Locality:
-          - Locality
-          - Locality
-          Country:
-          - Country
-          - Country
-        not_after: 2000-01-23 04:56:07+00:00
-        public_key_algorithm_name: public_key_algorithm_name
-        uris:
-        - uris
-        - uris
-        extensions:
-        - Value: Value
-          Critical: true
-          Name: Name
-        - Value: Value
-          Critical: true
-          Name: Name
-        ocsp_server:
-        - ocsp_server
-        - ocsp_server
-        subject_public_key: subject_public_key
-        dns_names:
-        - dns_names
-        - dns_names
-        signature_algorithm_name: signature_algorithm_name
-        sha_256_fingerprint: sha_256_fingerprint
-        sha_1_fingerprint: sha_1_fingerprint
-        ExtKeyUsage:
-        - null
-        - null
-        key_size: 3
-      properties:
-        ExtKeyUsage:
-          items:
-            $ref: '#/components/schemas/ExtKeyUsage'
-          type: array
-        KeyUsage:
-          description: 'KeyUsage represents the set of actions that are valid for a given key. It''s
-
-            a bitmap of the KeyUsage* constants.'
-          format: int64
-          type: integer
-          x-go-package: crypto/x509
-        dns_names:
-          items:
-            type: string
-          type: array
-          x-go-name: DNSNames
-        email_addresses:
-          items:
-            type: string
-          type: array
-          x-go-name: EmailAddresses
-        extensions:
-          items:
-            $ref: '#/components/schemas/Extension'
-          type: array
-          x-go-name: Extensions
-        ip_addresses:
-          items:
-            type: string
-          type: array
-          x-go-name: IPAddresses
-        is_ca:
-          type: boolean
-          x-go-name: IsCA
-        issuer:
-          $ref: '#/components/schemas/Name'
-        issuing_certificate_url:
-          items:
-            type: string
-          type: array
-          x-go-name: IssuingCertificateURL
-        key_size:
-          format: int64
-          type: integer
-          x-go-name: KeySize
-        not_after:
-          format: date-time
-          type: string
-          x-go-name: NotAfter
-        not_before:
-          format: date-time
-          type: string
-          x-go-name: NotBefore
-        ocsp_server:
-          items:
-            type: string
-          type: array
-          x-go-name: OCSPServer
-        public_key_algorithm_name:
-          type: string
-          x-go-name: PublicKeyAlgorithmName
-        serial_number:
-          type: string
-          x-go-name: SerialNumber
-        sha_1_fingerprint:
-          type: string
-          x-go-name: Sha1Fingerprint
-        sha_256_fingerprint:
-          type: string
-          x-go-name: Sha256Fingerprint
-        signature:
-          type: string
-          x-go-name: Signature
-        signature_algorithm_name:
-          type: string
-          x-go-name: SignatureAlgorithmName
-        subject:
-          $ref: '#/components/schemas/Name'
-        subject_public_key:
-          type: string
-          x-go-name: SubjectPublicKey
-        uris:
-          items:
-            type: string
-          type: array
-          x-go-name: URIs
-        version:
-          format: int64
-          type: integer
-          x-go-name: Version
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    ItemVersion:
-      example:
-        item_version_state: item_version_state
-        with_customer_fragment: true
-        access_date: 2000-01-23 04:56:07+00:00
-        deletion_date: 2000-01-23 04:56:07+00:00
-        modification_date: 2000-01-23 04:56:07+00:00
-        protection_key_name: protection_key_name
-        creation_date: 2000-01-23 04:56:07+00:00
-        version: 3
-        customer_fragment_id: customer_fragment_id
-      properties:
-        access_date:
-          format: date-time
-          type: string
-          x-go-name: AccessDate
-        creation_date:
-          format: date-time
-          type: string
-          x-go-name: CreationDate
-        customer_fragment_id:
-          type: string
-          x-go-name: CustomerFragmentId
-        deletion_date:
-          format: date-time
-          type: string
-          x-go-name: DeletionDate
-        item_version_state:
-          description: ItemState defines the different states an Item can be in
-          type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-        modification_date:
-          format: date-time
-          type: string
-          x-go-name: ModificationDate
-        protection_key_name:
-          type: string
-          x-go-name: ProtectionKeyName
-        version:
-          format: int32
-          type: integer
-          x-go-name: Version
-        with_customer_fragment:
-          type: boolean
-          x-go-name: WithCustomerFragment
-      title: ItemVersion describes an item version in AKEYLESS.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    VaultlessTokenizerInfo:
-      example:
-        key_name: key_name
-        tweak: tweak
-        email_tokenizer_info:
-          fixed_domain_suffix: fixed_domain_suffix
-          keep_prefix_length: 6
-          domain_suffix_length: 9
-        template_type: template_type
-        tweak_type: tweak_type
-        regexp_tokenizer_info:
-          encoding_template: encoding_template
-          decoding_template: decoding_template
-          pattern: pattern
-          alphabet: alphabet
-      properties:
-        email_tokenizer_info:
-          $ref: '#/components/schemas/EmailTokenizerInfo'
-        key_name:
-          type: string
-          x-go-name: EncryptionKeyName
-        regexp_tokenizer_info:
-          $ref: '#/components/schemas/RegexpTokenizerInfo'
-        template_type:
-          type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-        tweak:
-          description: Tweak used in the case of internal tweak type
-          type: string
-          x-go-name: Tweak
-        tweak_type:
-          type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    RegexpTokenizerInfo:
-      description: RegexpTokenizerInfo represents a general Regexp tokenization template
-      example:
-        encoding_template: encoding_template
-        decoding_template: decoding_template
-        pattern: pattern
-        alphabet: alphabet
-      properties:
-        alphabet:
-          description: The Alphabet used for the tokenization
-          type: string
-          x-go-name: Alphabet
-        decoding_template:
-          description: Transformation to perform on the decrypted data
-          type: string
-          x-go-name: DecodingTemplate
-        encoding_template:
-          description: 'Transformation to perform on the encrypted data,
-
-            if the required output template doesn''t match the input string
-
-            The output Should still be valid for the Pattern, otherwise the secret would be able to be decrypted.'
-          type: string
-          x-go-name: EncodingTemplate
-        pattern:
-          description: Regexp pattern to extract and deposit the text/encdata
-          type: string
-          x-go-name: Pattern
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    ImporterInfo:
-      example:
-        version: 1
-        external_item_id: external_item_id
-      properties:
-        external_item_id:
-          type: string
-          x-go-name: ExternalItemId
-        version:
-          format: int64
-          type: integer
-          x-go-name: Version
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    CertificateChainInfo:
-      example:
-        expiration_events:
-        - seconds_before: 4
-        - seconds_before: 4
-        certificate_pem: certificate_pem
-        certificate_chain:
-        - email_addresses:
-          - email_addresses
-          - email_addresses
-          signature: signature
-          ip_addresses:
-          - ip_addresses
-          - ip_addresses
-          not_before: 2000-01-23 04:56:07+00:00
-          subject:
-            Names:
-            - Type:
-              - 9
-              - 9
-              Value: '{}'
-            - Type:
-              - 9
-              - 9
-              Value: '{}'
-            StreetAddress:
-            - StreetAddress
-            - StreetAddress
-            SerialNumber: SerialNumber
-            ExtraNames:
-            - Type:
-              - 9
-              - 9
-              Value: '{}'
-            - Type:
-              - 9
-              - 9
-              Value: '{}'
-            Locality:
-            - Locality
-            - Locality
-            Country:
-            - Country
-            - Country
-          issuing_certificate_url:
-          - issuing_certificate_url
-          - issuing_certificate_url
-          KeyUsage: 7
-          serial_number: serial_number
-          version: 2
-          is_ca: true
-          issuer:
-            Names:
-            - Type:
-              - 9
-              - 9
-              Value: '{}'
-            - Type:
-              - 9
-              - 9
-              Value: '{}'
-            StreetAddress:
-            - StreetAddress
-            - StreetAddress
-            SerialNumber: SerialNumber
-            ExtraNames:
-            - Type:
-              - 9
-              - 9
-              Value: '{}'
-            - Type:
-              - 9
-              - 9
-              Value: '{}'
-            Locality:
-            - Locality
-            - Locality
-            Country:
-            - Country
-            - Country
-          not_after: 2000-01-23 04:56:07+00:00
-          public_key_algorithm_name: public_key_algorithm_name
-          uris:
-          - uris
-          - uris
-          extensions:
-          - Value: Value
-            Critical: true
-            Name: Name
-          - Value: Value
-            Critical: true
-            Name: Name
-          ocsp_server:
-          - ocsp_server
-          - ocsp_server
-          subject_public_key: subject_public_key
-          dns_names:
-          - dns_names
-          - dns_names
-          signature_algorithm_name: signature_algorithm_name
-          sha_256_fingerprint: sha_256_fingerprint
-          sha_1_fingerprint: sha_1_fingerprint
-          ExtKeyUsage:
-          - null
-          - null
-          key_size: 3
-        - email_addresses:
-          - email_addresses
-          - email_addresses
-          signature: signature
-          ip_addresses:
-          - ip_addresses
-          - ip_addresses
-          not_before: 2000-01-23 04:56:07+00:00
-          subject:
-            Names:
-            - Type:
-              - 9
-              - 9
-              Value: '{}'
-            - Type:
-              - 9
-              - 9
-              Value: '{}'
-            StreetAddress:
-            - StreetAddress
-            - StreetAddress
-            SerialNumber: SerialNumber
-            ExtraNames:
-            - Type:
-              - 9
-              - 9
-              Value: '{}'
-            - Type:
-              - 9
-              - 9
-              Value: '{}'
-            Locality:
-            - Locality
-            - Locality
-            Country:
-            - Country
-            - Country
-          issuing_certificate_url:
-          - issuing_certificate_url
-          - issuing_certificate_url
-          KeyUsage: 7
-          serial_number: serial_number
-          version: 2
-          is_ca: true
-          issuer:
-            Names:
-            - Type:
-              - 9
-              - 9
-              Value: '{}'
-            - Type:
-              - 9
-              - 9
-              Value: '{}'
-            StreetAddress:
-            - StreetAddress
-            - StreetAddress
-            SerialNumber: SerialNumber
-            ExtraNames:
-            - Type:
-              - 9
-              - 9
-              Value: '{}'
-            - Type:
-              - 9
-              - 9
-              Value: '{}'
-            Locality:
-            - Locality
-            - Locality
-            Country:
-            - Country
-            - Country
-          not_after: 2000-01-23 04:56:07+00:00
-          public_key_algorithm_name: public_key_algorithm_name
-          uris:
-          - uris
-          - uris
-          extensions:
-          - Value: Value
-            Critical: true
-            Name: Name
-          - Value: Value
-            Critical: true
-            Name: Name
-          ocsp_server:
-          - ocsp_server
-          - ocsp_server
-          subject_public_key: subject_public_key
-          dns_names:
-          - dns_names
-          - dns_names
-          signature_algorithm_name: signature_algorithm_name
-          sha_256_fingerprint: sha_256_fingerprint
-          sha_1_fingerprint: sha_1_fingerprint
-          ExtKeyUsage:
-          - null
-          - null
-          key_size: 3
-      properties:
-        certificate_chain:
-          items:
-            $ref: '#/components/schemas/CertificateInfo'
-          type: array
-          x-go-name: CertificateChain
-        certificate_pem:
-          type: string
-          x-go-name: CertificatePem
-        expiration_events:
-          items:
-            $ref: '#/components/schemas/CertificateExpirationEvent'
-          type: array
-          x-go-name: ExpirationEvents
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    SecureRemoteAccess:
-      example:
-        schema: schema
-        web_proxy: true
-        bastion_ssh: bastion_ssh
-        isolated: true
-        ssh_private_key: true
-        allow_port_forwarding: true
-        is_web: true
-        endpoint: endpoint
-        native: true
-        enable: true
-        host:
-        - host
-        - host
-        dashboard_url: dashboard_url
-        bastion_issuer: bastion_issuer
-        ssh_user: ssh_user
-        is_cli: true
-        use_internal_bastion: true
-        rdp_user: rdp_user
-        url: url
-        account_id: account_id
-        db_name: db_name
-        allow_providing_external_username: true
-        domain: domain
-        bastion_api: bastion_api
-        rotate_after_disconnect: true
-        category: category
-        region: region
-        ssh_password: true
-        bastion_issuer_id: 9
-      properties:
-        account_id:
-          type: string
-          x-go-name: AwsAccountId
-        allow_port_forwarding:
-          type: boolean
-          x-go-name: K8SAllowPortForwading
-        allow_providing_external_username:
-          type: boolean
-          x-go-name: AllowProvidingExternalUser
-        bastion_api:
-          type: string
-          x-go-name: BastionAPI
-        bastion_issuer:
-          type: string
-          x-go-name: BastionIssuer
-        bastion_issuer_id:
-          format: int64
-          type: integer
-          x-go-name: BastionIssuerID
-        bastion_ssh:
-          type: string
-          x-go-name: BastionSSH
-        category:
-          type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-        dashboard_url:
-          type: string
-          x-go-name: K8SDashboardURL
-        db_name:
-          type: string
-          x-go-name: DbName
-        domain:
-          type: string
-          x-go-name: RDPDomain
-        enable:
-          type: boolean
-          x-go-name: Enable
-        endpoint:
-          type: string
-          x-go-name: K8SEndpoint
-        host:
-          items:
-            type: string
-          type: array
-          x-go-name: Host
-        is_cli:
-          type: boolean
-          x-go-name: AccessCliCategory
-        is_web:
-          type: boolean
-          x-go-name: AccessWebCategory
-        isolated:
-          type: boolean
-          x-go-name: Isolated
-        native:
-          type: boolean
-          x-go-name: AwsNativeCli
-        rdp_user:
-          type: string
-          x-go-name: RDPUser
-        region:
-          type: string
-          x-go-name: AwsRegion
-        rotate_after_disconnect:
-          type: boolean
-          x-go-name: RotateAfterDisconnect
-        schema:
-          type: string
-          x-go-name: Schema
-        ssh_password:
-          type: boolean
-          x-go-name: SSHPassword
-        ssh_private_key:
-          type: boolean
-          x-go-name: SSHPrivateKey
-        ssh_user:
-          type: string
-          x-go-name: SSHUser
-        url:
-          type: string
-          x-go-name: URL
-        use_internal_bastion:
-          type: boolean
-          x-go-name: UseInternalBastion
-        web_proxy:
-          type: boolean
-          x-go-name: WebProxy
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    PasswordPolicyInfo:
-      example:
-        use_numbers: true
-        use_capital_letters: true
-        use_special_characters: true
-        use_lower_letters: true
-        password_length: 6
-      properties:
-        password_length:
-          format: int64
-          type: integer
-          x-go-name: PasswordLength
-        use_capital_letters:
-          type: boolean
-          x-go-name: UseCapitalLetters
-        use_lower_letters:
-          type: boolean
-          x-go-name: UseLowerLetters
-        use_numbers:
-          type: boolean
-          x-go-name: UseNumbers
-        use_special_characters:
-          type: boolean
-          x-go-name: UseSpecialCharacters
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    DynamicSecretProducerInfo:
-      description: 'DynamicSecretProducerInfo The dynamic secret producer info
-
-        This parameter relevant and required only in case of create update dynamic secret.'
-      example:
-        gw_cluster_id: 1
-        producer_last_keep_alive: producer_last_keep_alive
-        producer_type: producer_type
-        producer_status: producer_status
-        failure_message: failure_message
-        producer_metadata: producer_metadata
-      properties:
-        failure_message:
-          type: string
-          x-go-name: FailureMessage
-        gw_cluster_id:
-          format: int64
-          type: integer
-          x-go-name: GWClusterID
-        producer_last_keep_alive:
-          type: string
-          x-go-name: ProducerLastKeepAlive
-        producer_metadata:
-          type: string
-          x-go-name: ProducerMetadata
-        producer_status:
-          description: RotationStatus defines types of rotation Status
-          type: string
-          x-go-name: RotationStatus
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-        producer_type:
-          type: string
-          x-go-name: ProducerType
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    AttributeTypeAndValue:
-      description: 'AttributeTypeAndValue mirrors the ASN.1 structure of the same name in
-
-        RFC 5280, Section 4.1.2.4.'
-      example:
-        Type:
-        - 9
-        - 9
-        Value: '{}'
-      properties:
-        Type:
-          items:
-            format: int64
-            type: integer
-          title: An ObjectIdentifier represents an ASN.1 OBJECT IDENTIFIER.
-          type: array
-          x-go-package: encoding/asn1
-        Value:
-          type: object
-      type: object
-      x-go-package: crypto/x509/pkix
-    ItemTargetAssociation:
-      description: 'ItemTargetAssociation includes details of an association between an item
-
-        and a target.'
-      example:
-        assoc_id: assoc_id
-        target_name: target_name
-        target_type: target_type
-        attributes:
-          key: attributes
-        target_id: 6
-      properties:
-        assoc_id:
-          type: string
-          x-go-name: AssociationID
-        attributes:
-          additionalProperties:
-            type: string
-          type: object
-          x-go-name: Attributes
-        target_id:
-          format: int64
-          type: integer
-          x-go-name: TargetID
-        target_name:
-          type: string
-          x-go-name: TargetName
-        target_type:
-          type: string
-          x-go-name: TargetType
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     CertificateIssueInfo:
       example:
         max_ttl: 0
@@ -1244,47 +124,6 @@ components:
       title: CertificateIssueInfo defines Certificate Issuer info.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    ExternalKMSKeyId:
-      example:
-        key_id: key_id
-        key_reference: key_reference
-      properties:
-        key_id:
-          type: string
-          x-go-name: KeyId
-        key_reference:
-          type: string
-          x-go-name: KeyReference
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    StaticSecretDetailsInfo:
-      example:
-        website: website
-        websites:
-        - websites
-        - websites
-        username: username
-      properties:
-        username:
-          type: string
-          x-go-name: Username
-        website:
-          description: deprecated
-          type: string
-          x-go-name: Website
-        websites:
-          items:
-            type: string
-          type: array
-          x-go-name: Websites
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    ExtKeyUsage:
-      description: Each of the ExtKeyUsage* constants define a unique action.
-      format: int64
-      title: ExtKeyUsage represents an extended set of actions that are valid for a given key.
-      type: integer
-      x-go-package: crypto/x509
     ItemGeneralInfo:
       example:
         classic_key_details:
@@ -1707,6 +546,1233 @@ components:
         tokenizer_info:
           $ref: '#/components/schemas/TokenizerInfo'
       title: ItemGeneralInfo defines item general info.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    ItemTargetAssociation:
+      description: 'ItemTargetAssociation includes details of an association between an item
+
+        and a target.'
+      example:
+        assoc_id: assoc_id
+        target_name: target_name
+        target_type: target_type
+        attributes:
+          key: attributes
+        target_id: 6
+      properties:
+        assoc_id:
+          type: string
+          x-go-name: AssociationID
+        attributes:
+          additionalProperties:
+            type: string
+          type: object
+          x-go-name: Attributes
+        target_id:
+          format: int64
+          type: integer
+          x-go-name: TargetID
+        target_name:
+          type: string
+          x-go-name: TargetName
+        target_type:
+          type: string
+          x-go-name: TargetType
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    CertificateInfo:
+      example:
+        email_addresses:
+        - email_addresses
+        - email_addresses
+        signature: signature
+        ip_addresses:
+        - ip_addresses
+        - ip_addresses
+        not_before: 2000-01-23 04:56:07+00:00
+        subject:
+          Names:
+          - Type:
+            - 9
+            - 9
+            Value: '{}'
+          - Type:
+            - 9
+            - 9
+            Value: '{}'
+          StreetAddress:
+          - StreetAddress
+          - StreetAddress
+          SerialNumber: SerialNumber
+          ExtraNames:
+          - Type:
+            - 9
+            - 9
+            Value: '{}'
+          - Type:
+            - 9
+            - 9
+            Value: '{}'
+          Locality:
+          - Locality
+          - Locality
+          Country:
+          - Country
+          - Country
+        issuing_certificate_url:
+        - issuing_certificate_url
+        - issuing_certificate_url
+        KeyUsage: 7
+        serial_number: serial_number
+        version: 2
+        is_ca: true
+        issuer:
+          Names:
+          - Type:
+            - 9
+            - 9
+            Value: '{}'
+          - Type:
+            - 9
+            - 9
+            Value: '{}'
+          StreetAddress:
+          - StreetAddress
+          - StreetAddress
+          SerialNumber: SerialNumber
+          ExtraNames:
+          - Type:
+            - 9
+            - 9
+            Value: '{}'
+          - Type:
+            - 9
+            - 9
+            Value: '{}'
+          Locality:
+          - Locality
+          - Locality
+          Country:
+          - Country
+          - Country
+        not_after: 2000-01-23 04:56:07+00:00
+        public_key_algorithm_name: public_key_algorithm_name
+        uris:
+        - uris
+        - uris
+        extensions:
+        - Value: Value
+          Critical: true
+          Name: Name
+        - Value: Value
+          Critical: true
+          Name: Name
+        ocsp_server:
+        - ocsp_server
+        - ocsp_server
+        subject_public_key: subject_public_key
+        dns_names:
+        - dns_names
+        - dns_names
+        signature_algorithm_name: signature_algorithm_name
+        sha_256_fingerprint: sha_256_fingerprint
+        sha_1_fingerprint: sha_1_fingerprint
+        ExtKeyUsage:
+        - null
+        - null
+        key_size: 3
+      properties:
+        ExtKeyUsage:
+          items:
+            $ref: '#/components/schemas/ExtKeyUsage'
+          type: array
+        KeyUsage:
+          description: 'KeyUsage represents the set of actions that are valid for a given key. It''s
+
+            a bitmap of the KeyUsage* constants.'
+          format: int64
+          type: integer
+          x-go-package: crypto/x509
+        dns_names:
+          items:
+            type: string
+          type: array
+          x-go-name: DNSNames
+        email_addresses:
+          items:
+            type: string
+          type: array
+          x-go-name: EmailAddresses
+        extensions:
+          items:
+            $ref: '#/components/schemas/Extension'
+          type: array
+          x-go-name: Extensions
+        ip_addresses:
+          items:
+            type: string
+          type: array
+          x-go-name: IPAddresses
+        is_ca:
+          type: boolean
+          x-go-name: IsCA
+        issuer:
+          $ref: '#/components/schemas/Name'
+        issuing_certificate_url:
+          items:
+            type: string
+          type: array
+          x-go-name: IssuingCertificateURL
+        key_size:
+          format: int64
+          type: integer
+          x-go-name: KeySize
+        not_after:
+          format: date-time
+          type: string
+          x-go-name: NotAfter
+        not_before:
+          format: date-time
+          type: string
+          x-go-name: NotBefore
+        ocsp_server:
+          items:
+            type: string
+          type: array
+          x-go-name: OCSPServer
+        public_key_algorithm_name:
+          type: string
+          x-go-name: PublicKeyAlgorithmName
+        serial_number:
+          type: string
+          x-go-name: SerialNumber
+        sha_1_fingerprint:
+          type: string
+          x-go-name: Sha1Fingerprint
+        sha_256_fingerprint:
+          type: string
+          x-go-name: Sha256Fingerprint
+        signature:
+          type: string
+          x-go-name: Signature
+        signature_algorithm_name:
+          type: string
+          x-go-name: SignatureAlgorithmName
+        subject:
+          $ref: '#/components/schemas/Name'
+        subject_public_key:
+          type: string
+          x-go-name: SubjectPublicKey
+        uris:
+          items:
+            type: string
+          type: array
+          x-go-name: URIs
+        version:
+          format: int64
+          type: integer
+          x-go-name: Version
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    ItemVersion:
+      example:
+        item_version_state: item_version_state
+        with_customer_fragment: true
+        access_date: 2000-01-23 04:56:07+00:00
+        deletion_date: 2000-01-23 04:56:07+00:00
+        modification_date: 2000-01-23 04:56:07+00:00
+        protection_key_name: protection_key_name
+        creation_date: 2000-01-23 04:56:07+00:00
+        version: 3
+        customer_fragment_id: customer_fragment_id
+      properties:
+        access_date:
+          format: date-time
+          type: string
+          x-go-name: AccessDate
+        creation_date:
+          format: date-time
+          type: string
+          x-go-name: CreationDate
+        customer_fragment_id:
+          type: string
+          x-go-name: CustomerFragmentId
+        deletion_date:
+          format: date-time
+          type: string
+          x-go-name: DeletionDate
+        item_version_state:
+          description: ItemState defines the different states an Item can be in
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        modification_date:
+          format: date-time
+          type: string
+          x-go-name: ModificationDate
+        protection_key_name:
+          type: string
+          x-go-name: ProtectionKeyName
+        version:
+          format: int32
+          type: integer
+          x-go-name: Version
+        with_customer_fragment:
+          type: boolean
+          x-go-name: WithCustomerFragment
+      title: ItemVersion describes an item version in AKEYLESS.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    AttributeTypeAndValue:
+      description: 'AttributeTypeAndValue mirrors the ASN.1 structure of the same name in
+
+        RFC 5280, Section 4.1.2.4.'
+      example:
+        Type:
+        - 9
+        - 9
+        Value: '{}'
+      properties:
+        Type:
+          items:
+            format: int64
+            type: integer
+          title: An ObjectIdentifier represents an ASN.1 OBJECT IDENTIFIER.
+          type: array
+          x-go-package: encoding/asn1
+        Value:
+          type: object
+      type: object
+      x-go-package: crypto/x509/pkix
+    RegexpTokenizerInfo:
+      description: RegexpTokenizerInfo represents a general Regexp tokenization template
+      example:
+        encoding_template: encoding_template
+        decoding_template: decoding_template
+        pattern: pattern
+        alphabet: alphabet
+      properties:
+        alphabet:
+          description: The Alphabet used for the tokenization
+          type: string
+          x-go-name: Alphabet
+        decoding_template:
+          description: Transformation to perform on the decrypted data
+          type: string
+          x-go-name: DecodingTemplate
+        encoding_template:
+          description: 'Transformation to perform on the encrypted data,
+
+            if the required output template doesn''t match the input string
+
+            The output Should still be valid for the Pattern, otherwise the secret would be able to be decrypted.'
+          type: string
+          x-go-name: EncodingTemplate
+        pattern:
+          description: Regexp pattern to extract and deposit the text/encdata
+          type: string
+          x-go-name: Pattern
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    RotatedSecretDetailsInfo:
+      description: RotatedSecretDetailsInfo The rotated secret rotator info
+      example:
+        rotator_creds_type: rotator_creds_type
+        gw_cluster_id: 1
+        rotation_hour: 5
+        rotation_statement: rotation_statement
+        rotator_status: rotator_status
+        rotation_interval_min: true
+        rotator_type: rotator_type
+        delete_previous_version_in_days: 7
+        last_rotation_error: last_rotation_error
+        number_of_versions_to_save: 4
+      properties:
+        delete_previous_version_in_days:
+          format: int32
+          type: integer
+          x-go-name: DeletePreviousVersionInDays
+        gw_cluster_id:
+          format: int64
+          type: integer
+          x-go-name: GWClusterID
+        last_rotation_error:
+          type: string
+          x-go-name: LastRotatorError
+        number_of_versions_to_save:
+          format: int32
+          type: integer
+          x-go-name: NumberOfVersionsToSave
+        rotation_hour:
+          format: int32
+          type: integer
+          x-go-name: RotationHour
+        rotation_interval_min:
+          type: boolean
+          x-go-name: RotationIntervalMin
+        rotation_statement:
+          type: string
+          x-go-name: RotationStatement
+        rotator_creds_type:
+          title: RotatorCredsType defines types supported by AKEYLESS.
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        rotator_status:
+          description: RotationStatus defines types of rotation Status
+          type: string
+          x-go-name: RotationStatus
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        rotator_type:
+          title: RotatorType defines types supported by AKEYLESS.
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    SSHCertificateIssueDetails:
+      example:
+        static_key_id: static_key_id
+        allowed_users:
+        - allowed_users
+        - allowed_users
+        cert_type: 5
+        extensions:
+          key: extensions
+        allowed_domains:
+        - allowed_domains
+        - allowed_domains
+        critical_options:
+          key: critical_options
+        principals:
+        - principals
+        - principals
+        allowed_user_key_lengths:
+          key: 5
+      properties:
+        allowed_domains:
+          description: Relevant for host certificate
+          items:
+            type: string
+          type: array
+          x-go-name: AllowedDomains
+        allowed_user_key_lengths:
+          additionalProperties:
+            format: int64
+            type: integer
+          type: object
+          x-go-name: AllowedUserKeyLengths
+        allowed_users:
+          description: Relevant for user certificate
+          items:
+            type: string
+          type: array
+          x-go-name: AllowedUsers
+        cert_type:
+          format: uint32
+          title: SSHCertificateType defines the types of SSH certificates.
+          type: integer
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        critical_options:
+          additionalProperties:
+            type: string
+          type: object
+          x-go-name: CriticalOptions
+        extensions:
+          additionalProperties:
+            type: string
+          type: object
+          x-go-name: Extensions
+        principals:
+          items:
+            type: string
+          type: array
+          x-go-name: Principals
+        static_key_id:
+          description: In case it is empty, the key ID will be combination of user identifiers and a random string
+          type: string
+          x-go-name: StaticKeyID
+      title: SSHCertificateIssueDetails defines SSH certificate details.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    VaultlessTokenizerInfo:
+      example:
+        key_name: key_name
+        tweak: tweak
+        email_tokenizer_info:
+          fixed_domain_suffix: fixed_domain_suffix
+          keep_prefix_length: 6
+          domain_suffix_length: 9
+        template_type: template_type
+        tweak_type: tweak_type
+        regexp_tokenizer_info:
+          encoding_template: encoding_template
+          decoding_template: decoding_template
+          pattern: pattern
+          alphabet: alphabet
+      properties:
+        email_tokenizer_info:
+          $ref: '#/components/schemas/EmailTokenizerInfo'
+        key_name:
+          type: string
+          x-go-name: EncryptionKeyName
+        regexp_tokenizer_info:
+          $ref: '#/components/schemas/RegexpTokenizerInfo'
+        template_type:
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        tweak:
+          description: Tweak used in the case of internal tweak type
+          type: string
+          x-go-name: Tweak
+        tweak_type:
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    ExtKeyUsage:
+      description: Each of the ExtKeyUsage* constants define a unique action.
+      format: int64
+      title: ExtKeyUsage represents an extended set of actions that are valid for a given key.
+      type: integer
+      x-go-package: crypto/x509
+    CertificateExpirationEvent:
+      example:
+        seconds_before: 4
+      properties:
+        seconds_before:
+          format: int64
+          type: integer
+          x-go-name: SecondsBefore
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    StaticSecretDetailsInfo:
+      example:
+        website: website
+        websites:
+        - websites
+        - websites
+        username: username
+      properties:
+        username:
+          type: string
+          x-go-name: Username
+        website:
+          description: deprecated
+          type: string
+          x-go-name: Website
+        websites:
+          items:
+            type: string
+          type: array
+          x-go-name: Websites
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    DynamicSecretProducerInfo:
+      description: 'DynamicSecretProducerInfo The dynamic secret producer info
+
+        This parameter relevant and required only in case of create update dynamic secret.'
+      example:
+        gw_cluster_id: 1
+        producer_last_keep_alive: producer_last_keep_alive
+        producer_type: producer_type
+        producer_status: producer_status
+        failure_message: failure_message
+        producer_metadata: producer_metadata
+      properties:
+        failure_message:
+          type: string
+          x-go-name: FailureMessage
+        gw_cluster_id:
+          format: int64
+          type: integer
+          x-go-name: GWClusterID
+        producer_last_keep_alive:
+          type: string
+          x-go-name: ProducerLastKeepAlive
+        producer_metadata:
+          type: string
+          x-go-name: ProducerMetadata
+        producer_status:
+          description: RotationStatus defines types of rotation Status
+          type: string
+          x-go-name: RotationStatus
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        producer_type:
+          type: string
+          x-go-name: ProducerType
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    Name:
+      description: 'Name represents an X.509 distinguished name. This only includes the common
+
+        elements of a DN. Note that Name is only an approximation of the X.509
+
+        structure. If an accurate representation is needed, asn1.Unmarshal the raw
+
+        subject or issuer as an RDNSequence.'
+      example:
+        Names:
+        - Type:
+          - 9
+          - 9
+          Value: '{}'
+        - Type:
+          - 9
+          - 9
+          Value: '{}'
+        StreetAddress:
+        - StreetAddress
+        - StreetAddress
+        SerialNumber: SerialNumber
+        ExtraNames:
+        - Type:
+          - 9
+          - 9
+          Value: '{}'
+        - Type:
+          - 9
+          - 9
+          Value: '{}'
+        Locality:
+        - Locality
+        - Locality
+        Country:
+        - Country
+        - Country
+      properties:
+        Country:
+          items:
+            type: string
+          type: array
+          x-go-name: OrganizationalUnit
+        ExtraNames:
+          description: 'ExtraNames contains attributes to be copied, raw, into any marshaled
+
+            distinguished names. Values override any attributes with the same OID.
+
+            The ExtraNames field is not populated when parsing, see Names.'
+          items:
+            $ref: '#/components/schemas/AttributeTypeAndValue'
+          type: array
+        Locality:
+          items:
+            type: string
+          type: array
+          x-go-name: Province
+        Names:
+          description: 'Names contains all parsed attributes. When parsing distinguished names,
+
+            this can be used to extract non-standard attributes that are not parsed
+
+            by this package. When marshaling to RDNSequences, the Names field is
+
+            ignored, see ExtraNames.'
+          items:
+            $ref: '#/components/schemas/AttributeTypeAndValue'
+          type: array
+        SerialNumber:
+          type: string
+          x-go-name: CommonName
+        StreetAddress:
+          items:
+            type: string
+          type: array
+          x-go-name: PostalCode
+      type: object
+      x-go-package: crypto/x509/pkix
+    CertificateChainInfo:
+      example:
+        expiration_events:
+        - seconds_before: 4
+        - seconds_before: 4
+        certificate_pem: certificate_pem
+        certificate_chain:
+        - email_addresses:
+          - email_addresses
+          - email_addresses
+          signature: signature
+          ip_addresses:
+          - ip_addresses
+          - ip_addresses
+          not_before: 2000-01-23 04:56:07+00:00
+          subject:
+            Names:
+            - Type:
+              - 9
+              - 9
+              Value: '{}'
+            - Type:
+              - 9
+              - 9
+              Value: '{}'
+            StreetAddress:
+            - StreetAddress
+            - StreetAddress
+            SerialNumber: SerialNumber
+            ExtraNames:
+            - Type:
+              - 9
+              - 9
+              Value: '{}'
+            - Type:
+              - 9
+              - 9
+              Value: '{}'
+            Locality:
+            - Locality
+            - Locality
+            Country:
+            - Country
+            - Country
+          issuing_certificate_url:
+          - issuing_certificate_url
+          - issuing_certificate_url
+          KeyUsage: 7
+          serial_number: serial_number
+          version: 2
+          is_ca: true
+          issuer:
+            Names:
+            - Type:
+              - 9
+              - 9
+              Value: '{}'
+            - Type:
+              - 9
+              - 9
+              Value: '{}'
+            StreetAddress:
+            - StreetAddress
+            - StreetAddress
+            SerialNumber: SerialNumber
+            ExtraNames:
+            - Type:
+              - 9
+              - 9
+              Value: '{}'
+            - Type:
+              - 9
+              - 9
+              Value: '{}'
+            Locality:
+            - Locality
+            - Locality
+            Country:
+            - Country
+            - Country
+          not_after: 2000-01-23 04:56:07+00:00
+          public_key_algorithm_name: public_key_algorithm_name
+          uris:
+          - uris
+          - uris
+          extensions:
+          - Value: Value
+            Critical: true
+            Name: Name
+          - Value: Value
+            Critical: true
+            Name: Name
+          ocsp_server:
+          - ocsp_server
+          - ocsp_server
+          subject_public_key: subject_public_key
+          dns_names:
+          - dns_names
+          - dns_names
+          signature_algorithm_name: signature_algorithm_name
+          sha_256_fingerprint: sha_256_fingerprint
+          sha_1_fingerprint: sha_1_fingerprint
+          ExtKeyUsage:
+          - null
+          - null
+          key_size: 3
+        - email_addresses:
+          - email_addresses
+          - email_addresses
+          signature: signature
+          ip_addresses:
+          - ip_addresses
+          - ip_addresses
+          not_before: 2000-01-23 04:56:07+00:00
+          subject:
+            Names:
+            - Type:
+              - 9
+              - 9
+              Value: '{}'
+            - Type:
+              - 9
+              - 9
+              Value: '{}'
+            StreetAddress:
+            - StreetAddress
+            - StreetAddress
+            SerialNumber: SerialNumber
+            ExtraNames:
+            - Type:
+              - 9
+              - 9
+              Value: '{}'
+            - Type:
+              - 9
+              - 9
+              Value: '{}'
+            Locality:
+            - Locality
+            - Locality
+            Country:
+            - Country
+            - Country
+          issuing_certificate_url:
+          - issuing_certificate_url
+          - issuing_certificate_url
+          KeyUsage: 7
+          serial_number: serial_number
+          version: 2
+          is_ca: true
+          issuer:
+            Names:
+            - Type:
+              - 9
+              - 9
+              Value: '{}'
+            - Type:
+              - 9
+              - 9
+              Value: '{}'
+            StreetAddress:
+            - StreetAddress
+            - StreetAddress
+            SerialNumber: SerialNumber
+            ExtraNames:
+            - Type:
+              - 9
+              - 9
+              Value: '{}'
+            - Type:
+              - 9
+              - 9
+              Value: '{}'
+            Locality:
+            - Locality
+            - Locality
+            Country:
+            - Country
+            - Country
+          not_after: 2000-01-23 04:56:07+00:00
+          public_key_algorithm_name: public_key_algorithm_name
+          uris:
+          - uris
+          - uris
+          extensions:
+          - Value: Value
+            Critical: true
+            Name: Name
+          - Value: Value
+            Critical: true
+            Name: Name
+          ocsp_server:
+          - ocsp_server
+          - ocsp_server
+          subject_public_key: subject_public_key
+          dns_names:
+          - dns_names
+          - dns_names
+          signature_algorithm_name: signature_algorithm_name
+          sha_256_fingerprint: sha_256_fingerprint
+          sha_1_fingerprint: sha_1_fingerprint
+          ExtKeyUsage:
+          - null
+          - null
+          key_size: 3
+      properties:
+        certificate_chain:
+          items:
+            $ref: '#/components/schemas/CertificateInfo'
+          type: array
+          x-go-name: CertificateChain
+        certificate_pem:
+          type: string
+          x-go-name: CertificatePem
+        expiration_events:
+          items:
+            $ref: '#/components/schemas/CertificateExpirationEvent'
+          type: array
+          x-go-name: ExpirationEvents
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    describeItem:
+      properties:
+        display-id:
+          description: The display id of the item
+          type: string
+          x-go-name: DisplayId
+        item-id:
+          description: Item id of the item
+          format: int64
+          type: integer
+          x-go-name: ItemId
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        name:
+          description: Item name
+          type: string
+          x-go-name: ItemName
+        show-versions:
+          default: false
+          description: Include all item versions in reply
+          type: boolean
+          x-go-name: ShowVersions
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - name
+      title: describeItem is a command that returns a single item.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    Extension:
+      example:
+        Value: Value
+        Critical: true
+        Name: Name
+      properties:
+        Critical:
+          type: boolean
+        Name:
+          type: string
+        Value:
+          type: string
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    SecureRemoteAccess:
+      example:
+        schema: schema
+        web_proxy: true
+        bastion_ssh: bastion_ssh
+        isolated: true
+        ssh_private_key: true
+        allow_port_forwarding: true
+        is_web: true
+        endpoint: endpoint
+        native: true
+        enable: true
+        host:
+        - host
+        - host
+        dashboard_url: dashboard_url
+        bastion_issuer: bastion_issuer
+        ssh_user: ssh_user
+        is_cli: true
+        use_internal_bastion: true
+        rdp_user: rdp_user
+        url: url
+        account_id: account_id
+        db_name: db_name
+        allow_providing_external_username: true
+        domain: domain
+        bastion_api: bastion_api
+        rotate_after_disconnect: true
+        category: category
+        region: region
+        ssh_password: true
+        bastion_issuer_id: 9
+      properties:
+        account_id:
+          type: string
+          x-go-name: AwsAccountId
+        allow_port_forwarding:
+          type: boolean
+          x-go-name: K8SAllowPortForwading
+        allow_providing_external_username:
+          type: boolean
+          x-go-name: AllowProvidingExternalUser
+        bastion_api:
+          type: string
+          x-go-name: BastionAPI
+        bastion_issuer:
+          type: string
+          x-go-name: BastionIssuer
+        bastion_issuer_id:
+          format: int64
+          type: integer
+          x-go-name: BastionIssuerID
+        bastion_ssh:
+          type: string
+          x-go-name: BastionSSH
+        category:
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        dashboard_url:
+          type: string
+          x-go-name: K8SDashboardURL
+        db_name:
+          type: string
+          x-go-name: DbName
+        domain:
+          type: string
+          x-go-name: RDPDomain
+        enable:
+          type: boolean
+          x-go-name: Enable
+        endpoint:
+          type: string
+          x-go-name: K8SEndpoint
+        host:
+          items:
+            type: string
+          type: array
+          x-go-name: Host
+        is_cli:
+          type: boolean
+          x-go-name: AccessCliCategory
+        is_web:
+          type: boolean
+          x-go-name: AccessWebCategory
+        isolated:
+          type: boolean
+          x-go-name: Isolated
+        native:
+          type: boolean
+          x-go-name: AwsNativeCli
+        rdp_user:
+          type: string
+          x-go-name: RDPUser
+        region:
+          type: string
+          x-go-name: AwsRegion
+        rotate_after_disconnect:
+          type: boolean
+          x-go-name: RotateAfterDisconnect
+        schema:
+          type: string
+          x-go-name: Schema
+        ssh_password:
+          type: boolean
+          x-go-name: SSHPassword
+        ssh_private_key:
+          type: boolean
+          x-go-name: SSHPrivateKey
+        ssh_user:
+          type: string
+          x-go-name: SSHUser
+        url:
+          type: string
+          x-go-name: URL
+        use_internal_bastion:
+          type: boolean
+          x-go-name: UseInternalBastion
+        web_proxy:
+          type: boolean
+          x-go-name: WebProxy
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    PKICertificateIssueDetails:
+      example:
+        country:
+        - country
+        - country
+        street_address:
+        - street_address
+        - street_address
+        allow_subdomains: true
+        key_type: key_type
+        allow_any_name: true
+        locality:
+        - locality
+        - locality
+        basic_constraints_valid_for_non_ca: true
+        organization_unit_list:
+        - organization_unit_list
+        - organization_unit_list
+        server_flag: true
+        is_ca: true
+        not_before_duration: 1
+        key_bits: 6
+        organization_list:
+        - organization_list
+        - organization_list
+        require_cn: true
+        code_signing_flag: true
+        province:
+        - province
+        - province
+        allowed_domains_list:
+        - allowed_domains_list
+        - allowed_domains_list
+        enforce_hostnames: true
+        allowed_uri_sans:
+        - allowed_uri_sans
+        - allowed_uri_sans
+        postal_code:
+        - postal_code
+        - postal_code
+        client_flag: true
+        key_usage_list:
+        - key_usage_list
+        - key_usage_list
+      properties:
+        allow_any_name:
+          type: boolean
+          x-go-name: AllowAnyName
+        allow_subdomains:
+          type: boolean
+          x-go-name: AllowSubdomains
+        allowed_domains_list:
+          items:
+            type: string
+          type: array
+          x-go-name: AllowedDomains
+        allowed_uri_sans:
+          items:
+            type: string
+          type: array
+          x-go-name: AllowedURISANs
+        basic_constraints_valid_for_non_ca:
+          type: boolean
+          x-go-name: BasicConstraintsValidForNonCA
+        client_flag:
+          type: boolean
+          x-go-name: ClientFlag
+        code_signing_flag:
+          type: boolean
+          x-go-name: CodeSigningFlag
+        country:
+          items:
+            type: string
+          type: array
+          x-go-name: Country
+        enforce_hostnames:
+          type: boolean
+          x-go-name: EnforceHostnames
+        is_ca:
+          type: boolean
+          x-go-name: IsCA
+        key_bits:
+          format: int64
+          type: integer
+          x-go-name: KeyBits
+        key_type:
+          type: string
+          x-go-name: KeyType
+        key_usage_list:
+          items:
+            type: string
+          type: array
+          x-go-name: KeyUsage
+        locality:
+          items:
+            type: string
+          type: array
+          x-go-name: Locality
+        not_before_duration:
+          description: 'A Duration represents the elapsed time between two instants
+
+            as an int64 nanosecond count. The representation limits the
+
+            largest representable duration to approximately 290 years.'
+          format: int64
+          type: integer
+          x-go-package: time
+        organization_list:
+          items:
+            type: string
+          type: array
+          x-go-name: Organization
+        organization_unit_list:
+          items:
+            type: string
+          type: array
+          x-go-name: OrganizationalUnit
+        postal_code:
+          items:
+            type: string
+          type: array
+          x-go-name: PostalCode
+        province:
+          items:
+            type: string
+          type: array
+          x-go-name: Province
+        require_cn:
+          type: boolean
+          x-go-name: RequireCN
+        server_flag:
+          type: boolean
+          x-go-name: ServerFlag
+        street_address:
+          items:
+            type: string
+          type: array
+          x-go-name: StreetAddress
+      title: PKICertificateIssueDetails defines PKI certificate details.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    ClassicKeyStatusInfo:
+      example:
+        last_status: last_status
+        error_date: 2000-01-23 04:56:07+00:00
+        last_error: last_error
+        version: 1
+      properties:
+        error_date:
+          format: date-time
+          type: string
+          x-go-name: ErrorDate
+        last_error:
+          type: string
+          x-go-name: LastError
+        last_status:
+          description: ClassicKeyTargetStatus defines status of classic key target
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        version:
+          format: int64
+          type: integer
+          x-go-name: Version
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    EmailTokenizerInfo:
+      description: EmailTokenizerInfo represents a tokenizer that specifically tokenizes emails
+      example:
+        fixed_domain_suffix: fixed_domain_suffix
+        keep_prefix_length: 6
+        domain_suffix_length: 9
+      properties:
+        domain_suffix_length:
+          description: 'What length of a random domain suffix to generate
+
+            used only if FixedDomainSuffix is empty'
+          format: int64
+          type: integer
+          x-go-name: DomainSuffixLength
+        fixed_domain_suffix:
+          description: if FixedDomainSuffix isn't empty, it will be appended to the output
+          type: string
+          x-go-name: FixedDomainSuffix
+        keep_prefix_length:
+          description: How many letters of the plaintext to keep in the output
+          format: int64
+          type: integer
+          x-go-name: KeepPrefixLength
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    ExternalKMSKeyId:
+      example:
+        key_id: key_id
+        key_reference: key_reference
+      properties:
+        key_id:
+          type: string
+          x-go-name: KeyId
+        key_reference:
+          type: string
+          x-go-name: KeyReference
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     Item:
@@ -2394,84 +2460,53 @@ components:
       title: Item describes any item in AKEYLESS.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    Name:
-      description: 'Name represents an X.509 distinguished name. This only includes the common
-
-        elements of a DN. Note that Name is only an approximation of the X.509
-
-        structure. If an accurate representation is needed, asn1.Unmarshal the raw
-
-        subject or issuer as an RDNSequence.'
+    PasswordPolicyInfo:
       example:
-        Names:
-        - Type:
-          - 9
-          - 9
-          Value: '{}'
-        - Type:
-          - 9
-          - 9
-          Value: '{}'
-        StreetAddress:
-        - StreetAddress
-        - StreetAddress
-        SerialNumber: SerialNumber
-        ExtraNames:
-        - Type:
-          - 9
-          - 9
-          Value: '{}'
-        - Type:
-          - 9
-          - 9
-          Value: '{}'
-        Locality:
-        - Locality
-        - Locality
-        Country:
-        - Country
-        - Country
+        use_numbers: true
+        use_capital_letters: true
+        use_special_characters: true
+        use_lower_letters: true
+        password_length: 6
       properties:
-        Country:
-          items:
-            type: string
-          type: array
-          x-go-name: OrganizationalUnit
-        ExtraNames:
-          description: 'ExtraNames contains attributes to be copied, raw, into any marshaled
-
-            distinguished names. Values override any attributes with the same OID.
-
-            The ExtraNames field is not populated when parsing, see Names.'
-          items:
-            $ref: '#/components/schemas/AttributeTypeAndValue'
-          type: array
-        Locality:
-          items:
-            type: string
-          type: array
-          x-go-name: Province
-        Names:
-          description: 'Names contains all parsed attributes. When parsing distinguished names,
-
-            this can be used to extract non-standard attributes that are not parsed
-
-            by this package. When marshaling to RDNSequences, the Names field is
-
-            ignored, see ExtraNames.'
-          items:
-            $ref: '#/components/schemas/AttributeTypeAndValue'
-          type: array
-        SerialNumber:
-          type: string
-          x-go-name: CommonName
-        StreetAddress:
-          items:
-            type: string
-          type: array
-          x-go-name: PostalCode
+        password_length:
+          format: int64
+          type: integer
+          x-go-name: PasswordLength
+        use_capital_letters:
+          type: boolean
+          x-go-name: UseCapitalLetters
+        use_lower_letters:
+          type: boolean
+          x-go-name: UseLowerLetters
+        use_numbers:
+          type: boolean
+          x-go-name: UseNumbers
+        use_special_characters:
+          type: boolean
+          x-go-name: UseSpecialCharacters
       type: object
-      x-go-package: crypto/x509/pkix
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    RuleAssigner:
+      example:
+        unique_id: unique_id
+        access_id: access_id
+      properties:
+        access_id:
+          type: string
+          x-go-name: AccessId
+        unique_id:
+          type: string
+          x-go-name: UniqueId
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     TokenizerInfo:
       example:
         vaultless_tokenizer_info:
@@ -2493,14 +2528,24 @@ components:
           $ref: '#/components/schemas/VaultlessTokenizerInfo'
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    JSONError:
+    ClassicKeyPurpose:
+      description: ClassicKeyPurpose defines purpose for classic keys
+      type: string
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    ImporterInfo:
+      example:
+        version: 1
+        external_item_id: external_item_id
       properties:
-        error:
+        external_item_id:
           type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+          x-go-name: ExternalItemId
+        version:
+          format: int64
+          type: integer
+          x-go-name: Version
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     ClassicKeyDetailsInfo:
       example:
         classic_key_id: classic_key_id
@@ -2592,6 +2637,40 @@ components:
           x-go-name: Targets
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    ClassicKeyTargetInfo:
+      example:
+        external_kms_id:
+          key_id: key_id
+          key_reference: key_reference
+        target_assoc_id: target_assoc_id
+        target_type: target_type
+        key_purpose:
+        - null
+        - null
+        key_status:
+          last_status: last_status
+          error_date: 2000-01-23 04:56:07+00:00
+          last_error: last_error
+          version: 1
+      properties:
+        external_kms_id:
+          $ref: '#/components/schemas/ExternalKMSKeyId'
+        key_purpose:
+          items:
+            $ref: '#/components/schemas/ClassicKeyPurpose'
+          type: array
+          x-go-name: Purpose
+        key_status:
+          $ref: '#/components/schemas/ClassicKeyStatusInfo'
+        target_assoc_id:
+          type: string
+          x-go-name: TargetAssociationID
+        target_type:
+          title: TargetType ..
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     TargetItemVersion:
       example:
         item_version_state: item_version_state
@@ -2646,84 +2725,5 @@ components:
           type: boolean
           x-go-name: WithCustomerFragment
       title: TargetItemVersion describes an item version in AKEYLESS.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    RotatedSecretDetailsInfo:
-      description: RotatedSecretDetailsInfo The rotated secret rotator info
-      example:
-        rotator_creds_type: rotator_creds_type
-        gw_cluster_id: 1
-        rotation_hour: 5
-        rotation_statement: rotation_statement
-        rotator_status: rotator_status
-        rotation_interval_min: true
-        rotator_type: rotator_type
-        delete_previous_version_in_days: 7
-        last_rotation_error: last_rotation_error
-        number_of_versions_to_save: 4
-      properties:
-        delete_previous_version_in_days:
-          format: int32
-          type: integer
-          x-go-name: DeletePreviousVersionInDays
-        gw_cluster_id:
-          format: int64
-          type: integer
-          x-go-name: GWClusterID
-        last_rotation_error:
-          type: string
-          x-go-name: LastRotatorError
-        number_of_versions_to_save:
-          format: int32
-          type: integer
-          x-go-name: NumberOfVersionsToSave
-        rotation_hour:
-          format: int32
-          type: integer
-          x-go-name: RotationHour
-        rotation_interval_min:
-          type: boolean
-          x-go-name: RotationIntervalMin
-        rotation_statement:
-          type: string
-          x-go-name: RotationStatement
-        rotator_creds_type:
-          title: RotatorCredsType defines types supported by AKEYLESS.
-          type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-        rotator_status:
-          description: RotationStatus defines types of rotation Status
-          type: string
-          x-go-name: RotationStatus
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-        rotator_type:
-          title: RotatorType defines types supported by AKEYLESS.
-          type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    EmailTokenizerInfo:
-      description: EmailTokenizerInfo represents a tokenizer that specifically tokenizes emails
-      example:
-        fixed_domain_suffix: fixed_domain_suffix
-        keep_prefix_length: 6
-        domain_suffix_length: 9
-      properties:
-        domain_suffix_length:
-          description: 'What length of a random domain suffix to generate
-
-            used only if FixedDomainSuffix is empty'
-          format: int64
-          type: integer
-          x-go-name: DomainSuffixLength
-        fixed_domain_suffix:
-          description: if FixedDomainSuffix isn't empty, it will be appended to the output
-          type: string
-          x-go-name: FixedDomainSuffix
-        keep_prefix_length:
-          description: How many letters of the plaintext to keep in the output
-          format: int64
-          type: integer
-          x-go-name: KeepPrefixLength
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types

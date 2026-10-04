@@ -43,14 +43,15 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JSONError:
+    detokenizeOutput:
+      example:
+        result: result
       properties:
-        error:
+        result:
           type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+          x-go-name: Result
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     detokenize:
       description: detokenize is a command that decrypts text with a tokenizer
       properties:
@@ -83,12 +84,11 @@ components:
       - tokenizer-name
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    detokenizeOutput:
-      example:
-        result: result
+    JSONError:
       properties:
-        result:
+        error:
           type: string
-          x-go-name: Result
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

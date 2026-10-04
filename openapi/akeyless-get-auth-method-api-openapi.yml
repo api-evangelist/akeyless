@@ -43,40 +43,231 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    getAuthMethod:
-      properties:
-        json:
-          description: Set output format to JSON
-          type: boolean
-          x-go-name: Json
-        name:
-          description: Auth Method name
-          type: string
-          x-go-name: AuthMethodName
-        token:
-          description: Authentication token (see `/auth` and `/configure`)
-          type: string
-          x-go-name: Profile
-        uid-token:
-          description: The universal identity token, Required only for universal_identity authentication
-          type: string
-          x-go-name: UIDToken
-      required:
-      - name
-      title: getAuthMethod is a command that returns information about the auth method.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    RuleAssigner:
+    OAuth2AccessRules:
+      description: 'OAuth2AccessRules contains access rules specific to OAuth2 authentication
+
+        method.'
       example:
-        unique_id: unique_id
-        access_id: access_id
+        bound_claims:
+        - values:
+          - values
+          - values
+          name: name
+        - values:
+          - values
+          - values
+          name: name
+        audience: audience
+        unique_identifier: unique_identifier
+        jwks_uri: jwks_uri
+        bound_clients_id:
+        - bound_clients_id
+        - bound_clients_id
+        issuer: issuer
       properties:
-        access_id:
+        audience:
+          description: The audience in the JWT.
           type: string
-          x-go-name: AccessId
-        unique_id:
+          x-go-name: Audience
+        bound_claims:
+          description: The claims that login is restricted to.
+          items:
+            $ref: '#/components/schemas/OAuth2CustomClaim'
+          type: array
+          x-go-name: BoundCustomClaims
+        bound_clients_id:
+          description: The clients ids that login is restricted to.
+          items:
+            type: string
+          type: array
+          x-go-name: BoundClientsIDs
+        issuer:
+          description: Issuer URL
           type: string
-          x-go-name: UniqueId
+          x-go-name: Issuer
+        jwks_uri:
+          description: 'The URL to the JSON Web Key Set (JWKS) that containing the public keys
+
+            that should be used to verify any JSON Web Token (JWT) issued by the
+
+            authorization server.'
+          type: string
+          x-go-name: JWKeySetURL
+        unique_identifier:
+          description: A unique identifier to distinguish different users
+          type: string
+          x-go-name: UniqueIdentifier
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    HuaweiAccessRules:
+      example:
+        domain_id:
+        - domain_id
+        - domain_id
+        tenant_id:
+        - tenant_id
+        - tenant_id
+        domain_name:
+        - domain_name
+        - domain_name
+        tenant_name:
+        - tenant_name
+        - tenant_name
+        auth_endpoint: auth_endpoint
+        user_id:
+        - user_id
+        - user_id
+        user_name:
+        - user_name
+        - user_name
+      properties:
+        auth_endpoint:
+          description: The auth URL.
+          type: string
+          x-go-name: AuthEndpoint
+        domain_id:
+          description: The list of domain ids that the login is restricted to.
+          items:
+            type: string
+          type: array
+          x-go-name: DomainID
+        domain_name:
+          description: The list of domainNames that the login is restricted to.
+          items:
+            type: string
+          type: array
+          x-go-name: DomainName
+        tenant_id:
+          description: The list of tenantIDs  that the login is restricted to.
+          items:
+            type: string
+          type: array
+          x-go-name: TenantID
+        tenant_name:
+          description: The list of tenantNames  that the login is restricted to.
+          items:
+            type: string
+          type: array
+          x-go-name: TenantName
+        user_id:
+          description: The list of user ids that the login is restricted to.
+          items:
+            type: string
+          type: array
+          x-go-name: UserID
+        user_name:
+          description: The list of user names that the login is restricted to.
+          items:
+            type: string
+          type: array
+          x-go-name: UserName
+      title: HuaweiAccessRules defines access rules specific to Huawei authentication.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    APIKeyAccessRules:
+      example:
+        alg: alg
+        key: key
+      properties:
+        alg:
+          title: Algorithm is a type that represents a single crypto algorithm.
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        key:
+          description: The public key value of the API-key.
+          type: string
+          x-go-name: PubKeyValue
+      title: APIKeyAccessRules is a set of rules for API Key access type.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    AuthMethodRoleAssociation:
+      description: 'AuthMethodRoleAssociation includes details of an association between an auth
+
+        method and a role.'
+      example:
+        role_name: role_name
+        assoc_id: assoc_id
+        allowed_ops:
+        - allowed_ops
+        - allowed_ops
+        rules:
+          path_rules:
+          - path: path
+            start_time: 5
+            capabilities:
+            - capabilities
+            - capabilities
+            number_of_allowed_access: 5
+            is_limit_access: true
+            assigners:
+            - unique_id: unique_id
+              access_id: access_id
+            - unique_id: unique_id
+              access_id: access_id
+            number_of_access_used: 1
+            type: type
+            ttl: 2
+          - path: path
+            start_time: 5
+            capabilities:
+            - capabilities
+            - capabilities
+            number_of_allowed_access: 5
+            is_limit_access: true
+            assigners:
+            - unique_id: unique_id
+              access_id: access_id
+            - unique_id: unique_id
+              access_id: access_id
+            number_of_access_used: 1
+            type: type
+            ttl: 2
+          admin: true
+        auth_method_sub_claims:
+          key:
+          - auth_method_sub_claims
+          - auth_method_sub_claims
+      properties:
+        allowed_ops:
+          items:
+            type: string
+          type: array
+          x-go-name: AllowedOperations
+        assoc_id:
+          type: string
+          x-go-name: AssociationID
+        auth_method_sub_claims:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+          x-go-name: AuthMethodSubClaims
+        role_name:
+          type: string
+          x-go-name: RoleName
+        rules:
+          $ref: '#/components/schemas/Rules'
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    OIDCCustomClaim:
+      description: 'OIDCCustomClaim is a custom claim specific to OIDC authentication
+
+        method.'
+      example:
+        values:
+        - values
+        - values
+        name: name
+      properties:
+        name:
+          type: string
+          x-go-name: Name
+        values:
+          items:
+            type: string
+          type: array
+          x-go-name: Values
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     EmailPassAccessRules:
@@ -100,114 +291,710 @@ components:
       title: EmailPassAccessRules is a set of rules for email password access type.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    AzureADAccessRules:
-      description: 'AzureADAccessRules contains access rules specific to Azure Active Directory
-
-        authentication.'
+    SAMLAccessRules:
       example:
-        bound_group_ids:
-        - bound_group_ids
-        - bound_group_ids
-        bound_service_principal_ids:
-        - bound_service_principal_ids
-        - bound_service_principal_ids
-        bound_resource_types:
-        - bound_resource_types
-        - bound_resource_types
-        ad_endpoint: ad_endpoint
-        bound_resource_groups:
-        - bound_resource_groups
-        - bound_resource_groups
-        bound_resource_names:
-        - bound_resource_names
-        - bound_resource_names
-        bound_resource_ids:
-        - bound_resource_ids
-        - bound_resource_ids
-        bound_resource_providers:
-        - bound_resource_providers
-        - bound_resource_providers
-        bound_tenant_id: bound_tenant_id
-        jwks_uri: jwks_uri
-        bound_subscription_ids:
-        - bound_subscription_ids
-        - bound_subscription_ids
-        issuer: issuer
+        unique_identifier: unique_identifier
+        idp_metadata_url: idp_metadata_url
+        allowed_redirect_URIs:
+        - allowed_redirect_URIs
+        - allowed_redirect_URIs
+        bound_attributes:
+        - values:
+          - values
+          - values
+          name: name
+        - values:
+          - values
+          - values
+          name: name
+        idp_metadata_xml: idp_metadata_xml
       properties:
-        ad_endpoint:
-          description: The audience in the JWT.
+        allowed_redirect_URIs:
+          description: Allowed redirect URIs after the authentication
+          items:
+            type: string
+          type: array
+          x-go-name: AllowedRedirectURIs
+        bound_attributes:
+          description: The attributes that login is restricted to.
+          items:
+            $ref: '#/components/schemas/SAMLAttribute'
+          type: array
+          x-go-name: BoundAttributes
+        idp_metadata_url:
+          description: IDP metadata url
+          type: string
+          x-go-name: IDPMetadataURL
+        idp_metadata_xml:
+          description: IDP metadata XML
+          type: string
+          x-go-name: IDPMetadataXML
+        unique_identifier:
+          description: A unique identifier to distinguish different users
+          type: string
+          x-go-name: UniqueIdentifier
+      title: SAMLAccessRules defines access rules specific to SAML authentication method.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    UniversalIdentityAccessRules:
+      example:
+        deny_inheritance: true
+        ttl: 1
+        deny_rotate: true
+      properties:
+        deny_inheritance:
+          type: boolean
+          x-go-name: DenyInheritance
+        deny_rotate:
+          type: boolean
+          x-go-name: DenyRotate
+        ttl:
+          format: int32
+          type: integer
+          x-go-name: TTL
+      title: UniversalIdentityAccessRules contains access rules specific to Universal Identity.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    getAuthMethod:
+      properties:
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        name:
+          description: Auth Method name
+          type: string
+          x-go-name: AuthMethodName
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - name
+      title: getAuthMethod is a command that returns information about the auth method.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    SAMLAttribute:
+      example:
+        values:
+        - values
+        - values
+        name: name
+      properties:
+        name:
+          type: string
+          x-go-name: Name
+        values:
+          items:
+            type: string
+          type: array
+          x-go-name: Values
+      title: SAMLAttribute defines an attribute of SAML authentication.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    KubernetesAccessRules:
+      example:
+        audience: audience
+        bound_service_account_names:
+        - bound_service_account_names
+        - bound_service_account_names
+        bound_namespaces:
+        - bound_namespaces
+        - bound_namespaces
+        bound_pod_names:
+        - bound_pod_names
+        - bound_pod_names
+        alg: alg
+        gen_key_pair: gen_key_pair
+        pub_key: pub_key
+      properties:
+        alg:
+          title: Algorithm is a type that represents a single crypto algorithm.
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        audience:
+          description: Audience is an optional Kubernetes jwt claim to verify
           type: string
           x-go-name: Audience
-        bound_group_ids:
-          description: The list of group ids that login is restricted to.
+        bound_namespaces:
+          description: A list of namespaces that the authentication is restricted to.
           items:
             type: string
           type: array
-          x-go-name: BoundGroupIDs
-        bound_resource_groups:
-          description: The list of resource groups that login is restricted to.
+          x-go-name: Namespaces
+        bound_pod_names:
+          description: A list of pods names that the authentication is restricted to.
           items:
             type: string
           type: array
-          x-go-name: BoundResourceGroups
-        bound_resource_ids:
-          description: The list of full resource ids that the login is restricted to.
+          x-go-name: PodNames
+        bound_service_account_names:
+          description: A list of service account names that the authentication is restricted to.
           items:
             type: string
           type: array
-          x-go-name: BoundResourceIds
-        bound_resource_names:
-          description: 'The list of resource names that the login is restricted to (e.g, a
-
-            virtual machine name, scale set name, etc).'
-          items:
-            type: string
-          type: array
-          x-go-name: BoundResourceNames
-        bound_resource_providers:
-          description: 'The list of resource providers that login is restricted to (e.g,
-
-            Microsoft.Compute, Microsoft.ManagedIdentity, etc).'
-          items:
-            type: string
-          type: array
-          x-go-name: BoundResourceProviders
-        bound_resource_types:
-          description: 'The list of resource types that login is restricted to  (e.g,
-
-            virtualMachines, userAssignedIdentities, etc).'
-          items:
-            type: string
-          type: array
-          x-go-name: BoundResourceTypes
-        bound_service_principal_ids:
-          description: The list of service principal IDs that login is restricted to.
-          items:
-            type: string
-          type: array
-          x-go-name: BoundServicePrincipalIDs
-        bound_subscription_ids:
-          description: The list of subscription IDs that login is restricted to.
-          items:
-            type: string
-          type: array
-          x-go-name: BoundSubscriptionsIDs
-        bound_tenant_id:
-          description: The tenants id for the Azure Active Directory organization.
+          x-go-name: ServiceAccountNames
+        gen_key_pair:
+          description: Generate public/private key (the private key is required for the K8S Auth Config in the Akeyless Gateway)
           type: string
-          x-go-name: BoundTenantID
-        issuer:
-          description: Issuer URL
+          x-go-name: GenKeyPair
+        pub_key:
+          description: The public key value of the Kubernetes auth method configuration in the Akeyless Gateway.
           type: string
-          x-go-name: Issuer
-        jwks_uri:
-          description: 'The URL to the JSON Web Key Set (JWKS) that containing the public keys
+          x-go-name: PubKeyValue
+      title: KubernetesAccessRules includes access rules specific to the Kubernetes auth method.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    OAuth2CustomClaim:
+      description: 'OAuth2CustomClaim is a custom claim specific to OAuth2 authentication
 
-            that should be used to verify any JSON Web Token (JWT) issued by the
-
-            authorization server.'
+        method.'
+      example:
+        values:
+        - values
+        - values
+        name: name
+      properties:
+        name:
           type: string
-          x-go-name: JWKeySetURL
+          x-go-name: Name
+        values:
+          items:
+            type: string
+          type: array
+          x-go-name: Values
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    GCPAccessRules:
+      example:
+        bound_service_accounts:
+        - bound_service_accounts
+        - bound_service_accounts
+        service_account: service_account
+        bound_projects:
+        - bound_projects
+        - bound_projects
+        audience: akeyless.io
+        bound_regions:
+        - bound_regions
+        - bound_regions
+        bound_zones:
+        - bound_zones
+        - bound_zones
+        bound_labels:
+          key: bound_labels
+        type: type
+      properties:
+        audience:
+          default: akeyless.io
+          description: The audience in the JWT
+          type: string
+          x-go-name: Audience
+        bound_labels:
+          additionalProperties:
+            type: string
+          description: 'A map of GCP labels formatted as "key:value" strings that must be set on authorized GCE instances.
+
+            TODO: Because GCP labels are not currently ACL''d ....'
+          type: object
+          x-go-name: BoundLabels
+        bound_projects:
+          description: 'Human and Machine authentication section
+
+            Array of GCP project IDs. Only entities belonging to any of the provided
+
+            projects can authenticate.'
+          items:
+            type: string
+          type: array
+          x-go-name: BoundProjects
+        bound_regions:
+          description: 'List of regions that a GCE instance must belong to in order to be authenticated.
+
+            TODO: If bound_instance_groups is provided, it is assumed to be a regional group and the group must belong to this region. If bound_zones are provided, this attribute is ignored.'
+          items:
+            type: string
+          type: array
+          x-go-name: BoundRegions
+        bound_service_accounts:
+          description: List of service accounts the service account must be part of in order to be authenticated
+          items:
+            type: string
+          type: array
+          x-go-name: BoundServiceAccounts
+        bound_zones:
+          description: '=== Machine authentication section ===
+
+            List of zones that a GCE instance must belong to in order to be authenticated.
+
+            TODO: If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.'
+          items:
+            type: string
+          type: array
+          x-go-name: BoundZones
+        service_account:
+          description: 'ServiceAccount holds the credentials file contents to be used by Akeyless
+
+            to validate IAM (Human) and GCE (Machine) logins against GCP
+
+            base64 encoded string'
+          type: string
+          x-go-name: ServiceAccount
+        type:
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+      title: GCPAccessRules contains access rules specific to GCP IAM or GCE authentication.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    AuthMethodAccessInfo:
+      example:
+        jwt_ttl: 6
+        gcp_access_rules:
+          bound_service_accounts:
+          - bound_service_accounts
+          - bound_service_accounts
+          service_account: service_account
+          bound_projects:
+          - bound_projects
+          - bound_projects
+          audience: akeyless.io
+          bound_regions:
+          - bound_regions
+          - bound_regions
+          bound_zones:
+          - bound_zones
+          - bound_zones
+          bound_labels:
+            key: bound_labels
+          type: type
+        azure_ad_access_rules:
+          bound_group_ids:
+          - bound_group_ids
+          - bound_group_ids
+          bound_service_principal_ids:
+          - bound_service_principal_ids
+          - bound_service_principal_ids
+          bound_resource_types:
+          - bound_resource_types
+          - bound_resource_types
+          ad_endpoint: ad_endpoint
+          bound_resource_groups:
+          - bound_resource_groups
+          - bound_resource_groups
+          bound_resource_names:
+          - bound_resource_names
+          - bound_resource_names
+          bound_resource_ids:
+          - bound_resource_ids
+          - bound_resource_ids
+          bound_resource_providers:
+          - bound_resource_providers
+          - bound_resource_providers
+          bound_tenant_id: bound_tenant_id
+          jwks_uri: jwks_uri
+          bound_subscription_ids:
+          - bound_subscription_ids
+          - bound_subscription_ids
+          issuer: issuer
+        universal_identity_access_rules:
+          deny_inheritance: true
+          ttl: 1
+          deny_rotate: true
+        oauth2_access_rules:
+          bound_claims:
+          - values:
+            - values
+            - values
+            name: name
+          - values:
+            - values
+            - values
+            name: name
+          audience: audience
+          unique_identifier: unique_identifier
+          jwks_uri: jwks_uri
+          bound_clients_id:
+          - bound_clients_id
+          - bound_clients_id
+          issuer: issuer
+        oidc_access_rules:
+          bound_claims:
+          - values:
+            - values
+            - values
+            name: name
+          - values:
+            - values
+            - values
+            name: name
+          audience: audience
+          is_internal: true
+          unique_identifier: unique_identifier
+          allowed_redirect_URIs:
+          - allowed_redirect_URIs
+          - allowed_redirect_URIs
+          required_scopes_prefix: required_scopes_prefix
+          required_scopes:
+          - required_scopes
+          - required_scopes
+          client_secret: client_secret
+          client_id: client_id
+          issuer: issuer
+        saml_access_rules:
+          unique_identifier: unique_identifier
+          idp_metadata_url: idp_metadata_url
+          allowed_redirect_URIs:
+          - allowed_redirect_URIs
+          - allowed_redirect_URIs
+          bound_attributes:
+          - values:
+            - values
+            - values
+            name: name
+          - values:
+            - values
+            - values
+            name: name
+          idp_metadata_xml: idp_metadata_xml
+        api_key_access_rules:
+          alg: alg
+          key: key
+        cidr_whitelist: cidr_whitelist
+        cert_access_rules:
+          bound_common_names:
+          - bound_common_names
+          - bound_common_names
+          unique_identifier: unique_identifier
+          bound_dns_sans:
+          - bound_dns_sans
+          - bound_dns_sans
+          bound_email_sans:
+          - bound_email_sans
+          - bound_email_sans
+          bound_extensions:
+          - bound_extensions
+          - bound_extensions
+          bound_organizational_units:
+          - bound_organizational_units
+          - bound_organizational_units
+          certificate: certificate
+          bound_uri_sans:
+          - bound_uri_sans
+          - bound_uri_sans
+          revoked_cert_ids:
+          - revoked_cert_ids
+          - revoked_cert_ids
+        gw_cidr_whitelist: gw_cidr_whitelist
+        force_sub_claims: true
+        ldap_access_rules:
+          unique_identifier: unique_identifier
+          alg: alg
+          gen_key_pair: gen_key_pair
+          key: key
+        huawei_access_rules:
+          domain_id:
+          - domain_id
+          - domain_id
+          tenant_id:
+          - tenant_id
+          - tenant_id
+          domain_name:
+          - domain_name
+          - domain_name
+          tenant_name:
+          - tenant_name
+          - tenant_name
+          auth_endpoint: auth_endpoint
+          user_id:
+          - user_id
+          - user_id
+          user_name:
+          - user_name
+          - user_name
+        aws_iam_access_rules:
+          role_name:
+          - role_name
+          - role_name
+          account_id:
+          - account_id
+          - account_id
+          role_id:
+          - role_id
+          - role_id
+          user_id:
+          - user_id
+          - user_id
+          user_name:
+          - user_name
+          - user_name
+          resource_id:
+          - resource_id
+          - resource_id
+          sts_endpoint: sts_endpoint
+          arn:
+          - arn
+          - arn
+        k8s_access_rules:
+          audience: audience
+          bound_service_account_names:
+          - bound_service_account_names
+          - bound_service_account_names
+          bound_namespaces:
+          - bound_namespaces
+          - bound_namespaces
+          bound_pod_names:
+          - bound_pod_names
+          - bound_pod_names
+          alg: alg
+          gen_key_pair: gen_key_pair
+          pub_key: pub_key
+        rules_type: rules_type
+        access_expires: 0
+        access_id_alias: access_id_alias
+        email_pass_access_rules:
+          hash_pass: hash_pass
+          alg: alg
+          email: email
+      properties:
+        access_expires:
+          format: int64
+          type: integer
+          x-go-name: AccessExpires
+        access_id_alias:
+          description: 'for accounts where AccessId holds encrypted email this field will hold generated AccessId,
+
+            for accounts based on regular AccessId it will be equal to accessId itself'
+          type: string
+          x-go-name: AccessIdAlias
+        api_key_access_rules:
+          $ref: '#/components/schemas/APIKeyAccessRules'
+        aws_iam_access_rules:
+          $ref: '#/components/schemas/AWSIAMAccessRules'
+        azure_ad_access_rules:
+          $ref: '#/components/schemas/AzureADAccessRules'
+        cert_access_rules:
+          $ref: '#/components/schemas/CertAccessRules'
+        cidr_whitelist:
+          type: string
+          x-go-name: CIDRWhitelist
+        email_pass_access_rules:
+          $ref: '#/components/schemas/EmailPassAccessRules'
+        force_sub_claims:
+          description: if true the role associated with this auth method must include sub claims
+          type: boolean
+          x-go-name: ForceSubClaims
+        gcp_access_rules:
+          $ref: '#/components/schemas/GCPAccessRules'
+        gw_cidr_whitelist:
+          type: string
+          x-go-name: GWCIDRWhitelist
+        huawei_access_rules:
+          $ref: '#/components/schemas/HuaweiAccessRules'
+        jwt_ttl:
+          format: int64
+          type: integer
+          x-go-name: JwtTtl
+        k8s_access_rules:
+          $ref: '#/components/schemas/KubernetesAccessRules'
+        ldap_access_rules:
+          $ref: '#/components/schemas/LDAPAccessRules'
+        oauth2_access_rules:
+          $ref: '#/components/schemas/OAuth2AccessRules'
+        oidc_access_rules:
+          $ref: '#/components/schemas/OIDCAccessRules'
+        rules_type:
+          type: string
+          x-go-name: AccessRulesType
+        saml_access_rules:
+          $ref: '#/components/schemas/SAMLAccessRules'
+        universal_identity_access_rules:
+          $ref: '#/components/schemas/UniversalIdentityAccessRules'
+      title: AuthMethodAccessInfo includes auth method access information.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    LDAPAccessRules:
+      example:
+        unique_identifier: unique_identifier
+        alg: alg
+        gen_key_pair: gen_key_pair
+        key: key
+      properties:
+        alg:
+          title: Algorithm is a type that represents a single crypto algorithm.
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        gen_key_pair:
+          description: Generate public/private key (the private key is required for the LDAP Auth Config in the Akeyless Gateway)
+          type: string
+          x-go-name: GenKeyPair
+        key:
+          description: The public key value of LDAP.
+          type: string
+          x-go-name: PubKeyValue
+        unique_identifier:
+          description: A unique identifier to distinguish different users
+          type: string
+          x-go-name: UniqueIdentifier
+      title: LDAPAccessRules includes access rules specific to LDAP authentication.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    AWSIAMAccessRules:
+      example:
+        role_name:
+        - role_name
+        - role_name
+        account_id:
+        - account_id
+        - account_id
+        role_id:
+        - role_id
+        - role_id
+        user_id:
+        - user_id
+        - user_id
+        user_name:
+        - user_name
+        - user_name
+        resource_id:
+        - resource_id
+        - resource_id
+        sts_endpoint: sts_endpoint
+        arn:
+        - arn
+        - arn
+      properties:
+        account_id:
+          description: The list of account ids that the login is restricted to.
+          items:
+            type: string
+          type: array
+          x-go-name: AccountID
+        arn:
+          description: The list of ARNs that the login is restricted to.
+          items:
+            type: string
+          type: array
+          x-go-name: Arn
+        resource_id:
+          description: The list of resource ids that the login is restricted to.
+          items:
+            type: string
+          type: array
+          x-go-name: ResourceID
+        role_id:
+          description: The list of role ids that the login is restricted to.
+          items:
+            type: string
+          type: array
+          x-go-name: RoleID
+        role_name:
+          description: The list of role names that the login is restricted to.
+          items:
+            type: string
+          type: array
+          x-go-name: RoleName
+        sts_endpoint:
+          description: The sts URL.
+          type: string
+          x-go-name: StsEndpoint
+        user_id:
+          description: The list of user ids that the login is restricted to.
+          items:
+            type: string
+          type: array
+          x-go-name: UserID
+        user_name:
+          description: The list of user names that the login is restricted to.
+          items:
+            type: string
+          type: array
+          x-go-name: UserName
+      title: AWSIAMAccessRules contains access rules specific to AWS IAM.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    RuleAssigner:
+      example:
+        unique_id: unique_id
+        access_id: access_id
+      properties:
+        access_id:
+          type: string
+          x-go-name: AccessId
+        unique_id:
+          type: string
+          x-go-name: UniqueId
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    PathRule:
+      example:
+        path: path
+        start_time: 5
+        capabilities:
+        - capabilities
+        - capabilities
+        number_of_allowed_access: 5
+        is_limit_access: true
+        assigners:
+        - unique_id: unique_id
+          access_id: access_id
+        - unique_id: unique_id
+          access_id: access_id
+        number_of_access_used: 1
+        type: type
+        ttl: 2
+      properties:
+        assigners:
+          items:
+            $ref: '#/components/schemas/RuleAssigner'
+          type: array
+          x-go-name: Assigners
+        capabilities:
+          description: The approved/denied capabilities in the path
+          items:
+            type: string
+          type: array
+          x-go-name: Capabilities
+        is_limit_access:
+          description: flag that indicate that this rule is allowed to be access RemainingAccess of times.
+          type: boolean
+          x-go-name: IsLimitAccess
+        number_of_access_used:
+          format: int64
+          type: integer
+          x-go-name: NumberOfAccessUsed
+        number_of_allowed_access:
+          format: int64
+          type: integer
+          x-go-name: NumberOfAllowedAccess
+        path:
+          description: The path the rule refers to
+          type: string
+          x-go-name: Path
+        start_time:
+          format: int64
+          type: integer
+          x-go-name: StartTime
+        ttl:
+          format: int64
+          type: integer
+          x-go-name: TTL
+        type:
+          title: PathRuleType defines a kind of every PathRule assigned to a Role.
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+      title: PathRule is a single rule used in AKEYLESS RBAC.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     AuthMethod:
@@ -551,84 +1338,52 @@ components:
       title: AuthMethod represents a single Auth method.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    OIDCAccessRules:
-      description: 'OIDCAccessRules contains access rules specific to Open Id Connect authentication
-
-        method.'
+    Rules:
       example:
-        bound_claims:
-        - values:
-          - values
-          - values
-          name: name
-        - values:
-          - values
-          - values
-          name: name
-        audience: audience
-        is_internal: true
-        unique_identifier: unique_identifier
-        allowed_redirect_URIs:
-        - allowed_redirect_URIs
-        - allowed_redirect_URIs
-        required_scopes_prefix: required_scopes_prefix
-        required_scopes:
-        - required_scopes
-        - required_scopes
-        client_secret: client_secret
-        client_id: client_id
-        issuer: issuer
+        path_rules:
+        - path: path
+          start_time: 5
+          capabilities:
+          - capabilities
+          - capabilities
+          number_of_allowed_access: 5
+          is_limit_access: true
+          assigners:
+          - unique_id: unique_id
+            access_id: access_id
+          - unique_id: unique_id
+            access_id: access_id
+          number_of_access_used: 1
+          type: type
+          ttl: 2
+        - path: path
+          start_time: 5
+          capabilities:
+          - capabilities
+          - capabilities
+          number_of_allowed_access: 5
+          is_limit_access: true
+          assigners:
+          - unique_id: unique_id
+            access_id: access_id
+          - unique_id: unique_id
+            access_id: access_id
+          number_of_access_used: 1
+          type: type
+          ttl: 2
+        admin: true
       properties:
-        allowed_redirect_URIs:
-          description: Allowed redirect URIs after the authentication
-          items:
-            type: string
-          type: array
-          x-go-name: AllowedRedirectURIs
-        audience:
-          description: Audience claim to be used as part of the authentication flow. In case set, it must match the one configured on the Identity Provider's Application
-          type: string
-          x-go-name: Audience
-        bound_claims:
-          description: The claims that login is restricted to.
-          items:
-            $ref: '#/components/schemas/OIDCCustomClaim'
-          type: array
-          x-go-name: BoundCustomClaims
-        client_id:
-          description: Client ID
-          type: string
-          x-go-name: ClientID
-        client_secret:
-          description: Client Secret
-          type: string
-          x-go-name: ClientSecret
-        is_internal:
-          description: 'IsInternal indicates whether this is an internal Auth Method where the client has no control
-
-            over it, or it was created by the client
-
-            e.g - Sign In with Google will create an OIDC Auth Method with IsInternal=true'
+        admin:
+          description: Is admin
           type: boolean
-          x-go-name: IsInternal
-        issuer:
-          description: Issuer URL
-          type: string
-          x-go-name: Issuer
-        required_scopes:
-          description: A list of required scopes to request from the oidc provider, and to check on the token
+          x-go-name: Admin
+        path_rules:
+          description: The path the rules refers to
           items:
-            type: string
+            $ref: '#/components/schemas/PathRule'
           type: array
-          x-go-name: RequiredScopes
-        required_scopes_prefix:
-          description: A prefix to add to the required scopes (for example, azures' Application ID URI)
-          type: string
-          x-go-name: RequiredScopesPrefix
-        unique_identifier:
-          description: A unique identifier to distinguish different users
-          type: string
-          x-go-name: UniqueIdentifier
+          x-go-name: PathRules
+      title: Rules are a part of AKEYLESS RBAC.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     CertAccessRules:
@@ -710,605 +1465,102 @@ components:
       title: CertAccessRules contains access rules specific to certificate authentication.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    OAuth2CustomClaim:
-      description: 'OAuth2CustomClaim is a custom claim specific to OAuth2 authentication
+    AzureADAccessRules:
+      description: 'AzureADAccessRules contains access rules specific to Azure Active Directory
 
-        method.'
+        authentication.'
       example:
-        values:
-        - values
-        - values
-        name: name
-      properties:
-        name:
-          type: string
-          x-go-name: Name
-        values:
-          items:
-            type: string
-          type: array
-          x-go-name: Values
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    AWSIAMAccessRules:
-      example:
-        role_name:
-        - role_name
-        - role_name
-        account_id:
-        - account_id
-        - account_id
-        role_id:
-        - role_id
-        - role_id
-        user_id:
-        - user_id
-        - user_id
-        user_name:
-        - user_name
-        - user_name
-        resource_id:
-        - resource_id
-        - resource_id
-        sts_endpoint: sts_endpoint
-        arn:
-        - arn
-        - arn
-      properties:
-        account_id:
-          description: The list of account ids that the login is restricted to.
-          items:
-            type: string
-          type: array
-          x-go-name: AccountID
-        arn:
-          description: The list of ARNs that the login is restricted to.
-          items:
-            type: string
-          type: array
-          x-go-name: Arn
-        resource_id:
-          description: The list of resource ids that the login is restricted to.
-          items:
-            type: string
-          type: array
-          x-go-name: ResourceID
-        role_id:
-          description: The list of role ids that the login is restricted to.
-          items:
-            type: string
-          type: array
-          x-go-name: RoleID
-        role_name:
-          description: The list of role names that the login is restricted to.
-          items:
-            type: string
-          type: array
-          x-go-name: RoleName
-        sts_endpoint:
-          description: The sts URL.
-          type: string
-          x-go-name: StsEndpoint
-        user_id:
-          description: The list of user ids that the login is restricted to.
-          items:
-            type: string
-          type: array
-          x-go-name: UserID
-        user_name:
-          description: The list of user names that the login is restricted to.
-          items:
-            type: string
-          type: array
-          x-go-name: UserName
-      title: AWSIAMAccessRules contains access rules specific to AWS IAM.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    UniversalIdentityAccessRules:
-      example:
-        deny_inheritance: true
-        ttl: 1
-        deny_rotate: true
-      properties:
-        deny_inheritance:
-          type: boolean
-          x-go-name: DenyInheritance
-        deny_rotate:
-          type: boolean
-          x-go-name: DenyRotate
-        ttl:
-          format: int32
-          type: integer
-          x-go-name: TTL
-      title: UniversalIdentityAccessRules contains access rules specific to Universal Identity.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    OIDCCustomClaim:
-      description: 'OIDCCustomClaim is a custom claim specific to OIDC authentication
-
-        method.'
-      example:
-        values:
-        - values
-        - values
-        name: name
-      properties:
-        name:
-          type: string
-          x-go-name: Name
-        values:
-          items:
-            type: string
-          type: array
-          x-go-name: Values
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    APIKeyAccessRules:
-      example:
-        alg: alg
-        key: key
-      properties:
-        alg:
-          title: Algorithm is a type that represents a single crypto algorithm.
-          type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-        key:
-          description: The public key value of the API-key.
-          type: string
-          x-go-name: PubKeyValue
-      title: APIKeyAccessRules is a set of rules for API Key access type.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    KubernetesAccessRules:
-      example:
-        audience: audience
-        bound_service_account_names:
-        - bound_service_account_names
-        - bound_service_account_names
-        bound_namespaces:
-        - bound_namespaces
-        - bound_namespaces
-        bound_pod_names:
-        - bound_pod_names
-        - bound_pod_names
-        alg: alg
-        gen_key_pair: gen_key_pair
-        pub_key: pub_key
-      properties:
-        alg:
-          title: Algorithm is a type that represents a single crypto algorithm.
-          type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-        audience:
-          description: Audience is an optional Kubernetes jwt claim to verify
-          type: string
-          x-go-name: Audience
-        bound_namespaces:
-          description: A list of namespaces that the authentication is restricted to.
-          items:
-            type: string
-          type: array
-          x-go-name: Namespaces
-        bound_pod_names:
-          description: A list of pods names that the authentication is restricted to.
-          items:
-            type: string
-          type: array
-          x-go-name: PodNames
-        bound_service_account_names:
-          description: A list of service account names that the authentication is restricted to.
-          items:
-            type: string
-          type: array
-          x-go-name: ServiceAccountNames
-        gen_key_pair:
-          description: Generate public/private key (the private key is required for the K8S Auth Config in the Akeyless Gateway)
-          type: string
-          x-go-name: GenKeyPair
-        pub_key:
-          description: The public key value of the Kubernetes auth method configuration in the Akeyless Gateway.
-          type: string
-          x-go-name: PubKeyValue
-      title: KubernetesAccessRules includes access rules specific to the Kubernetes auth method.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    AuthMethodAccessInfo:
-      example:
-        jwt_ttl: 6
-        gcp_access_rules:
-          bound_service_accounts:
-          - bound_service_accounts
-          - bound_service_accounts
-          service_account: service_account
-          bound_projects:
-          - bound_projects
-          - bound_projects
-          audience: akeyless.io
-          bound_regions:
-          - bound_regions
-          - bound_regions
-          bound_zones:
-          - bound_zones
-          - bound_zones
-          bound_labels:
-            key: bound_labels
-          type: type
-        azure_ad_access_rules:
-          bound_group_ids:
-          - bound_group_ids
-          - bound_group_ids
-          bound_service_principal_ids:
-          - bound_service_principal_ids
-          - bound_service_principal_ids
-          bound_resource_types:
-          - bound_resource_types
-          - bound_resource_types
-          ad_endpoint: ad_endpoint
-          bound_resource_groups:
-          - bound_resource_groups
-          - bound_resource_groups
-          bound_resource_names:
-          - bound_resource_names
-          - bound_resource_names
-          bound_resource_ids:
-          - bound_resource_ids
-          - bound_resource_ids
-          bound_resource_providers:
-          - bound_resource_providers
-          - bound_resource_providers
-          bound_tenant_id: bound_tenant_id
-          jwks_uri: jwks_uri
-          bound_subscription_ids:
-          - bound_subscription_ids
-          - bound_subscription_ids
-          issuer: issuer
-        universal_identity_access_rules:
-          deny_inheritance: true
-          ttl: 1
-          deny_rotate: true
-        oauth2_access_rules:
-          bound_claims:
-          - values:
-            - values
-            - values
-            name: name
-          - values:
-            - values
-            - values
-            name: name
-          audience: audience
-          unique_identifier: unique_identifier
-          jwks_uri: jwks_uri
-          bound_clients_id:
-          - bound_clients_id
-          - bound_clients_id
-          issuer: issuer
-        oidc_access_rules:
-          bound_claims:
-          - values:
-            - values
-            - values
-            name: name
-          - values:
-            - values
-            - values
-            name: name
-          audience: audience
-          is_internal: true
-          unique_identifier: unique_identifier
-          allowed_redirect_URIs:
-          - allowed_redirect_URIs
-          - allowed_redirect_URIs
-          required_scopes_prefix: required_scopes_prefix
-          required_scopes:
-          - required_scopes
-          - required_scopes
-          client_secret: client_secret
-          client_id: client_id
-          issuer: issuer
-        saml_access_rules:
-          unique_identifier: unique_identifier
-          idp_metadata_url: idp_metadata_url
-          allowed_redirect_URIs:
-          - allowed_redirect_URIs
-          - allowed_redirect_URIs
-          bound_attributes:
-          - values:
-            - values
-            - values
-            name: name
-          - values:
-            - values
-            - values
-            name: name
-          idp_metadata_xml: idp_metadata_xml
-        api_key_access_rules:
-          alg: alg
-          key: key
-        cidr_whitelist: cidr_whitelist
-        cert_access_rules:
-          bound_common_names:
-          - bound_common_names
-          - bound_common_names
-          unique_identifier: unique_identifier
-          bound_dns_sans:
-          - bound_dns_sans
-          - bound_dns_sans
-          bound_email_sans:
-          - bound_email_sans
-          - bound_email_sans
-          bound_extensions:
-          - bound_extensions
-          - bound_extensions
-          bound_organizational_units:
-          - bound_organizational_units
-          - bound_organizational_units
-          certificate: certificate
-          bound_uri_sans:
-          - bound_uri_sans
-          - bound_uri_sans
-          revoked_cert_ids:
-          - revoked_cert_ids
-          - revoked_cert_ids
-        gw_cidr_whitelist: gw_cidr_whitelist
-        force_sub_claims: true
-        ldap_access_rules:
-          unique_identifier: unique_identifier
-          alg: alg
-          gen_key_pair: gen_key_pair
-          key: key
-        huawei_access_rules:
-          domain_id:
-          - domain_id
-          - domain_id
-          tenant_id:
-          - tenant_id
-          - tenant_id
-          domain_name:
-          - domain_name
-          - domain_name
-          tenant_name:
-          - tenant_name
-          - tenant_name
-          auth_endpoint: auth_endpoint
-          user_id:
-          - user_id
-          - user_id
-          user_name:
-          - user_name
-          - user_name
-        aws_iam_access_rules:
-          role_name:
-          - role_name
-          - role_name
-          account_id:
-          - account_id
-          - account_id
-          role_id:
-          - role_id
-          - role_id
-          user_id:
-          - user_id
-          - user_id
-          user_name:
-          - user_name
-          - user_name
-          resource_id:
-          - resource_id
-          - resource_id
-          sts_endpoint: sts_endpoint
-          arn:
-          - arn
-          - arn
-        k8s_access_rules:
-          audience: audience
-          bound_service_account_names:
-          - bound_service_account_names
-          - bound_service_account_names
-          bound_namespaces:
-          - bound_namespaces
-          - bound_namespaces
-          bound_pod_names:
-          - bound_pod_names
-          - bound_pod_names
-          alg: alg
-          gen_key_pair: gen_key_pair
-          pub_key: pub_key
-        rules_type: rules_type
-        access_expires: 0
-        access_id_alias: access_id_alias
-        email_pass_access_rules:
-          hash_pass: hash_pass
-          alg: alg
-          email: email
-      properties:
-        access_expires:
-          format: int64
-          type: integer
-          x-go-name: AccessExpires
-        access_id_alias:
-          description: 'for accounts where AccessId holds encrypted email this field will hold generated AccessId,
-
-            for accounts based on regular AccessId it will be equal to accessId itself'
-          type: string
-          x-go-name: AccessIdAlias
-        api_key_access_rules:
-          $ref: '#/components/schemas/APIKeyAccessRules'
-        aws_iam_access_rules:
-          $ref: '#/components/schemas/AWSIAMAccessRules'
-        azure_ad_access_rules:
-          $ref: '#/components/schemas/AzureADAccessRules'
-        cert_access_rules:
-          $ref: '#/components/schemas/CertAccessRules'
-        cidr_whitelist:
-          type: string
-          x-go-name: CIDRWhitelist
-        email_pass_access_rules:
-          $ref: '#/components/schemas/EmailPassAccessRules'
-        force_sub_claims:
-          description: if true the role associated with this auth method must include sub claims
-          type: boolean
-          x-go-name: ForceSubClaims
-        gcp_access_rules:
-          $ref: '#/components/schemas/GCPAccessRules'
-        gw_cidr_whitelist:
-          type: string
-          x-go-name: GWCIDRWhitelist
-        huawei_access_rules:
-          $ref: '#/components/schemas/HuaweiAccessRules'
-        jwt_ttl:
-          format: int64
-          type: integer
-          x-go-name: JwtTtl
-        k8s_access_rules:
-          $ref: '#/components/schemas/KubernetesAccessRules'
-        ldap_access_rules:
-          $ref: '#/components/schemas/LDAPAccessRules'
-        oauth2_access_rules:
-          $ref: '#/components/schemas/OAuth2AccessRules'
-        oidc_access_rules:
-          $ref: '#/components/schemas/OIDCAccessRules'
-        rules_type:
-          type: string
-          x-go-name: AccessRulesType
-        saml_access_rules:
-          $ref: '#/components/schemas/SAMLAccessRules'
-        universal_identity_access_rules:
-          $ref: '#/components/schemas/UniversalIdentityAccessRules'
-      title: AuthMethodAccessInfo includes auth method access information.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    Rules:
-      example:
-        path_rules:
-        - path: path
-          start_time: 5
-          capabilities:
-          - capabilities
-          - capabilities
-          number_of_allowed_access: 5
-          is_limit_access: true
-          assigners:
-          - unique_id: unique_id
-            access_id: access_id
-          - unique_id: unique_id
-            access_id: access_id
-          number_of_access_used: 1
-          type: type
-          ttl: 2
-        - path: path
-          start_time: 5
-          capabilities:
-          - capabilities
-          - capabilities
-          number_of_allowed_access: 5
-          is_limit_access: true
-          assigners:
-          - unique_id: unique_id
-            access_id: access_id
-          - unique_id: unique_id
-            access_id: access_id
-          number_of_access_used: 1
-          type: type
-          ttl: 2
-        admin: true
-      properties:
-        admin:
-          description: Is admin
-          type: boolean
-          x-go-name: Admin
-        path_rules:
-          description: The path the rules refers to
-          items:
-            $ref: '#/components/schemas/PathRule'
-          type: array
-          x-go-name: PathRules
-      title: Rules are a part of AKEYLESS RBAC.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    SAMLAccessRules:
-      example:
-        unique_identifier: unique_identifier
-        idp_metadata_url: idp_metadata_url
-        allowed_redirect_URIs:
-        - allowed_redirect_URIs
-        - allowed_redirect_URIs
-        bound_attributes:
-        - values:
-          - values
-          - values
-          name: name
-        - values:
-          - values
-          - values
-          name: name
-        idp_metadata_xml: idp_metadata_xml
-      properties:
-        allowed_redirect_URIs:
-          description: Allowed redirect URIs after the authentication
-          items:
-            type: string
-          type: array
-          x-go-name: AllowedRedirectURIs
-        bound_attributes:
-          description: The attributes that login is restricted to.
-          items:
-            $ref: '#/components/schemas/SAMLAttribute'
-          type: array
-          x-go-name: BoundAttributes
-        idp_metadata_url:
-          description: IDP metadata url
-          type: string
-          x-go-name: IDPMetadataURL
-        idp_metadata_xml:
-          description: IDP metadata XML
-          type: string
-          x-go-name: IDPMetadataXML
-        unique_identifier:
-          description: A unique identifier to distinguish different users
-          type: string
-          x-go-name: UniqueIdentifier
-      title: SAMLAccessRules defines access rules specific to SAML authentication method.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    OAuth2AccessRules:
-      description: 'OAuth2AccessRules contains access rules specific to OAuth2 authentication
-
-        method.'
-      example:
-        bound_claims:
-        - values:
-          - values
-          - values
-          name: name
-        - values:
-          - values
-          - values
-          name: name
-        audience: audience
-        unique_identifier: unique_identifier
+        bound_group_ids:
+        - bound_group_ids
+        - bound_group_ids
+        bound_service_principal_ids:
+        - bound_service_principal_ids
+        - bound_service_principal_ids
+        bound_resource_types:
+        - bound_resource_types
+        - bound_resource_types
+        ad_endpoint: ad_endpoint
+        bound_resource_groups:
+        - bound_resource_groups
+        - bound_resource_groups
+        bound_resource_names:
+        - bound_resource_names
+        - bound_resource_names
+        bound_resource_ids:
+        - bound_resource_ids
+        - bound_resource_ids
+        bound_resource_providers:
+        - bound_resource_providers
+        - bound_resource_providers
+        bound_tenant_id: bound_tenant_id
         jwks_uri: jwks_uri
-        bound_clients_id:
-        - bound_clients_id
-        - bound_clients_id
+        bound_subscription_ids:
+        - bound_subscription_ids
+        - bound_subscription_ids
         issuer: issuer
       properties:
-        audience:
+        ad_endpoint:
           description: The audience in the JWT.
           type: string
           x-go-name: Audience
-        bound_claims:
-          description: The claims that login is restricted to.
-          items:
-            $ref: '#/components/schemas/OAuth2CustomClaim'
-          type: array
-          x-go-name: BoundCustomClaims
-        bound_clients_id:
-          description: The clients ids that login is restricted to.
+        bound_group_ids:
+          description: The list of group ids that login is restricted to.
           items:
             type: string
           type: array
-          x-go-name: BoundClientsIDs
+          x-go-name: BoundGroupIDs
+        bound_resource_groups:
+          description: The list of resource groups that login is restricted to.
+          items:
+            type: string
+          type: array
+          x-go-name: BoundResourceGroups
+        bound_resource_ids:
+          description: The list of full resource ids that the login is restricted to.
+          items:
+            type: string
+          type: array
+          x-go-name: BoundResourceIds
+        bound_resource_names:
+          description: 'The list of resource names that the login is restricted to (e.g, a
+
+            virtual machine name, scale set name, etc).'
+          items:
+            type: string
+          type: array
+          x-go-name: BoundResourceNames
+        bound_resource_providers:
+          description: 'The list of resource providers that login is restricted to (e.g,
+
+            Microsoft.Compute, Microsoft.ManagedIdentity, etc).'
+          items:
+            type: string
+          type: array
+          x-go-name: BoundResourceProviders
+        bound_resource_types:
+          description: 'The list of resource types that login is restricted to  (e.g,
+
+            virtualMachines, userAssignedIdentities, etc).'
+          items:
+            type: string
+          type: array
+          x-go-name: BoundResourceTypes
+        bound_service_principal_ids:
+          description: The list of service principal IDs that login is restricted to.
+          items:
+            type: string
+          type: array
+          x-go-name: BoundServicePrincipalIDs
+        bound_subscription_ids:
+          description: The list of subscription IDs that login is restricted to.
+          items:
+            type: string
+          type: array
+          x-go-name: BoundSubscriptionsIDs
+        bound_tenant_id:
+          description: The tenants id for the Azure Active Directory organization.
+          type: string
+          x-go-name: BoundTenantID
         issuer:
           description: Issuer URL
           type: string
@@ -1321,337 +1573,85 @@ components:
             authorization server.'
           type: string
           x-go-name: JWKeySetURL
-        unique_identifier:
-          description: A unique identifier to distinguish different users
-          type: string
-          x-go-name: UniqueIdentifier
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    PathRule:
+    OIDCAccessRules:
+      description: 'OIDCAccessRules contains access rules specific to Open Id Connect authentication
+
+        method.'
       example:
-        path: path
-        start_time: 5
-        capabilities:
-        - capabilities
-        - capabilities
-        number_of_allowed_access: 5
-        is_limit_access: true
-        assigners:
-        - unique_id: unique_id
-          access_id: access_id
-        - unique_id: unique_id
-          access_id: access_id
-        number_of_access_used: 1
-        type: type
-        ttl: 2
-      properties:
-        assigners:
-          items:
-            $ref: '#/components/schemas/RuleAssigner'
-          type: array
-          x-go-name: Assigners
-        capabilities:
-          description: The approved/denied capabilities in the path
-          items:
-            type: string
-          type: array
-          x-go-name: Capabilities
-        is_limit_access:
-          description: flag that indicate that this rule is allowed to be access RemainingAccess of times.
-          type: boolean
-          x-go-name: IsLimitAccess
-        number_of_access_used:
-          format: int64
-          type: integer
-          x-go-name: NumberOfAccessUsed
-        number_of_allowed_access:
-          format: int64
-          type: integer
-          x-go-name: NumberOfAllowedAccess
-        path:
-          description: The path the rule refers to
-          type: string
-          x-go-name: Path
-        start_time:
-          format: int64
-          type: integer
-          x-go-name: StartTime
-        ttl:
-          format: int64
-          type: integer
-          x-go-name: TTL
-        type:
-          title: PathRuleType defines a kind of every PathRule assigned to a Role.
-          type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-      title: PathRule is a single rule used in AKEYLESS RBAC.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
-    HuaweiAccessRules:
-      example:
-        domain_id:
-        - domain_id
-        - domain_id
-        tenant_id:
-        - tenant_id
-        - tenant_id
-        domain_name:
-        - domain_name
-        - domain_name
-        tenant_name:
-        - tenant_name
-        - tenant_name
-        auth_endpoint: auth_endpoint
-        user_id:
-        - user_id
-        - user_id
-        user_name:
-        - user_name
-        - user_name
-      properties:
-        auth_endpoint:
-          description: The auth URL.
-          type: string
-          x-go-name: AuthEndpoint
-        domain_id:
-          description: The list of domain ids that the login is restricted to.
-          items:
-            type: string
-          type: array
-          x-go-name: DomainID
-        domain_name:
-          description: The list of domainNames that the login is restricted to.
-          items:
-            type: string
-          type: array
-          x-go-name: DomainName
-        tenant_id:
-          description: The list of tenantIDs  that the login is restricted to.
-          items:
-            type: string
-          type: array
-          x-go-name: TenantID
-        tenant_name:
-          description: The list of tenantNames  that the login is restricted to.
-          items:
-            type: string
-          type: array
-          x-go-name: TenantName
-        user_id:
-          description: The list of user ids that the login is restricted to.
-          items:
-            type: string
-          type: array
-          x-go-name: UserID
-        user_name:
-          description: The list of user names that the login is restricted to.
-          items:
-            type: string
-          type: array
-          x-go-name: UserName
-      title: HuaweiAccessRules defines access rules specific to Huawei authentication.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    LDAPAccessRules:
-      example:
+        bound_claims:
+        - values:
+          - values
+          - values
+          name: name
+        - values:
+          - values
+          - values
+          name: name
+        audience: audience
+        is_internal: true
         unique_identifier: unique_identifier
-        alg: alg
-        gen_key_pair: gen_key_pair
-        key: key
+        allowed_redirect_URIs:
+        - allowed_redirect_URIs
+        - allowed_redirect_URIs
+        required_scopes_prefix: required_scopes_prefix
+        required_scopes:
+        - required_scopes
+        - required_scopes
+        client_secret: client_secret
+        client_id: client_id
+        issuer: issuer
       properties:
-        alg:
-          title: Algorithm is a type that represents a single crypto algorithm.
-          type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-        gen_key_pair:
-          description: Generate public/private key (the private key is required for the LDAP Auth Config in the Akeyless Gateway)
-          type: string
-          x-go-name: GenKeyPair
-        key:
-          description: The public key value of LDAP.
-          type: string
-          x-go-name: PubKeyValue
-        unique_identifier:
-          description: A unique identifier to distinguish different users
-          type: string
-          x-go-name: UniqueIdentifier
-      title: LDAPAccessRules includes access rules specific to LDAP authentication.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    SAMLAttribute:
-      example:
-        values:
-        - values
-        - values
-        name: name
-      properties:
-        name:
-          type: string
-          x-go-name: Name
-        values:
+        allowed_redirect_URIs:
+          description: Allowed redirect URIs after the authentication
           items:
             type: string
           type: array
-          x-go-name: Values
-      title: SAMLAttribute defines an attribute of SAML authentication.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    GCPAccessRules:
-      example:
-        bound_service_accounts:
-        - bound_service_accounts
-        - bound_service_accounts
-        service_account: service_account
-        bound_projects:
-        - bound_projects
-        - bound_projects
-        audience: akeyless.io
-        bound_regions:
-        - bound_regions
-        - bound_regions
-        bound_zones:
-        - bound_zones
-        - bound_zones
-        bound_labels:
-          key: bound_labels
-        type: type
-      properties:
+          x-go-name: AllowedRedirectURIs
         audience:
-          default: akeyless.io
-          description: The audience in the JWT
+          description: Audience claim to be used as part of the authentication flow. In case set, it must match the one configured on the Identity Provider's Application
           type: string
           x-go-name: Audience
-        bound_labels:
-          additionalProperties:
-            type: string
-          description: 'A map of GCP labels formatted as "key:value" strings that must be set on authorized GCE instances.
-
-            TODO: Because GCP labels are not currently ACL''d ....'
-          type: object
-          x-go-name: BoundLabels
-        bound_projects:
-          description: 'Human and Machine authentication section
-
-            Array of GCP project IDs. Only entities belonging to any of the provided
-
-            projects can authenticate.'
+        bound_claims:
+          description: The claims that login is restricted to.
           items:
-            type: string
+            $ref: '#/components/schemas/OIDCCustomClaim'
           type: array
-          x-go-name: BoundProjects
-        bound_regions:
-          description: 'List of regions that a GCE instance must belong to in order to be authenticated.
-
-            TODO: If bound_instance_groups is provided, it is assumed to be a regional group and the group must belong to this region. If bound_zones are provided, this attribute is ignored.'
-          items:
-            type: string
-          type: array
-          x-go-name: BoundRegions
-        bound_service_accounts:
-          description: List of service accounts the service account must be part of in order to be authenticated
-          items:
-            type: string
-          type: array
-          x-go-name: BoundServiceAccounts
-        bound_zones:
-          description: '=== Machine authentication section ===
-
-            List of zones that a GCE instance must belong to in order to be authenticated.
-
-            TODO: If bound_instance_groups is provided, it is assumed to be a zonal group and the group must belong to this zone.'
-          items:
-            type: string
-          type: array
-          x-go-name: BoundZones
-        service_account:
-          description: 'ServiceAccount holds the credentials file contents to be used by Akeyless
-
-            to validate IAM (Human) and GCE (Machine) logins against GCP
-
-            base64 encoded string'
+          x-go-name: BoundCustomClaims
+        client_id:
+          description: Client ID
           type: string
-          x-go-name: ServiceAccount
-        type:
+          x-go-name: ClientID
+        client_secret:
+          description: Client Secret
           type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-      title: GCPAccessRules contains access rules specific to GCP IAM or GCE authentication.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    AuthMethodRoleAssociation:
-      description: 'AuthMethodRoleAssociation includes details of an association between an auth
+          x-go-name: ClientSecret
+        is_internal:
+          description: 'IsInternal indicates whether this is an internal Auth Method where the client has no control
 
-        method and a role.'
-      example:
-        role_name: role_name
-        assoc_id: assoc_id
-        allowed_ops:
-        - allowed_ops
-        - allowed_ops
-        rules:
-          path_rules:
-          - path: path
-            start_time: 5
-            capabilities:
-            - capabilities
-            - capabilities
-            number_of_allowed_access: 5
-            is_limit_access: true
-            assigners:
-            - unique_id: unique_id
-              access_id: access_id
-            - unique_id: unique_id
-              access_id: access_id
-            number_of_access_used: 1
-            type: type
-            ttl: 2
-          - path: path
-            start_time: 5
-            capabilities:
-            - capabilities
-            - capabilities
-            number_of_allowed_access: 5
-            is_limit_access: true
-            assigners:
-            - unique_id: unique_id
-              access_id: access_id
-            - unique_id: unique_id
-              access_id: access_id
-            number_of_access_used: 1
-            type: type
-            ttl: 2
-          admin: true
-        auth_method_sub_claims:
-          key:
-          - auth_method_sub_claims
-          - auth_method_sub_claims
-      properties:
-        allowed_ops:
+            over it, or it was created by the client
+
+            e.g - Sign In with Google will create an OIDC Auth Method with IsInternal=true'
+          type: boolean
+          x-go-name: IsInternal
+        issuer:
+          description: Issuer URL
+          type: string
+          x-go-name: Issuer
+        required_scopes:
+          description: A list of required scopes to request from the oidc provider, and to check on the token
           items:
             type: string
           type: array
-          x-go-name: AllowedOperations
-        assoc_id:
+          x-go-name: RequiredScopes
+        required_scopes_prefix:
+          description: A prefix to add to the required scopes (for example, azures' Application ID URI)
           type: string
-          x-go-name: AssociationID
-        auth_method_sub_claims:
-          additionalProperties:
-            items:
-              type: string
-            type: array
-          type: object
-          x-go-name: AuthMethodSubClaims
-        role_name:
+          x-go-name: RequiredScopesPrefix
+        unique_identifier:
+          description: A unique identifier to distinguish different users
           type: string
-          x-go-name: RoleName
-        rules:
-          $ref: '#/components/schemas/Rules'
+          x-go-name: UniqueIdentifier
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types

@@ -51,16 +51,6 @@ components:
       title: JSONError wraps an error with JSON object.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client
-    updateSalesforceTargetOutput:
-      example:
-        target_id: 0
-      properties:
-        target_id:
-          format: int64
-          type: integer
-          x-go-name: TargetID
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     updateSalesforceTarget:
       properties:
         app-private-key-data:
@@ -151,5 +141,15 @@ components:
       - name
       - tenant-url
       title: updateSalesforceTarget is a command that updates a new target.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    updateSalesforceTargetOutput:
+      example:
+        target_id: 0
+      properties:
+        target_id:
+          format: int64
+          type: integer
+          x-go-name: TargetID
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

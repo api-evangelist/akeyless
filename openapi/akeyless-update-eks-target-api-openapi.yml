@@ -43,14 +43,16 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JSONError:
+    updateEKSTargetOutput:
+      example:
+        target_id: 0
       properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+        target_id:
+          format: int64
+          type: integer
+          x-go-name: TargetID
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     updateEKSTarget:
       properties:
         comment:
@@ -132,13 +134,11 @@ components:
       title: updateEKSTarget is a command that updates an existing target.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    updateEKSTargetOutput:
-      example:
-        target_id: 0
+    JSONError:
       properties:
-        target_id:
-          format: int64
-          type: integer
-          x-go-name: TargetID
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

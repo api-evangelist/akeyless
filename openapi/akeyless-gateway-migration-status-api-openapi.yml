@@ -43,14 +43,31 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JSONError:
+    MigrationItems:
+      example:
+        total: 5
+        failed: 0
+        migrated: 6
+        skipped: 1
       properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+        failed:
+          format: int64
+          type: integer
+          x-go-name: Failed
+        migrated:
+          format: int64
+          type: integer
+          x-go-name: Migrated
+        skipped:
+          format: int64
+          type: integer
+          x-go-name: Skipped
+        total:
+          format: int64
+          type: integer
+          x-go-name: Total
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/importer/report
     MigrationStatusReplyObj:
       example:
         start_time: start_time
@@ -126,28 +143,11 @@ components:
           x-go-name: UIDToken
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    MigrationItems:
-      example:
-        total: 5
-        failed: 0
-        migrated: 6
-        skipped: 1
+    JSONError:
       properties:
-        failed:
-          format: int64
-          type: integer
-          x-go-name: Failed
-        migrated:
-          format: int64
-          type: integer
-          x-go-name: Migrated
-        skipped:
-          format: int64
-          type: integer
-          x-go-name: Skipped
-        total:
-          format: int64
-          type: integer
-          x-go-name: Total
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/importer/report
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

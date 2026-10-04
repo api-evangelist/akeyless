@@ -43,23 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
-    updateAuthMethodK8SOutput:
-      example:
-        prv_key: prv_key
-      properties:
-        prv_key:
-          type: string
-          x-go-name: PrivateKey
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     updateAuthMethodK8S:
       description: 'updateAuthMethodK8S is a command that updates a new auth method that will
 
@@ -148,3 +131,20 @@ components:
       - name
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    updateAuthMethodK8SOutput:
+      example:
+        prv_key: prv_key
+      properties:
+        prv_key:
+          type: string
+          x-go-name: PrivateKey
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

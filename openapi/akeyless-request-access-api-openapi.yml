@@ -43,6 +43,15 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    requestAccessOutput:
+      example:
+        response: response
+      properties:
+        response:
+          type: string
+          x-go-name: Response
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     JSONError:
       properties:
         error:
@@ -87,14 +96,5 @@ components:
       - capability
       - name
       title: requestAccess is a command that requests access for an item.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    requestAccessOutput:
-      example:
-        response: response
-      properties:
-        response:
-          type: string
-          x-go-name: Response
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

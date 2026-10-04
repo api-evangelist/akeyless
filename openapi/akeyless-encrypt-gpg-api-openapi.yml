@@ -43,23 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
-    encryptGPGOutput:
-      example:
-        result: result
-      properties:
-        result:
-          type: string
-          x-go-name: Result
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     encryptGPG:
       properties:
         display-id:
@@ -101,3 +84,20 @@ components:
       title: encryptGPG is a command that encrypts plaintext using GPG based on RSA key.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    encryptGPGOutput:
+      example:
+        result: result
+      properties:
+        result:
+          type: string
+          x-go-name: Result
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

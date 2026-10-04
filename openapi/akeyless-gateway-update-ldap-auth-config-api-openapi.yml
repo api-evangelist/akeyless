@@ -43,14 +43,15 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JSONError:
+    GatewayUpdateLdapAuthConfigOutput:
+      example:
+        updated: true
       properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+        updated:
+          type: boolean
+          x-go-name: Updated
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     GatewayUpdateLdapAuthConfig:
       description: gatewayUpdateLdapAuth is a command that updates ldap auth config
       example:
@@ -137,12 +138,11 @@ components:
           x-go-name: UserDn
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    GatewayUpdateLdapAuthConfigOutput:
-      example:
-        updated: true
+    JSONError:
       properties:
-        updated:
-          type: boolean
-          x-go-name: Updated
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

@@ -43,14 +43,36 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JSONError:
+    Producer:
+      example:
+        init: true
+        name: name
+        active: true
+        failure_message: failure_message
+        id: 4
+        type: type
       properties:
-        error:
+        active:
+          type: boolean
+          x-go-name: Active
+        failure_message:
           type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+          x-go-name: FailureMessage
+        id:
+          format: int64
+          type: integer
+          x-go-name: Id
+        init:
+          type: boolean
+          x-go-name: Init
+        name:
+          type: string
+          x-go-name: Name
+        type:
+          type: string
+          x-go-name: Type
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
     GetProducersListReplyObj:
       example:
         producers_errors: '{}'
@@ -95,33 +117,11 @@ components:
           x-go-name: UIDToken
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    Producer:
-      example:
-        init: true
-        name: name
-        active: true
-        failure_message: failure_message
-        id: 4
-        type: type
+    JSONError:
       properties:
-        active:
-          type: boolean
-          x-go-name: Active
-        failure_message:
+        error:
           type: string
-          x-go-name: FailureMessage
-        id:
-          format: int64
-          type: integer
-          x-go-name: Id
-        init:
-          type: boolean
-          x-go-name: Init
-        name:
-          type: string
-          x-go-name: Name
-        type:
-          type: string
-          x-go-name: Type
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

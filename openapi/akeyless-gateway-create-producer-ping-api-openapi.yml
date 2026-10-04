@@ -165,6 +165,46 @@ components:
           x-go-name: WebProxy
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    ItemTargetAssociation:
+      description: 'ItemTargetAssociation includes details of an association between an item
+
+        and a target.'
+      example:
+        assoc_id: assoc_id
+        target_name: target_name
+        target_type: target_type
+        attributes:
+          key: attributes
+        target_id: 6
+      properties:
+        assoc_id:
+          type: string
+          x-go-name: AssociationID
+        attributes:
+          additionalProperties:
+            type: string
+          type: object
+          x-go-name: Attributes
+        target_id:
+          format: int64
+          type: integer
+          x-go-name: TargetID
+        target_name:
+          type: string
+          x-go-name: TargetName
+        target_type:
+          type: string
+          x-go-name: TargetType
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
     gatewayCreateProducerPingOutput:
       example:
         producer_details:
@@ -439,6 +479,125 @@ components:
       properties:
         producer_details:
           $ref: '#/components/schemas/DSProducerDetails'
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    gatewayCreateProducerPing:
+      description: gatewayCreateProducerPing is a command that creates ping producer
+      properties:
+        delete_protection:
+          description: Protection from accidental deletion of this item
+          type: string
+          x-go-name: ItemProtected
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        name:
+          description: Producer name
+          type: string
+          x-go-name: ProducerName
+        ping-administrative-port:
+          default: '9999'
+          description: Ping Federate administrative port
+          type: string
+          x-go-name: AdministrativePort
+        ping-atm-id:
+          description: Set a specific Access Token Management (ATM) instance for the created OAuth Client by providing the ATM Id. If no explicit value is given, the default pingfederate server ATM will be set.
+          type: string
+          x-go-name: AccessTokenManagerId
+        ping-authorization-port:
+          default: '9031'
+          description: Ping Federate authorization port
+          type: string
+          x-go-name: AuthorizationPort
+        ping-cert-subject-dn:
+          description: The subject DN of the client certificate. If no explicit value is given, the producer will create CA certificate and matched client certificate and return it as value. Used in conjunction with ping-issuer-dn (relevant for CLIENT_TLS_CERTIFICATE authentication method)
+          type: string
+          x-go-name: CertSubjectDN
+        ping-client-authentication-type:
+          default: CLIENT_SECRET
+          description: OAuth Client Authentication Type [CLIENT_SECRET, PRIVATE_KEY_JWT, CLIENT_TLS_CERTIFICATE]
+          type: string
+          x-go-name: ClientAuthenticationType
+        ping-enforce-replay-prevention:
+          description: Determines whether PingFederate requires a unique signed JWT from the client for each action (relevant for PRIVATE_KEY_JWT authentication method)
+          type: string
+          x-go-name: EnforceReplayPrevention
+        ping-grant-types:
+          description: List of OAuth client grant types [IMPLICIT, AUTHORIZATION_CODE, CLIENT_CREDENTIALS, TOKEN_EXCHANGE, REFRESH_TOKEN, ASSERTION_GRANTS, PASSWORD, RESOURCE_OWNER_CREDENTIALS]. If no explicit value is given, AUTHORIZATION_CODE will be selected as default.
+          items:
+            type: string
+          type: array
+          x-go-name: GrantTypes
+        ping-issuer-dn:
+          description: Issuer DN of trusted CA certificate that imported into Ping Federate server. You may select \"Trust Any\" to trust all the existing issuers in Ping Federate server. Used in conjunction with ping-cert-subject-dn (relevant for CLIENT_TLS_CERTIFICATE authentication method)
+          type: string
+          x-go-name: IssuerDN
+        ping-jwks:
+          description: 'Base64-encoded JSON Web Key Set (JWKS). If no explicit value is given, the producer will create JWKs and matched signed JWT (Sign Algo: RS256) and return it as value (relevant for PRIVATE_KEY_JWT authentication method)'
+          type: string
+          x-go-name: JWKs
+        ping-jwks-url:
+          description: The URL of the JSON Web Key Set (JWKS). If no explicit value is given, the producer will create JWKs and matched signed JWT and return it as value (relevant for PRIVATE_KEY_JWT authentication method)
+          type: string
+          x-go-name: JWKsURL
+        ping-password:
+          description: Ping Federate privileged user password
+          type: string
+          x-go-name: UserPassword
+        ping-privileged-user:
+          description: Ping Federate privileged user
+          type: string
+          x-go-name: PrivilegedUser
+        ping-redirect-uris:
+          description: List of URIs to which the OAuth authorization server may redirect the resource owner's user agent after authorization is obtained. At least one redirection URI is required for the AUTHORIZATION_CODE and IMPLICIT grant types.
+          items:
+            type: string
+          type: array
+          x-go-name: RedirectUris
+        ping-restricted-scopes:
+          description: Limit the OAuth client to specific scopes list
+          items:
+            type: string
+          type: array
+          x-go-name: RestrictedScopes
+        ping-signing-algo:
+          description: The signing algorithm that the client must use to sign its request objects [RS256,RS384,RS512,ES256,ES384,ES512,PS256,PS384,PS512] If no explicit value is given, the client can use any of the supported signing algorithms (relevant for PRIVATE_KEY_JWT authentication method)
+          type: string
+          x-go-name: SigningAlgorithm
+        ping-url:
+          description: Ping URL
+          type: string
+          x-go-name: PingURL
+        producer-encryption-key-name:
+          description: Dynamic producer encryption key
+          type: string
+          x-go-name: ProducerEncryptionKey
+        tags:
+          description: List of the tags attached to this secret
+          items:
+            type: string
+          type: array
+          x-go-name: Tags
+        target-name:
+          description: Target name
+          type: string
+          x-go-name: TargetName
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+        user-ttl:
+          default: 60m
+          description: The time from dynamic secret creation to expiration.
+          type: string
+          x-go-name: UserTtl
+      required:
+      - name
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     DSProducerDetails:
@@ -1395,162 +1554,3 @@ components:
           x-go-name: WarnBeforeUserExpirationInMin
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/producer/config
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
-    gatewayCreateProducerPing:
-      description: gatewayCreateProducerPing is a command that creates ping producer
-      properties:
-        delete_protection:
-          description: Protection from accidental deletion of this item
-          type: string
-          x-go-name: ItemProtected
-        json:
-          description: Set output format to JSON
-          type: boolean
-          x-go-name: Json
-        name:
-          description: Producer name
-          type: string
-          x-go-name: ProducerName
-        ping-administrative-port:
-          default: '9999'
-          description: Ping Federate administrative port
-          type: string
-          x-go-name: AdministrativePort
-        ping-atm-id:
-          description: Set a specific Access Token Management (ATM) instance for the created OAuth Client by providing the ATM Id. If no explicit value is given, the default pingfederate server ATM will be set.
-          type: string
-          x-go-name: AccessTokenManagerId
-        ping-authorization-port:
-          default: '9031'
-          description: Ping Federate authorization port
-          type: string
-          x-go-name: AuthorizationPort
-        ping-cert-subject-dn:
-          description: The subject DN of the client certificate. If no explicit value is given, the producer will create CA certificate and matched client certificate and return it as value. Used in conjunction with ping-issuer-dn (relevant for CLIENT_TLS_CERTIFICATE authentication method)
-          type: string
-          x-go-name: CertSubjectDN
-        ping-client-authentication-type:
-          default: CLIENT_SECRET
-          description: OAuth Client Authentication Type [CLIENT_SECRET, PRIVATE_KEY_JWT, CLIENT_TLS_CERTIFICATE]
-          type: string
-          x-go-name: ClientAuthenticationType
-        ping-enforce-replay-prevention:
-          description: Determines whether PingFederate requires a unique signed JWT from the client for each action (relevant for PRIVATE_KEY_JWT authentication method)
-          type: string
-          x-go-name: EnforceReplayPrevention
-        ping-grant-types:
-          description: List of OAuth client grant types [IMPLICIT, AUTHORIZATION_CODE, CLIENT_CREDENTIALS, TOKEN_EXCHANGE, REFRESH_TOKEN, ASSERTION_GRANTS, PASSWORD, RESOURCE_OWNER_CREDENTIALS]. If no explicit value is given, AUTHORIZATION_CODE will be selected as default.
-          items:
-            type: string
-          type: array
-          x-go-name: GrantTypes
-        ping-issuer-dn:
-          description: Issuer DN of trusted CA certificate that imported into Ping Federate server. You may select \"Trust Any\" to trust all the existing issuers in Ping Federate server. Used in conjunction with ping-cert-subject-dn (relevant for CLIENT_TLS_CERTIFICATE authentication method)
-          type: string
-          x-go-name: IssuerDN
-        ping-jwks:
-          description: 'Base64-encoded JSON Web Key Set (JWKS). If no explicit value is given, the producer will create JWKs and matched signed JWT (Sign Algo: RS256) and return it as value (relevant for PRIVATE_KEY_JWT authentication method)'
-          type: string
-          x-go-name: JWKs
-        ping-jwks-url:
-          description: The URL of the JSON Web Key Set (JWKS). If no explicit value is given, the producer will create JWKs and matched signed JWT and return it as value (relevant for PRIVATE_KEY_JWT authentication method)
-          type: string
-          x-go-name: JWKsURL
-        ping-password:
-          description: Ping Federate privileged user password
-          type: string
-          x-go-name: UserPassword
-        ping-privileged-user:
-          description: Ping Federate privileged user
-          type: string
-          x-go-name: PrivilegedUser
-        ping-redirect-uris:
-          description: List of URIs to which the OAuth authorization server may redirect the resource owner's user agent after authorization is obtained. At least one redirection URI is required for the AUTHORIZATION_CODE and IMPLICIT grant types.
-          items:
-            type: string
-          type: array
-          x-go-name: RedirectUris
-        ping-restricted-scopes:
-          description: Limit the OAuth client to specific scopes list
-          items:
-            type: string
-          type: array
-          x-go-name: RestrictedScopes
-        ping-signing-algo:
-          description: The signing algorithm that the client must use to sign its request objects [RS256,RS384,RS512,ES256,ES384,ES512,PS256,PS384,PS512] If no explicit value is given, the client can use any of the supported signing algorithms (relevant for PRIVATE_KEY_JWT authentication method)
-          type: string
-          x-go-name: SigningAlgorithm
-        ping-url:
-          description: Ping URL
-          type: string
-          x-go-name: PingURL
-        producer-encryption-key-name:
-          description: Dynamic producer encryption key
-          type: string
-          x-go-name: ProducerEncryptionKey
-        tags:
-          description: List of the tags attached to this secret
-          items:
-            type: string
-          type: array
-          x-go-name: Tags
-        target-name:
-          description: Target name
-          type: string
-          x-go-name: TargetName
-        token:
-          description: Authentication token (see `/auth` and `/configure`)
-          type: string
-          x-go-name: Profile
-        uid-token:
-          description: The universal identity token, Required only for universal_identity authentication
-          type: string
-          x-go-name: UIDToken
-        user-ttl:
-          default: 60m
-          description: The time from dynamic secret creation to expiration.
-          type: string
-          x-go-name: UserTtl
-      required:
-      - name
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    ItemTargetAssociation:
-      description: 'ItemTargetAssociation includes details of an association between an item
-
-        and a target.'
-      example:
-        assoc_id: assoc_id
-        target_name: target_name
-        target_type: target_type
-        attributes:
-          key: attributes
-        target_id: 6
-      properties:
-        assoc_id:
-          type: string
-          x-go-name: AssociationID
-        attributes:
-          additionalProperties:
-            type: string
-          type: object
-          x-go-name: Attributes
-        target_id:
-          format: int64
-          type: integer
-          x-go-name: TargetID
-        target_name:
-          type: string
-          x-go-name: TargetName
-        target_type:
-          type: string
-          x-go-name: TargetType
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types

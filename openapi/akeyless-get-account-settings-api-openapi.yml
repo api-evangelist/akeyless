@@ -43,21 +43,34 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    getAccountSettings:
+    DataProtectionSection:
+      description: 'We need the fields to be pointers as we
+
+        use the same struct for partial updates as well'
+      example:
+        enable_classic_key_protection: true
       properties:
-        json:
-          description: Set output format to JSON
+        enable_classic_key_protection:
           type: boolean
-          x-go-name: Json
-        token:
-          description: Authentication token (see `/auth` and `/configure`)
+          x-go-name: EnableClassicKeyProtection
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    SmInfo:
+      example:
+        tier: tier
+        sla: sla
+      properties:
+        sla:
           type: string
-          x-go-name: Profile
-        uid-token:
-          description: The universal identity token, Required only for universal_identity authentication
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        tier:
+          description: 'Tier represents a level of extensibility the account will have, defined by various limits for different
+
+            resources of Akeyless
+
+            e.g - A StarterTier may have a limit of 3 Client resources and 50 Secret resources'
           type: string
-          x-go-name: UIDToken
-      title: getAccountSettings is a command that returns account settings.
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     PasswordPolicyInfo:
@@ -86,70 +99,6 @@ components:
           x-go-name: UseSpecialCharacters
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    AccountGeneralSettings:
-      description: AccountGeneralSettings describes general settings for an account
-      example:
-        password_policy:
-          use_numbers: true
-          use_capital_letters: true
-          use_special_characters: true
-          use_lower_letters: true
-          password_length: 6
-        data_protection_section:
-          enable_classic_key_protection: true
-        enable_request_for_access: true
-      properties:
-        data_protection_section:
-          $ref: '#/components/schemas/DataProtectionSection'
-        enable_request_for_access:
-          type: boolean
-          x-go-name: EnableRequestForAccess
-        password_policy:
-          $ref: '#/components/schemas/PasswordPolicyInfo'
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    SraInfo:
-      example:
-        user_type: user_type
-        tier: tier
-        sla: sla
-      properties:
-        sla:
-          type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-        tier:
-          description: 'Tier represents a level of extensibility the account will have, defined by various limits for different
-
-            resources of Akeyless
-
-            e.g - A StarterTier may have a limit of 3 Client resources and 50 Secret resources'
-          type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-        user_type:
-          type: string
-          x-go-name: UserType
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    DataProtectionSection:
-      description: 'We need the fields to be pointers as we
-
-        use the same struct for partial updates as well'
-      example:
-        enable_classic_key_protection: true
-      properties:
-        enable_classic_key_protection:
-          type: boolean
-          x-go-name: EnableClassicKeyProtection
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
     CustomerFullAddress:
       example:
         country: country
@@ -171,64 +120,14 @@ components:
           x-go-name: Street
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    AccountObjectVersionSettingsOutput:
-      example:
-        default-versioning: true
-        items:
-        - item-type: item-type
-          max-versions: max-versions
-        - item-type: item-type
-          max-versions: max-versions
+    JSONError:
       properties:
-        default-versioning:
-          type: boolean
-          x-go-name: CreateNewVersionByDefault
-        items:
-          items:
-            $ref: '#/components/schemas/ObjectVersionSettingsOutput'
-          type: array
-          x-go-name: ObjectSettings
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    SmInfo:
-      example:
-        tier: tier
-        sla: sla
-      properties:
-        sla:
+        error:
           type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-        tier:
-          description: 'Tier represents a level of extensibility the account will have, defined by various limits for different
-
-            resources of Akeyless
-
-            e.g - A StarterTier may have a limit of 3 Client resources and 50 Secret resources'
-          type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    SystemAccessCredsSettings:
-      description: SystemAccessCredsSettings describes system access credential settings for account by minutes
-      example:
-        jwt_ttl_maximum: 6
-        jwt_ttl_minimum: 1
-        jwt_ttl_default: 0
-      properties:
-        jwt_ttl_default:
-          format: int64
-          type: integer
-          x-go-name: JwtTtlDefault
-        jwt_ttl_maximum:
-          format: int64
-          type: integer
-          x-go-name: JwtTtlMaximum
-        jwt_ttl_minimum:
-          format: int64
-          type: integer
-          x-go-name: JwtTtlMinimum
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
     GetAccountSettingsCommandOutput:
       example:
         secure_remote_access:
@@ -308,5 +207,106 @@ components:
         max-versions:
           type: string
           x-go-name: MaxVersions
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    SystemAccessCredsSettings:
+      description: SystemAccessCredsSettings describes system access credential settings for account by minutes
+      example:
+        jwt_ttl_maximum: 6
+        jwt_ttl_minimum: 1
+        jwt_ttl_default: 0
+      properties:
+        jwt_ttl_default:
+          format: int64
+          type: integer
+          x-go-name: JwtTtlDefault
+        jwt_ttl_maximum:
+          format: int64
+          type: integer
+          x-go-name: JwtTtlMaximum
+        jwt_ttl_minimum:
+          format: int64
+          type: integer
+          x-go-name: JwtTtlMinimum
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    AccountGeneralSettings:
+      description: AccountGeneralSettings describes general settings for an account
+      example:
+        password_policy:
+          use_numbers: true
+          use_capital_letters: true
+          use_special_characters: true
+          use_lower_letters: true
+          password_length: 6
+        data_protection_section:
+          enable_classic_key_protection: true
+        enable_request_for_access: true
+      properties:
+        data_protection_section:
+          $ref: '#/components/schemas/DataProtectionSection'
+        enable_request_for_access:
+          type: boolean
+          x-go-name: EnableRequestForAccess
+        password_policy:
+          $ref: '#/components/schemas/PasswordPolicyInfo'
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    SraInfo:
+      example:
+        user_type: user_type
+        tier: tier
+        sla: sla
+      properties:
+        sla:
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        tier:
+          description: 'Tier represents a level of extensibility the account will have, defined by various limits for different
+
+            resources of Akeyless
+
+            e.g - A StarterTier may have a limit of 3 Client resources and 50 Secret resources'
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+        user_type:
+          type: string
+          x-go-name: UserType
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    getAccountSettings:
+      properties:
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      title: getAccountSettings is a command that returns account settings.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    AccountObjectVersionSettingsOutput:
+      example:
+        default-versioning: true
+        items:
+        - item-type: item-type
+          max-versions: max-versions
+        - item-type: item-type
+          max-versions: max-versions
+      properties:
+        default-versioning:
+          type: boolean
+          x-go-name: CreateNewVersionByDefault
+        items:
+          items:
+            $ref: '#/components/schemas/ObjectVersionSettingsOutput'
+          type: array
+          x-go-name: ObjectSettings
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

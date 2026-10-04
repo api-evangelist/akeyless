@@ -43,14 +43,23 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JSONError:
+    kmipRenewClientCertificateOutput:
+      example:
+        certificate: certificate
+        id: id
+        key: key
       properties:
-        error:
+        certificate:
           type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+          x-go-name: Certificate
+        id:
+          type: string
+          x-go-name: ID
+        key:
+          type: string
+          x-go-name: Key
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     kmipRenewClientCertificate:
       properties:
         client-id:
@@ -74,20 +83,11 @@ components:
       title: kmipRenewClientCertificate is a command that renews KMIP client certificate.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    kmipRenewClientCertificateOutput:
-      example:
-        certificate: certificate
-        id: id
-        key: key
+    JSONError:
       properties:
-        certificate:
+        error:
           type: string
-          x-go-name: Certificate
-        id:
-          type: string
-          x-go-name: ID
-        key:
-          type: string
-          x-go-name: Key
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

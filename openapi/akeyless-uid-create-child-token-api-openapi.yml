@@ -43,14 +43,15 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JSONError:
+    uidCreateChildTokenOutput:
+      example:
+        token: token
       properties:
-        error:
+        token:
           type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+          x-go-name: Token
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     uidCreateChildToken:
       description: 'uidCreateChildToken is a command that creates a new child token using
 
@@ -99,12 +100,11 @@ components:
           x-go-name: UIDTokenId
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    uidCreateChildTokenOutput:
-      example:
-        token: token
+    JSONError:
       properties:
-        token:
+        error:
           type: string
-          x-go-name: Token
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

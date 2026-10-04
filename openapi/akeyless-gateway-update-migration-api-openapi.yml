@@ -43,23 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
-    GatewayMigrationUpdateOutput:
-      example:
-        migration_name: migration_name
-      properties:
-        migration_name:
-          type: string
-          x-go-name: MigrationName
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     gatewayUpdateMigration:
       description: gatewayUpdateMigration is a command that update migration
       properties:
@@ -284,3 +267,20 @@ components:
       - target-location
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    GatewayMigrationUpdateOutput:
+      example:
+        migration_name: migration_name
+      properties:
+        migration_name:
+          type: string
+          x-go-name: MigrationName
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

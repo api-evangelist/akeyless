@@ -43,14 +43,15 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JSONError:
+    kmipSetServerStateOutput:
+      example:
+        is_active: true
       properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+        is_active:
+          type: boolean
+          x-go-name: IsActive
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     kmipSetServerState:
       description: 'kmipSetServerState is a command that sets the environment state to
 
@@ -75,12 +76,11 @@ components:
       - state
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    kmipSetServerStateOutput:
-      example:
-        is_active: true
+    JSONError:
       properties:
-        is_active:
-          type: boolean
-          x-go-name: IsActive
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

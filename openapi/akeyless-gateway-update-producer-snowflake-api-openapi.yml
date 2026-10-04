@@ -165,6 +165,46 @@ components:
           x-go-name: WebProxy
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    ItemTargetAssociation:
+      description: 'ItemTargetAssociation includes details of an association between an item
+
+        and a target.'
+      example:
+        assoc_id: assoc_id
+        target_name: target_name
+        target_type: target_type
+        attributes:
+          key: attributes
+        target_id: 6
+      properties:
+        assoc_id:
+          type: string
+          x-go-name: AssociationID
+        attributes:
+          additionalProperties:
+            type: string
+          type: object
+          x-go-name: Attributes
+        target_id:
+          format: int64
+          type: integer
+          x-go-name: TargetID
+        target_name:
+          type: string
+          x-go-name: TargetName
+        target_type:
+          type: string
+          x-go-name: TargetType
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
     gatewayUpdateProducerSnowflakeOutput:
       example:
         producer_details:
@@ -439,6 +479,84 @@ components:
       properties:
         producer_details:
           $ref: '#/components/schemas/DSProducerDetails'
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    gatewayUpdateProducerSnowflake:
+      description: GatewayUpdateProducerSnowflakeCmd is a command that updates a Snowflake producer
+      properties:
+        account:
+          description: Account name
+          type: string
+          x-go-name: Account
+        account-password:
+          description: Database Password
+          type: string
+          x-go-name: DBPassword
+        account-username:
+          description: Database Username
+          type: string
+          x-go-name: DBUsername
+        db-name:
+          description: Database name
+          type: string
+          x-go-name: DBName
+        delete_protection:
+          description: Protection from accidental deletion of this item
+          type: string
+          x-go-name: ItemProtected
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        name:
+          description: Producer name
+          type: string
+          x-go-name: ProducerName
+        new-name:
+          description: Producer name
+          type: string
+          x-go-name: ProducerNewName
+        private-key:
+          description: RSA Private key (base64 encoded)
+          type: string
+          x-go-name: PrivateKey
+        private-key-passphrase:
+          description: The Private key passphrase
+          type: string
+          x-go-name: PrivateKeyPassphrase
+        role:
+          description: User role
+          type: string
+          x-go-name: Role
+        tags:
+          description: List of the tags attached to this secret
+          items:
+            type: string
+          type: array
+          x-go-name: Tags
+        target-name:
+          description: Target name
+          type: string
+          x-go-name: TargetName
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+        user-ttl:
+          default: 24h
+          description: User TTL
+          type: string
+          x-go-name: UserTtl
+        warehouse:
+          description: Warehouse name
+          type: string
+          x-go-name: Warehouse
+      required:
+      - name
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     DSProducerDetails:
@@ -1395,121 +1513,3 @@ components:
           x-go-name: WarnBeforeUserExpirationInMin
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/producer/config
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
-    ItemTargetAssociation:
-      description: 'ItemTargetAssociation includes details of an association between an item
-
-        and a target.'
-      example:
-        assoc_id: assoc_id
-        target_name: target_name
-        target_type: target_type
-        attributes:
-          key: attributes
-        target_id: 6
-      properties:
-        assoc_id:
-          type: string
-          x-go-name: AssociationID
-        attributes:
-          additionalProperties:
-            type: string
-          type: object
-          x-go-name: Attributes
-        target_id:
-          format: int64
-          type: integer
-          x-go-name: TargetID
-        target_name:
-          type: string
-          x-go-name: TargetName
-        target_type:
-          type: string
-          x-go-name: TargetType
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    gatewayUpdateProducerSnowflake:
-      description: GatewayUpdateProducerSnowflakeCmd is a command that updates a Snowflake producer
-      properties:
-        account:
-          description: Account name
-          type: string
-          x-go-name: Account
-        account-password:
-          description: Database Password
-          type: string
-          x-go-name: DBPassword
-        account-username:
-          description: Database Username
-          type: string
-          x-go-name: DBUsername
-        db-name:
-          description: Database name
-          type: string
-          x-go-name: DBName
-        delete_protection:
-          description: Protection from accidental deletion of this item
-          type: string
-          x-go-name: ItemProtected
-        json:
-          description: Set output format to JSON
-          type: boolean
-          x-go-name: Json
-        name:
-          description: Producer name
-          type: string
-          x-go-name: ProducerName
-        new-name:
-          description: Producer name
-          type: string
-          x-go-name: ProducerNewName
-        private-key:
-          description: RSA Private key (base64 encoded)
-          type: string
-          x-go-name: PrivateKey
-        private-key-passphrase:
-          description: The Private key passphrase
-          type: string
-          x-go-name: PrivateKeyPassphrase
-        role:
-          description: User role
-          type: string
-          x-go-name: Role
-        tags:
-          description: List of the tags attached to this secret
-          items:
-            type: string
-          type: array
-          x-go-name: Tags
-        target-name:
-          description: Target name
-          type: string
-          x-go-name: TargetName
-        token:
-          description: Authentication token (see `/auth` and `/configure`)
-          type: string
-          x-go-name: Profile
-        uid-token:
-          description: The universal identity token, Required only for universal_identity authentication
-          type: string
-          x-go-name: UIDToken
-        user-ttl:
-          default: 24h
-          description: User TTL
-          type: string
-          x-go-name: UserTtl
-        warehouse:
-          description: Warehouse name
-          type: string
-          x-go-name: Warehouse
-      required:
-      - name
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

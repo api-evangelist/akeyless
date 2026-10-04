@@ -43,14 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
     clientData:
       example:
         clientKeyData: clientKeyData
@@ -66,6 +58,25 @@ components:
         parentCertificateData:
           type: string
           x-go-name: ParentCertificateData
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    getKubeExecCredsOutput:
+      example:
+        apiVersion: apiVersion
+        kind: kind
+        status:
+          clientKeyData: clientKeyData
+          clientCertificateData: clientCertificateData
+          parentCertificateData: parentCertificateData
+      properties:
+        apiVersion:
+          type: string
+          x-go-name: APIVersion
+        kind:
+          type: string
+          x-go-name: Kind
+        status:
+          $ref: '#/components/schemas/clientData'
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     getKubeExecCreds:
@@ -128,22 +139,11 @@ components:
       - cert-issuer-name
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    getKubeExecCredsOutput:
-      example:
-        apiVersion: apiVersion
-        kind: kind
-        status:
-          clientKeyData: clientKeyData
-          clientCertificateData: clientCertificateData
-          parentCertificateData: parentCertificateData
+    JSONError:
       properties:
-        apiVersion:
+        error:
           type: string
-          x-go-name: APIVersion
-        kind:
-          type: string
-          x-go-name: Kind
-        status:
-          $ref: '#/components/schemas/clientData'
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

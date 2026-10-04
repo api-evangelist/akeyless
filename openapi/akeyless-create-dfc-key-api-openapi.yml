@@ -51,6 +51,15 @@ components:
       title: JSONError wraps an error with JSON object.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    Duration:
+      description: 'A Duration represents the elapsed time between two instants
+
+        as an int64 nanosecond count. The representation limits the
+
+        largest representable duration to approximately 290 years.'
+      format: int64
+      type: integer
+      x-go-package: time
     createDFCKey:
       properties:
         alg:
@@ -124,12 +133,3 @@ components:
           x-go-name: FragmentResults
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    Duration:
-      description: 'A Duration represents the elapsed time between two instants
-
-        as an int64 nanosecond count. The representation limits the
-
-        largest representable duration to approximately 290 years.'
-      format: int64
-      type: integer
-      x-go-package: time

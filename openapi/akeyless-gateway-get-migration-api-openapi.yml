@@ -43,31 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    HashiPayload:
-      example:
-        import_as_json: true
-        url: url
-        namespaces:
-        - namespaces
-        - namespaces
-        token: token
-      properties:
-        import_as_json:
-          type: boolean
-          x-go-name: ImportAsJson
-        namespaces:
-          items:
-            type: string
-          type: array
-          x-go-name: Namespaces
-        token:
-          type: string
-          x-go-name: Token
-        url:
-          type: string
-          x-go-name: Url
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
     MockPayload:
       example:
         vaults:
@@ -79,180 +54,6 @@ components:
             type: string
           type: array
           x-go-name: Vaults
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    AWSSecretsMigration:
-      example:
-        general:
-          prefix: prefix
-          name: name
-          id: id
-          type: type
-          protection_key: protection_key
-          new_name: new_name
-          status: status
-        payload:
-          secret: secret
-          region: region
-          key: key
-      properties:
-        general:
-          $ref: '#/components/schemas/MigrationGeneral'
-        payload:
-          $ref: '#/components/schemas/AWSPayload'
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    ActiveDirectoryMigration:
-      example:
-        general:
-          prefix: prefix
-          name: name
-          id: id
-          type: type
-          protection_key: protection_key
-          new_name: new_name
-          status: status
-        payload:
-          auto_rotate: true
-          ssh_port: ssh_port
-          discover_local_users: true
-          auto_rotate_interval_in_days: 1
-          active_directory_target_id: 1
-          local_users_rotated_secrets_path_template: local_users_rotated_secrets_path_template
-          auto_rotate_rotation_hour: 1
-          domain_name: domain_name
-          enable_rdp_sra: true
-          domain_server_targets_path_template: domain_server_targets_path_template
-          user_base_dn: user_base_dn
-          computer_base_dn: computer_base_dn
-          domain_users_rotated_secrets_path_template: domain_users_rotated_secrets_path_template
-          local_users_ignore_list:
-            key: true
-          user_groups:
-          - user_groups
-          - user_groups
-      properties:
-        general:
-          $ref: '#/components/schemas/MigrationGeneral'
-        payload:
-          $ref: '#/components/schemas/ActiveDirectoryPayload'
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    MigrationGeneral:
-      example:
-        prefix: prefix
-        name: name
-        id: id
-        type: type
-        protection_key: protection_key
-        new_name: new_name
-        status: status
-      properties:
-        id:
-          type: string
-          x-go-name: Id
-        name:
-          type: string
-          x-go-name: Name
-        new_name:
-          type: string
-          x-go-name: NewName
-        prefix:
-          type: string
-          x-go-name: Prefix
-        protection_key:
-          type: string
-          x-go-name: ProtectionKey
-        status:
-          type: string
-          x-go-name: Status
-        type:
-          type: string
-          x-go-name: Type
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    GCPPayload:
-      example:
-        gcp_credentials_json: gcp_credentials_json
-      properties:
-        gcp_credentials_json:
-          type: string
-          x-go-name: Key
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    ActiveDirectoryPayload:
-      example:
-        auto_rotate: true
-        ssh_port: ssh_port
-        discover_local_users: true
-        auto_rotate_interval_in_days: 1
-        active_directory_target_id: 1
-        local_users_rotated_secrets_path_template: local_users_rotated_secrets_path_template
-        auto_rotate_rotation_hour: 1
-        domain_name: domain_name
-        enable_rdp_sra: true
-        domain_server_targets_path_template: domain_server_targets_path_template
-        user_base_dn: user_base_dn
-        computer_base_dn: computer_base_dn
-        domain_users_rotated_secrets_path_template: domain_users_rotated_secrets_path_template
-        local_users_ignore_list:
-          key: true
-        user_groups:
-        - user_groups
-        - user_groups
-      properties:
-        active_directory_target_id:
-          format: int64
-          type: integer
-          x-go-name: ActiveDirectoryTargetID
-        auto_rotate:
-          type: boolean
-          x-go-name: AutoRotate
-        auto_rotate_interval_in_days:
-          format: int32
-          type: integer
-          x-go-name: AutoRotateIntervalInDays
-        auto_rotate_rotation_hour:
-          format: int32
-          type: integer
-          x-go-name: AutoRotateRotationHour
-        computer_base_dn:
-          type: string
-          x-go-name: ComputerBaseDN
-        discover_local_users:
-          type: boolean
-          x-go-name: DiscoverLocalUsers
-        domain_name:
-          type: string
-          x-go-name: DomainName
-        domain_server_targets_path_template:
-          type: string
-          x-go-name: DomainServerTargetsPathTemplate
-        domain_users_rotated_secrets_path_template:
-          type: string
-          x-go-name: DomainUsersRotatedSecretsPathTemplate
-        enable_rdp_sra:
-          type: boolean
-          x-go-name: EnableRdpSRA
-        local_users_ignore_list:
-          additionalProperties:
-            type: boolean
-          type: object
-          x-go-name: LocalUsersIgnoreList
-        local_users_rotated_secrets_path_template:
-          type: string
-          x-go-name: LocalUsersRotatedSecretsPathTemplate
-        ssh_port:
-          type: string
-          x-go-name: SshPort
-        user_base_dn:
-          type: string
-          x-go-name: UserBaseDN
-        user_groups:
-          items:
-            type: string
-          type: array
-          x-go-name: UserGroups
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
     AzureKeyVaultMigration:
@@ -277,166 +78,6 @@ components:
           $ref: '#/components/schemas/AzurePayload'
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    OnePasswordPayload:
-      example:
-        secret_key: secret_key
-        password: password
-        vaults:
-        - vaults
-        - vaults
-        email: email
-        url: url
-      properties:
-        email:
-          type: string
-          x-go-name: Email
-        password:
-          type: string
-          x-go-name: Password
-        secret_key:
-          type: string
-          x-go-name: SecretKey
-        url:
-          type: string
-          x-go-name: AccountUrl
-        vaults:
-          items:
-            type: string
-          type: array
-          x-go-name: Vaults
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    K8SPayload:
-      example:
-        client_key:
-        - 1
-        - 1
-        server: server
-        password: password
-        client_cert:
-        - 7
-        - 7
-        namespace: namespace
-        ca:
-        - 6
-        - 6
-        skip_system: true
-        token: token
-        username: username
-      properties:
-        ca:
-          items:
-            format: uint8
-            type: integer
-          type: array
-          x-go-name: CA
-        client_cert:
-          items:
-            format: uint8
-            type: integer
-          type: array
-          x-go-name: ClientCert
-        client_key:
-          items:
-            format: uint8
-            type: integer
-          type: array
-          x-go-name: ClientKey
-        namespace:
-          type: string
-          x-go-name: Namespace
-        password:
-          type: string
-          x-go-name: Password
-        server:
-          type: string
-          x-go-name: Server
-        skip_system:
-          type: boolean
-          x-go-name: SkipSystem
-        token:
-          type: string
-          x-go-name: Token
-        username:
-          type: string
-          x-go-name: Username
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    MockMigration:
-      example:
-        general:
-          prefix: prefix
-          name: name
-          id: id
-          type: type
-          protection_key: protection_key
-          new_name: new_name
-          status: status
-        payload:
-          vaults:
-          - vaults
-          - vaults
-      properties:
-        general:
-          $ref: '#/components/schemas/MigrationGeneral'
-        payload:
-          $ref: '#/components/schemas/MockPayload'
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    K8SMigration:
-      example:
-        general:
-          prefix: prefix
-          name: name
-          id: id
-          type: type
-          protection_key: protection_key
-          new_name: new_name
-          status: status
-        payload:
-          client_key:
-          - 1
-          - 1
-          server: server
-          password: password
-          client_cert:
-          - 7
-          - 7
-          namespace: namespace
-          ca:
-          - 6
-          - 6
-          skip_system: true
-          token: token
-          username: username
-      properties:
-        general:
-          $ref: '#/components/schemas/MigrationGeneral'
-        payload:
-          $ref: '#/components/schemas/K8SPayload'
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    gatewayGetMigration:
-      description: gatewayGetMigration is a command that get migration
-      properties:
-        json:
-          description: Set output format to JSON
-          type: boolean
-          x-go-name: Json
-        name:
-          description: Migration name to display
-          type: string
-          x-go-name: MigrationName
-        token:
-          description: Authentication token (see `/auth` and `/configure`)
-          type: string
-          x-go-name: Profile
-        uid-token:
-          description: The universal identity token, Required only for universal_identity authentication
-          type: string
-          x-go-name: UIDToken
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     AWSPayload:
       example:
         secret: secret
@@ -452,30 +93,6 @@ components:
         secret:
           type: string
           x-go-name: Secret
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    HashiMigration:
-      example:
-        general:
-          prefix: prefix
-          name: name
-          id: id
-          type: type
-          protection_key: protection_key
-          new_name: new_name
-          status: status
-        payload:
-          import_as_json: true
-          url: url
-          namespaces:
-          - namespaces
-          - namespaces
-          token: token
-      properties:
-        general:
-          $ref: '#/components/schemas/MigrationGeneral'
-        payload:
-          $ref: '#/components/schemas/HashiPayload'
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
     MigrationsConfigPart:
@@ -789,7 +406,7 @@ components:
           x-go-name: OnePasswordMigrations
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    GCPSecretsMigration:
+    ActiveDirectoryMigration:
       example:
         general:
           prefix: prefix
@@ -800,41 +417,62 @@ components:
           new_name: new_name
           status: status
         payload:
-          gcp_credentials_json: gcp_credentials_json
+          auto_rotate: true
+          ssh_port: ssh_port
+          discover_local_users: true
+          auto_rotate_interval_in_days: 1
+          active_directory_target_id: 1
+          local_users_rotated_secrets_path_template: local_users_rotated_secrets_path_template
+          auto_rotate_rotation_hour: 1
+          domain_name: domain_name
+          enable_rdp_sra: true
+          domain_server_targets_path_template: domain_server_targets_path_template
+          user_base_dn: user_base_dn
+          computer_base_dn: computer_base_dn
+          domain_users_rotated_secrets_path_template: domain_users_rotated_secrets_path_template
+          local_users_ignore_list:
+            key: true
+          user_groups:
+          - user_groups
+          - user_groups
       properties:
         general:
           $ref: '#/components/schemas/MigrationGeneral'
         payload:
-          $ref: '#/components/schemas/GCPPayload'
+          $ref: '#/components/schemas/ActiveDirectoryPayload'
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
-    AzurePayload:
+    K8SMigration:
       example:
-        name: name
-        client: client
-        secret: secret
-        tenant: tenant
+        general:
+          prefix: prefix
+          name: name
+          id: id
+          type: type
+          protection_key: protection_key
+          new_name: new_name
+          status: status
+        payload:
+          client_key:
+          - 1
+          - 1
+          server: server
+          password: password
+          client_cert:
+          - 7
+          - 7
+          namespace: namespace
+          ca:
+          - 6
+          - 6
+          skip_system: true
+          token: token
+          username: username
       properties:
-        client:
-          type: string
-          x-go-name: Client
-        name:
-          type: string
-          x-go-name: Name
-        secret:
-          type: string
-          x-go-name: Secret
-        tenant:
-          type: string
-          x-go-name: Tenant
+        general:
+          $ref: '#/components/schemas/MigrationGeneral'
+        payload:
+          $ref: '#/components/schemas/K8SPayload'
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
     OnePasswordMigration:
@@ -860,6 +498,347 @@ components:
           $ref: '#/components/schemas/MigrationGeneral'
         payload:
           $ref: '#/components/schemas/OnePasswordPayload'
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    MockMigration:
+      example:
+        general:
+          prefix: prefix
+          name: name
+          id: id
+          type: type
+          protection_key: protection_key
+          new_name: new_name
+          status: status
+        payload:
+          vaults:
+          - vaults
+          - vaults
+      properties:
+        general:
+          $ref: '#/components/schemas/MigrationGeneral'
+        payload:
+          $ref: '#/components/schemas/MockPayload'
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    OnePasswordPayload:
+      example:
+        secret_key: secret_key
+        password: password
+        vaults:
+        - vaults
+        - vaults
+        email: email
+        url: url
+      properties:
+        email:
+          type: string
+          x-go-name: Email
+        password:
+          type: string
+          x-go-name: Password
+        secret_key:
+          type: string
+          x-go-name: SecretKey
+        url:
+          type: string
+          x-go-name: AccountUrl
+        vaults:
+          items:
+            type: string
+          type: array
+          x-go-name: Vaults
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    ActiveDirectoryPayload:
+      example:
+        auto_rotate: true
+        ssh_port: ssh_port
+        discover_local_users: true
+        auto_rotate_interval_in_days: 1
+        active_directory_target_id: 1
+        local_users_rotated_secrets_path_template: local_users_rotated_secrets_path_template
+        auto_rotate_rotation_hour: 1
+        domain_name: domain_name
+        enable_rdp_sra: true
+        domain_server_targets_path_template: domain_server_targets_path_template
+        user_base_dn: user_base_dn
+        computer_base_dn: computer_base_dn
+        domain_users_rotated_secrets_path_template: domain_users_rotated_secrets_path_template
+        local_users_ignore_list:
+          key: true
+        user_groups:
+        - user_groups
+        - user_groups
+      properties:
+        active_directory_target_id:
+          format: int64
+          type: integer
+          x-go-name: ActiveDirectoryTargetID
+        auto_rotate:
+          type: boolean
+          x-go-name: AutoRotate
+        auto_rotate_interval_in_days:
+          format: int32
+          type: integer
+          x-go-name: AutoRotateIntervalInDays
+        auto_rotate_rotation_hour:
+          format: int32
+          type: integer
+          x-go-name: AutoRotateRotationHour
+        computer_base_dn:
+          type: string
+          x-go-name: ComputerBaseDN
+        discover_local_users:
+          type: boolean
+          x-go-name: DiscoverLocalUsers
+        domain_name:
+          type: string
+          x-go-name: DomainName
+        domain_server_targets_path_template:
+          type: string
+          x-go-name: DomainServerTargetsPathTemplate
+        domain_users_rotated_secrets_path_template:
+          type: string
+          x-go-name: DomainUsersRotatedSecretsPathTemplate
+        enable_rdp_sra:
+          type: boolean
+          x-go-name: EnableRdpSRA
+        local_users_ignore_list:
+          additionalProperties:
+            type: boolean
+          type: object
+          x-go-name: LocalUsersIgnoreList
+        local_users_rotated_secrets_path_template:
+          type: string
+          x-go-name: LocalUsersRotatedSecretsPathTemplate
+        ssh_port:
+          type: string
+          x-go-name: SshPort
+        user_base_dn:
+          type: string
+          x-go-name: UserBaseDN
+        user_groups:
+          items:
+            type: string
+          type: array
+          x-go-name: UserGroups
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    MigrationGeneral:
+      example:
+        prefix: prefix
+        name: name
+        id: id
+        type: type
+        protection_key: protection_key
+        new_name: new_name
+        status: status
+      properties:
+        id:
+          type: string
+          x-go-name: Id
+        name:
+          type: string
+          x-go-name: Name
+        new_name:
+          type: string
+          x-go-name: NewName
+        prefix:
+          type: string
+          x-go-name: Prefix
+        protection_key:
+          type: string
+          x-go-name: ProtectionKey
+        status:
+          type: string
+          x-go-name: Status
+        type:
+          type: string
+          x-go-name: Type
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    GCPSecretsMigration:
+      example:
+        general:
+          prefix: prefix
+          name: name
+          id: id
+          type: type
+          protection_key: protection_key
+          new_name: new_name
+          status: status
+        payload:
+          gcp_credentials_json: gcp_credentials_json
+      properties:
+        general:
+          $ref: '#/components/schemas/MigrationGeneral'
+        payload:
+          $ref: '#/components/schemas/GCPPayload'
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    GCPPayload:
+      example:
+        gcp_credentials_json: gcp_credentials_json
+      properties:
+        gcp_credentials_json:
+          type: string
+          x-go-name: Key
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    K8SPayload:
+      example:
+        client_key:
+        - 1
+        - 1
+        server: server
+        password: password
+        client_cert:
+        - 7
+        - 7
+        namespace: namespace
+        ca:
+        - 6
+        - 6
+        skip_system: true
+        token: token
+        username: username
+      properties:
+        ca:
+          items:
+            format: uint8
+            type: integer
+          type: array
+          x-go-name: CA
+        client_cert:
+          items:
+            format: uint8
+            type: integer
+          type: array
+          x-go-name: ClientCert
+        client_key:
+          items:
+            format: uint8
+            type: integer
+          type: array
+          x-go-name: ClientKey
+        namespace:
+          type: string
+          x-go-name: Namespace
+        password:
+          type: string
+          x-go-name: Password
+        server:
+          type: string
+          x-go-name: Server
+        skip_system:
+          type: boolean
+          x-go-name: SkipSystem
+        token:
+          type: string
+          x-go-name: Token
+        username:
+          type: string
+          x-go-name: Username
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    HashiMigration:
+      example:
+        general:
+          prefix: prefix
+          name: name
+          id: id
+          type: type
+          protection_key: protection_key
+          new_name: new_name
+          status: status
+        payload:
+          import_as_json: true
+          url: url
+          namespaces:
+          - namespaces
+          - namespaces
+          token: token
+      properties:
+        general:
+          $ref: '#/components/schemas/MigrationGeneral'
+        payload:
+          $ref: '#/components/schemas/HashiPayload'
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    HashiPayload:
+      example:
+        import_as_json: true
+        url: url
+        namespaces:
+        - namespaces
+        - namespaces
+        token: token
+      properties:
+        import_as_json:
+          type: boolean
+          x-go-name: ImportAsJson
+        namespaces:
+          items:
+            type: string
+          type: array
+          x-go-name: Namespaces
+        token:
+          type: string
+          x-go-name: Token
+        url:
+          type: string
+          x-go-name: Url
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
+    gatewayGetMigration:
+      description: gatewayGetMigration is a command that get migration
+      properties:
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        name:
+          description: Migration name to display
+          type: string
+          x-go-name: MigrationName
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    AzurePayload:
+      example:
+        name: name
+        client: client
+        secret: secret
+        tenant: tenant
+      properties:
+        client:
+          type: string
+          x-go-name: Client
+        name:
+          type: string
+          x-go-name: Name
+        secret:
+          type: string
+          x-go-name: Secret
+        tenant:
+          type: string
+          x-go-name: Tenant
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
     gatewayMigrationGetOutput:
@@ -1136,3 +1115,24 @@ components:
           $ref: '#/components/schemas/MigrationsConfigPart'
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    AWSSecretsMigration:
+      example:
+        general:
+          prefix: prefix
+          name: name
+          id: id
+          type: type
+          protection_key: protection_key
+          new_name: new_name
+          status: status
+        payload:
+          secret: secret
+          region: region
+          key: key
+      properties:
+        general:
+          $ref: '#/components/schemas/MigrationGeneral'
+        payload:
+          $ref: '#/components/schemas/AWSPayload'
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator

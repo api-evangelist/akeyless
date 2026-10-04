@@ -43,14 +43,20 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JSONError:
+    DescribePermissionsOutput:
+      example:
+        client_permissions:
+        - client_permissions
+        - client_permissions
       properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
+        client_permissions:
+          items:
+            type: string
+          type: array
+          x-go-name: ClientPermissions
+      title: DescribePermissionsOutput defines output of DescribePermissionsOutput operation.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     describePermissions:
       description: 'describePermissions is a command that shows which permissions your have to a
 
@@ -81,17 +87,11 @@ components:
       - type
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    DescribePermissionsOutput:
-      example:
-        client_permissions:
-        - client_permissions
-        - client_permissions
+    JSONError:
       properties:
-        client_permissions:
-          items:
-            type: string
-          type: array
-          x-go-name: ClientPermissions
-      title: DescribePermissionsOutput defines output of DescribePermissionsOutput operation.
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
       type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

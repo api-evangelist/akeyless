@@ -165,6 +165,46 @@ components:
           x-go-name: WebProxy
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    ItemTargetAssociation:
+      description: 'ItemTargetAssociation includes details of an association between an item
+
+        and a target.'
+      example:
+        assoc_id: assoc_id
+        target_name: target_name
+        target_type: target_type
+        attributes:
+          key: attributes
+        target_id: 6
+      properties:
+        assoc_id:
+          type: string
+          x-go-name: AssociationID
+        attributes:
+          additionalProperties:
+            type: string
+          type: object
+          x-go-name: Attributes
+        target_id:
+          format: int64
+          type: integer
+          x-go-name: TargetID
+        target_name:
+          type: string
+          x-go-name: TargetName
+        target_type:
+          type: string
+          x-go-name: TargetType
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
     gatewayCreateProducerCustomOutput:
       example:
         producer_details:
@@ -439,6 +479,88 @@ components:
       properties:
         producer_details:
           $ref: '#/components/schemas/DSProducerDetails'
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    gatewayCreateProducerCustom:
+      properties:
+        admin_rotation_interval_days:
+          description: Define rotation interval in days
+          format: int64
+          type: integer
+          x-go-name: RotationIntervalDays
+        create-sync-url:
+          description: 'URL of an endpoint that implements /sync/create method, for example
+
+            https://webhook.example.com/sync/create'
+          type: string
+          x-go-name: CreateSyncURL
+        delete_protection:
+          description: Protection from accidental deletion of this item
+          type: string
+          x-go-name: ItemProtected
+        enable_admin_rotation:
+          default: false
+          description: Should admin credentials be rotated
+          type: boolean
+          x-go-name: EnableAdminRotation
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        name:
+          description: Producer name
+          type: string
+          x-go-name: ProducerName
+        payload:
+          description: Secret payload to be sent with each create/revoke webhook request
+          type: string
+          x-go-name: Payload
+        producer-encryption-key-name:
+          description: Dynamic producer encryption key
+          type: string
+          x-go-name: ProducerEncryptionKey
+        revoke-sync-url:
+          description: 'URL of an endpoint that implements /sync/revoke method, for example
+
+            https://webhook.example.com/sync/revoke'
+          type: string
+          x-go-name: RevokeSyncURL
+        rotate-sync-url:
+          description: 'URL of an endpoint that implements /sync/rotate method, for example
+
+            https://webhook.example.com/sync/rotate'
+          type: string
+          x-go-name: RotateSyncURL
+        tags:
+          description: List of the tags attached to this secret
+          items:
+            type: string
+          type: array
+          x-go-name: Tags
+        timeout-sec:
+          default: 60
+          description: Maximum allowed time in seconds for the webhook to return the results
+          format: int64
+          type: integer
+          x-go-name: TimeoutSeconds
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+        user-ttl:
+          default: 60m
+          description: User TTL
+          type: string
+          x-go-name: UserTTL
+      required:
+      - create-sync-url
+      - name
+      - revoke-sync-url
+      title: gatewayCreateProducerCustom is a command that creates a custom producer.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     DSProducerDetails:
@@ -1395,125 +1517,3 @@ components:
           x-go-name: WarnBeforeUserExpirationInMin
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/producer/config
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
-    ItemTargetAssociation:
-      description: 'ItemTargetAssociation includes details of an association between an item
-
-        and a target.'
-      example:
-        assoc_id: assoc_id
-        target_name: target_name
-        target_type: target_type
-        attributes:
-          key: attributes
-        target_id: 6
-      properties:
-        assoc_id:
-          type: string
-          x-go-name: AssociationID
-        attributes:
-          additionalProperties:
-            type: string
-          type: object
-          x-go-name: Attributes
-        target_id:
-          format: int64
-          type: integer
-          x-go-name: TargetID
-        target_name:
-          type: string
-          x-go-name: TargetName
-        target_type:
-          type: string
-          x-go-name: TargetType
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    gatewayCreateProducerCustom:
-      properties:
-        admin_rotation_interval_days:
-          description: Define rotation interval in days
-          format: int64
-          type: integer
-          x-go-name: RotationIntervalDays
-        create-sync-url:
-          description: 'URL of an endpoint that implements /sync/create method, for example
-
-            https://webhook.example.com/sync/create'
-          type: string
-          x-go-name: CreateSyncURL
-        delete_protection:
-          description: Protection from accidental deletion of this item
-          type: string
-          x-go-name: ItemProtected
-        enable_admin_rotation:
-          default: false
-          description: Should admin credentials be rotated
-          type: boolean
-          x-go-name: EnableAdminRotation
-        json:
-          description: Set output format to JSON
-          type: boolean
-          x-go-name: Json
-        name:
-          description: Producer name
-          type: string
-          x-go-name: ProducerName
-        payload:
-          description: Secret payload to be sent with each create/revoke webhook request
-          type: string
-          x-go-name: Payload
-        producer-encryption-key-name:
-          description: Dynamic producer encryption key
-          type: string
-          x-go-name: ProducerEncryptionKey
-        revoke-sync-url:
-          description: 'URL of an endpoint that implements /sync/revoke method, for example
-
-            https://webhook.example.com/sync/revoke'
-          type: string
-          x-go-name: RevokeSyncURL
-        rotate-sync-url:
-          description: 'URL of an endpoint that implements /sync/rotate method, for example
-
-            https://webhook.example.com/sync/rotate'
-          type: string
-          x-go-name: RotateSyncURL
-        tags:
-          description: List of the tags attached to this secret
-          items:
-            type: string
-          type: array
-          x-go-name: Tags
-        timeout-sec:
-          default: 60
-          description: Maximum allowed time in seconds for the webhook to return the results
-          format: int64
-          type: integer
-          x-go-name: TimeoutSeconds
-        token:
-          description: Authentication token (see `/auth` and `/configure`)
-          type: string
-          x-go-name: Profile
-        uid-token:
-          description: The universal identity token, Required only for universal_identity authentication
-          type: string
-          x-go-name: UIDToken
-        user-ttl:
-          default: 60m
-          description: User TTL
-          type: string
-          x-go-name: UserTTL
-      required:
-      - create-sync-url
-      - name
-      - revoke-sync-url
-      title: gatewayCreateProducerCustom is a command that creates a custom producer.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

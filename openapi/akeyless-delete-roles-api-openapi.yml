@@ -43,6 +43,9 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    deleteRolesOutput:
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     JSONError:
       properties:
         error:
@@ -72,8 +75,5 @@ components:
       required:
       - path
       title: deleteRoles is a command that deletes multiple roles from a given path.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    deleteRolesOutput:
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

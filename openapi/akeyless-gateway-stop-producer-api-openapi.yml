@@ -43,23 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
-    gatewayStopProducerOutput:
-      example:
-        producer_name: producer_name
-      properties:
-        producer_name:
-          type: string
-          x-go-name: ProducerName
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     gatewayStopProducer:
       description: gatewayStopProducer is a command that stops producer
       properties:
@@ -83,3 +66,20 @@ components:
       - name
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    gatewayStopProducerOutput:
+      example:
+        producer_name: producer_name
+      properties:
+        producer_name:
+          type: string
+          x-go-name: ProducerName
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

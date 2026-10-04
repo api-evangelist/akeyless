@@ -118,6 +118,8 @@ apis:
   humanURL: https://docs.akeyless.io/
   baseURL: https://api.akeyless.io
   tags:
+  - Authentication
+  tags_raw:
   - Auth
   properties:
   - type: OpenAPI
@@ -7140,6 +7142,9 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/akeyless/refs/heads/main/json-ld/akeyless-context.jsonld
 common:
+  - type: CapabilityMap
+    url: capabilities/akeyless-capability-edges.yml
+    name: Akeyless Business Capability Map
   - type: AgenticAccess
     url: agentic-access/akeyless-agentic-access.yml
   - type: TrustCenter

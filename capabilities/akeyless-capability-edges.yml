@@ -1,0 +1,1241 @@
+slug: akeyless
+provider: Akeyless
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 130
+edges:
+- tag: List Auth Methods
+  spec_file: akeyless-list-auth-methods-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.93
+  evidence: listAuthMethods  List auth methods ... SAMLAccessRules, OIDCAccessRules, AWSIAMAccessRules,
+    KubernetesAccessRules, APIKeyAccessRules
+  reason: Enumerates authentication methods and their access rules (SAML, OIDC, cloud IAM, API key) —
+    unambiguous Identity & Access Management / federation.
+- tag: Update Auth Method Aws Iam
+  spec_file: akeyless-update-auth-method-aws-iam-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.92
+  evidence: POST /update-auth-method-aws-iam  updateAuthMethodAWSIAM  Update auth method AWSIAM
+  reason: Management of an AWS IAM-based authentication method for machine identities is squarely identity
+    and access management / federation.
+- tag: Update Auth Method Azure Ad
+  spec_file: akeyless-update-auth-method-azure-ad-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.92
+  evidence: POST /update-auth-method-azure-ad  updateAuthMethodAzureAD  Update auth method azure AD
+  reason: Configures Azure AD federation as an authentication method, i.e. IAM/federation administration.
+- tag: Update Auth Method Gcp
+  spec_file: akeyless-update-auth-method-gcp-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.92
+  evidence: POST /update-auth-method-gcp  updateAuthMethodGCP  Update auth method GCP
+  reason: GCP-based authentication method configuration for machine identities — IAM/federation.
+- tag: Update Auth Method Ldap
+  spec_file: akeyless-update-auth-method-ldap-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.92
+  evidence: POST /update-auth-method-ldap  updateAuthMethodLDAP  Update auth method LDAP
+  reason: LDAP directory authentication method configuration — identity and access management.
+- tag: Update Auth Method Oauth2
+  spec_file: akeyless-update-auth-method-oauth2-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.92
+  evidence: POST /update-auth-method-oauth2  updateAuthMethodOAuth2  Update auth method OAuth2
+  reason: OAuth2 authentication method configuration on the identity security platform — IAM/federation
+    administration, not developer credential issuance for a public API product.
+- tag: Update Auth Method Oidc
+  spec_file: akeyless-update-auth-method-oidc-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.92
+  evidence: POST /update-auth-method-oidc  updateAuthMethodOIDC  Update auth method OIDC
+  reason: OIDC identity provider federation configuration — identity and access management.
+- tag: Update Auth Method Saml
+  spec_file: akeyless-update-auth-method-saml-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.92
+  evidence: POST /update-auth-method-saml  updateAuthMethodSAML  Update auth method SAML
+  reason: SAML federation configuration as an authentication method — identity and access management.
+- tag: Create Auth Method
+  spec_file: akeyless-create-auth-method-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: POST /create-auth-method  createAuthMethod  Create auth method
+  reason: Creates authentication methods (identities) on the platform — core Identity & Access Management
+    administration.
+- tag: Create Auth Method Aws Iam
+  spec_file: akeyless-create-auth-method-aws-iam-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: POST /create-auth-method-aws-iam  createAuthMethodAWSIAM  Create auth method AWSIAM
+  reason: Configures AWS IAM-based machine authentication/federation into the platform — Identity & Access
+    Management.
+- tag: Create Auth Method Azure Ad
+  spec_file: akeyless-create-auth-method-azure-ad-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: POST /create-auth-method-azure-ad  createAuthMethodAzureAD  Create auth method azure AD
+  reason: Creates an Azure AD federated authentication method — identity federation, a core IAM function.
+- tag: Create Auth Method Gcp
+  spec_file: akeyless-create-auth-method-gcp-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: POST /create-auth-method-gcp  createAuthMethodGCP  Create auth method GCP
+  reason: Creates a GCP-based federated authentication method — identity federation under IAM.
+- tag: Create Auth Method Huawei
+  spec_file: akeyless-create-auth-method-huawei-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: POST /create-auth-method-huawei  createAuthMethodHuawei  Create auth method huawei
+  reason: Creates a Huawei Cloud federated authentication method — identity federation under IAM.
+- tag: Delete Auth Method
+  spec_file: akeyless-delete-auth-method-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: POST /delete-auth-method  deleteAuthMethod  Delete auth method
+  reason: Lifecycle management of authentication methods (how machines/humans authenticate to the platform)
+    is directly Identity & Access Management.
+- tag: Delete Auth Methods
+  spec_file: akeyless-delete-auth-methods-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: deleteAuthMethods  Delete auth methods
+  reason: Bulk variant of auth-method lifecycle administration; same Identity & Access Management capability.
+- tag: Get Auth Method
+  spec_file: akeyless-get-auth-method-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: 'getAuthMethod ... schemas: SAMLAccessRules, OIDCAccessRules, AWSIAMAccessRules, KubernetesAccessRules,
+    AuthMethodAccessInfo'
+  reason: Operation returns authentication method definitions with federation and access rules (SAML,
+    OIDC, IAM, Kubernetes) — squarely identity and access management within cybersecurity, not a tenant-provisioning
+    or product-engineering concern.
+- tag: Get Role
+  spec_file: akeyless-get-role-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: 'getRole ... schemas: Role, Rules, PathRule, RoleAuthMethodAssociation'
+  reason: Returns an authorisation role with path rules and its association to authentication methods
+    — role-based access control, clearly Identity & Access Management.
+- tag: Update Auth Method
+  spec_file: akeyless-update-auth-method-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: POST /update-auth-method  updateAuthMethod  Update auth method
+  reason: Configuring authentication methods on an identity security platform is plainly identity and
+    access management, not a business-domain capability.
+- tag: Update Auth Method Cert
+  spec_file: akeyless-update-auth-method-cert-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: POST /update-auth-method-cert  updateAuthMethodCert  Update auth method cert
+  reason: Certificate-based authentication method configuration on the identity platform — identity and
+    access management.
+- tag: Update Auth Method K8s
+  spec_file: akeyless-update-auth-method-k8s-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: POST /update-auth-method-k8s  updateAuthMethodK8S  Update auth method K8 S
+  reason: Kubernetes service-account authentication method configuration — machine identity / access management.
+- tag: Create Auth Method Cert
+  spec_file: akeyless-create-auth-method-cert-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.88
+  evidence: POST /create-auth-method-cert  createAuthMethodCert  Create auth method cert
+  reason: Certificate-based authentication method creation for machine/human identities — Identity & Access
+    Management.
+- tag: Create Auth Method K8s
+  spec_file: akeyless-create-auth-method-k8s-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.88
+  evidence: POST /create-auth-method-k8s  createAuthMethodK8S  Create auth method K8 S
+  reason: Creates a Kubernetes-based authentication method on an identity security platform — this is
+    authentication/authorisation configuration for machine identities, i.e. Identity & Access Management,
+    not a technical plumbing concern of the buyer's own product.
+- tag: Create Auth Method Ldap
+  spec_file: akeyless-create-auth-method-ldap-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.88
+  evidence: POST /create-auth-method-ldap  createAuthMethodLDAP  Create auth method LDAP
+  reason: Configures an LDAP directory-backed authentication method, squarely identity and access management
+    (federation of directory identities).
+- tag: Create Auth Method Oauth2
+  spec_file: akeyless-create-auth-method-oauth2-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /create-auth-method-oauth2  createAuthMethodOAuth2  Create auth method OAuth2
+  reason: Creates an OAuth2 authentication method for the vault platform — IAM/federation configuration.
+- tag: Create Auth Method Oidc
+  spec_file: akeyless-create-auth-method-oidc-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /create-auth-method-oidc  createAuthMethodOIDC  Create auth method OIDC
+  reason: Creates an OIDC authentication method — identity federation, i.e. Identity & Access Management.
+- tag: Create Auth Method Saml
+  spec_file: akeyless-create-auth-method-saml-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /create-auth-method-saml  createAuthMethodSAML  Create auth method SAML
+  reason: Creates a SAML authentication method — federated single sign-on configuration, IAM.
+- tag: Delete Assoc
+  spec_file: akeyless-delete-assoc-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: deleteRoleAssociation  Delete role association
+  reason: Removing the association between a role and an auth method/identity is role-based access administration,
+    squarely Identity & Access Management.
+- tag: Delete Role Rule
+  spec_file: akeyless-delete-role-rule-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: deleteRoleRule  Delete role rule
+  reason: Role rules define the access permissions attached to a role (paths and capabilities); managing
+    them is access-policy administration under Identity & Access Management.
+- tag: Describe Permissions
+  spec_file: akeyless-describe-permissions-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /describe-permissions  describePermissions  Describe permissions ... DescribePermissionsOutput
+  reason: Inspecting access permissions on the platform is access management.
+- tag: Gateway Update Ldap Auth Config
+  spec_file: akeyless-gateway-update-ldap-auth-config-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /gateway-update-ldap-auth-config  GatewayUpdateLdapAuthConfig  Gateway update ldap auth
+    config
+  reason: Maintains the LDAP authentication/directory federation configuration for the gateway — plainly
+    Identity & Access Management (federation, authentication methods).
+- tag: List Roles
+  spec_file: akeyless-list-roles-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: listRoles  List roles ... Role, RoleAuthMethodAssociation, PathRule, Rules
+  reason: Lists authorisation roles and their bindings to auth methods and path rules — role-based access
+    control, i.e. Identity & Access Management.
+- tag: Reverse Rbac
+  spec_file: akeyless-reverse-rbac-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: reverseRBAC  Reverse RBAC; schemas RuleAssigner, PathRule, Rules, AuthMethodRoleAssociation
+  reason: Role-based access control inspection with auth-method-to-role associations and path rules is
+    directly identity and access management.
+- tag: Assoc Role Am
+  spec_file: akeyless-assoc-role-am-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.82
+  evidence: POST /assoc-role-am  assocRoleAuthMethod  Assoc role auth method; schema CreateRoleAuthMethodAssocOutput
+  reason: Binds an access role to an authentication method, i.e. authorisation/access-control administration
+    on an identity security platform — Identity & Access Management.
+- tag: Create Auth Method Universal Identity
+  spec_file: akeyless-create-auth-method-universal-identity-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.82
+  evidence: POST /create-auth-method-universal-identity  createAuthMethodUniversalIdentity  Create auth
+    method universal identity
+  reason: Creates Akeyless Universal Identity auth method for machine identity authentication; vendor
+    describes 'machine identity, and privileged access' — IAM.
+- tag: Gateway Revoke Producer Tmp Creds
+  spec_file: akeyless-gateway-revoke-producer-tmp-creds-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.82
+  evidence: POST /gateway-revoke-producer-tmp-creds  gatewayRevokeTmpUsers  Gateway revoke tmp users
+  reason: Revocation of temporary users/credentials issued by a dynamic-secrets producer is credential
+    lifecycle control, squarely Identity & Access Management (PAM-style ephemeral access) for this identity-security
+    vendor.
+- tag: Create Ssh Cert Issuer
+  spec_file: akeyless-create-ssh-cert-issuer-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: POST /create-ssh-cert-issuer  createSSHCertIssuer  Create SSH cert issuer — vendor covers
+    "certificate lifecycle management ... and SSH access governance"
+  reason: Issuing SSH certificates governs privileged access to hosts, i.e. identity and access management.
+- tag: Gateway Create Producer Ldap
+  spec_file: akeyless-gateway-create-producer-ldap-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: POST /gateway-create-producer-ldap  'Gateway create producer ldap'; schemas SecureRemoteAccess,
+    DSProducerDetails
+  reason: Creates a dynamic-secret producer that issues ephemeral LDAP credentials — credential issuance
+    and secure remote access, i.e. identity and access management within the vendor's secrets platform.
+- tag: Gateway Create Producer Ping
+  spec_file: akeyless-gateway-create-producer-ping-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: POST /gateway-create-producer-ping  'Gateway create producer ping'; schemas SecureRemoteAccess,
+    DSProducerDetails
+  reason: Dynamic-secret producer against a Ping identity provider, issuing temporary identity credentials
+    — squarely identity and access management.
+- tag: Gateway Create Producer Rdp
+  spec_file: akeyless-gateway-create-producer-rdp-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: POST /gateway-create-producer-rdp  'Gateway create producer rdp'; schema SecureRemoteAccess
+  reason: Creates a producer for ephemeral RDP credentials and secure remote access sessions — privileged
+    access management, part of IAM.
+- tag: Gateway Get Producer Tmp Creds
+  spec_file: akeyless-gateway-get-producer-tmp-creds-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: gatewayGetTmpUsers  Gateway get tmp users; schema TmpUserData
+  reason: Retrieval of temporary users/credentials issued by a dynamic secrets producer is privileged
+    access / ephemeral credential management, a clear Identity & Access Management function for this security
+    platform.
+- tag: Gateway Update K8s Auth Config
+  spec_file: akeyless-gateway-update-k8s-auth-config-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: POST /gateway-update-k8s-auth-config  gatewayUpdateK8SAuthConfig ... K8SAuthsConfigLastChange
+  reason: Configures the Kubernetes authentication method used to authenticate machine identities to the
+    vault — authentication/authorisation configuration, i.e. Identity & Access Management.
+- tag: Gateway Update Producer Rdp
+  spec_file: akeyless-gateway-update-producer-rdp-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: POST /gateway-update-producer-rdp — "Gateway update producer rdp"; schema "SecureRemoteAccess"
+  reason: Dynamic credential producer for RDP sessions with secure remote access configuration — plainly
+    privileged remote access and credential management under Identity & Access Management.
+- tag: Set Role Rule
+  spec_file: akeyless-set-role-rule-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: POST /set-role-rule  setRoleRule  Set role rule
+  reason: Defining rules attached to roles governs who may access which vault paths — authorisation policy
+    administration, i.e. identity and access management.
+- tag: Update Auth Method Universal Identity
+  spec_file: akeyless-update-auth-method-universal-identity-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: POST /update-auth-method-universal-identity — "Update auth method universal identity"
+  reason: The single operation configures an authentication method (Universal Identity) on an identity-security
+    platform — i.e. managing how machines/humans authenticate and gain access. That is Identity & Access
+    Management under Cybersecurity, not any business-domain capability.
+- tag: Gateway Update Producer Artifactory
+  spec_file: akeyless-gateway-update-producer-artifactory-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: 'POST /gateway-update-producer-artifactory ... schemas: SecureRemoteAccess, DSProducerDetails,
+    ItemTargetAssociation'
+  reason: Configures a dynamic-secrets producer that issues ephemeral Artifactory credentials, with secure-remote-access
+    details — credential issuance and privileged access configuration under IAM.
+- tag: Gateway Update Producer Aws
+  spec_file: akeyless-gateway-update-producer-aws-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: 'POST /gateway-update-producer-aws  gatewayUpdateProducerAws  Gateway update producer aws;
+    schemas: SecureRemoteAccess, DSProducerDetails, ItemTargetAssociation'
+  reason: Configures a dynamic-secrets producer that issues ephemeral AWS credentials, with SecureRemoteAccess
+    settings — this is credential/privileged-access administration, i.e. identity & access management,
+    not cloud infrastructure provisioning.
+- tag: Gateway Update Producer Azure
+  spec_file: akeyless-gateway-update-producer-azure-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: 'Gateway update producer azure; schemas: SecureRemoteAccess, DSProducerDetails, ItemTargetAssociation'
+  reason: Dynamic secrets producer definition for Azure targets — issuance and governance of machine credentials
+    and secure remote access falls under identity & access management.
+- tag: Gateway Update Producer Gcp
+  spec_file: akeyless-gateway-update-producer-gcp-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: 'Gateway update producer gcp; schemas: SecureRemoteAccess, DSProducerDetails'
+  reason: Ephemeral GCP service-account credential generation configured through the secrets gateway;
+    clearly identity and privileged access management.
+- tag: Gateway Update Producer Ldap
+  spec_file: akeyless-gateway-update-producer-ldap-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: POST /gateway-update-producer-ldap — "Gateway update producer ldap"; schemas "SecureRemoteAccess",
+    "DSProducerDetails"
+  reason: Configures a dynamic-secret producer that issues ephemeral LDAP credentials via the Akeyless
+    gateway, with secure remote access settings — this is machine/privileged credential issuance, i.e.
+    Identity & Access Management within Cybersecurity. Not a database or directory business capability.
+- tag: Gateway Update Producer Mongo
+  spec_file: akeyless-gateway-update-producer-mongo-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: POST /gateway-update-producer-mongo — "Gateway update producer mongo"; schemas "DSProducerDetails",
+    "SecureRemoteAccess"
+  reason: 'Dynamic secret producer configuration for MongoDB targets: generates/rotates short-lived credentials
+    and governs remote access, which realises Identity & Access Management rather than any data-platform
+    capability.'
+- tag: Gateway Update Producer Mssql
+  spec_file: akeyless-gateway-update-producer-mssql-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: POST /gateway-update-producer-mssql — "Gateway update producer MSSQL"; schema "SecureRemoteAccess"
+  reason: Updates the dynamic-credential producer for an MSSQL target; the surface manages ephemeral credential
+    issuance and secure remote access, mapping to Identity & Access Management.
+- tag: Gateway Update Producer Mysql
+  spec_file: akeyless-gateway-update-producer-mysql-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: POST /gateway-update-producer-mysql — "Gateway update producer my SQL"; schema "DSProducerDetails"
+  reason: Dynamic secret producer for MySQL targets — just-in-time credential generation and access governance,
+    i.e. Identity & Access Management, not database administration as a business capability.
+- tag: Gateway Update Producer Oracle
+  spec_file: akeyless-gateway-update-producer-oracle-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: POST /gateway-update-producer-oracle — "Gateway update producer oracle db"; schemas "SecureRemoteAccess",
+    "DSProducerDetails"
+  reason: Configures ephemeral credential issuance for an Oracle DB target through the Akeyless gateway;
+    this is privileged credential and access lifecycle management.
+- tag: Gateway Update Producer Postgresql
+  spec_file: akeyless-gateway-update-producer-postgresql-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: POST /gateway-update-producer-postgresql — "Gateway update producer postgre SQL"; schema "SecureRemoteAccess"
+  reason: Dynamic credential producer configuration for PostgreSQL targets; realises machine-identity/privileged
+    credential issuance under Identity & Access Management.
+- tag: Gateway Update Producer Redshift
+  spec_file: akeyless-gateway-update-producer-redshift-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: POST /gateway-update-producer-redshift — "Gateway update producer redshift"; schemas "DSProducerDetails",
+    "SecureRemoteAccess"
+  reason: 'Dynamic secret producer for Redshift targets: temporary credential issuance and access governance,
+    mapping to Identity & Access Management rather than analytics.'
+- tag: Gateway Update Producer Snowflake
+  spec_file: akeyless-gateway-update-producer-snowflake-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: POST /gateway-update-producer-snowflake — "Gateway update producer snowflake"; schema "SecureRemoteAccess"
+  reason: Configures ephemeral credential generation for a Snowflake target through the gateway — privileged
+    credential issuance, i.e. Identity & Access Management.
+- tag: Gateway Update Producer Tmp Creds
+  spec_file: akeyless-gateway-update-producer-tmp-creds-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: POST /gateway-update-producer-tmp-creds  gatewayUpdateTmpUsers  "Gateway update tmp users"
+  reason: Manages temporary credentials / temporary users issued by the gateway — ephemeral identity and
+    access lifecycle, squarely Identity & Access Management.
+- tag: Uid List Children
+  spec_file: akeyless-uid-list-children-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: 'schemas: UniversalIdentityDetails, UIDTokenDetails'
+  reason: Inventory of Universal Identity tokens and their child identities — machine identity administration,
+    i.e. Identity & Access Management.
+- tag: Uid Revoke Token
+  spec_file: akeyless-uid-revoke-token-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: POST /uid-revoke-token  uidRevokeToken  Uid revoke token
+  reason: Revocation of machine identity tokens — credential lifecycle (leaver/deprovision) within Identity
+    & Access Management.
+- tag: Uid Rotate Token
+  spec_file: akeyless-uid-rotate-token-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: POST /uid-rotate-token  uidRotateToken  Uid rotate token
+  reason: Rotation of machine identity credentials — core credential hygiene operation under Identity
+    & Access Management.
+- tag: Update Secret Val
+  spec_file: akeyless-update-secret-val-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.78
+  evidence: POST /update-secret-val  updateSecretVal  Update secret val
+  reason: Updating the value of a stored secret is core secrets-vaulting, a cybersecurity control capability.
+    Kept at L1 since secrets storage spans identity/credential and security-architecture sub-capabilities
+    without decisive evidence.
+- tag: Create Dynamic Secret
+  spec_file: akeyless-create-dynamic-secret-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: POST /create-dynamic-secret  createDynamicSecret  Create dynamic secret
+  reason: Dynamic secrets are short-lived credentials issued for machine/human access to backend systems
+    — credential issuance and privileged access, i.e. identity and access management, not a business-domain
+    capability.
+- tag: Create Pki Cert Issuer
+  spec_file: akeyless-create-pki-cert-issuer-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.75
+  evidence: POST /create-pki-cert-issuer  CreatePKICertIssuer  Create PKI cert issuer — vendor covers
+    "certificate lifecycle management"
+  reason: Defines a PKI certificate issuer for machine-identity certificate issuance, clearly a Cybersecurity
+    Management function; sits between identity and security architecture so no L2 is asserted.
+- tag: Describe Sub Claims
+  spec_file: akeyless-describe-sub-claims-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: POST /describe-sub-claims  describeSubClaims  Describe sub claims
+  reason: Sub-claims describe the authenticated identity's token attributes used for authorisation, which
+    is identity and access management plumbing within a security platform.
+- tag: Gateway Create K8s Auth Config
+  spec_file: akeyless-gateway-create-k8s-auth-config-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: POST /gateway-create-k8s-auth-config  gatewayCreateK8SAuthConfig  Gateway create K8 SAuth
+    config
+  reason: Configures a Kubernetes authentication method so workloads can authenticate to the vault - machine
+    identity and access management, though it is also gateway configuration.
+- tag: Gateway Create Producer Aws
+  spec_file: akeyless-gateway-create-producer-aws-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: POST /gateway-create-producer-aws — 'Gateway create producer aws'; vendor covers 'dynamic
+    secrets generation' and 'privileged access'; schema 'SecureRemoteAccess'
+  reason: Creates a dynamic-secrets producer that issues ephemeral AWS credentials — credential issuance
+    and privileged access control, i.e. identity & access management within cybersecurity. Not a cloud-infrastructure
+    provisioning API despite the AWS noun.
+- tag: Gateway Create Producer Azure
+  spec_file: akeyless-gateway-create-producer-azure-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: POST /gateway-create-producer-azure  gatewayCreateProducerAzure; schemas 'SecureRemoteAccess',
+    'DSProducerDetails'
+  reason: Dynamic secrets producer generating short-lived Azure credentials; the operation governs machine
+    credential issuance and access, mapping to Identity & Access Management.
+- tag: Gateway Create Producer Gcp
+  spec_file: akeyless-gateway-create-producer-gcp-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: POST /gateway-create-producer-gcp  gatewayCreateProducerGcp; schema 'SecureRemoteAccess'
+  reason: Issues dynamic GCP service credentials — cloud credential issuance and privileged access control,
+    an IAM capability.
+- tag: Gateway Create Producer Mongo
+  spec_file: akeyless-gateway-create-producer-mongo-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: POST /gateway-create-producer-mongo  'Gateway create producer mongo'; schemas SecureRemoteAccess,
+    DSProducerDetails
+  reason: Dynamic secrets producer generating short-lived MongoDB credentials; this is machine credential/access
+    provisioning, an IAM capability, not database administration.
+- tag: Gateway Create Producer Mssql
+  spec_file: akeyless-gateway-create-producer-mssql-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: POST /gateway-create-producer-mssql  'Gateway create producer MSSQL'; schemas SecureRemoteAccess,
+    DSProducerDetails
+  reason: Configures a dynamic-secret producer issuing ephemeral MSSQL credentials — credential lifecycle
+    and privileged access, mapped to Identity & Access Management.
+- tag: Gateway Create Producer Mysql
+  spec_file: akeyless-gateway-create-producer-mysql-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: POST /gateway-create-producer-mysql  'Gateway create producer my SQL'; schemas SecureRemoteAccess,
+    DSProducerDetails
+  reason: Dynamic secrets producer for MySQL credentials; secrets/credential issuance is identity and
+    access management.
+- tag: Gateway Create Producer Oracle
+  spec_file: akeyless-gateway-create-producer-oracle-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: POST /gateway-create-producer-oracle  'Gateway create producer oracle db'; schemas SecureRemoteAccess,
+    DSProducerDetails
+  reason: Creates a producer that mints ephemeral Oracle DB credentials — credential issuance and privileged
+    access control, an IAM capability.
+- tag: Gateway Create Producer Postgresql
+  spec_file: akeyless-gateway-create-producer-postgresql-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: POST /gateway-create-producer-postgresql  'Gateway create producer postgre SQL'; schemas SecureRemoteAccess,
+    DSProducerDetails
+  reason: Dynamic secrets producer issuing ephemeral PostgreSQL credentials; credential provisioning and
+    secure remote access is IAM.
+- tag: Gateway Delete Allowed Management Access
+  spec_file: akeyless-gateway-delete-allowed-management-access-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: POST /gateway-delete-allowed-management-access  'Gateway delete allowed management access';
+    schema gatewayDeleteSubAdminsOutput
+  reason: Revokes administrative access permissions (sub-admins) on the gateway — access right administration,
+    i.e. Identity & Access Management.
+- tag: Gateway Get Ldap Auth Config
+  spec_file: akeyless-gateway-get-ldap-auth-config-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: POST /gateway-get-ldap-auth-config  gatewayGetLdapAuthConfig  Gateway get ldap auth config
+  reason: LDAP authentication configuration is directory-based identity federation for access to the platform,
+    squarely Identity & Access Management within the vendor's stated 'privileged access' scope.
+- tag: Gateway List Allowed Management Access
+  spec_file: akeyless-gateway-list-allowed-management-access-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: gatewayListAllowedManagementAccess  Gateway list allowed management access; schemas GetSubAdminsListReplyObj,
+    AllowedAccess
+  reason: Lists sub-admins and allowed administrative access to the gateway — administrative entitlement/permission
+    management, i.e. Identity & Access Management (privileged access governance).
+- tag: Gateway Rotate Secret
+  spec_file: akeyless-gateway-rotate-secret-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: POST /gateway-rotate-secret  rotateSecret  Rotate secret  (RotatedSecretOutput)
+  reason: Rotation of stored secrets/credentials is a core secrets-management control; best fits Identity
+    & Access Management within Cybersecurity for a secrets-vaulting platform. Some ambiguity vs. configuration/secrets
+    management in the release domain.
+- tag: Gateway Update Producer Cassandra
+  spec_file: akeyless-gateway-update-producer-cassandra-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: 'Gateway update producer cassandra; schemas: SecureRemoteAccess, DSProducerDetails'
+  reason: Configures generation of ephemeral database credentials for a Cassandra target; credential issuance
+    and privileged access control is IAM, not database administration.
+- tag: Gateway Update Producer Eks
+  spec_file: akeyless-gateway-update-producer-eks-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: 'Gateway update producer eks; schemas: SecureRemoteAccess, DSProducerDetails, ItemTargetAssociation'
+  reason: Dynamic credential producer for EKS clusters with secure remote access settings — access credential
+    governance rather than infrastructure management.
+- tag: Gateway Update Producer Gke
+  spec_file: akeyless-gateway-update-producer-gke-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: 'Gateway update producer gke; schemas: SecureRemoteAccess, DSProducerDetails, ItemTargetAssociation'
+  reason: Dynamic credential producer for GKE targets with secure remote access configuration — machine
+    identity and access credential management.
+- tag: Gateway Update Producer K8s
+  spec_file: akeyless-gateway-update-producer-k8s-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: 'gatewayUpdateProducerNativeK8S  Gateway update producer native K8 S; schemas: SecureRemoteAccess,
+    DSProducerDetails'
+  reason: Defines a native Kubernetes dynamic secrets producer issuing short-lived service-account tokens
+    — credential issuance and access governance.
+- tag: Gateway Update Producer Ping
+  spec_file: akeyless-gateway-update-producer-ping-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: POST /gateway-update-producer-ping — "Gateway update producer ping"; schemas "DSProducerDetails",
+    "SecureRemoteAccess"
+  reason: Despite the word "ping" (here PingFederate/Ping Identity as a target, not a network health check),
+    the operation configures a dynamic-secret producer issuing temporary identities — Identity & Access
+    Management.
+- tag: Gateway Update Producer Rabbitmq
+  spec_file: akeyless-gateway-update-producer-rabbitmq-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: POST /gateway-update-producer-rabbitmq — "Gateway update producer rabbit MQ"; schema "DSProducerDetails"
+  reason: Configures ephemeral credential generation for a RabbitMQ target. "Producer" here is Akeyless'
+    dynamic-secret producer object, not a messaging producer; capability is Identity & Access Management.
+- tag: List Items
+  spec_file: akeyless-list-items-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.75
+  evidence: listItems ... StaticSecretDetailsInfo, DynamicSecretProducerInfo, PKICertificateIssueDetails,
+    ClassicKeyPurpose, SecureRemoteAccess
+  reason: Lists vault items — static and dynamic secrets, PKI/SSH certificates, encryption keys. This
+    is secrets and cryptographic key stewardship, a cybersecurity control capability; no single L2 fits
+    cleanly.
+- tag: Request Access
+  spec_file: akeyless-request-access-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: POST /request-access  requestAccess  Request access
+  reason: An access request flow on a privileged access platform is squarely identity and access management;
+    the operation grants/requests entitlement to protected resources.
+- tag: Revoke Creds
+  spec_file: akeyless-revoke-creds-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: POST /revoke-creds  revoke-creds  Revoke creds; schema revokeCredsOutput
+  reason: Revocation of issued credentials is credential lifecycle control — the leaver/de-provisioning
+    side of identity and access management.
+- tag: Uid Create Child Token
+  spec_file: akeyless-uid-create-child-token-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: POST /uid-create-child-token  uidCreateChildToken  Uid create child token
+  reason: Universal Identity token issuance for machine identities — machine identity/credential lifecycle,
+    i.e. Identity & Access Management.
+- tag: Uid Generate Token
+  spec_file: akeyless-uid-generate-token-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: POST /uid-generate-token  uidGenerateToken  Uid generate token
+  reason: Issuance of Universal Identity tokens for machine authentication; identity credential lifecycle
+    under IAM.
+- tag: Update Rotated Secret
+  spec_file: akeyless-update-rotated-secret-api-openapi.yml
+  capability_id: BC-4210.60
+  capability_id_l1: BC-4210
+  capability_name: Configuration & Secrets Management
+  confidence: 0.75
+  evidence: POST /update-rotated-secret  updateRotatedSecret  Update rotated secret
+  reason: Managing a rotated secret is squarely secrets management ('secrets vaulting, dynamic secrets
+    generation'), which in this frame is Configuration & Secrets Management; some ambiguity remains versus
+    a cybersecurity-credential reading.
+- tag: Update Rotation Settingsrotate Key
+  spec_file: akeyless-update-rotation-settingsrotate-key-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.75
+  evidence: POST /update-rotation-settingsrotate-key  updateRotationSettings  Update rotation settings;
+    schema RotateKeyOutput
+  reason: Operation configures rotation of cryptographic keys/credentials inside a secrets-management
+    platform — a security control capability. Mapped at Cybersecurity Management L1; evidence does not
+    clearly single out identity/access vs. security architecture sub-capability, so no L2.
+- tag: Create Key
+  spec_file: akeyless-create-key-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.72
+  evidence: POST /create-key  createKey  Create key — vendor covers "encryption and multi-cloud KMS"
+  reason: Creation of an encryption/customer-managed key in the platform's KMS is a cryptographic security
+    control under Cybersecurity Management; no single L2 cleanly covers key management.
+- tag: Gateway Create Producer Cassandra
+  spec_file: akeyless-gateway-create-producer-cassandra-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: POST /gateway-create-producer-cassandra  gatewayCreateProducerCassandra; schemas 'SecureRemoteAccess',
+    'DSProducerDetails'
+  reason: Configures on-demand database credential generation for Cassandra — credential/privileged access
+    issuance, an IAM capability rather than database administration.
+- tag: Gateway Create Producer Eks
+  spec_file: akeyless-gateway-create-producer-eks-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: POST /gateway-create-producer-eks  gatewayCreateProducerEks; schemas 'SecureRemoteAccess',
+    'DSProducerDetails'
+  reason: Dynamic credential producer for EKS cluster access; the operation governs who/what gets ephemeral
+    cluster credentials, mapping to Identity & Access Management.
+- tag: Gateway Create Producer Gke
+  spec_file: akeyless-gateway-create-producer-gke-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: POST /gateway-create-producer-gke  gatewayCreateProducerGke; schema 'SecureRemoteAccess'
+  reason: Dynamic secrets producer for GKE cluster credentials — ephemeral access credential issuance,
+    mapping to Identity & Access Management.
+- tag: Gateway Create Producer Hanadb
+  spec_file: akeyless-gateway-create-producer-hanadb-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: POST /gateway-create-producer-hanadb  gatewayCreateProducerHanaDb; schemas 'SecureRemoteAccess',
+    'DSProducerDetails'
+  reason: Configures on-demand HANA database credential generation; privileged database access credential
+    issuance is an IAM/PAM capability.
+- tag: Gateway Create Producer K8s
+  spec_file: akeyless-gateway-create-producer-k8s-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: POST /gateway-create-producer-k8s  gatewayCreateProducerNativeK8S; schema 'SecureRemoteAccess'
+  reason: Creates a native Kubernetes dynamic credential producer — ephemeral service-account/token issuance
+    for cluster access, i.e. Identity & Access Management.
+- tag: Gateway Create Producer Rabbitmq
+  spec_file: akeyless-gateway-create-producer-rabbitmq-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: POST /gateway-create-producer-rabbitmq  'Gateway create producer rabbit MQ'; schemas SecureRemoteAccess,
+    DSProducerDetails
+  reason: Producer generating temporary RabbitMQ credentials — machine credential issuance, mapped to
+    Identity & Access Management.
+- tag: Gateway Create Producer Redshift
+  spec_file: akeyless-gateway-create-producer-redshift-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: POST /gateway-create-producer-redshift  'Gateway create producer redshift'; schemas SecureRemoteAccess,
+    DSProducerDetails
+  reason: Dynamic secrets producer issuing temporary Redshift credentials; credential issuance is an identity
+    and access management function.
+- tag: Gateway Create Producer Snowflake
+  spec_file: akeyless-gateway-create-producer-snowflake-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: POST /gateway-create-producer-snowflake  'Gateway create producer snowflake'; schemas SecureRemoteAccess,
+    DSProducerDetails
+  reason: Producer configuration for ephemeral Snowflake credentials — machine credential provisioning,
+    mapped to IAM rather than data management.
+- tag: Gateway Update Producer Dockerhub
+  spec_file: akeyless-gateway-update-producer-dockerhub-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: 'Gateway update producer dockerhub; schemas: SecureRemoteAccess, DSProducerDetails'
+  reason: Defines automatic generation of short-lived DockerHub credentials — machine credential issuance,
+    an identity & access management function.
+- tag: Gateway Update Producer Github
+  spec_file: akeyless-gateway-update-producer-github-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: 'Gateway update producer github; schemas: SecureRemoteAccess, DSProducerDetails'
+  reason: Produces temporary GitHub access tokens; credential issuance and lifecycle is an IAM capability,
+    not source-control/engineering management.
+- tag: Gateway Update Producer Hana
+  spec_file: akeyless-gateway-update-producer-hana-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: 'gatewayUpdateProducerHanaDb  Gateway update producer hana db; schemas: SecureRemoteAccess,
+    DSProducerDetails'
+  reason: Configures on-demand generation of SAP HANA database credentials; this is privileged credential
+    issuance under identity & access management.
+- tag: Get Secret Value
+  spec_file: akeyless-get-secret-value-api-openapi.yml
+  capability_id: BC-4210.60
+  capability_id_l1: BC-4210
+  capability_name: Configuration & Secrets Management
+  confidence: 0.72
+  evidence: POST /get-secret-value  GetSecretValue  Get secret value; vendor covers "secrets vaulting"
+  reason: The single operation retrieves a stored secret value from the vault — runtime secrets consumption
+    by services, i.e. Configuration & Secrets Management. Cybersecurity IAM is an alternative reading,
+    hence moderate confidence.
+- tag: List Sra Bastions
+  spec_file: akeyless-list-sra-bastions-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: listSRABastions  List SRA bastions ... BastionListEntry, BastionsList
+  reason: Secure Remote Access bastions underpin the vendor's privileged access offering ('privileged
+    access for AI agents, machines, and humans'), which falls under IAM/PAM.
+- tag: Sign Pki Cert With Classic Key
+  spec_file: akeyless-sign-pki-cert-with-classic-key-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.72
+  evidence: POST /sign-pki-cert-with-classic-key  signPKICertWithClassicKey  Sign PKI cert with classic
+    key
+  reason: PKI certificate issuance/signing — part of certificate lifecycle for machine identity, clearly
+    a cybersecurity capability; evidence is thin on whether to narrow to IAM, so L1 only.
+- tag: Create Certificate
+  spec_file: akeyless-create-certificate-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.7
+  evidence: POST /create-certificate  createCertificate  Create certificate
+  reason: Certificate issuance within the vendor's 'certificate lifecycle management' scope; clearly a
+    cybersecurity control capability, but it straddles machine identity and security architecture so no
+    L2 is asserted.
+- tag: Create Rotated Secret
+  spec_file: akeyless-create-rotated-secret-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /create-rotated-secret  createRotatedSecret  Create rotated secret
+  reason: Automated credential rotation for machine/service accounts is credential lifecycle management,
+    the closest fit being Identity & Access Management within Cybersecurity.
+- tag: Create Secret
+  spec_file: akeyless-create-secret-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /create-secret  createSecret  Create secret — platform covering "secrets vaulting"
+  reason: Storing secrets/credentials in a vault is credential management, best represented by Identity
+    & Access Management under Cybersecurity; some ambiguity as no dedicated secrets sub-capability exists.
+- tag: Decrypt
+  spec_file: akeyless-decrypt-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.7
+  evidence: POST /decrypt  decrypt  Decrypt — platform covering "encryption and multi-cloud KMS"
+  reason: Cryptographic decryption service is a security control capability; no encryption-specific L2
+    exists so L1 Cybersecurity Management only.
+- tag: Decrypt Pkcs1
+  spec_file: akeyless-decrypt-pkcs1-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.7
+  evidence: POST /decrypt-pkcs1  decryptPKCS1  Decrypt PKCS1
+  reason: RSA PKCS1 decryption via the platform's KMS; cryptographic security control, L1 Cybersecurity
+    Management only.
+- tag: Decrypt With Classic Key
+  spec_file: akeyless-decrypt-with-classic-key-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.7
+  evidence: POST /decrypt-with-classic-key  decryptWithClassicKey  Decrypt with classic key
+  reason: A cryptographic decryption operation on a managed encryption key within Akeyless' KMS/encryption
+    surface. This is a security-platform capability (cryptographic key usage), so Cybersecurity Management
+    at L1; no L2 cleanly covers key/crypto operations, so no sub-capability is claimed.
+- tag: Describe Item
+  spec_file: akeyless-describe-item-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.7
+  evidence: 'schemas: ClassicKeyPurpose, CertificateInfo, DynamicSecretProducerInfo, PasswordPolicyInfo,
+    SecureRemoteAccess'
+  reason: Describes a vaulted item - key, certificate, dynamic secret producer, password policy - i.e.
+    metadata of secrets and crypto material; clearly security management but spans key, certificate and
+    secret handling so no single L2 fits.
+- tag: Encrypt With Classic Key
+  spec_file: akeyless-encrypt-with-classic-key-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.7
+  evidence: POST /encrypt-with-classic-key  encryptWithClassicKey  Encrypt with classic key
+  reason: Encryption using a managed customer key is a cryptographic/key-management security service;
+    L1 only.
+- tag: Gateway Create Producer Artifactory
+  spec_file: akeyless-gateway-create-producer-artifactory-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /gateway-create-producer-artifactory  gatewayCreateProducerArtifactory  Gateway create
+    producer artifactory ... DSProducerDetails, SecureRemoteAccess
+  reason: Defines a dynamic-secret producer that mints ephemeral Artifactory credentials and secure remote
+    access, i.e. provisioning and governing machine access credentials.
+- tag: Gateway Create Producer Dockerhub
+  spec_file: akeyless-gateway-create-producer-dockerhub-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /gateway-create-producer-dockerhub  gatewayCreateProducerDockerhub; schema 'SecureRemoteAccess'
+  reason: Creates a producer issuing temporary Dockerhub credentials — machine credential issuance and
+    access governance, i.e. IAM, not artefact/registry management.
+- tag: Gateway Create Producer Github
+  spec_file: akeyless-gateway-create-producer-github-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /gateway-create-producer-github  gatewayCreateProducerGithub; schemas 'SecureRemoteAccess',
+    'DSProducerDetails'
+  reason: Creates a producer that mints ephemeral GitHub access tokens; this is credential issuance/access
+    governance, not source-control or CI management.
+- tag: Gateway Delete K8s Auth Config
+  spec_file: akeyless-gateway-delete-k8s-auth-config-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /gateway-delete-k8s-auth-config  gatewayDeleteK8SAuthConfig  Gateway delete K8 SAuth
+    config; schema K8SAuthsConfigLastChange
+  reason: Operation manages Kubernetes authentication method configuration on the Akeyless gateway — configuring
+    how machine identities authenticate, i.e. identity and access management controls. Title noise is
+    low; the single operation is unambiguous about auth config, though it is narrow admin surface so confidence
+    is moderate.
+- tag: Gateway Get K8s Auth Config
+  spec_file: akeyless-gateway-get-k8s-auth-config-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /gateway-get-k8s-auth-config  gatewayGetK8SAuthConfig  Gateway get K8 SAuth config
+  reason: Retrieves Kubernetes authentication configuration used to authenticate workloads to the secrets
+    platform — identity and access management. Narrow single-operation surface so confidence is moderate
+    rather than high.
+- tag: Gateway Get Producer
+  spec_file: akeyless-gateway-get-producer-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /gateway-get-producer; schemas DSProducerDetails, SecureRemoteAccess
+  reason: Dynamic-secrets producer details plus SecureRemoteAccess indicate configuration of ephemeral
+    credential issuance and privileged remote access — identity and access management rather than any
+    business-domain capability.
+- tag: Gateway List Producers
+  spec_file: akeyless-gateway-list-producers-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: gatewayListProducers  Gateway list producers; schemas GetProducersListReplyObj, Producer
+  reason: Lists dynamic-secrets producers, the objects that generate credentials for machines and users;
+    this is inventory of credential-issuance configuration, i.e. Identity & Access Management. Single
+    read operation keeps confidence moderate.
+- tag: Gateway Update Producer Certificate Automation
+  spec_file: akeyless-gateway-update-producer-certificate-automation-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: 'Gateway update producer certificate automation; vendor description: ''certificate lifecycle
+    management'''
+  reason: Automated certificate issuance is machine identity lifecycle management, best placed under Identity
+    & Access Management within Cybersecurity; some ambiguity versus security architecture.
+- tag: Gateway Update Producer Custom
+  spec_file: akeyless-gateway-update-producer-custom-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: 'Gateway update producer custom; schemas: SecureRemoteAccess, DSProducerDetails, ItemTargetAssociation'
+  reason: Generic dynamic-secrets producer configuration on a secrets/privileged-access platform; same
+    credential-issuance capability as the typed producers, though the 'custom' target is unspecified.
+- tag: Get Dynamic Secret Value
+  spec_file: akeyless-get-dynamic-secret-value-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /get-dynamic-secret-value  getDynamicSecretValue
+  reason: Issues just-in-time dynamic credentials from the vault, which the vendor frames as 'dynamic
+    secrets generation' for machine and privileged access — a credential/privileged-access control. Some
+    ambiguity versus a configuration-and-secrets reading, hence moderate confidence.
+- tag: Get Kube Exec Creds
+  spec_file: akeyless-get-kube-exec-creds-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /get-kube-exec-creds  getKubeExecCreds  Get kube exec creds
+  reason: Mints short-lived credentials for authenticating access to Kubernetes clusters — credential
+    issuance for privileged access, i.e. Identity & Access Management. Thin single-operation context keeps
+    confidence moderate.
+- tag: Get Pki Certificate
+  spec_file: akeyless-get-pki-certificate-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /get-pki-certificate  GetPKICertificate  Get PKI certificate
+  reason: Issues a PKI certificate from the platform's certificate authority; certificates act as machine
+    identities and access credentials, mapping to Cybersecurity → Identity & Access Management rather
+    than any product-engineering capability.
+- tag: Get Ssh Certificate
+  spec_file: akeyless-get-ssh-certificate-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /get-ssh-certificate  getSSHCertificate  Get SSH certificate
+  reason: Issues an SSH certificate used to authenticate access to hosts; vendor describes "SSH access
+    governance" and privileged access, which is identity and access management rather than a business-domain
+    capability.
+- tag: Kmip Renew Client
+  spec_file: akeyless-kmip-renew-client-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: kmipRenewClientCertificate  Kmip renew client certificate
+  reason: Renewal of client certificates used to authenticate KMIP clients is machine-identity credential
+    lifecycle management, squarely Identity & Access Management.
+- tag: Raw Creds
+  spec_file: akeyless-raw-creds-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /raw-creds  rawCreds; schema SystemAccessCredentialsReplyObj
+  reason: Returns system access credentials for a caller, i.e. credential issuance for access to target
+    systems — identity and access management on a secrets/privileged-access platform.
+- tag: Sign Jwt With Classic Key
+  spec_file: akeyless-sign-jwt-with-classic-key-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.7
+  evidence: POST /sign-jwt-with-classic-key  signJWTWithClassicKey  Sign JWT with classic key
+  reason: Cryptographic signing of JWTs using a managed key — a key-management/security service operation,
+    mapped at Cybersecurity Management L1 only since no sub-capability covers crypto key usage specifically.
+- tag: Update Pki Cert Issuer
+  spec_file: akeyless-update-pki-cert-issuer-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.7
+  evidence: POST /update-pki-cert-issuer  UpdatePKICertIssuer  Update PKI cert issuer
+  reason: Managing a PKI certificate issuer is part of the vendor's 'certificate lifecycle management'
+    and is a cybersecurity control capability; no candidate sub-capability names PKI/crypto specifically,
+    so L1 only.

@@ -3,6 +3,7 @@ method: searched
 checked:
 - https://aws.amazon.com/marketplace/
 - https://azuremarketplace.microsoft.com/
+- https://github.com/marketplace?type=actions
 marketplace_apps: []
 edges:
 - partner_name: AWS Marketplace
@@ -35,3 +36,22 @@ edges:
   seller_name: AKEYLESS SECURITY LTD
   detected_by: sweep-cloud-marketplaces.py
   detected: '2026-10-13'
+- partner_name: GitHub Marketplace (actions)
+  partner: github-actions
+  partner_match: aggregator
+  type: marketplace
+  marketplace: github-actions
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://github.com/marketplace/actions/akeyless-authentication-and-fetching-secrets
+  listing_count: 1
+  apps:
+  - Akeyless Authentication and fetching secrets
+  publisher_name: Akeyless Community
+  badges:
+  - Verified creator
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
+source:
+- https://github.com/marketplace?type=actions

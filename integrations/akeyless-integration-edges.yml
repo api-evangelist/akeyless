@@ -5,6 +5,7 @@ checked:
 - https://aws.amazon.com/marketplace/
 - https://azuremarketplace.microsoft.com/
 - https://github.com/marketplace?type=actions
+- https://registry.npmjs.org/-/v1/search?text=keywords:n8n-community-node-package
 marketplace_apps: []
 edges:
 - partner_name: AWS Marketplace
@@ -71,5 +72,34 @@ edges:
   detected: '2026-10-14'
   detected_by: mirror-platform-listings.py
   category: Security
+- partner_name: n8n
+  partner: n8n
+  partner_match: aggregator
+  type: marketplace
+  marketplace: n8n-community
+  channel: open-source-node
+  relationship: ipaas-bridge
+  direction: provider-built
+  evidence: https://www.npmjs.com/package/n8n-nodes-akeyless-io
+  category: null
+  contract_reference:
+    register: n8n community nodes (npm keyword n8n-community-node-package)
+    spec_file: null
+    role: ipaas-connector:n8n-community
+    registered_name: n8n-nodes-akeyless-io
+    matched_domain: akeyless.io
+    matched_by: domain
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-15'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    package: n8n-nodes-akeyless-io
+    version: 1.0.9
+    published: '2026-04-07T07:06:59.796Z'
+    matched_on: publisher-email
+    builder: provider (package published from the provider's own domain)
+    other_packages:
+    - '@akeylesslabs/n8n-nodes-akeyless'
+  detected_by: sweep-workflow-automation.py
+  first_seen: '2026-10-15'
 source:
 - https://github.com/marketplace?type=actions

@@ -79,5 +79,5 @@
     builder: provider (package published from the provider's own domain)
     other_packages:
     - '@akeylesslabs/n8n-nodes-akeyless'
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null

@@ -43,17 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    deleteRolesOutput:
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
     deleteRoles:
       properties:
         json:
@@ -75,5 +64,16 @@ components:
       required:
       - path
       title: deleteRoles is a command that deletes multiple roles from a given path.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    deleteRolesOutput:
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

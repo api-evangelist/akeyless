@@ -43,23 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    clientData:
-      example:
-        clientKeyData: clientKeyData
-        clientCertificateData: clientCertificateData
-        parentCertificateData: parentCertificateData
-      properties:
-        clientCertificateData:
-          type: string
-          x-go-name: ClientCertificateData
-        clientKeyData:
-          type: string
-          x-go-name: ClientKeyData
-        parentCertificateData:
-          type: string
-          x-go-name: ParentCertificateData
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     getKubeExecCredsOutput:
       example:
         apiVersion: apiVersion
@@ -137,6 +120,23 @@ components:
           x-go-name: URISANs
       required:
       - cert-issuer-name
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    clientData:
+      example:
+        clientKeyData: clientKeyData
+        clientCertificateData: clientCertificateData
+        parentCertificateData: parentCertificateData
+      properties:
+        clientCertificateData:
+          type: string
+          x-go-name: ClientCertificateData
+        clientKeyData:
+          type: string
+          x-go-name: ClientKeyData
+        parentCertificateData:
+          type: string
+          x-go-name: ParentCertificateData
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     JSONError:

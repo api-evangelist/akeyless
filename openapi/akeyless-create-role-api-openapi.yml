@@ -104,9 +104,6 @@ components:
       title: createRole is a command that creates a new role .
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    createRoleOutput:
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     JSONError:
       properties:
         error:
@@ -115,3 +112,6 @@ components:
       title: JSONError wraps an error with JSON object.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    createRoleOutput:
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

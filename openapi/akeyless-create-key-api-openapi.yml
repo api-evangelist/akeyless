@@ -43,6 +43,15 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Duration:
+      description: 'A Duration represents the elapsed time between two instants
+
+        as an int64 nanosecond count. The representation limits the
+
+        largest representable duration to approximately 290 years.'
+      format: int64
+      type: integer
+      x-go-package: time
     createKey:
       description: 'createKey is a command that creates a new key. [Deprecated: Use command create-dfc-key]'
       properties:
@@ -105,15 +114,6 @@ components:
       - name
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    Duration:
-      description: 'A Duration represents the elapsed time between two instants
-
-        as an int64 nanosecond count. The representation limits the
-
-        largest representable duration to approximately 290 years.'
-      format: int64
-      type: integer
-      x-go-package: time
     createKeyOutput:
       example:
         display_id: display_id

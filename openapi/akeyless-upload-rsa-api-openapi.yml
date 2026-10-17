@@ -43,6 +43,9 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    uploadRSAOutput:
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     JSONError:
       properties:
         error:
@@ -119,8 +122,5 @@ components:
       - alg
       - name
       title: uploadRSA is a command that uploads RSA key.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    uploadRSAOutput:
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

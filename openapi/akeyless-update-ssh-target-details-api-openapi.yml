@@ -52,6 +52,14 @@ components:
           x-go-name: Updated
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
     updateSSHTargetDetails:
       properties:
         host:
@@ -106,11 +114,3 @@ components:
       title: updateSSHTargetDetails is a command that updates an existing target.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

@@ -43,6 +43,27 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    deleteRoleRuleOutput:
+      example:
+        result: result
+        deleted: true
+      properties:
+        deleted:
+          type: boolean
+          x-go-name: Deleted
+        result:
+          type: string
+          x-go-name: Result
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     deleteRoleRule:
       properties:
         json:
@@ -76,24 +97,3 @@ components:
       title: deleteRoleRule is a command that deletes a rule from a role.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    deleteRoleRuleOutput:
-      example:
-        result: result
-        deleted: true
-      properties:
-        deleted:
-          type: boolean
-          x-go-name: Deleted
-        result:
-          type: string
-          x-go-name: Result
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

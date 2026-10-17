@@ -39,7 +39,7 @@ paths:
       tags:
       - Create Auth Method K8s
       x-codegen-request-body-name: body
-      summary: Create auth method K8 S
+      summary: Create auth method K8S
       x-summary-source: derived
 components:
   schemas:

@@ -43,17 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
-    setRoleRuleOutput:
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     setRoleRule:
       properties:
         capability:
@@ -101,3 +90,14 @@ components:
       title: setRoleRule is a command that sets a rule to a role.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    setRoleRuleOutput:
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

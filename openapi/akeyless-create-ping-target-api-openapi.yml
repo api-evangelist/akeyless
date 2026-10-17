@@ -43,6 +43,16 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    createPingTargetOutput:
+      example:
+        target_id: 0
+      properties:
+        target_id:
+          format: int64
+          type: integer
+          x-go-name: TargetID
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     JSONError:
       properties:
         error:
@@ -108,15 +118,5 @@ components:
       required:
       - name
       title: createPingTarget is a command that creates a new target.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    createPingTargetOutput:
-      example:
-        target_id: 0
-      properties:
-        target_id:
-          format: int64
-          type: integer
-          x-go-name: TargetID
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

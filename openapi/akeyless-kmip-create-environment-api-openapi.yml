@@ -43,24 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    KMIPEnvironmentCreateResponse:
-      example:
-        root: root
-        ca_cert:
-        - 0
-        - 0
-      properties:
-        ca_cert:
-          items:
-            format: uint8
-            type: integer
-          type: array
-          x-go-name: CACert
-        root:
-          type: string
-          x-go-name: Root
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/gateway/config
     kmipServerSetup:
       properties:
         certificate-ttl:
@@ -99,3 +81,21 @@ components:
       title: JSONError wraps an error with JSON object.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    KMIPEnvironmentCreateResponse:
+      example:
+        root: root
+        ca_cert:
+        - 0
+        - 0
+      properties:
+        ca_cert:
+          items:
+            format: uint8
+            type: integer
+          type: array
+          x-go-name: CACert
+        root:
+          type: string
+          x-go-name: Root
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/gateway/config

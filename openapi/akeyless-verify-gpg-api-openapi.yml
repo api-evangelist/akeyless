@@ -84,9 +84,6 @@ components:
       title: verifyGPG is a command that verifies a GPG signature based on RSA key.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    verifyGPGOutput:
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     JSONError:
       properties:
         error:
@@ -95,3 +92,6 @@ components:
       title: JSONError wraps an error with JSON object.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    verifyGPGOutput:
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

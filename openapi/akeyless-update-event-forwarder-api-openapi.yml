@@ -43,6 +43,9 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    updateEventForwarderOutput:
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     updateEventForwarder:
       properties:
         admin-name:
@@ -106,9 +109,6 @@ components:
       required:
       - name
       title: updateEventForwarder is a command that updates an event forwarder.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    updateEventForwarderOutput:
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     JSONError:

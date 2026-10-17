@@ -131,6 +131,14 @@ components:
           x-go-name: Clusters
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
     listSRABastions:
       properties:
         allowed-urls-only:
@@ -151,11 +159,3 @@ components:
       title: listSRABastions is a command that returns a list of bastions.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

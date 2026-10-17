@@ -39,10 +39,19 @@ paths:
       tags:
       - Update Auth Method K8s
       x-codegen-request-body-name: body
-      summary: Update auth method K8 S
+      summary: Update auth method K8S
       x-summary-source: derived
 components:
   schemas:
+    updateAuthMethodK8SOutput:
+      example:
+        prv_key: prv_key
+      properties:
+        prv_key:
+          type: string
+          x-go-name: PrivateKey
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     updateAuthMethodK8S:
       description: 'updateAuthMethodK8S is a command that updates a new auth method that will
 
@@ -129,15 +138,6 @@ components:
           x-go-name: UIDToken
       required:
       - name
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    updateAuthMethodK8SOutput:
-      example:
-        prv_key: prv_key
-      properties:
-        prv_key:
-          type: string
-          x-go-name: PrivateKey
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     JSONError:

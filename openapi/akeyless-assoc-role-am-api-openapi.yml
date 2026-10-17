@@ -43,6 +43,18 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    CreateRoleAuthMethodAssocOutput:
+      description: 'CreateRoleAuthMethodAssocOutput defines output of CreateRoleAuthMethodAssoc
+
+        operation.'
+      example:
+        assoc_id: assoc_id
+      properties:
+        assoc_id:
+          type: string
+          x-go-name: AssociationID
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     assocRoleAuthMethod:
       description: 'assocRoleAuthMethod is a command that creates an association between role
 
@@ -82,18 +94,6 @@ components:
       - role-name
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    CreateRoleAuthMethodAssocOutput:
-      description: 'CreateRoleAuthMethodAssocOutput defines output of CreateRoleAuthMethodAssoc
-
-        operation.'
-      example:
-        assoc_id: assoc_id
-      properties:
-        assoc_id:
-          type: string
-          x-go-name: AssociationID
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     JSONError:
       properties:
         error:

@@ -43,6 +43,27 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    configureOutput:
+      example:
+        profile: profile
+        token: token
+      properties:
+        profile:
+          type: string
+          x-go-name: Profile
+        token:
+          type: string
+          x-go-name: Token
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     configure:
       properties:
         access-id:
@@ -93,24 +114,3 @@ components:
       title: configure is a command that creates a new Akeyless profile.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    configureOutput:
-      example:
-        profile: profile
-        token: token
-      properties:
-        profile:
-          type: string
-          x-go-name: Profile
-        token:
-          type: string
-          x-go-name: Token
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

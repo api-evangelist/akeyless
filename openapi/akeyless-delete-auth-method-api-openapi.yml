@@ -43,6 +43,15 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    deleteAuthMethodOutput:
+      example:
+        name: name
+      properties:
+        name:
+          type: string
+          x-go-name: Name
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     deleteAuthMethod:
       properties:
         json:
@@ -74,12 +83,3 @@ components:
       title: JSONError wraps an error with JSON object.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client
-    deleteAuthMethodOutput:
-      example:
-        name: name
-      properties:
-        name:
-          type: string
-          x-go-name: Name
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

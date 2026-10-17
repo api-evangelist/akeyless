@@ -43,6 +43,15 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    createPKICertIssuerOutput:
+      example:
+        name: name
+      properties:
+        name:
+          type: string
+          x-go-name: Name
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     CreatePKICertIssuer:
       example:
         key-usage: DigitalSignature,KeyAgreement,KeyEncipherment
@@ -206,15 +215,6 @@ components:
       - signer-key-name
       - ttl
       title: CreatePKICertIssuer is a command that creates a new PKI certificate issuer.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    createPKICertIssuerOutput:
-      example:
-        name: name
-      properties:
-        name:
-          type: string
-          x-go-name: Name
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     JSONError:

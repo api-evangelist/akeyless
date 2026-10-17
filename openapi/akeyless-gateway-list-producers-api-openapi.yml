@@ -43,6 +43,33 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    GetProducersListReplyObj:
+      example:
+        producers_errors: '{}'
+        producers:
+        - init: true
+          name: name
+          active: true
+          failure_message: failure_message
+          id: 4
+          type: type
+        - init: true
+          name: name
+          active: true
+          failure_message: failure_message
+          id: 4
+          type: type
+      properties:
+        producers:
+          items:
+            $ref: '#/components/schemas/Producer'
+          type: array
+          x-go-name: Producers
+        producers_errors:
+          type: object
+          x-go-name: ProducersErrors
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
     Producer:
       example:
         init: true
@@ -71,33 +98,6 @@ components:
         type:
           type: string
           x-go-name: Type
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
-    GetProducersListReplyObj:
-      example:
-        producers_errors: '{}'
-        producers:
-        - init: true
-          name: name
-          active: true
-          failure_message: failure_message
-          id: 4
-          type: type
-        - init: true
-          name: name
-          active: true
-          failure_message: failure_message
-          id: 4
-          type: type
-      properties:
-        producers:
-          items:
-            $ref: '#/components/schemas/Producer'
-          type: array
-          x-go-name: Producers
-        producers_errors:
-          type: object
-          x-go-name: ProducersErrors
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/akeyless-api/gator
     gatewayListProducers:

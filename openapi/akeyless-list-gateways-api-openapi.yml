@@ -43,50 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    GatewaysListResponse:
-      description: GatewaysListResponse Gateway cluster identity list
-      example:
-        clusters:
-        - cluster_url: cluster_url
-          cluster_name: cluster_name
-          current_gw: true
-          status_description: status_description
-          customer_fragment_ids:
-          - customer_fragment_ids
-          - customer_fragment_ids
-          allowed: true
-          allowed_access_ids:
-          - allowed_access_ids
-          - allowed_access_ids
-          default_protection_key_id: 0
-          id: 6
-          display_name: display_name
-          default_secret_location: default_secret_location
-          status: status
-        - cluster_url: cluster_url
-          cluster_name: cluster_name
-          current_gw: true
-          status_description: status_description
-          customer_fragment_ids:
-          - customer_fragment_ids
-          - customer_fragment_ids
-          allowed: true
-          allowed_access_ids:
-          - allowed_access_ids
-          - allowed_access_ids
-          default_protection_key_id: 0
-          id: 6
-          display_name: display_name
-          default_secret_location: default_secret_location
-          status: status
-      properties:
-        clusters:
-          items:
-            $ref: '#/components/schemas/GwClusterIdentity'
-          type: array
-          x-go-name: GwClusterList
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     listGateways:
       properties:
         json:
@@ -175,3 +131,47 @@ components:
       title: JSONError wraps an error with JSON object.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    GatewaysListResponse:
+      description: GatewaysListResponse Gateway cluster identity list
+      example:
+        clusters:
+        - cluster_url: cluster_url
+          cluster_name: cluster_name
+          current_gw: true
+          status_description: status_description
+          customer_fragment_ids:
+          - customer_fragment_ids
+          - customer_fragment_ids
+          allowed: true
+          allowed_access_ids:
+          - allowed_access_ids
+          - allowed_access_ids
+          default_protection_key_id: 0
+          id: 6
+          display_name: display_name
+          default_secret_location: default_secret_location
+          status: status
+        - cluster_url: cluster_url
+          cluster_name: cluster_name
+          current_gw: true
+          status_description: status_description
+          customer_fragment_ids:
+          - customer_fragment_ids
+          - customer_fragment_ids
+          allowed: true
+          allowed_access_ids:
+          - allowed_access_ids
+          - allowed_access_ids
+          default_protection_key_id: 0
+          id: 6
+          display_name: display_name
+          default_secret_location: default_secret_location
+          status: status
+      properties:
+        clusters:
+          items:
+            $ref: '#/components/schemas/GwClusterIdentity'
+          type: array
+          x-go-name: GwClusterList
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types

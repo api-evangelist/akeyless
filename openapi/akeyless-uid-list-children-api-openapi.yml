@@ -66,6 +66,35 @@ components:
           x-go-name: UIDToken
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    UniversalIdentityDetails:
+      example:
+        number_of_tokens: 6
+        max_depth: 0
+        root:
+          deny_inheritance: true
+          depth: 1
+          last_rotate: last_rotate
+          children: {}
+          comment: comment
+          id: id
+          revoked: true
+          ttl: 5
+          deny_rotate: true
+          expired_date: expired_date
+      properties:
+        max_depth:
+          format: uint16
+          type: integer
+          x-go-name: MaxDepth
+        number_of_tokens:
+          format: int64
+          type: integer
+          x-go-name: NumberOfTokens
+        root:
+          $ref: '#/components/schemas/UIDTokenDetails'
+      title: UniversalIdentityDetails Universal identity type.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     UIDTokenDetails:
       example:
         deny_inheritance: true
@@ -114,35 +143,6 @@ components:
           type: integer
           x-go-name: TTL
       title: UIDTokenDetails Universal identity type.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    UniversalIdentityDetails:
-      example:
-        number_of_tokens: 6
-        max_depth: 0
-        root:
-          deny_inheritance: true
-          depth: 1
-          last_rotate: last_rotate
-          children: {}
-          comment: comment
-          id: id
-          revoked: true
-          ttl: 5
-          deny_rotate: true
-          expired_date: expired_date
-      properties:
-        max_depth:
-          format: uint16
-          type: integer
-          x-go-name: MaxDepth
-        number_of_tokens:
-          format: int64
-          type: integer
-          x-go-name: NumberOfTokens
-        root:
-          $ref: '#/components/schemas/UIDTokenDetails'
-      title: UniversalIdentityDetails Universal identity type.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     JSONError:

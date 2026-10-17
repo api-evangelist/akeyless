@@ -39,7 +39,7 @@ paths:
       tags:
       - Update K8s Target
       x-codegen-request-body-name: body
-      summary: Update native K8 STarget
+      summary: Update native K8S target
       x-summary-source: derived
 components:
   schemas:

@@ -43,9 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    deleteRoleAssociationOutput:
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     deleteRoleAssociation:
       description: 'deleteRoleAssociation is a command that deletes an association between role
 
@@ -79,3 +76,6 @@ components:
       title: JSONError wraps an error with JSON object.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    deleteRoleAssociationOutput:
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

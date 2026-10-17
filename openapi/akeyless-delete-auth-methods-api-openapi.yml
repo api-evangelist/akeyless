@@ -43,15 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    deleteAuthMethodsOutput:
-      example:
-        path: path
-      properties:
-        path:
-          type: string
-          x-go-name: Path
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     deleteAuthMethods:
       description: 'deleteAuthMethods is a command that deletes multiple auth methods from a
 
@@ -75,6 +66,15 @@ components:
           x-go-name: UIDToken
       required:
       - path
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    deleteAuthMethodsOutput:
+      example:
+        path: path
+      properties:
+        path:
+          type: string
+          x-go-name: Path
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     JSONError:

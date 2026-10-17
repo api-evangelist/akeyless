@@ -43,6 +43,9 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    deleteTargetOutput:
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     deleteTarget:
       properties:
         force-deletion:
@@ -74,9 +77,6 @@ components:
       required:
       - name
       title: deleteTarget is a command that deletes a target.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    deleteTargetOutput:
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     JSONError:

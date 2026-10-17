@@ -43,23 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    kmipDescribeServer:
-      properties:
-        json:
-          description: Set output format to JSON
-          type: boolean
-          x-go-name: Json
-        token:
-          description: Authentication token (see `/auth` and `/configure`)
-          type: string
-          x-go-name: Profile
-        uid-token:
-          description: The universal identity token, Required only for universal_identity authentication
-          type: string
-          x-go-name: UIDToken
-      title: kmipDescribeServer is a command that shows KMIP environment details.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     kmipDescribeServerOutput:
       example:
         hostname: hostname
@@ -104,3 +87,20 @@ components:
       title: JSONError wraps an error with JSON object.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    kmipDescribeServer:
+      properties:
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      title: kmipDescribeServer is a command that shows KMIP environment details.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

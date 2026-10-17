@@ -39,7 +39,7 @@ paths:
       tags:
       - Gateway Get K8s Auth Config
       x-codegen-request-body-name: body
-      summary: Gateway get K8 SAuth config
+      summary: Gateway get K8S auth config
       x-summary-source: derived
 components:
   schemas:

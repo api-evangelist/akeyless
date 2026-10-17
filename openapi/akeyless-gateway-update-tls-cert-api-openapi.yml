@@ -43,15 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    GatewayUpdateTlsCertOutput:
-      example:
-        updated: true
-      properties:
-        updated:
-          type: boolean
-          x-go-name: Updated
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     GatewayUpdateTlsCert:
       description: gatewayUpdateTlsCert is a command that updates Gateway TLS certificate
       example:
@@ -81,6 +72,15 @@ components:
           description: The universal identity token, Required only for universal_identity authentication
           type: string
           x-go-name: UIDToken
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    GatewayUpdateTlsCertOutput:
+      example:
+        updated: true
+      properties:
+        updated:
+          type: boolean
+          x-go-name: Updated
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     JSONError:

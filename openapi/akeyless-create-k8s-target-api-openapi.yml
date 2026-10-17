@@ -39,20 +39,10 @@ paths:
       tags:
       - Create K8s Target
       x-codegen-request-body-name: body
-      summary: Create native K8 STarget
+      summary: Create native K8S target
       x-summary-source: derived
 components:
   schemas:
-    createNativeK8STargetOutput:
-      example:
-        target_id: 0
-      properties:
-        target_id:
-          format: int64
-          type: integer
-          x-go-name: TargetID
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     createNativeK8STarget:
       properties:
         comment:
@@ -103,6 +93,16 @@ components:
       - k8s-cluster-token
       - name
       title: createNativeK8STarget is a command that creates a new target.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    createNativeK8STargetOutput:
+      example:
+        target_id: 0
+      properties:
+        target_id:
+          format: int64
+          type: integer
+          x-go-name: TargetID
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     JSONError:

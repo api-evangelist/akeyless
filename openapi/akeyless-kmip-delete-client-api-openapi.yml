@@ -66,9 +66,6 @@ components:
       title: kmipDeleteClient is a command that deletes a KMIP client.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    kmipDeleteClientOutput:
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     JSONError:
       properties:
         error:
@@ -77,3 +74,6 @@ components:
       title: JSONError wraps an error with JSON object.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    kmipDeleteClientOutput:
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

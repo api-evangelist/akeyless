@@ -43,15 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    updateAuthMethodOutput:
-      example:
-        name: name
-      properties:
-        name:
-          type: string
-          x-go-name: Name
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     updateAuthMethod:
       properties:
         access-expires:
@@ -116,3 +107,12 @@ components:
       title: JSONError wraps an error with JSON object.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client
+    updateAuthMethodOutput:
+      example:
+        name: name
+      properties:
+        name:
+          type: string
+          x-go-name: Name
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands

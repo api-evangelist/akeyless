@@ -51,22 +51,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    describeSubClaimsOutput:
-      example:
-        sub_claims:
-          key:
-          - sub_claims
-          - sub_claims
-      properties:
-        sub_claims:
-          additionalProperties:
-            items:
-              type: string
-            type: array
-          type: object
-          x-go-name: SubClaims
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     describeSubClaims:
       description: describe-sub-claims Get the sub-claims associated with the provided token or authentication profile
       properties:
@@ -82,6 +66,22 @@ components:
           description: The universal identity token, Required only for universal_identity authentication
           type: string
           x-go-name: UIDToken
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    describeSubClaimsOutput:
+      example:
+        sub_claims:
+          key:
+          - sub_claims
+          - sub_claims
+      properties:
+        sub_claims:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+          x-go-name: SubClaims
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     JSONError:

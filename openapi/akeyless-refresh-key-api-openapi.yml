@@ -43,15 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    refreshKeyOutput:
-      example:
-        result: result
-      properties:
-        result:
-          type: string
-          x-go-name: Result
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     refreshKey:
       properties:
         json:
@@ -73,6 +64,15 @@ components:
       required:
       - name
       title: refreshKey is a command that refreshes a key.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    refreshKeyOutput:
+      example:
+        result: result
+      properties:
+        result:
+          type: string
+          x-go-name: Result
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     JSONError:

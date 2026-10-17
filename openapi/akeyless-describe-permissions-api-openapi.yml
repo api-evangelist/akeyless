@@ -43,20 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    DescribePermissionsOutput:
-      example:
-        client_permissions:
-        - client_permissions
-        - client_permissions
-      properties:
-        client_permissions:
-          items:
-            type: string
-          type: array
-          x-go-name: ClientPermissions
-      title: DescribePermissionsOutput defines output of DescribePermissionsOutput operation.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     describePermissions:
       description: 'describePermissions is a command that shows which permissions your have to a
 
@@ -87,6 +73,20 @@ components:
       - type
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    DescribePermissionsOutput:
+      example:
+        client_permissions:
+        - client_permissions
+        - client_permissions
+      properties:
+        client_permissions:
+          items:
+            type: string
+          type: array
+          x-go-name: ClientPermissions
+      title: DescribePermissionsOutput defines output of DescribePermissionsOutput operation.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     JSONError:
       properties:
         error:

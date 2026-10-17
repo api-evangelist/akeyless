@@ -43,14 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JSONError:
-      properties:
-        error:
-          type: string
-          x-go-name: Err
-      title: JSONError wraps an error with JSON object.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client
     RuleAssigner:
       example:
         unique_id: unique_id
@@ -62,66 +54,6 @@ components:
         unique_id:
           type: string
           x-go-name: UniqueId
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    PathRule:
-      example:
-        path: path
-        start_time: 5
-        capabilities:
-        - capabilities
-        - capabilities
-        number_of_allowed_access: 5
-        is_limit_access: true
-        assigners:
-        - unique_id: unique_id
-          access_id: access_id
-        - unique_id: unique_id
-          access_id: access_id
-        number_of_access_used: 1
-        type: type
-        ttl: 2
-      properties:
-        assigners:
-          items:
-            $ref: '#/components/schemas/RuleAssigner'
-          type: array
-          x-go-name: Assigners
-        capabilities:
-          description: The approved/denied capabilities in the path
-          items:
-            type: string
-          type: array
-          x-go-name: Capabilities
-        is_limit_access:
-          description: flag that indicate that this rule is allowed to be access RemainingAccess of times.
-          type: boolean
-          x-go-name: IsLimitAccess
-        number_of_access_used:
-          format: int64
-          type: integer
-          x-go-name: NumberOfAccessUsed
-        number_of_allowed_access:
-          format: int64
-          type: integer
-          x-go-name: NumberOfAllowedAccess
-        path:
-          description: The path the rule refers to
-          type: string
-          x-go-name: Path
-        start_time:
-          format: int64
-          type: integer
-          x-go-name: StartTime
-        ttl:
-          format: int64
-          type: integer
-          x-go-name: TTL
-        type:
-          title: PathRuleType defines a kind of every PathRule assigned to a Role.
-          type: string
-          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-      title: PathRule is a single rule used in AKEYLESS RBAC.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     Rules:
@@ -172,29 +104,6 @@ components:
       title: Rules are a part of AKEYLESS RBAC.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
-    getRole:
-      properties:
-        json:
-          description: Set output format to JSON
-          type: boolean
-          x-go-name: Json
-        name:
-          description: Role name
-          type: string
-          x-go-name: RoleName
-        token:
-          description: Authentication token (see `/auth` and `/configure`)
-          type: string
-          x-go-name: Profile
-        uid-token:
-          description: The universal identity token, Required only for universal_identity authentication
-          type: string
-          x-go-name: UIDToken
-      required:
-      - name
-      title: getRole is a command that returns role details.
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     Role:
       example:
         role_name: role_name
@@ -289,6 +198,66 @@ components:
       title: Role includes role details.
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    PathRule:
+      example:
+        path: path
+        start_time: 5
+        capabilities:
+        - capabilities
+        - capabilities
+        number_of_allowed_access: 5
+        is_limit_access: true
+        assigners:
+        - unique_id: unique_id
+          access_id: access_id
+        - unique_id: unique_id
+          access_id: access_id
+        number_of_access_used: 1
+        type: type
+        ttl: 2
+      properties:
+        assigners:
+          items:
+            $ref: '#/components/schemas/RuleAssigner'
+          type: array
+          x-go-name: Assigners
+        capabilities:
+          description: The approved/denied capabilities in the path
+          items:
+            type: string
+          type: array
+          x-go-name: Capabilities
+        is_limit_access:
+          description: flag that indicate that this rule is allowed to be access RemainingAccess of times.
+          type: boolean
+          x-go-name: IsLimitAccess
+        number_of_access_used:
+          format: int64
+          type: integer
+          x-go-name: NumberOfAccessUsed
+        number_of_allowed_access:
+          format: int64
+          type: integer
+          x-go-name: NumberOfAllowedAccess
+        path:
+          description: The path the rule refers to
+          type: string
+          x-go-name: Path
+        start_time:
+          format: int64
+          type: integer
+          x-go-name: StartTime
+        ttl:
+          format: int64
+          type: integer
+          x-go-name: TTL
+        type:
+          title: PathRuleType defines a kind of every PathRule assigned to a Role.
+          type: string
+          x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+      title: PathRule is a single rule used in AKEYLESS RBAC.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
     RoleAuthMethodAssociation:
       description: 'RoleAuthMethodAssociation includes details of an association between a role
 
@@ -324,3 +293,34 @@ components:
           x-go-name: IsSubClaimsCaseSensitive
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/infra/types
+    getRole:
+      properties:
+        json:
+          description: Set output format to JSON
+          type: boolean
+          x-go-name: Json
+        name:
+          description: Role name
+          type: string
+          x-go-name: RoleName
+        token:
+          description: Authentication token (see `/auth` and `/configure`)
+          type: string
+          x-go-name: Profile
+        uid-token:
+          description: The universal identity token, Required only for universal_identity authentication
+          type: string
+          x-go-name: UIDToken
+      required:
+      - name
+      title: getRole is a command that returns role details.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    JSONError:
+      properties:
+        error:
+          type: string
+          x-go-name: Err
+      title: JSONError wraps an error with JSON object.
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client

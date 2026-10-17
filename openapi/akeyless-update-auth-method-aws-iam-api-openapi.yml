@@ -43,6 +43,9 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    updateAuthMethodAWSIAMOutput:
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     updateAuthMethodAWSIAM:
       description: 'updateAuthMethodAWSIAM is a command that updates a new Auth Method that will
 
@@ -147,9 +150,6 @@ components:
       required:
       - bound-aws-account-id
       - name
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
-    updateAuthMethodAWSIAMOutput:
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     JSONError:

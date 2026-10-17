@@ -43,15 +43,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    createAuthMethodGCPOutput:
-      example:
-        access_id: access_id
-      properties:
-        access_id:
-          type: string
-          x-go-name: AccessID
-      type: object
-      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     createAuthMethodGCP:
       description: 'createAuthMethodGCP is a command that creates a new auth method that
 
@@ -161,6 +152,15 @@ components:
       - audience
       - name
       - type
+      type: object
+      x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
+    createAuthMethodGCPOutput:
+      example:
+        access_id: access_id
+      properties:
+        access_id:
+          type: string
+          x-go-name: AccessID
       type: object
       x-go-package: akeyless.io/akeyless-main-repo/go/src/client/commands
     JSONError:

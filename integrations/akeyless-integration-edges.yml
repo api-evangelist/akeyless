@@ -13,6 +13,7 @@ checked:
 - https://addons.mozilla.org/api/v5/addons/addon/<slug>/
 - https://addons.mozilla.org/api/v5/addons/search/?type=extension&app=firefox
 - https://chromewebstore.google.com/sitemap
+- backstage/integrations/backstage-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: AWS Marketplace
@@ -121,6 +122,43 @@ edges:
     detected: '2026-10-20'
   detected_by: sweep-compliance-assurance.py
   first_seen: '2026-10-20'
+- partner_name: Mozilla Firefox Add-ons (AMO)
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: firefox-add-ons
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://addons.mozilla.org/en-US/firefox/addon/akeyless-sra/
+  app: Akeyless SRA
+  listing_count: 5
+  category: browser extension (Firefox Add-ons)
+  partner_url: https://addons.mozilla.org/
+  contract_reference:
+    register: 'Firefox Add-ons (addons.mozilla.org public API v5 search: authors, homepage, support_url)'
+    spec_file: null
+    role: firefox-add-on-publisher
+    registered_name: akeyless.io
+    register_id: https://addons.mozilla.org/api/v5/addons/addon/akeyless-sra/
+    matched_domain: akeyless.io
+    matched_by: domain
+    matched_name: akeyless.io
+    builder: publisher
+    signal_note: ONE edge per provider for the store; listing alone = participation. The AMO author name (builder
+      publisher) or homepage + support_url both on the provider's domain (builder domain-attested) identifies it;
+      extension / user counts are context, never counted. No Mozilla repo in all/*, so no platform-side edge exists
+      to mirror.
+    detected_by: sweep-browser-extension-stores.py
+    detected: '2026-10-21'
+  detected_by: sweep-browser-extension-stores.py
+  first_seen: '2026-10-21'
+  apps:
+  - Akeyless SRA
+  - Akeyless Password Manager 2.0
+  - Akeyless SA 2.0
+  - Akeyless Password Manager
+  - AKEYLESS Secrets Manager
 - partner_name: Datadog (own)
   partner: datadog
   partner_match: mirror
@@ -170,42 +208,22 @@ edges:
   detected: '2026-10-21'
   detected_by: mirror-platform-listings.py
   category: infrastructure-as-code provider registry listing
-- partner_name: Mozilla Firefox Add-ons (AMO)
-  partner: null
-  partner_match: null
+- partner_name: Backstage (own)
+  partner: backstage
+  partner_match: mirror
+  mirror_match: domain
   type: marketplace
-  marketplace: firefox-add-ons
-  channel: partner-built
   relationship: platform-app
   direction: third-party
-  evidence: https://addons.mozilla.org/en-US/firefox/addon/akeyless-sra/
-  app: Akeyless SRA
-  listing_count: 5
-  category: browser extension (Firefox Add-ons)
-  partner_url: https://addons.mozilla.org/
-  contract_reference:
-    register: 'Firefox Add-ons (addons.mozilla.org public API v5 search: authors, homepage, support_url)'
-    spec_file: null
-    role: firefox-add-on-publisher
-    registered_name: akeyless.io
-    register_id: https://addons.mozilla.org/api/v5/addons/addon/akeyless-sra/
-    matched_domain: akeyless.io
-    matched_by: domain
-    matched_name: akeyless.io
-    builder: publisher
-    signal_note: ONE edge per provider for the store; listing alone = participation. The AMO author name (builder
-      publisher) or homepage + support_url both on the provider's domain (builder domain-attested) identifies it;
-      extension / user counts are context, never counted. No Mozilla repo in all/*, so no platform-side edge exists
-      to mirror.
-    detected_by: sweep-browser-extension-stores.py
-    detected: '2026-10-21'
-  detected_by: sweep-browser-extension-stores.py
-  first_seen: '2026-10-21'
+  channel: partner-built
+  marketplace: own
+  evidence: https://github.com/backstage/backstage/tree/d72327203d5d0812bee2eace8688fa5ab22867be/microsite/data/plugins/akeyless.yaml
+  mirror_of: backstage/integrations/backstage-integration-edges.yml
   apps:
-  - Akeyless SRA
-  - Akeyless Password Manager 2.0
-  - Akeyless SA 2.0
-  - Akeyless Password Manager
-  - AKEYLESS Secrets Manager
+  - Akeyless
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Security
 source:
 - https://github.com/marketplace?type=actions
